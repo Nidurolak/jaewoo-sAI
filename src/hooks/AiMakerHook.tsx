@@ -54,9 +54,9 @@ export function sequenceParticle(value : SequenceType){
     }
     resString.push("<cmd name=")
     switch(value.mainString){
-        case "FrontCase": resString.push("a"); break;
-        case "MiddleCase": resString.push("b"); break;
-        case "LastCase": resString.push("c"); break;
+        case "wait": resString.push(`"${value.mainString}"` ); break;
+        case "move_against": resString.push("b"); break;
+        case "chase": resString.push("c"); break;
         default : break;
     }
 
