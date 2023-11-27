@@ -11,9 +11,10 @@ export interface StringTest {
 }
 export interface SequenceType {
     tabNum : number;
-    mainString : string;
-    case?: string;
+    case : string;
+    mainstring?: string;
     valueString0? : string;
     valueString1? : string;
     valueString2? : string;
+    valueString3? : string;
 }

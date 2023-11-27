@@ -53,10 +53,10 @@ export function sequenceParticle(value : SequenceType){
         resString.push("\t")
     }
     resString.push("<cmd name=")
-    switch(value.mainString){
-        case "wait": resString.push(`"${value.mainString}"` ); break;
-        case "move_against": resString.push("b"); break;
-        case "chase": resString.push("c"); break;
+    switch(value.case){
+        case "wait": resString.push(`"${value.mainstring}" min="${value.valueString0}" max="${value.valueString1}"` ); break;
+        case "move_against": resString.push(`"${value.mainstring}" distance="${value.valueString0}" run="${value.valueString1}" timeout="${value.valueString2}"`); break;
+        case "chase": resString.push(`"${value.mainstring}" chase_target="${value.valueString0}" run="${value.valueString1}" ` ); break;
         default : break;
     }
 
