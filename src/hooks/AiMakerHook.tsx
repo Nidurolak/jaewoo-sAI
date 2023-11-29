@@ -72,6 +72,21 @@ export function sequenceParticle(value : SequenceType){
 
     return resString.join("")
 }
+
+export function sequenceWarper(value : string[]){
+    const resString = '';
+ 
+    for(let i = 0; i < value.length; i++){
+        if(i != value.length -1){
+            resString.push(value[i])
+            resString.push("\n")
+        }
+    }
+
+    return resString.join("")
+}
+
+
 export function sequenceMaker(value : StringTest){
     
 }
