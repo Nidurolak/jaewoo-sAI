@@ -74,15 +74,14 @@ export function sequenceParticle(value : SequenceType){
 }
 
 export function sequenceWarper(value : string[]){
-    const resString = '';
+    const resString :string[] = [];
  
+    resString.push("\t\t<pattern>\n\t\t\t<param_decl/>\n\t\t\t<sequence>\n")
     for(let i = 0; i < value.length; i++){
-        if(i != value.length -1){
             resString.push(value[i])
             resString.push("\n")
-        }
     }
-
+    resString.push("\t\t\t</sequence>\n\t\t</pattern>")
     return resString.join("")
 }
 
