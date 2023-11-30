@@ -85,6 +85,19 @@ export function sequenceWarper(value : string[]){
     return resString.join("")
 }
 
+export function conditionWarper(value : string[]){
+    const resString :string[] = [];
+ 
+    resString.push("\t\t<pattern>\n\t\t\t<param_decl/>\n\t\t\t<sequence>\n")
+    for(let i = 0; i < value.length; i++){
+            resString.push(value[i])
+            resString.push("\n")
+    }
+    resString.push("\t\t\t</sequence>\n\t\t</pattern>")
+    return resString.join("")
+}
+
+
 
 export function sequenceMaker(value : StringTest){
     
