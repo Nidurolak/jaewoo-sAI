@@ -18,3 +18,10 @@ export interface SequenceType {
     valueString2? : string;
     valueString3? : string;
 }
+export interface ConditionType {
+    tabNum : number;
+    case : string;
+    mainstring?: string;
+    valueString0? : string;
+    valueString1? : string;
+}
