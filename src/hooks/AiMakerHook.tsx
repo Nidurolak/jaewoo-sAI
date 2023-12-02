@@ -91,21 +91,14 @@ export function conditionParticle(value : ConditionType){
     for(let i = 0; i < value.tabNum; i++){
         resString.push("\t")
     }
-    resString.push("<cmd name=")
+    resString.push("<condition name=")
     switch(value.mainstring){
-        case "wait": resString.push(`"${value.mainstring}" min="${value.valueString0}" max="${value.valueString1}"/>` ); break;
-        case "move_against": resString.push(`"${value.mainstring}" distance="${value.valueString0}" run="${value.valueString1}" timeout="${value.valueString2}"/>`); break;
-        case "chase": resString.push(`"${value.mainstring}" chase_target="${value.valueString0}" radius="${value.valueString1}" run="${value.valueString2}"  timeout="${value.valueString3}"/>` ); break;
-        case "move_around": resString.push(`"${value.mainstring}" clockwise="${value.valueString0}" timeout="${value.valueString1}" run="${value.valueString2}"/>` ); break;
-        case "melee_attack": resString.push(`"${value.mainstring}" timeout="${value.valueString1}"/>` ); break;
-        case "stackmagic_attack": resString.push(`"${value.mainstring}" stack_magic="${value.valueString0}" charge="${value.valueString1}" timeout="${value.valueString2}"/>` ); break;
-        case "prepare_skill": resString.push(`"${value.mainstring}" pet_skill="${value.valueString0}" try_cnt="${value.valueString1}" timeout="${value.valueString2}"/>` ); break;
-        case "stack_skill": resString.push(`"${value.mainstring}" stack_magic="${value.valueString0}" charge="${value.valueString1}"/>` ); break;
-        case "process_skill": resString.push(`"${value.mainstring}" target="${value.valueString0}" timeout="${value.valueString1}"/>` ); break;
-        case "cancel_skill": resString.push(`"${value.mainstring}"/>` ); break;
-        case "skill_relax": resString.push(`"${value.mainstring}" on="${value.valueString0}"/>` ); break;
-        case "PetST_skill": resString.push(`"${value.mainstring}" pet_st="${value.valueString0}" timeout="${value.valueString1}"/>` ); break;
-        case "PetEQ_skill": resString.push(`"${value.mainstring}" pet_eq="${value.valueString0}" timeout="${value.valueString1}"/>` ); break;
+        case "target_state": resString.push(`"${value.mainstring}" min="${value.valueString0}" max="${value.valueString1}"/>` ); break;
+        case "target_distance": resString.push(`"${value.mainstring}" stack_magic="${value.valueString0}" charge="${value.valueString1}"/>` ); break;
+        case "skill_preparable": resString.push(`"${value.mainstring}" target="${value.valueString0}" timeout="${value.valueString1}"/>` ); break;
+        case "ST_preparable": resString.push(`"${value.mainstring}"/>` ); break;
+        case "EQ_preparable": resString.push(`"${value.mainstring}" pet_st="${value.valueString0}" timeout="${value.valueString1}"/>` ); break;
+        case "master_damaged_life_greater": resString.push(`"${value.mainstring}" pet_eq="${value.valueString0}" timeout="${value.valueString1}"/>` ); break;
         default : break;
     }
 
