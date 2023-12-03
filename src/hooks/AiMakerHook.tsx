@@ -76,7 +76,7 @@ export function sequenceParticle(value : SequenceType){
 export function sequenceWarper(value : string[]){
     const resString :string[] = [];
  
-    resString.push("\t\t<pattern>\n\t\t\t<param_decl/>\n\t\t\t<sequence>\n")
+    resString.push("\n\t\t<pattern>\n\t\t\t<param_decl/>\n\t\t\t<sequence>\n")
     for(let i = 0; i < value.length; i++){
             resString.push(value[i])
             resString.push("\n")
@@ -93,12 +93,12 @@ export function conditionParticle(value : ConditionType){
     }
     resString.push("<condition name=")
     switch(value.mainstring){
-        case "target_state": resString.push(`"${value.mainstring}" min="${value.valueString0}" max="${value.valueString1}"/>` ); break;
-        case "target_distance": resString.push(`"${value.mainstring}" stack_magic="${value.valueString0}" charge="${value.valueString1}"/>` ); break;
-        case "skill_preparable": resString.push(`"${value.mainstring}" target="${value.valueString0}" timeout="${value.valueString1}"/>` ); break;
-        case "ST_preparable": resString.push(`"${value.mainstring}"/>` ); break;
-        case "EQ_preparable": resString.push(`"${value.mainstring}" pet_st="${value.valueString0}" timeout="${value.valueString1}"/>` ); break;
-        case "master_damaged_life_greater": resString.push(`"${value.mainstring}" pet_eq="${value.valueString0}" timeout="${value.valueString1}"/>` ); break;
+        case "target_state": resString.push(`"${value.mainstring}" state="${value.valueString0}"/>` ); break;
+        case "target_distance": resString.push(`"${value.mainstring}" min_distance="${value.valueString0}" max_distance="${value.valueString1}"/>` ); break;
+        case "skill_preparable": resString.push(`"${value.mainstring}" pet_skill="${value.valueString0}"/>` ); break;
+        case "ST_preparable": resString.push(`"${value.mainstring}" pet_st="${value.valueString0}"/>` ); break;
+        case "EQ_preparable": resString.push(`"${value.mainstring}" pet_eq="${value.valueString0}"/>` ); break;
+        case "master_damaged_life_greater": resString.push(`"${value.mainstring}" life="${value.valueString0}"/>` ); break;
         default : break;
     }
 
@@ -108,12 +108,12 @@ export function conditionParticle(value : ConditionType){
 export function conditionWarper(value : string[]){
     const resString :string[] = [];
  
-    resString.push("\t\t<pattern>\n\t\t\t<param_decl/>\n\t\t\t<sequence>\n")
+    resString.push("\n\t\t<conditions>\n")
     for(let i = 0; i < value.length; i++){
             resString.push(value[i])
             resString.push("\n")
     }
-    resString.push("\t\t\t</sequence>\n\t\t</pattern>")
+    resString.push("\t\t\t</conditions>")
     return resString.join("")
 }
 
