@@ -25,3 +25,12 @@ export interface ConditionType {
     valueString0? : string;
     valueString1? : string;
 }
+export interface EventTypes {
+    name?: string;
+    mainstring?: string[];
+    condition? : string[];
+    sequence? : string;
+    valueString0? : string;
+    valueString1? : string;
+    valueString2? : string;
+}

@@ -2,8 +2,8 @@ import React, { useState, ChangeEvent, useEffect, useRef } from 'react';
 import { styled } from 'styled-components';
 import { useSetRecoilState } from 'recoil';
 import { useMutation } from 'react-query';
-import {ConditionType, SequenceType, StringTest} from "../utils/types";
-import { useForm, Controller } from 'react-hook-form';
+import {ConditionType, EventTypes, SequenceType, StringTest} from "../utils/types";
+import { useForm, Controller, EventType } from 'react-hook-form';
 import { useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 
 export function AIMaking(value : StringTest){
@@ -109,6 +109,18 @@ export function conditionWarper(value : string[]){
     const resString :string[] = [];
  
     resString.push("\n\t\t<conditions>\n")
+    for(let i = 0; i < value.length; i++){
+            resString.push(value[i])
+            resString.push("\n")
+    }
+    resString.push("\t\t\t</conditions>")
+    return resString.join("")
+}
+
+export function eventWarper(value : EventTypes){
+    const resString :string[] = [];
+ 
+    resString.push(`\n\t<rule name="${value}">\n`)
     for(let i = 0; i < value.length; i++){
             resString.push(value[i])
             resString.push("\n")
