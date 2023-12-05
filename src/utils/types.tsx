@@ -27,9 +27,9 @@ export interface ConditionType {
 }
 export interface EventTypes {
     name?: string;
-    mainstring?: string[];
+    mainstring?: string;
     condition? : string[];
-    sequence? : string;
+    sequence? : string[];
     valueString0? : string;
     valueString1? : string;
     valueString2? : string;

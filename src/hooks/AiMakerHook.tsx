@@ -121,10 +121,8 @@ export function eventWarper(value : EventTypes){
     const resString :string[] = [];
  
     resString.push(`\n\t<rule name="${value}">\n`)
-    for(let i = 0; i < value.length; i++){
-            resString.push(value[i])
-            resString.push("\n")
-    }
+    resString.push(conditionWarper(value.condition!))
+    resString.push(sequenceWarper(value.sequence!))
     resString.push("\t\t\t</conditions>")
     return resString.join("")
 }
