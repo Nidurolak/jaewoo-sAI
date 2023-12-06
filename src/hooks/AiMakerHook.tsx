@@ -81,7 +81,7 @@ export function sequenceWarper(value : string[]){
             resString.push(value[i])
             resString.push("\n")
     }
-    resString.push("\t\t\t</sequence>\n\t\t</pattern>")
+    resString.push("\t\t\t</sequence>\n\t\t</pattern>\n")
     return resString.join("")
 }
 
@@ -113,17 +113,47 @@ export function conditionWarper(value : string[]){
             resString.push(value[i])
             resString.push("\n")
     }
-    resString.push("\t\t\t</conditions>")
+    resString.push("\t\t</conditions>")
     return resString.join("")
 }
 
 export function eventWarper(value : EventTypes){
     const resString :string[] = [];
  
-    resString.push(`\n\t<rule name="${value}">\n`)
+    resString.push(`\n\t<rule name="${value.name}">`)
     resString.push(conditionWarper(value.condition!))
     resString.push(sequenceWarper(value.sequence!))
-    resString.push("\t\t\t</conditions>")
+    resString.push("\t\t<event name=")
+    
+    switch(value.mainstring){
+        case "master_targeted": resString.push(`"${value.mainstring}" targeting_type="${value.valueString0}"/>` ); break;
+        case "master_aimed": resString.push(`"${value.mainstring}"/>` ); break;
+        case "master_target_skill_prepare": resString.push(`"${value.mainstring}"/>` ); break;
+        case "master_target_magic_prepare": resString.push(`"${value.mainstring}"/>` ); break;
+        case "master_defence": resString.push(`"${value.mainstring}" defence_enable_skill="${value.valueString0}"/>` ); break;
+        case "master_attacked": resString.push(`"${value.mainstring}" master_skill="${value.valueString0}"/> down="${value.valueString1}"/>` ); break;
+        case "master_skill_prepare": resString.push(`"${value.mainstring}" event_skill="${value.valueString0}"/>` ); break;
+        case "seek_target": resString.push(`"${value.mainstring}"/>` ); break;
+        case "now_targeting": resString.push(`"${value.mainstring}"/>` ); break;
+        case "attack": resString.push(`"${value.mainstring}" pet_attackable_skill="${value.valueString0}" down="${value.valueString1}"/>` ); break;
+        case "target_magic_prepare": resString.push(`"${value.mainstring}"/>` ); break;
+        case "aimed": resString.push(`"${value.mainstring}"/>` ); break;
+        case "target_skill_prepare": resString.push(`"${value.mainstring}"/>` ); break;
+        case "defence": resString.push(`"${value.mainstring}" defence_enable_skill="${value.valueString0}"/>` ); break;
+        case "attacked": resString.push(`"${value.mainstring}" master_skill="${value.valueString0}" down="${value.valueString1}"/>` ); break;        case "attack": resString.push(`"${value.mainstring}" life="${value.valueString0}"/>` ); break;
+        default : break;
+    }
+    resString.push("\n\t</rule>")
+    return resString.join("")
+}
+export function totalWarper(value : string[]){
+    const resString :string[] = [];
+ 
+    resString.push("<rules>\n")
+    for(let i = 0 ; i < value.length; i++){
+        resString.push(value[i])
+    }
+    resString.push("\n</rules>")
     return resString.join("")
 }
 

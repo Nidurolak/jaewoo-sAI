@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import clipboardCopy from 'clipboard-copy';
-import { AIMaking, TestAIMaking, conditionParticle, conditionWarper, sequenceParticle, sequenceWarper} from '../hooks/AiMakerHook';
+import { AIMaking, TestAIMaking, conditionParticle, conditionWarper, eventWarper, sequenceParticle, sequenceWarper, totalWarper} from '../hooks/AiMakerHook';
 import { ConditionType, SequenceType, StringTest } from '../utils/types';
 
 function Main (){
@@ -23,11 +23,12 @@ function Main (){
     
   
     const handleCopyToClipboard = ( ) => {
-      clipboardCopy(sequenceWarper([sequenceParticle(StringTest1),sequenceParticle(StringTest1)]))
+      clipboardCopy(totalWarper([eventWarper({name : "와! 샌즈!", mainstring : "master_targeted", valueString0 : "alert",sequence : [sequenceParticle(StringTest1),sequenceParticle(StringTest1)], condition: [conditionParticle(StringTest2)]})]))
         .then(() => {
           setCopied(true);
           console.log(sequenceWarper([sequenceParticle(StringTest1),sequenceParticle(StringTest1)]))
           console.log(conditionWarper([conditionParticle(StringTest2)]))
+          console.log(eventWarper({name : "asd", sequence : [sequenceParticle(StringTest1),sequenceParticle(StringTest1)], condition: [conditionParticle(StringTest2)]}))
         })
         .catch((error) => {
           console.error('클립보드 복사 오류:', error);
@@ -37,7 +38,7 @@ function Main (){
     return (
       <div style={{ whiteSpace: 'pre' }}>
         <button onClick={handleCopyToClipboard}>클립보드에 복사</button>
-        {copied && <p>'{conditionWarper([conditionParticle(StringTest2)])}{sequenceWarper([sequenceParticle(StringTest1),sequenceParticle(StringTest1)])}'가 클립보드에 복사되었습니다.</p>}
+        {copied && <p>{totalWarper([eventWarper({name : "와! 샌즈!", mainstring : "master_targeted", valueString0 : "alert",sequence : [sequenceParticle(StringTest1),sequenceParticle(StringTest1)], condition: [conditionParticle(StringTest2)]})])}'가 클립보드에 복사되었습니다.</p>}
       </div>
     );
 }
