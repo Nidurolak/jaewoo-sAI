@@ -36,10 +36,25 @@ function Main (){
     }
   
     return (
-      <div style={{ whiteSpace: 'pre' }}>
+      <TestButtonContainer>
+
         <button onClick={handleCopyToClipboard}>클립보드에 복사</button>
         {copied && <p>{totalWarper([eventWarper({name : "와! 샌즈!", mainstring : "master_targeted", valueString0 : "alert",sequence : [sequenceParticle(StringTest1),sequenceParticle(StringTest1)], condition: [conditionParticle(StringTest2)]})])}'가 클립보드에 복사되었습니다.</p>}
-      </div>
+
+      </TestButtonContainer>
     );
 }
 export default Main
+
+const TestButtonContainer = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+width: 100vw;
+height: 100vh;
+margin: 0 auto;
+gap: 10px;
+white-space: pre;
+background-color: ivory;
+`

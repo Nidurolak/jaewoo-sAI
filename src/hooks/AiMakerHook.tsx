@@ -149,7 +149,7 @@ export function eventWarper(value : EventTypes){
 export function totalWarper(value : string[]){
     const resString :string[] = [];
  
-    resString.push("<rules>\n")
+    resString.push("<rules>")
     for(let i = 0 ; i < value.length; i++){
         resString.push(value[i])
     }
