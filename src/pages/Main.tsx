@@ -23,13 +23,11 @@ function Main (){
     
   
     const handleCopyToClipboard = ( ) => {
-      clipboardCopy(totalWarper([eventWarper({name : "와! 샌즈!", mainstring : "master_targeted", valueString0 : "alert",sequence : [sequenceParticle(StringTest1),sequenceParticle(StringTest1)], condition: [conditionParticle(StringTest2)]})]))
+      clipboardCopy(
+        totalWarper(
+          [eventWarper({name : "와! 샌즈!", mainstring : "master_targeted", valueString0 : "alert",sequence : [sequenceParticle(StringTest1),sequenceParticle(StringTest1)], condition: [conditionParticle(StringTest2)]}), eventWarper({name : "와! 샌즈!", mainstring : "master_targeted", valueString0 : "alert",sequence : [sequenceParticle(StringTest1),sequenceParticle(StringTest1)], condition: [conditionParticle(StringTest2)]})]))
         .then(() => {
-          setCopied(true);
-          console.log(sequenceWarper([sequenceParticle(StringTest1),sequenceParticle(StringTest1)]))
-          console.log(conditionWarper([conditionParticle(StringTest2)]))
-          console.log(eventWarper({name : "asd", sequence : [sequenceParticle(StringTest1),sequenceParticle(StringTest1)], condition: [conditionParticle(StringTest2)]}))
-        })
+          setCopied(true);})
         .catch((error) => {
           console.error('클립보드 복사 오류:', error);
         });
@@ -39,6 +37,7 @@ function Main (){
       <TestButtonContainer>
 
         <button onClick={handleCopyToClipboard}>클립보드에 복사</button>
+        <button onClick={handleCopyToClipboard}>펫 디펜더 클립보드에 복사</button>
         {copied && <p>{totalWarper([eventWarper({name : "와! 샌즈!", mainstring : "master_targeted", valueString0 : "alert",sequence : [sequenceParticle(StringTest1),sequenceParticle(StringTest1)], condition: [conditionParticle(StringTest2)]})])}'가 클립보드에 복사되었습니다.</p>}
 
       </TestButtonContainer>
