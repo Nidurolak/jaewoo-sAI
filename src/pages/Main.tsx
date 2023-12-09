@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import clipboardCopy from 'clipboard-copy';
 import { AIMaking, TestAIMaking, conditionParticle, conditionWarper, eventWarper, sequenceParticle, sequenceWarper, totalWarper} from '../hooks/AiMakerHook';
 import { ConditionType, SequenceType, StringTest } from '../utils/types';
+import { Pet_Missile } from '../components/AISequenceTool';
 
 function Main (){
     const [copied, setCopied] = useState(false);
@@ -32,12 +33,22 @@ function Main (){
           console.error('클립보드 복사 오류:', error);
         });
     }
+    const handleCopyToClipboardTest = ( ) => {
+      clipboardCopy(
+        totalWarper(
+          [Pet_Missile()]))
+        .then(() => {
+          setCopied(true);})
+        .catch((error) => {
+          console.error('클립보드 복사 오류:', error);
+        });
+    }
   
     return (
       <TestButtonContainer>
 
         <button onClick={handleCopyToClipboard}>클립보드에 복사</button>
-        <button onClick={handleCopyToClipboard}>펫 디펜더 클립보드에 복사</button>
+        <button onClick={handleCopyToClipboardTest}>펫 디펜더 클립보드에 복사</button>
         {copied && <p>{totalWarper([eventWarper({name : "와! 샌즈!", mainstring : "master_targeted", valueString0 : "alert",sequence : [sequenceParticle(StringTest1),sequenceParticle(StringTest1)], condition: [conditionParticle(StringTest2)]})])}'가 클립보드에 복사되었습니다.</p>}
 
       </TestButtonContainer>
