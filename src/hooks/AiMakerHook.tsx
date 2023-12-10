@@ -58,7 +58,7 @@ export function sequenceParticle(value : SequenceType){
         case "move_against": resString.push(`"${value.mainstring}" distance="${value.valueString0}" run="${value.valueString1}" timeout="${value.valueString2}"/>`); break;
         case "chase": resString.push(`"${value.mainstring}" chase_target="${value.valueString0}" radius="${value.valueString1}" run="${value.valueString2}"  timeout="${value.valueString3}"/>` ); break;
         case "move_around": resString.push(`"${value.mainstring}" clockwise="${value.valueString0}" timeout="${value.valueString1}" run="${value.valueString2}"/>` ); break;
-        case "melee_attack": resString.push(`"${value.mainstring}" timeout="${value.valueString1}"/>` ); break;
+        case "melee_attack": resString.push(`"${value.mainstring}" timeout="${value.valueString0}"/>` ); break;
         case "stackmagic_attack": resString.push(`"${value.mainstring}" stack_magic="${value.valueString0}" charge="${value.valueString1}" timeout="${value.valueString2}"/>` ); break;
         case "prepare_skill": resString.push(`"${value.mainstring}" pet_skill="${value.valueString0}" try_cnt="${value.valueString1}" timeout="${value.valueString2}"/>` ); break;
         case "stack_skill": resString.push(`"${value.mainstring}" stack_magic="${value.valueString0}" charge="${value.valueString1}"/>` ); break;

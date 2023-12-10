@@ -49,7 +49,7 @@ function Main (){
 
         <button onClick={handleCopyToClipboard}>클립보드에 복사</button>
         <button onClick={handleCopyToClipboardTest}>펫 디펜더 클립보드에 복사</button>
-        {copied && <p>{totalWarper([eventWarper({name : "와! 샌즈!", mainstring : "master_targeted", valueString0 : "alert",sequence : [sequenceParticle(StringTest1),sequenceParticle(StringTest1)], condition: [conditionParticle(StringTest2)]})])}'가 클립보드에 복사되었습니다.</p>}
+        {copied && <p>{totalWarper([Pet_Missile()])}'가 클립보드에 복사되었습니다.</p>}
 
       </TestButtonContainer>
     );

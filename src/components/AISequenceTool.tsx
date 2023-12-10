@@ -45,12 +45,13 @@ export function Pet_Missile() {
         tabNum: 4,
         case: "sequence",
         mainstring: "melee_attack",
-        valueString0: "5000"
+        valueString0: "10000"
     };
 
     const returnValue: string = eventWarper({
         name: "자동 펫 미사일",
         mainstring: "master_aimed",
+        condition: [],
         sequence: [sequenceParticle(sequence0), sequenceParticle(sequence1)]
     });
 
