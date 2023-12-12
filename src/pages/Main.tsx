@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import clipboardCopy from 'clipboard-copy';
 import { AIMaking, TestAIMaking, conditionParticle, conditionWarper, eventWarper, sequenceParticle, sequenceWarper, totalWarper} from '../hooks/AiMakerHook';
 import { ConditionType, SequenceType, StringTest } from '../utils/types';
-import { Pet_Missile } from '../components/AISequenceTool';
+import { AI_TOOL } from '../components/AITool';
 
 function Main (){
     const [copied, setCopied] = useState(false);
@@ -35,8 +35,7 @@ function Main (){
     }
     const handleCopyToClipboardTest = ( ) => {
       clipboardCopy(
-        totalWarper(
-          [Pet_Missile()]))
+        AI_TOOL().Pet_Missile)
         .then(() => {
           setCopied(true);})
         .catch((error) => {
@@ -49,7 +48,7 @@ function Main (){
 
         <button onClick={handleCopyToClipboard}>클립보드에 복사</button>
         <button onClick={handleCopyToClipboardTest}>펫 디펜더 클립보드에 복사</button>
-        {copied && <p>{totalWarper([Pet_Missile()])}'가 클립보드에 복사되었습니다.</p>}
+        {copied && <p>{totalWarper([AI_TOOL().Pet_Missile])}'가 클립보드에 복사되었습니다.</p>}
 
       </TestButtonContainer>
     );
