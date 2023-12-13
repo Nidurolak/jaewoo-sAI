@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import clipboardCopy from 'clipboard-copy';
-import { AIMaking, TestAIMaking, conditionParticle, conditionWarper, eventWarper, sequenceParticle, sequenceWarper, totalWarper} from '../hooks/AiMakerHook';
+import { AIMaking, TestAIMaking, conParticle, conWarper, eventWarper, seqParticle, seqWarper, totalWarper} from '../hooks/AiMakerHook';
 import { ConditionType, SequenceType, StringTest } from '../utils/types';
 import { AI_TOOL } from '../components/AITool';
 
@@ -12,21 +12,21 @@ function Main (){
     let StringTest1 : SequenceType = {
       tabNum : 4,
       case : "sequence",
-      mainstring: "wait",
-      valueString0 : "0",
-      valueString1 : "0"}
+      main: "wait",
+      value0 : "0",
+      value1 : "0"}
       let StringTest2 : ConditionType = {
         tabNum : 4,
         case : "condition",
-        mainstring: "ST_preparable",
-        valueString0 : "PetSTDamageUp",
-        valueString1 : "0"}
+        main: "ST_preparable",
+        value0 : "PetSTDamageUp",
+        value1 : "0"}
     
   
     const handleCopyToClipboard = ( ) => {
       clipboardCopy(
         totalWarper(
-          [eventWarper({name : "와! 샌즈!", mainstring : "master_targeted", valueString0 : "alert",sequence : [sequenceParticle(StringTest1),sequenceParticle(StringTest1)], condition: [conditionParticle(StringTest2)]}), eventWarper({name : "와! 샌즈!", mainstring : "master_targeted", valueString0 : "alert",sequence : [sequenceParticle(StringTest1),sequenceParticle(StringTest1)], condition: [conditionParticle(StringTest2)]})]))
+          [eventWarper({name : "와! 샌즈!", main : "master_targeted", value0 : "alert",sequence : [seqParticle(StringTest1),seqParticle(StringTest1)], condition: [conParticle(StringTest2)]}), eventWarper({name : "와! 샌즈!", main : "master_targeted", value0 : "alert",sequence : [seqParticle(StringTest1),seqParticle(StringTest1)], condition: [conParticle(StringTest2)]})]))
         .then(() => {
           setCopied(true);})
         .catch((error) => {
@@ -35,7 +35,8 @@ function Main (){
     }
     const handleCopyToClipboardTest = ( ) => {
       clipboardCopy(
-        AI_TOOL().Pet_Missile)
+        totalWarper([ AI_TOOL().Pet_Master_Chase])
+       )
         .then(() => {
           setCopied(true);})
         .catch((error) => {
@@ -48,7 +49,7 @@ function Main (){
 
         <button onClick={handleCopyToClipboard}>클립보드에 복사</button>
         <button onClick={handleCopyToClipboardTest}>펫 디펜더 클립보드에 복사</button>
-        {copied && <p>{totalWarper([AI_TOOL().Pet_Missile])}'가 클립보드에 복사되었습니다.</p>}
+        {copied && <p>{totalWarper([AI_TOOL().Pet_Master_Chase])}'가 클립보드에 복사되었습니다.</p>}
 
       </TestButtonContainer>
     );

@@ -3,34 +3,34 @@ import React from "react";
 
 export interface StringTest {
     tabNum : number;
-    mainString : string;
+    main : string;
     case?: string;
-    valueString0? : string;
-    valueString1? : string;
-    valueString2? : string;
+    value0? : string;
+    value1? : string;
+    value2? : string;
 }
 export interface SequenceType {
     tabNum : number;
     case : string;
-    mainstring?: string;
-    valueString0? : string;
-    valueString1? : string;
-    valueString2? : string;
-    valueString3? : string;
+    main?: string;
+    value0? : string;
+    value1? : string;
+    value2? : string;
+    value3? : string;
 }
 export interface ConditionType {
     tabNum : number;
     case : string;
-    mainstring?: string;
-    valueString0? : string;
-    valueString1? : string;
+    main?: string;
+    value0? : string;
+    value1? : string;
 }
 export interface EventTypes {
     name?: string;
-    mainstring?: string;
+    main?: string;
     condition? : string[];
     sequence? : string[];
-    valueString0? : string;
-    valueString1? : string;
-    valueString2? : string;
+    value0? : string;
+    value1? : string;
+    value2? : string;
 }

@@ -12,7 +12,7 @@ export function AIMaking(value : StringTest){
     for(let i = 0; i < value.tabNum; i++){
         resString.push("\t")
     }
-    switch(value.mainString){
+    switch(value.main){
         case "FrontCase": resString.push("a"); break;
         case "MiddleCase": resString.push("b"); break;
         case "LastCase": resString.push("c"); break;
@@ -28,7 +28,7 @@ export function TestAIMaking(value : StringTest){
     for(let i = 0; i < value.tabNum; i++){
         resString.push("\t")
     }
-    switch(value.mainString){
+    switch(value.main){
         case "FrontCase": resString.push("a"); break;
         case "MiddleCase": resString.push("b"); break;
         case "LastCase": resString.push("c"); break;
@@ -46,34 +46,34 @@ export function TestAIMaking(value : StringTest){
 //stack_magic, charge
 //run, timeout이다.
 //cmd name은 공통적으로 들어가지만 뒤의 벨류들은 전부 선택이다. 블로그에 경우의 수를 적어두겠다.
-export function sequenceParticle(value : SequenceType){
+export function seqParticle(value : SequenceType){
     const resString :string[] = [];
  
     for(let i = 0; i < value.tabNum; i++){
         resString.push("\t")
     }
     resString.push("<cmd name=")
-    switch(value.mainstring){
-        case "wait": resString.push(`"${value.mainstring}" min="${value.valueString0}" max="${value.valueString1}"/>` ); break;
-        case "move_against": resString.push(`"${value.mainstring}" distance="${value.valueString0}" run="${value.valueString1}" timeout="${value.valueString2}"/>`); break;
-        case "chase": resString.push(`"${value.mainstring}" chase_target="${value.valueString0}" radius="${value.valueString1}" run="${value.valueString2}"  timeout="${value.valueString3}"/>` ); break;
-        case "move_around": resString.push(`"${value.mainstring}" clockwise="${value.valueString0}" timeout="${value.valueString1}" run="${value.valueString2}"/>` ); break;
-        case "melee_attack": resString.push(`"${value.mainstring}" timeout="${value.valueString0}"/>` ); break;
-        case "stackmagic_attack": resString.push(`"${value.mainstring}" stack_magic="${value.valueString0}" charge="${value.valueString1}" timeout="${value.valueString2}"/>` ); break;
-        case "prepare_skill": resString.push(`"${value.mainstring}" pet_skill="${value.valueString0}" try_cnt="${value.valueString1}" timeout="${value.valueString2}"/>` ); break;
-        case "stack_skill": resString.push(`"${value.mainstring}" stack_magic="${value.valueString0}" charge="${value.valueString1}"/>` ); break;
-        case "process_skill": resString.push(`"${value.mainstring}" target="${value.valueString0}" timeout="${value.valueString1}"/>` ); break;
-        case "cancel_skill": resString.push(`"${value.mainstring}"/>` ); break;
-        case "skill_relax": resString.push(`"${value.mainstring}" on="${value.valueString0}"/>` ); break;
-        case "PetST_skill": resString.push(`"${value.mainstring}" pet_st="${value.valueString0}" timeout="${value.valueString1}"/>` ); break;
-        case "PetEQ_skill": resString.push(`"${value.mainstring}" pet_eq="${value.valueString0}" timeout="${value.valueString1}"/>` ); break;
+    switch(value.main){
+        case "wait": resString.push(`"${value.main}" min="${value.value0}" max="${value.value1}"/>` ); break;
+        case "move_against": resString.push(`"${value.main}" distance="${value.value0}" run="${value.value1}" timeout="${value.value2}"/>`); break;
+        case "chase": resString.push(`"${value.main}" chase_target="${value.value0}" timeout="${value.value1}" run="${value.value2}"/>` ); break;
+        case "move_around": resString.push(`"${value.main}" clockwise="${value.value0}" timeout="${value.value1}" run="${value.value2}"/>` ); break;
+        case "melee_attack": resString.push(`"${value.main}" timeout="${value.value0}"/>` ); break;
+        case "stackmagic_attack": resString.push(`"${value.main}" stack_magic="${value.value0}" charge="${value.value1}" timeout="${value.value2}"/>` ); break;
+        case "prepare_skill": resString.push(`"${value.main}" pet_skill="${value.value0}" try_cnt="${value.value1}" timeout="${value.value2}"/>` ); break;
+        case "stack_skill": resString.push(`"${value.main}" stack_magic="${value.value0}" charge="${value.value1}"/>` ); break;
+        case "process_skill": resString.push(`"${value.main}" target="${value.value0}" timeout="${value.value1}"/>` ); break;
+        case "cancel_skill": resString.push(`"${value.main}"/>` ); break;
+        case "skill_relax": resString.push(`"${value.main}" on="${value.value0}"/>` ); break;
+        case "PetST_skill": resString.push(`"${value.main}" pet_st="${value.value0}" timeout="${value.value1}"/>` ); break;
+        case "PetEQ_skill": resString.push(`"${value.main}" pet_eq="${value.value0}" timeout="${value.value1}"/>` ); break;
         default : break;
     }
 
     return resString.join("")
 }
 
-export function sequenceWarper(value : string[]){
+export function seqWarper(value : string[]){
     const resString :string[] = [];
  
     resString.push("\n\t\t<pattern>\n\t\t\t<param_decl/>\n\t\t\t<sequence>\n")
@@ -85,35 +85,38 @@ export function sequenceWarper(value : string[]){
     return resString.join("")
 }
 
-export function conditionParticle(value : ConditionType){
+export function conParticle(value : ConditionType){
     const resString :string[] = [];
  
     for(let i = 0; i < value.tabNum; i++){
         resString.push("\t")
     }
     resString.push("<condition name=")
-    switch(value.mainstring){
-        case "target_state": resString.push(`"${value.mainstring}" state="${value.valueString0}"/>` ); break;
-        case "target_distance": resString.push(`"${value.mainstring}" min_distance="${value.valueString0}" max_distance="${value.valueString1}"/>` ); break;
-        case "skill_preparable": resString.push(`"${value.mainstring}" pet_skill="${value.valueString0}"/>` ); break;
-        case "ST_preparable": resString.push(`"${value.mainstring}" pet_st="${value.valueString0}"/>` ); break;
-        case "EQ_preparable": resString.push(`"${value.mainstring}" pet_eq="${value.valueString0}"/>` ); break;
-        case "master_damaged_life_greater": resString.push(`"${value.mainstring}" life="${value.valueString0}"/>` ); break;
+    switch(value.main){
+        case "target_state": resString.push(`"${value.main}" state="${value.value0}"/>` ); break;
+        case "target_distance": resString.push(`"${value.main}" min_distance="${value.value0}" max_distance="${value.value1}"/>` ); break;
+        case "skill_preparable": resString.push(`"${value.main}" pet_skill="${value.value0}"/>` ); break;
+        case "ST_preparable": resString.push(`"${value.main}" pet_st="${value.value0}"/>` ); break;
+        case "EQ_preparable": resString.push(`"${value.main}" pet_eq="${value.value0}"/>` ); break;
+        case "master_damaged_life_greater": resString.push(`"${value.main}" life="${value.value0}"/>` ); break;
         default : break;
     }
 
     return resString.join("")
 }
 
-export function conditionWarper(value : string[]){
+export function conWarper(value : string[]){
     const resString :string[] = [];
- 
-    resString.push("\n\t\t<conditions>\n")
-    for(let i = 0; i < value.length; i++){
-            resString.push(value[i])
-            resString.push("\n")
+    
+    if(value.length != 0){
+        resString.push("\n\t\t<conditions>\n")
+        for(let i = 0; i < value.length; i++){
+                resString.push(value[i])
+                resString.push("\n")
+        }
+        resString.push("\t\t</conditions>")
     }
-    resString.push("\t\t</conditions>")
+    else resString.push("\n\t\t<conditions/>")
     return resString.join("")
 }
 
@@ -121,26 +124,26 @@ export function eventWarper(value : EventTypes){
     const resString :string[] = [];
  
     resString.push(`\n\t<rule name="${value.name}">`)
-    resString.push(conditionWarper(value.condition!))
-    resString.push(sequenceWarper(value.sequence!))
+    resString.push(conWarper(value.condition!))
+    resString.push(seqWarper(value.sequence!))
     resString.push("\t\t<event name=")
     
-    switch(value.mainstring){
-        case "master_targeted": resString.push(`"${value.mainstring}" targeting_type="${value.valueString0}"/>` ); break;
-        case "master_aimed": resString.push(`"${value.mainstring}"/>` ); break;
-        case "master_target_skill_prepare": resString.push(`"${value.mainstring}"/>` ); break;
-        case "master_target_magic_prepare": resString.push(`"${value.mainstring}"/>` ); break;
-        case "master_defence": resString.push(`"${value.mainstring}" defence_enable_skill="${value.valueString0}"/>` ); break;
-        case "master_attacked": resString.push(`"${value.mainstring}" master_skill="${value.valueString0}"/> down="${value.valueString1}"/>` ); break;
-        case "master_skill_prepare": resString.push(`"${value.mainstring}" event_skill="${value.valueString0}"/>` ); break;
-        case "seek_target": resString.push(`"${value.mainstring}"/>` ); break;
-        case "now_targeting": resString.push(`"${value.mainstring}"/>` ); break;
-        case "attack": resString.push(`"${value.mainstring}" pet_attackable_skill="${value.valueString0}" down="${value.valueString1}"/>` ); break;
-        case "target_magic_prepare": resString.push(`"${value.mainstring}"/>` ); break;
-        case "aimed": resString.push(`"${value.mainstring}"/>` ); break;
-        case "target_skill_prepare": resString.push(`"${value.mainstring}"/>` ); break;
-        case "defence": resString.push(`"${value.mainstring}" defence_enable_skill="${value.valueString0}"/>` ); break;
-        case "attacked": resString.push(`"${value.mainstring}" master_skill="${value.valueString0}" down="${value.valueString1}"/>` ); break;        case "attack": resString.push(`"${value.mainstring}" life="${value.valueString0}"/>` ); break;
+    switch(value.main){
+        case "master_targeted": resString.push(`"${value.main}" targeting_type="${value.value0}"/>` ); break;
+        case "master_aimed": resString.push(`"${value.main}"/>` ); break;
+        case "master_target_skill_prepare": resString.push(`"${value.main}"/>` ); break;
+        case "master_target_magic_prepare": resString.push(`"${value.main}"/>` ); break;
+        case "master_defence": resString.push(`"${value.main}" defence_enable_skill="${value.value0}"/>` ); break;
+        case "master_attacked": resString.push(`"${value.main}" master_skill="${value.value0}"/> down="${value.value1}"/>` ); break;
+        case "master_skill_prepare": resString.push(`"${value.main}" event_skill="${value.value0}"/>` ); break;
+        case "seek_target": resString.push(`"${value.main}"/>` ); break;
+        case "now_targeting": resString.push(`"${value.main}"/>` ); break;
+        case "attack": resString.push(`"${value.main}" pet_attackable_skill="${value.value0}" down="${value.value1}"/>` ); break;
+        case "target_magic_prepare": resString.push(`"${value.main}"/>` ); break;
+        case "aimed": resString.push(`"${value.main}"/>` ); break;
+        case "target_skill_prepare": resString.push(`"${value.main}"/>` ); break;
+        case "defence": resString.push(`"${value.main}" defence_enable_skill="${value.value0}"/>` ); break;
+        case "attacked": resString.push(`"${value.main}" master_skill="${value.value0}" down="${value.value1}"/>` ); break;
         default : break;
     }
     resString.push("\n\t</rule>")
