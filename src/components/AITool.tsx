@@ -43,6 +43,7 @@ export function AI_TOOL(){
     let seq_wait_Short: SequenceType = {tabNum: 4, case: "sequence", main: "wait", value0: "2000", value1: "2000", };
     let seq_defence_Ready: SequenceType ={tabNum: 4, case: "sequence", main: "prepare_skill", value0: "defence", value1: "0", value2: "10000"}
     let seq_defence_Chase: SequenceType ={tabNum: 4, case: "sequence", main: "wait", value0: "10000", value1: "10000", }
+    let seq_defence_Chase2: SequenceType ={tabNum: 4, case: "sequence", main: "wait", value0: "10000", value1: "10000", }
 
     //let condition_default: ConditionType = {tabNum: 3, case: "condition", main:"", value0:"", value1:"",}
     let con_enemy_Hit_Blow: ConditionType = {tabNum: 3, case: "condition", main:"target_state", value0:"blowaway"}
