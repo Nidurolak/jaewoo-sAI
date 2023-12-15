@@ -35,7 +35,21 @@ function Main (){
     }
     const handleCopyToClipboardTest = ( ) => {
       clipboardCopy(
-        totalWarper([ AI_TOOL().Pet_Master_Chase])
+        totalWarper([
+          AI_TOOL().Pet_Master_Chase,
+          AI_TOOL().Pet_MasterTargeted_AtK_Defence,
+          AI_TOOL().Pet_MasterTargeted_Alert_Defence,
+          AI_TOOL().Pet_DefenceAttked_Revenge,
+          AI_TOOL().Pet_MasterAttked_Stand_Revenge,
+          AI_TOOL().Pet_MasterAttked_Down_Revenge,
+          AI_TOOL().Pet_AfterAtKDown_Defence,
+          AI_TOOL().Pet_AfterAtKStand_Defence,
+          AI_TOOL().Pet_Main_Defence,
+          AI_TOOL().Pet_Main_Defence1,
+          AI_TOOL().Pet_AttkedDown_Defence,
+          AI_TOOL().Pet_PetTargeted_Missile,
+          AI_TOOL().Pet_MasterTargeted_Missile,
+        ])
        )
         .then(() => {
           setCopied(true);})
@@ -49,7 +63,7 @@ function Main (){
 
         <button onClick={handleCopyToClipboard}>클립보드에 복사</button>
         <button onClick={handleCopyToClipboardTest}>펫 디펜더 클립보드에 복사</button>
-        {copied && <p>{totalWarper([AI_TOOL().Pet_Master_Chase])}'가 클립보드에 복사되었습니다.</p>}
+        {copied && <p>{}클립보드에 복사되었습니다.</p>}
 
       </TestButtonContainer>
     );

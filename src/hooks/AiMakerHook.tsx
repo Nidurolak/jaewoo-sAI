@@ -134,6 +134,7 @@ export function eventWarper(value : EventTypes){
         case "master_target_skill_prepare": resString.push(`"${value.main}"/>` ); break;
         case "master_target_magic_prepare": resString.push(`"${value.main}"/>` ); break;
         case "master_defence": resString.push(`"${value.main}" defence_enable_skill="${value.value0}"/>` ); break;
+        case "master_attack": resString.push(`"${value.main}" master_skill="${value.value0}"/>` ); break;
         case "master_attacked": resString.push(`"${value.main}" master_skill="${value.value0}"/> down="${value.value1}"/>` ); break;
         case "master_skill_prepare": resString.push(`"${value.main}" event_skill="${value.value0}"/>` ); break;
         case "seek_target": resString.push(`"${value.main}"/>` ); break;
