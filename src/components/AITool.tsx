@@ -36,6 +36,7 @@ export interface EventTypes {
 }*/
 export function AI_TOOL() {
     let seq_cancel: SequenceType = { tabNum: 4, case: "sequence", main: "cancel_skill" };
+    let seq_Ready_StWind: SequenceType = { tabNum: 4, case: "sequence", main: "PetST_skill", value0:"PetSTMoveSpeedUp",value1:"0" };
     let seq_meleeATK: SequenceType = { tabNum: 4, case: "sequence", main: "melee_attack", value0: "10000" };
     let seq_chase_Master_Run: SequenceType = { tabNum: 4, case: "sequence", main: "chase", value0: "master", value1: "0", value2: "true" };
     let seq_chase_Master_Walk: SequenceType = { tabNum: 4, case: "sequence", main: "chase", value0: "master", value1: "0", value2: "false" };
@@ -59,6 +60,11 @@ export function AI_TOOL() {
         return resString.join("");
     }
 
+    let Pet_MasterActive_StWind: string = eventWarper({
+        name: "자동 신속 사용", main: "master_skill_prepare", value0: "all",
+        condition: [],
+        sequence: [seqParticle(seq_cancel), seqParticle(seq_Ready_StWind)]
+    });
     let Pet_MasterTargeted_Missile: string = eventWarper({
         name: "자동 펫 미사일 - 주인", main: "master_aimed",
         condition: [],
@@ -127,12 +133,16 @@ export function AI_TOOL() {
         condition: [],
         sequence: [seqParticle(seq_defence_Ready), refeat({ refeatValue: [seq_chase_Master_Walk, seq_wait_Short], refeatNum: 6 }), seqParticle(seq_cancel)]
     })
+    /*
+    =========================주인바라기용 패턴====================================
+    */
     //let Pet_Missile: string = eventWarper({name:"",main:"",condition: [], sequence: []})
     //let Pet_Missile: string = eventWarper({name:"",main:"",condition: [], sequence: []})
     //let Pet_Missile: string = eventWarper({name:"",main:"",condition: [], sequence: []})
     //let Pet_Missile: string = eventWarper({name:"",main:"",condition: [], sequence: []})
     //let Pet_Missile: string = eventWarper({name:"",main:"",condition: [], sequence: []})
     return {
+        Pet_MasterActive_StWind,
         Pet_MasterTargeted_Missile,
         Pet_PetTargeted_Missile,
         Pet_Master_Chase,

@@ -41,6 +41,7 @@ function Main() {
   const handleCopyToClipboardTest = () => {
     clipboardCopy(
       totalWarper([
+        AI_TOOL().Pet_MasterActive_StWind,
         AI_TOOL().Pet_Master_Chase,
         AI_TOOL().Pet_MasterTargeted_AtK_Defence,
         AI_TOOL().Pet_MasterTargeted_Alert_Defence,
