@@ -8,6 +8,7 @@ import { ConditionType, SequenceType, StringTest } from '../utils/types';
 import { AI_TOOL } from '../components/AITool';
 import MainButton from '../assets/MainButton.svg'
 import Mainbutton3 from '../assets/MainButton3.png' 
+import AIButtonModal from '../components/AIButton';
 
 function Main() { 
   const [copied, setCopied] = useState(false);
@@ -70,6 +71,7 @@ function Main() {
 
       <TestButton onClick={handleCopyToClipboard}>클립보드에 복사</TestButton>
       <TestButton onClick={handleCopyToClipboardTest}>펫 디펜더 클립보드에 복사</TestButton>
+      <AIButtonModal></AIButtonModal>
 
       {copied && <p>{ }클립보드에 복사되었습니다.</p>}
 
@@ -88,7 +90,7 @@ height: 100vh;
 margin: 0 auto;
 gap: 10px;
 white-space: pre;
-background-color: rgba(81, 165, 196);
+background-color: rgba(131, 215, 246);
 `
 const TestButton = styled.button`
 background-color: rgba(255, 255, 255, 0);
