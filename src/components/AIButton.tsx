@@ -16,6 +16,7 @@ import 오리지널Lite from '../assets/Icon/오리지널Lite.jpg'
 import 재우오리지널 from '../assets/Icon/재우오리지널.jpg'
 import 전봇대 from '../assets/Icon/전봇대.jpg'
 import 주인바라기 from '../assets/Icon/주인바라기.jpg'
+import { useSetRecoilState } from "recoil";
 
 function AIButtonModal() {
     let Image = 로드롤러;
@@ -34,7 +35,7 @@ flex-direction: row;
 justify-content: flex-start;
 align-items: center;
 gap: 10px;
-width: 500px;
+width: 700px;
 height: 120px;
 background-color: rgba(81, 165, 196);
   border-radius: 7px;
@@ -48,8 +49,8 @@ background-image: ${({image}) => `url(${image})`};
   margin-left:10px;
   background-position: center;
   color: rgba(255, 255, 255, 1);
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   border-radius: 3px;
 `
 const DownButton = styled.button`
@@ -59,10 +60,8 @@ background-image: url(${Mainbutton3});
   background-size: cover;
   background-position: center;
   color: rgba(255, 255, 255, 1);
-  width: 100%;
-  height: 100%;
-  max-width: 150px; /* 변경된 부분 */
-  max-height: 50px; /* 변경된 부분 */
+  width: 210px; /* 변경된 부분 */
+  height: 70px; /* 변경된 부분 */
   border: none;
   font-size: 13px;
   font-family: Mabinogi_Classic_TTF;

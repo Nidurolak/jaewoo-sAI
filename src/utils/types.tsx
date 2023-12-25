@@ -34,3 +34,7 @@ export interface EventTypes {
     value1? : string;
     value2? : string;
 }
+
+export interface ButtonDataForRecoil{
+    name?: string;
+}
