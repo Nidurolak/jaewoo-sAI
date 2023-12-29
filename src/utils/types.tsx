@@ -1,6 +1,11 @@
 import { type } from "os";
 import React from "react";
 
+export interface AITemplet{
+    name?: string;
+    explain?: string;
+}
+
 export interface StringTest {
     tabNum : number;
     main : string;

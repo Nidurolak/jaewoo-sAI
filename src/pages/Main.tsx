@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import clipboardCopy from 'clipboard-copy';
 import { AIMaking, TestAIMaking, conParticle, conWarper, eventWarper, seqParticle, seqWarper, totalWarper } from '../hooks/AiMakerHook';
-import { ConditionType, SequenceType, StringTest } from '../utils/types';
+import { ConditionType, SequenceType, StringTest, AITemplet } from '../utils/types';
 import { AI_TOOL } from '../components/AITool';
 import MainButton from '../assets/MainButton.svg'
 import Mainbutton3 from '../assets/MainButton3.png' 
@@ -46,14 +46,14 @@ function Main() {
         AI_TOOL().Pet_Master_Chase,
         AI_TOOL().Pet_MasterTargeted_AtK_Defence,
         AI_TOOL().Pet_MasterTargeted_Alert_Defence,
-        AI_TOOL().Pet_DefenceAttked_Revenge,
-        AI_TOOL().Pet_MasterAttked_Stand_Revenge,
-        AI_TOOL().Pet_MasterAttked_Down_Revenge,
+        AI_TOOL().Pet_DefenceAttacked_Revenge,
+        AI_TOOL().Pet_MasterAttacked_Stand_Revenge,
+        AI_TOOL().Pet_MasterAttacked_Down_Revenge,
         AI_TOOL().Pet_AfterAtKDown_Defence,
         AI_TOOL().Pet_AfterAtKStand_Defence,
         AI_TOOL().Pet_Main_Defence,
         AI_TOOL().Pet_Main_Defence1,
-        AI_TOOL().Pet_AttkedDown_Defence,
+        AI_TOOL().Pet_AttackedDown_Defence,
         AI_TOOL().Pet_PetTargeted_Missile,
         AI_TOOL().Pet_MasterTargeted_Missile,
       ])
@@ -68,10 +68,10 @@ function Main() {
 
   return (
     <TestContainer>
-
-      <TestButton onClick={handleCopyToClipboard}>클립보드에 복사</TestButton>
-      <TestButton onClick={handleCopyToClipboardTest}>펫 디펜더 클립보드에 복사</TestButton>
-      <AIButtonModal></AIButtonModal>
+      <AIButtonModal name="펫 디펜더" explain="" />
+      <AIButtonModal name="주인바라기" explain="" />
+      <AIButtonModal name="재우 오리지널" explain="" />
+      <AIButtonModal name="볼트 서포터" explain="" />
 
       {copied && <p>{ }클립보드에 복사되었습니다.</p>}
 
