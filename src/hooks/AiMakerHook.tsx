@@ -46,7 +46,7 @@ export function TestAIMaking(value : StringTest){
 //stack_magic, charge
 //run, timeout이다.
 //cmd name은 공통적으로 들어가지만 뒤의 벨류들은 전부 선택이다. 블로그에 경우의 수를 적어두겠다.
-export function seqParticle(value : SequenceType){
+export function seqPt(value : SequenceType){
     const resString :string[] = [];
  
     for(let i = 0; i < value.tabNum; i++){
@@ -85,7 +85,7 @@ export function seqWarper(value : string[]){
     return resString.join("")
 }
 
-export function conParticle(value : ConditionType){
+export function conPt(value : ConditionType){
     const resString :string[] = [];
  
     for(let i = 0; i < value.tabNum; i++){

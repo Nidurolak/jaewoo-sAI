@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import clipboardCopy from 'clipboard-copy';
-import { AIMaking, TestAIMaking, conParticle, conWarper, eventWarper, seqParticle, seqWarper, totalWarper } from '../hooks/AiMakerHook';
+import { AIMaking, TestAIMaking, conPt, conWarper, eventWarper, seqPt, seqWarper, totalWarper } from '../hooks/AiMakerHook';
 import { ConditionType, SequenceType, StringTest, AITemplet } from '../utils/types';
 import { AI_TOOL } from '../components/AITool';
 import MainButton from '../assets/MainButton.svg'
@@ -31,7 +31,7 @@ function Main() {
   const handleCopyToClipboard = () => {
     clipboardCopy(
       totalWarper(
-        [eventWarper({ name: "와! 샌즈!", main: "master_targeted", value0: "alert", sequence: [seqParticle(StringTest1), seqParticle(StringTest1)], condition: [conParticle(StringTest2)] }), eventWarper({ name: "와! 샌즈!", main: "master_targeted", value0: "alert", sequence: [seqParticle(StringTest1), seqParticle(StringTest1)], condition: [conParticle(StringTest2)] })]))
+        [eventWarper({ name: "와! 샌즈!", main: "master_targeted", value0: "alert", sequence: [seqPt(StringTest1), seqPt(StringTest1)], condition: [conPt(StringTest2)] }), eventWarper({ name: "와! 샌즈!", main: "master_targeted", value0: "alert", sequence: [seqPt(StringTest1), seqPt(StringTest1)], condition: [conPt(StringTest2)] })]))
       .then(() => {
         setCopied(true);
       })

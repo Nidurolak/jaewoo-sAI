@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import clipboardCopy from 'clipboard-copy';
-import { AIMaking, TestAIMaking, conParticle, conWarper, eventWarper, seqParticle, seqWarper, totalWarper } from '../hooks/AiMakerHook';
+import { AIMaking, TestAIMaking, conPt, conWarper, eventWarper, seqPt, seqWarper, totalWarper } from '../hooks/AiMakerHook';
 import { ConditionType, SequenceType, StringTest, AITemplet } from '../utils/types';
 import { AI_TOOL } from './AITool';
 import MainButton from '../assets/MainButton.svg'
@@ -80,8 +80,19 @@ function AIButtonModal(value: AITemplet) {
 
   const handleCopyToClipboard = () => {
     handleSoundPlay();
+    let content;
+    switch(value.name){
+      case "펫 디펜더": content = 펫디펜더; break;
+      case "로드롤러": content = 메디이익; break;
+      case "볼트 서포터": content = 볼트서포터; break;
+      case "블레이즈 서포터": content = 블레이즈서포터; break;
+      case "재우 오리지널": content = 재우오리지널; break;
+      case "전봇대": content = 전봇대; break;
+      case "주인바라기": content = 주인바라기; break;
+      default: break;
+    }
     clipboardCopy(
-      totalWarper(AI_TOOL().Pet_Chaser_AI_Package))
+      totalWarper(AI_TOOL().Pet_Original_AI))
       .then(() => {
         setCopied(true);
         console.log('asdasd')
@@ -94,9 +105,9 @@ function AIButtonModal(value: AITemplet) {
   return (<BoxContainer>
     <AIDetailContainer>
       <AIImage image={Image} />
-      <DownButton onClick={handleCopyToClipboard}>{Name} AI</DownButton>
+      <DownButton>{Name} AI</DownButton>
     </AIDetailContainer>
-    <DownButton>클립보드 복사하기</DownButton>
+    <DownButton onClick={handleCopyToClipboard}>클립보드 복사하기</DownButton>
     <DownButton>AI파일 다운받기</DownButton>
   </BoxContainer>)
 }
