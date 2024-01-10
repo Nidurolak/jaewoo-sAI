@@ -10,6 +10,7 @@ export const GlobalStyle = createGlobalStyle`
         list-style: none; 
         text-decoration: none;
         font-family: 'Mabinogi_Classic_TTF';
+    font-weight: 500;
     }
     @font-face{
         font-family: 'Mabinogi_Classic_TTF';

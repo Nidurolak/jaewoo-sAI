@@ -8,6 +8,7 @@ import { ConditionType, SequenceType, StringTest, AITemplet } from '../utils/typ
 import { AI_TOOL } from '../components/AITool';
 import MainButton from '../assets/MainButton.svg'
 import Mainbutton3 from '../assets/MainButton3.png' 
+import SuccessModal from '../components/SuccessModal'
 import AIButtonModal from '../components/AIButton';
 
 function Main() { 
@@ -67,7 +68,9 @@ function Main() {
   }
 
   return (
+    <>
     <TestContainer>
+      
       <AIButtonModal name="펫 디펜더" explain="" />
       <AIButtonModal name="주인바라기" explain="" />
       <AIButtonModal name="재우 오리지널" explain="" />
@@ -75,7 +78,9 @@ function Main() {
 
       {copied && <p>{ }클립보드에 복사되었습니다.</p>}
 
-    </TestContainer>
+    </TestContainer><SuccessModal />
+    {/**/}
+  </>
   );
 }
 export default Main

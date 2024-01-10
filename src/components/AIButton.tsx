@@ -17,21 +17,27 @@ import 재우오리지널 from '../assets/Icon/재우오리지널.jpg'
 import 전봇대 from '../assets/Icon/전봇대.jpg'
 import 펫디펜더 from '../assets/Icon/펫디펜더.jpg'
 import 주인바라기 from '../assets/Icon/주인바라기.jpg'
-import { useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import gen_button_confirm from '../assets/Sound/gen_button_confirm.wav'
 import gen_hover from '../assets/Sound/gen_hover.wav'
+import { CurrentAIName, DownloadModalBool } from '../store/atom';
 
 function AIButtonModal(value: AITemplet) {
   let Image;
+  const [currentAIName, setCurrentAIName] = useRecoilState(CurrentAIName);
+  const [modalBoolValue, setmodalBoolValue] = useRecoilState(DownloadModalBool)
   const Hoversound = useRef(new Audio(gen_hover))
-  const Confirmsound = new Audio(gen_button_confirm);
+  const Confirmsound = useRef(new Audio(gen_button_confirm));
   const handleSoundPlay = () => {
     console.log("asasas")
-    Hoversound.current.currentTime = 0;
-    Hoversound.current.play();
+    Confirmsound.current.currentTime = 0;
+    Confirmsound.current.play();
   }
 
   const FileDownload = () => {
+    handleSoundPlay();
+    setCurrentAIName(value.name as string)
+    setmodalBoolValue(true)
     let content = '';
     switch (value.name) {
       case "펫 디펜더": content = totalWarper(AI_TOOL().Pet_Chaser_AI_PetDefender); break;
@@ -47,8 +53,9 @@ function AIButtonModal(value: AITemplet) {
       const element = document.createElement("a");
       const file = new Blob([content], {type: 'text/plain' });
       element.href = URL.createObjectURL(file);
-      element.download = 'example.txt';
+      element.download = value.name as string;
       document.body.appendChild(element);
+      element.click();
 }
 
 
@@ -81,6 +88,8 @@ function AIButtonModal(value: AITemplet) {
   const handleCopyToClipboard = () => {
     handleSoundPlay();
     let content;
+    setCurrentAIName(value.name as string)
+    setmodalBoolValue(true)
     switch(value.name){
       case "펫 디펜더": content = 펫디펜더; break;
       case "로드롤러": content = 메디이익; break;
@@ -108,7 +117,7 @@ function AIButtonModal(value: AITemplet) {
       <DownButton>{Name} AI</DownButton>
     </AIDetailContainer>
     <DownButton onClick={handleCopyToClipboard}>클립보드 복사하기</DownButton>
-    <DownButton>AI파일 다운받기</DownButton>
+    <DownButton onClick={FileDownload}>AI파일 다운받기</DownButton>
   </BoxContainer>)
 }
 
@@ -164,6 +173,7 @@ background-repeat: no-repeat;
   border: none;
   font-size: 17px;
   font-family: Mabinogi_Classic_TTF;
+  cursor: pointer;
   &:active {
     filter: brightness(120%); /* 클릭 시 밝기 감소 효과 */
   }

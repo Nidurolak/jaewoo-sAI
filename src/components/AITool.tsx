@@ -443,9 +443,6 @@ export function AI_TOOL() {
         sequence: [refeat({refeatValue: [seq_ReadyFirebolt, seq_SkillUse_Firebolt,], refeatNum: 8})]
     })
 
-
-
-
     let Pet_BoltSupport_AI: string[] = [
         Pet_MasterActive_StWind,
         Pet_SeekTarget_StWind,
@@ -462,13 +459,94 @@ export function AI_TOOL() {
         Pet_ReadyFirebolt_MastermagicAimed,
     ]
     /*
+    =========================축전지용 패턴====================================
+    */
+    //let seq_: string = SequenceType = {tabNum:4, case:"sequence", main: "", value0: "", value1: ""}
+    //let Pet_: string = eventWarper({name:"",main:"",condition: [], sequence: []})
+    let seq_ReadyElecbolt: SequenceType = {tabNum:4, case:"sequence", main: "prepare_skill", value0: "lightningbolt", value1: "0", value2:"0"}
+    let seq_ReadyElecbolt0: SequenceType = {tabNum:4, case:"sequence", main: "stack_skill", value0: "lightningbolt", value1: "1"}
+    let seq_ReadyElecbolt1: SequenceType = {tabNum:4, case:"sequence", main: "stack_skill", value0: "lightningbolt", value1: "2"}
+    let seq_ReadyElecbolt2: SequenceType = {tabNum:4, case:"sequence", main: "stack_skill", value0: "lightningbolt", value1: "3"}
+    let seq_UseElecbolt: SequenceType = {tabNum:4, case:"sequence", main: "stackmagic_attack", value0: "lightningbolt", value1: "1", value2:"0"}
+    let seq_SkillUse_Elecvbolt: SequenceType = {tabNum:4, case:"sequence", main: "stackmagic_attack", value0:"firebolt", value1:"1", value2:"5000"}
+    
+    let Pet_ReadyElecBolt_MasterReady: string = eventWarper({
+        name:"라볼트 준비 - 주인 준비", main:"master_skill_prepare", value0:"all",
+        condition: [],
+        sequence: [seqPt(seq_ReadyElecbolt),seqPt(seq_ReadyElecbolt0),seqPt(seq_ReadyElecbolt),seqPt(seq_ReadyElecbolt1),seqPt(seq_ReadyElecbolt),seqPt(seq_ReadyElecbolt2),seqPt(seq_wait_Middle),seqPt(seq_chase_Enemy_Run_Long),seqPt(seq_wait_Middle),]
+    })
+    
+    let Pet_ReadyElecBolt_MasterATK: string = eventWarper({
+        name:"라볼트 준비 - 주인 공격", main:"master_skill_prepare", value0:"all",
+        condition: [],
+        sequence: [seqPt(seq_ReadyElecbolt),seqPt(seq_ReadyElecbolt0),seqPt(seq_ReadyElecbolt),seqPt(seq_ReadyElecbolt1),seqPt(seq_ReadyElecbolt),seqPt(seq_ReadyElecbolt2),seqPt(seq_wait_Middle),seqPt(seq_chase_Enemy_Run_Long),seqPt(seq_wait_Middle),]
+    })
+
+    let Pet_UseElecbolt_MasterATKedDown: string = eventWarper({
+        name:"라볼트 사용 - 주인 피격 다운", main:"master_attacked", value0:"all", value1:"false",
+        condition:[],
+        sequence: [seqPt(seq_UseElecbolt)]
+    })
+    let Pet_UseElecbolt_MasterATKed: string = eventWarper({
+        name:"라볼트 사용 - 주인 피격 노다운", main:"master_attacked", value0:"all", value1:"true",
+        condition:[],
+        sequence: [seqPt(seq_UseElecbolt)]
+    })
+    let Pet_ReadyElecBolt_ATK: string = eventWarper({
+        name:"라볼트 준비 - 펫 공격 노다운", main:"attack", value0:"lightningbolt", value1:"false",
+        condition: [],
+        sequence: [seqPt(seq_ReadyElecbolt),seqPt(seq_ReadyElecbolt0),seqPt(seq_ReadyElecbolt),seqPt(seq_ReadyElecbolt1),seqPt(seq_ReadyElecbolt),seqPt(seq_ReadyElecbolt2),seqPt(seq_wait_Middle),seqPt(seq_chase_Enemy_Run_Long),seqPt(seq_wait_Middle),]
+    })
+    let Pet_ReadyElecBolt_ATKDown: string = eventWarper({
+        name:"라볼트 준비 - 펫 공격 다운", main:"attack", value0:"lightningbolt", value1:"true",
+        condition: [],
+        sequence: [seqPt(seq_ReadyElecbolt),seqPt(seq_ReadyElecbolt0),seqPt(seq_ReadyElecbolt),seqPt(seq_ReadyElecbolt1),seqPt(seq_ReadyElecbolt),seqPt(seq_ReadyElecbolt2),seqPt(seq_wait_Middle),seqPt(seq_chase_Enemy_Run_Long),seqPt(seq_wait_Middle),]
+    })
+    let Pet_UseElecbolt_ATKed: string = eventWarper({
+        name:"라볼트 준비 - 피격 노다운", main:"attacked", value0:"all", value1:"true",
+        condition:[],
+        sequence: [seqPt(seq_UseElecbolt)]
+    })
+    let Pet_ReadyElecBolt_ATKedDown: string = eventWarper({
+        name:"라볼트 준비 - 피격 다운", main:"attacked", value0:"all", value1:"true",
+        condition: [],
+        sequence: [seqPt(seq_ReadyElecbolt),seqPt(seq_ReadyElecbolt0),seqPt(seq_ReadyElecbolt),seqPt(seq_ReadyElecbolt1),seqPt(seq_ReadyElecbolt),seqPt(seq_ReadyElecbolt2),seqPt(seq_wait_Middle),seqPt(seq_chase_Enemy_Run_Long),seqPt(seq_wait_Middle),]
+    })
+    let Pet_UseElecbolt_MasterAimed: string = eventWarper({
+        name:"라볼트 사용 - 주인 조준", main:"master_aimed",
+        condition:[],
+        sequence: [seqPt(seq_UseElecbolt)]
+    })
+    let Pet_UseElecbolt_Aimed: string = eventWarper({
+        name:"라볼트 사용 - 조준", main:"aimed",
+        condition:[],
+        sequence: [seqPt(seq_UseElecbolt)]
+    })
+
+
+
+
+    let Pet_Battery_AI: string[] = [
+        Pet_MasterActive_StWind,
+        Pet_SeekTarget_StWind,
+        Pet_Targeted_StWind,
+        Pet_Master_Chase,
+        Pet_ReadyElecBolt_MasterReady,
+        Pet_ReadyElecBolt_MasterATK,
+        Pet_UseElecbolt_MasterATKedDown,
+        Pet_UseElecbolt_MasterATKed,
+        Pet_ReadyElecBolt_ATK,
+        Pet_ReadyElecBolt_ATKDown,
+        Pet_UseElecbolt_ATKed,
+        Pet_ReadyElecBolt_ATKedDown,
+        Pet_UseElecbolt_MasterAimed,
+        Pet_UseElecbolt_Aimed,
+    ]
+    /*
     =========================예비용 패턴====================================
     */
-    //let Pet_Missile: string = eventWarper({name:"",main:"",condition: [], sequence: []})
-    //let Pet_Missile: string = eventWarper({name:"",main:"",condition: [], sequence: []})
-    //let Pet_Missile: string = eventWarper({name:"",main:"",condition: [], sequence: []})
-    //let Pet_Missile: string = eventWarper({name:"",main:"",condition: [], sequence: []})
-    //let Pet_Missile: string = eventWarper({name:"",main:"",condition: [], sequence: []})
+    //let seq_: string = SequenceType = {tabNum:4, case:"sequence", main: "", value0: "", value1: ""}
+    //let Pet_: string = eventWarper({name:"",main:"",condition: [], sequence: []})
     return {
         Pet_MasterActive_StWind,
         Pet_SeekTarget_StWind,
@@ -502,7 +580,8 @@ export function AI_TOOL() {
         Pet_Original_AI,
         Pet_RoadRoller_AI,
         Pet_BoltSupport_AI,
-
+        Pet_Battery_AI,
+        
     }
 }
 /*
