@@ -149,7 +149,7 @@ export function AI_TOOL() {
         condition: [],
         sequence: [seqPt(seq_defence_Ready), refeat({ refeatValue: [seq_chase_Master_Walk, seq_wait_Short], refeatNum: 6 }), seqPt(seq_cancel)]
     })
-    let Pet_Chaser_AI_PetDefender: string[] = [
+    let Pet_Defender_AI_Package: string[] = [
         Pet_MasterActive_StWind,
         Pet_SeekTarget_StWind,
         Pet_Targeted_StWind,
@@ -576,7 +576,7 @@ export function AI_TOOL() {
         Pet_Attack_DoNothing,
         Pet_AttackDown_DoNothing,
         Pet_Chaser_AI_Package,
-        Pet_Chaser_AI_PetDefender,
+        Pet_Defender_AI_Package,
         Pet_Original_AI,
         Pet_RoadRoller_AI,
         Pet_BoltSupport_AI,

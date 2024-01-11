@@ -40,14 +40,14 @@ function AIButtonModal(value: AITemplet) {
     setmodalBoolValue(true)
     let content = '';
     switch (value.name) {
-      case "펫 디펜더": content = totalWarper(AI_TOOL().Pet_Chaser_AI_PetDefender); break;
-      case "로드롤러": content = 로드롤러; break;
+      case "펫 디펜더": content = totalWarper(AI_TOOL().Pet_Defender_AI_Package); break;
+      case "로드롤러": content = totalWarper(AI_TOOL().Pet_RoadRoller_AI); break;
       case "메디이익": content = 메디이익; break;
-      case "볼트 서포터": content = 볼트서포터; break;
+      case "볼트 서포터": content = totalWarper(AI_TOOL().Pet_BoltSupport_AI); break;
       case "블레이즈 서포터": content = 블레이즈서포터; break;
-      case "재우 오리지널": content = 재우오리지널; break;
-      case "전봇대": content = 전봇대; break;
-      case "주인바라기": content = 주인바라기; break
+      case "재우 오리지널": content = totalWarper(AI_TOOL().Pet_Original_AI); break;
+      case "전봇대": content = totalWarper(AI_TOOL().Pet_Battery_AI); break;
+      case "주인바라기": content = totalWarper(AI_TOOL().Pet_Chaser_AI_Package); break
       default: break;
   };
       const element = document.createElement("a");

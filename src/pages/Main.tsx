@@ -75,6 +75,8 @@ function Main() {
       <AIButtonModal name="주인바라기" explain="" />
       <AIButtonModal name="재우 오리지널" explain="" />
       <AIButtonModal name="볼트 서포터" explain="" />
+      <AIButtonModal name="로드롤러" explain="" />
+      <AIButtonModal name="전봇대" explain="" />
 
       {copied && <p>{ }클립보드에 복사되었습니다.</p>}
 
