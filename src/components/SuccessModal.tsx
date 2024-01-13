@@ -20,7 +20,7 @@ import 주인바라기 from '../assets/Icon/주인바라기.jpg'
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import gen_button_confirm from '../assets/Sound/gen_button_confirm.wav'
 import gen_hover from '../assets/Sound/gen_hover.wav'
-import { CurrentAIName, DownloadModalBool } from '../store/atom';
+import { CurrentAIName, DownloadModalBool, DownloadModalCopyBool } from '../store/atom';
 
 //TS2559: Type '{ children: never[]; }' has no properties in common with type 'IntrinsicAttributes'.
 //위 에러 발생, 컴포넌트 전달에 있어 에러 발생으로 추측. GPT 등은 프롭스를 넘기라고 하지만 나는 고정위치에 모달창 생성을 고정시킴으로 해결볼 생각
@@ -28,17 +28,21 @@ import { CurrentAIName, DownloadModalBool } from '../store/atom';
  function SuccessModal() {
 
   const [modalBoolValue, setmodalBoolValue] = useRecoilState(DownloadModalBool)
+  const [downloadModalCopyBool, setdownloadModalCopyBool] = useRecoilState(DownloadModalCopyBool)
   const [currentAIName, setCurrentAIName] = useRecoilState(CurrentAIName);
 
   const CloseModal = () =>{
     setmodalBoolValue(false)
+    setdownloadModalCopyBool(false)
   }
-    return (<>{modalBoolValue === true &&(
+    return (<>{(modalBoolValue || downloadModalCopyBool) === true &&(
       <Container onClick={CloseModal}>
         <BoxContainer>
-          <h2>다운로드 성공!</h2>
+        {downloadModalCopyBool === false ?<h2>다운로드 성공!</h2> : <h2>복사 성공!</h2> }
+          
           <span className='yellow-text'>{currentAIName} AI</span>
-          <h3>파일을 다운받은 경로를 찾은 다음,<br/>내 문서 - 마비노기 - 동물캐릭터 AI 폴더로 옮기십시오.</h3>
+          {downloadModalCopyBool === false ?<h3>파일을 다운받은 경로를 찾은 다음,<br/>내 문서 - 마비노기 - 동물캐릭터 AI 폴더로 옮기십시오.</h3> : <h3>인게임에서 새 AI - 소스 보기 탭에서 붙여넣기를 하십시오.<br/></h3> }
+          
           
         </BoxContainer>
           </Container>
