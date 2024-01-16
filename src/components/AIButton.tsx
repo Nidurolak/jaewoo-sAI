@@ -20,19 +20,25 @@ import 주인바라기 from '../assets/Icon/주인바라기.jpg'
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import gen_button_confirm from '../assets/Sound/gen_button_confirm.wav'
 import gen_hover from '../assets/Sound/gen_hover.wav'
-import { CurrentAIName, DownloadModalBool, DownloadModalCopyBool } from '../store/atom';
+import { CurrentAIName, DownloadModalBool, DownloadModalCopyBool, ExplainModalBool } from '../store/atom';
 
 function AIButtonModal(value: AITemplet) {
   let Image;
   const [currentAIName, setCurrentAIName] = useRecoilState(CurrentAIName);
   const [downloadModalCopyBool, setdownloadModalCopyBool] = useRecoilState(DownloadModalCopyBool)
-
+  const [explainModalBool, setexplainModalBool] = useRecoilState(ExplainModalBool)
   const [modalBoolValue, setmodalBoolValue] = useRecoilState(DownloadModalBool)
   const Hoversound = useRef(new Audio(gen_hover))
   const Confirmsound = useRef(new Audio(gen_button_confirm));
   const handleSoundPlay = () => {
     Confirmsound.current.currentTime = 0;
     Confirmsound.current.play();
+  }
+
+  const ExplainModalUp = () =>{
+    setexplainModalBool(true)
+    setCurrentAIName(value.name as string)
+
   }
 
   const FileDownload = () => {
@@ -58,8 +64,6 @@ function AIButtonModal(value: AITemplet) {
       document.body.appendChild(element);
       element.click();
 }
-
-
 
   switch (value.name) {
     case "펫 디펜더": Image = 펫디펜더; break;
@@ -113,7 +117,7 @@ function AIButtonModal(value: AITemplet) {
   }
 
   return (<BoxContainer>
-    <AIDetailContainer>
+    <AIDetailContainer onClick={ExplainModalUp}>
       <AIImage image={Image} />
       <DownButton>{Name} AI</DownButton>
     </AIDetailContainer>

@@ -20,5 +20,5 @@ export const CurrentAIName = atom<string>({
 })
 export const ExplainModalBool = atom({
     key: "ExplainMoadlState",
-    default: true,
+    default: false,
 })

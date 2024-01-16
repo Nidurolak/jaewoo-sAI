@@ -10,62 +10,9 @@ import MainButton from '../assets/MainButton.svg'
 import Mainbutton3 from '../assets/MainButton3.png' 
 import SuccessModal from '../components/SuccessModal'
 import AIButtonModal from '../components/AIButton';
+import ExplainModal from '../components/ExplainModal';
 
 function Main() { 
-  const [copied, setCopied] = useState(false);
-  let StringTest1: SequenceType = {
-    tabNum: 4,
-    case: "sequence",
-    main: "wait",
-    value0: "0",
-    value1: "0"
-  }
-  let StringTest2: ConditionType = {
-    tabNum: 4,
-    case: "condition",
-    main: "ST_preparable",
-    value0: "PetSTDamageUp",
-    value1: "0"
-  }
-
-
-  const handleCopyToClipboard = () => {
-    clipboardCopy(
-      totalWarper(
-        [eventWarper({ name: "와! 샌즈!", main: "master_targeted", value0: "alert", sequence: [seqPt(StringTest1), seqPt(StringTest1)], condition: [conPt(StringTest2)] }), eventWarper({ name: "와! 샌즈!", main: "master_targeted", value0: "alert", sequence: [seqPt(StringTest1), seqPt(StringTest1)], condition: [conPt(StringTest2)] })]))
-      .then(() => {
-        setCopied(true);
-      })
-      .catch((error) => {
-        console.error('클립보드 복사 오류:', error);
-      });
-  }
-  const handleCopyToClipboardTest = () => {
-    clipboardCopy(
-      totalWarper([
-        AI_TOOL().Pet_MasterActive_StWind,
-        AI_TOOL().Pet_Master_Chase,
-        AI_TOOL().Pet_MasterTargeted_AtK_Defence,
-        AI_TOOL().Pet_MasterTargeted_Alert_Defence,
-        AI_TOOL().Pet_DefenceAttacked_Revenge,
-        AI_TOOL().Pet_MasterAttacked_Stand_Revenge,
-        AI_TOOL().Pet_MasterAttacked_Down_Revenge,
-        AI_TOOL().Pet_AfterAtKDown_Defence,
-        AI_TOOL().Pet_AfterAtKStand_Defence,
-        AI_TOOL().Pet_Main_Defence,
-        AI_TOOL().Pet_Main_Defence1,
-        AI_TOOL().Pet_AttackedDown_Defence,
-        AI_TOOL().Pet_PetTargeted_Missile,
-        AI_TOOL().Pet_MasterTargeted_Missile,
-      ])
-    )
-      .then(() => {
-        setCopied(true);
-      })
-      .catch((error) => {
-        console.error('클립보드 복사 오류:', error);
-      });
-  }
 
   return (
     <>
@@ -78,9 +25,7 @@ function Main() {
       <AIButtonModal name="로드롤러" explain="" />
       <AIButtonModal name="전봇대" explain="" />
 
-      {copied && <p>{ }클립보드에 복사되었습니다.</p>}
-
-    </TestContainer><SuccessModal />
+    </TestContainer><ExplainModal/><SuccessModal />
     {/**/}
   </>
   );
@@ -98,22 +43,4 @@ margin: 0 auto;
 gap: 10px;
 white-space: pre;
 background-color: rgba(131, 215, 246);
-`
-const TestButton = styled.button`
-background-color: rgba(255, 255, 255, 0);
-background-image: url(${Mainbutton3});
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  color: rgba(255, 255, 255, 1);
-  width: 100%;
-  height: 100%;
-  max-width: 150px; /* 변경된 부분 */
-  max-height: 50px; /* 변경된 부분 */
-  border: none;
-  font-size: 13px;
-  font-family: Mabinogi_Classic_TTF;
-  &:active {
-    filter: brightness(90%); /* 클릭 시 밝기 감소 효과 */
-  }
 `

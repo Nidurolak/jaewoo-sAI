@@ -21,11 +21,13 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import gen_button_confirm from '../assets/Sound/gen_button_confirm.wav'
 import gen_hover from '../assets/Sound/gen_hover.wav'
 import { CurrentAIName, DownloadModalBool, DownloadModalCopyBool } from '../store/atom';
-
+ 
 //TS2559: Type '{ children: never[]; }' has no properties in common with type 'IntrinsicAttributes'.
 //위 에러 발생, 컴포넌트 전달에 있어 에러 발생으로 추측. GPT 등은 프롭스를 넘기라고 하지만 나는 고정위치에 모달창 생성을 고정시킴으로 해결볼 생각
 //function SuccessModal({ children }: { children?: any }) {
- function SuccessModal() {
+
+
+function SuccessModal() {
 
   const [modalBoolValue, setmodalBoolValue] = useRecoilState(DownloadModalBool)
   const [downloadModalCopyBool, setdownloadModalCopyBool] = useRecoilState(DownloadModalCopyBool)
@@ -50,8 +52,6 @@ import { CurrentAIName, DownloadModalBool, DownloadModalCopyBool } from '../stor
 } 
 
 export default SuccessModal;
-
-
 const Container = styled.div`
 display: flex;
 flex-direction: column; 
