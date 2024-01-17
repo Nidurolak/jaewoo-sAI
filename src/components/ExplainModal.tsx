@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent, useEffect, useRef } from 'react';
-import { styled } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import clipboardCopy from 'clipboard-copy';
@@ -56,15 +56,29 @@ function ExplainModal() {
 
 
   let name:string = currentAIName
-
+  const toolTipContents = useRef('')
   const [tooltipUp, settooltipUP] = useState(false)
   const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
+
   const handleMouseEnter = (content: string, event: React.MouseEvent) => {
-    setModalPosition({ top: event.clientY, left: event.clientX });
-    settooltipUP(true)
-    console.log("asdsadad")
+    const buttonRect = event.currentTarget.getBoundingClientRect();
+    const centerX = buttonRect.left + buttonRect.width / 2;
+    const centerY = buttonRect.top + buttonRect.height / 2;
+    setModalPosition({ top: centerY + 20, left:centerX - 125})
+    switch(content){
+      case '윈드밀 반응 복귀': toolTipContents.current = '주인의 윈드밀 장전에 반응하여 모든 행동을 정지, 주인 위치로 복귀합니다. 빠른 탑승이 가능해 맵 이동 시 끼어있는 펫을 꺼낼 때에도 유용합니다.'; break;
+      case '자동 원거리 견제': toolTipContents.current = '펫, 주인을 노리는 원거리 공격에 반응하는 견제 패턴입니다. 즉시 모든 행동을 중지, 근접 공격으로 빠르게 견제합니다. 거리에 따라 실패할 수 있습니다.'; break;
+      case '자동 신속 발동': toolTipContents.current = '전투 중 신속 게이지가 가득 차면 가능한 즉시 신속의 날개를 발동시킵니다. 특성을 자주 까먹어도 이제 펫이 챙겨줍니다.'; break;
+    }
+    setTimeout(() => {
+    settooltipUP(true)}, 500)
   };
+  const handleMouseLeave = (content: string, event: React.MouseEvent) =>{
+    settooltipUP(false)
+  }
+
   const CloseModal = () =>{
+    settooltipUP(false)
     setmodalBoolValue(false)
   }
     return (<>{(modalBoolValue) === true &&(
@@ -75,14 +89,19 @@ function ExplainModal() {
           <h2>{Tag}</h2>
           <FuncContainer >
             {FuncList.length > 0 && (<>
-            {FuncList.map((item, index) => (<FuncButton key = {index} onMouseEnter={(e) => handleMouseEnter(item, e)} >{item}</FuncButton>))}</>)}
+            {FuncList.map((item, index) => (
+            <FuncButton key = {index} onMouseEnter={(e) => handleMouseEnter(item, e)} onMouseLeave={(e)=>handleMouseLeave(item, e)}>
+              {item}
+            </FuncButton>))}</>)}
 
           </FuncContainer>
           <h3>{Explain}</h3>
           
         </BoxContainer>
         {tooltipUp === true &&(
-          <TooltipContainer></TooltipContainer>
+          <TooltipContainer isOn = {tooltipUp} onMouseEnter={()=>settooltipUP(true)} style={{top: modalPosition.top, left: modalPosition.left }} onMouseLeave={()=>settooltipUP(false)} >
+            <h3>{toolTipContents.current}</h3>
+          </TooltipContainer>
         )}
           </Container>
     )}</>);
@@ -115,6 +134,7 @@ align-items: center;
   height: 100vh;
 margin: 0 auto;
 gap: 10px;
+  cursor: default;
 background-color: rgba(100, 100, 100, 0.6);
 & > * {
   color: rgba(255, 255, 255, 1);
@@ -131,15 +151,27 @@ background-color: rgba(100, 100, 100, 0.6);
     font-family: inherit;
   }
 `
-const TooltipContainer = styled.div`
+
+const fadeIn = keyframes`
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+`;
+const fadeOut = keyframes`
+  0% {opacity: 1;}
+  100% {opacity: 0;}
+`;
+
+const TooltipContainer = styled.div<{isOn:boolean}>`
 position: fixed;
 display: flex;
 justify-content: center;
 align-items: center;
-background-color: rgba(0, 0, 0, 0.5);
+padding: 10px;
+background-color: rgba(0, 0, 0, 0.9);
 color: white;
-width: 100px;
-height: 50px;
+  width: 250px; /* 상위 컨테이너의 50%로 설정 (내용물에 비례) */
+  opacity: ${({ isOn }) => (isOn ? 1 : 0)};
+  animation: ${({ isOn }) => (isOn ? css`${fadeIn} ease-in-out 0.2s` : css`${fadeOut} ease-in-out 0.2s`)};
 `;
 
 const FuncContainer = styled.div`
@@ -168,7 +200,6 @@ background-repeat: no-repeat;
   height: 40px; /* 변경된 부분 */
   border: none;
   font-size: 17px;
-  cursor: default;
   &:hover{
     filter: brightness(120%);
   }
@@ -180,11 +211,10 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 text-align: center;
-width: 700px;
-height: 520px;
+width: 650px;
 background-color: rgba(81, 165, 196);
 line-height: 1.5;
-padding: 10px;
+padding: 15px;
   border-radius: 7px;
   span.yellow-text {
   font-size: 25px;
