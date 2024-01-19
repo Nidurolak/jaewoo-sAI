@@ -41,22 +41,40 @@ function AIButtonModal(value: AITemplet) {
 
   }
 
+  let Name;
+  let content = '';
+  switch (value.name) {
+    case "펫 디펜더":
+      content = totalWarper(AI_TOOL().Pet_Defender_AI_Package);
+      Image = 펫디펜더; Name = value.name; break;
+    case "로드롤러":
+      content = totalWarper(AI_TOOL().Pet_RoadRoller_AI);
+       Image = 로드롤러; Name = value.name; break;
+    case "메디이익": 
+    content = 메디이익; 
+    Image = 메디이익; Name = value.name; break;
+    case "볼트 서포터": 
+    content = totalWarper(AI_TOOL().Pet_BoltSupport_AI); 
+    Image = 볼트서포터; Name = value.name; break;
+    case "블레이즈 서포터": 
+    content = 블레이즈서포터; 
+    Image = 블레이즈서포터; Name = value.name; break;
+    case "재우 오리지널": 
+    content = totalWarper(AI_TOOL().Pet_Original_AI); 
+    Image = 재우오리지널; Name = value.name; break;
+    case "전봇대": 
+    content = totalWarper(AI_TOOL().Pet_Battery_AI);  
+    Image = 전봇대; Name = value.name; break;
+    case "주인바라기": 
+    content = totalWarper(AI_TOOL().Pet_Chaser_AI_Package); 
+    Image = 주인바라기; Name = value.name; break
+    default: break;
+};
+
   const FileDownload = () => {
     handleSoundPlay();
     setCurrentAIName(value.name as string)
     setmodalBoolValue(true)
-    let content = '';
-    switch (value.name) {
-      case "펫 디펜더": content = totalWarper(AI_TOOL().Pet_Defender_AI_Package); break;
-      case "로드롤러": content = totalWarper(AI_TOOL().Pet_RoadRoller_AI); break;
-      case "메디이익": content = 메디이익; break;
-      case "볼트 서포터": content = totalWarper(AI_TOOL().Pet_BoltSupport_AI); break;
-      case "블레이즈 서포터": content = 블레이즈서포터; break;
-      case "재우 오리지널": content = totalWarper(AI_TOOL().Pet_Original_AI); break;
-      case "전봇대": content = totalWarper(AI_TOOL().Pet_Battery_AI); break;
-      case "주인바라기": content = totalWarper(AI_TOOL().Pet_Chaser_AI_Package); break
-      default: break;
-  };
       const element = document.createElement("a");
       const file = new Blob([content], {type: 'text/plain' });
       element.href = URL.createObjectURL(file);
@@ -65,18 +83,6 @@ function AIButtonModal(value: AITemplet) {
       element.click();
 }
 
-  switch (value.name) {
-    case "펫 디펜더": Image = 펫디펜더; break;
-    case "로드롤러": Image = 로드롤러; break;
-    case "메디이익": Image = 메디이익; break;
-    case "볼트 서포터": Image = 볼트서포터; break;
-    case "블레이즈 서포터": Image = 블레이즈서포터; break;
-    case "재우 오리지널": Image = 재우오리지널; break;
-    case "전봇대": Image = 전봇대; break;
-    case "주인바라기": Image = 주인바라기; break;
-    default: break;
-  };
-  let Name;
   switch (value.name) {
     case "펫 디펜더": Name = value.name; break;
     case "로드롤러": Name = value.name; break;
@@ -92,21 +98,8 @@ function AIButtonModal(value: AITemplet) {
 
   const handleCopyToClipboard = () => {
     handleSoundPlay();
-    let content: string = '';
     setCurrentAIName(value.name as string)
     setdownloadModalCopyBool(true)
-    switch(value.name){
-      case "펫 디펜더": content = totalWarper(AI_TOOL().Pet_Defender_AI_Package); break;
-      case "로드롤러": content = totalWarper(AI_TOOL().Pet_RoadRoller_AI); break;
-      case "메디이익": content = 메디이익; break;
-      case "볼트 서포터": content = totalWarper(AI_TOOL().Pet_BoltSupport_AI); break;
-      case "블레이즈 서포터": content = 블레이즈서포터; break;
-      case "재우 오리지널": content = totalWarper(AI_TOOL().Pet_Original_AI); break;
-      case "전봇대": content = totalWarper(AI_TOOL().Pet_Battery_AI); break;
-      case "주인바라기": content = totalWarper(AI_TOOL().Pet_Chaser_AI_Package); break
-      
-      default: break;
-    }
     clipboardCopy(content)
       .then(() => {
         setCopied(true);

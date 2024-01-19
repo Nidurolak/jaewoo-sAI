@@ -21,6 +21,8 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import gen_button_confirm from '../assets/Sound/gen_button_confirm.wav'
 import gen_hover from '../assets/Sound/gen_hover.wav'
 import { CurrentAIName, ExplainModalBool, DownloadModalCopyBool } from '../store/atom';
+import { AnimatePresence, motion } from 'framer-motion';
+import uuid from "react-uuid";
 
 //TS2559: Type '{ children: never[]; }' has no properties in common with type 'IntrinsicAttributes'.
 //위 에러 발생, 컴포넌트 전달에 있어 에러 발생으로 추측. GPT 등은 프롭스를 넘기라고 하지만 나는 고정위치에 모달창 생성을 고정시킴으로 해결볼 생각
@@ -32,24 +34,32 @@ function ExplainModal() {
   let Image;
   let Tag:string = ''
   let Explain:string = ''
-  let Func:string = ''
   let FuncList:string[]= []
   switch (currentAIName) {
-    case "펫 디펜더": Image = 펫디펜더; Tag = "수동적이고 방어적인 AI"; FuncList = ["윈드밀 반응 복귀", "자동 원거리 견제", "자동 신속 발동", ]; Func = '윈드밀 반응 복귀, 자동 원거리 견제, 자동 신속 발동 가능';
+    case "펫 디펜더": Image = 펫디펜더; Tag = "수동적이고 방어적인 AI";
+    FuncList = ["윈드밀 반응 복귀", "자동 원거리 견제", "자동 신속 발동", ];
     Explain = ''; break;
-    case "로드롤러": Image = 로드롤러; Tag = "매우 수동적이고 매우 방어적인 AI"; FuncList = ["윈드밀 반응 복귀", "자동 원거리 견제", "자동 신속 발동", ];Func = '윈드밀 반응 복귀, 자동 원거리 견제, 자동 신속 발동 가능';
+    case "로드롤러": Image = 로드롤러; Tag = "매우 수동적이고 매우 방어적인 AI";
+    FuncList = ["윈드밀 반응 복귀", "자동 원거리 견제", "자동 신속 발동", ];
     Explain = ''; break;
-    case "메디이익": Image = 메디이익; Tag = "능동적이고 보조적인 AI"; FuncList = ["윈드밀 반응 복귀", "자동 원거리 견제", "자동 신속 발동", ];Func = '윈드밀 반응 복귀, 자동 원거리 견제, 자동 신속 발동 가능';
+    case "메디이익": Image = 메디이익; Tag = "능동적이고 보조적인 AI";
+    FuncList = ["윈드밀 반응 복귀", "자동 원거리 견제", "자동 신속 발동", ];
     Explain = ''; break;
-    case "볼트 서포터": Image = 볼트서포터; Tag = "능동적이고 공격적인 AI"; FuncList = ["윈드밀 반응 복귀", "자동 원거리 견제", "자동 신속 발동", ];Func = '윈드밀 반응 복귀, 자동 원거리 견제, 자동 신속 발동 가능';
+    case "볼트 서포터": Image = 볼트서포터; Tag = "능동적이고 공격적인 AI";
+    FuncList = ["윈드밀 반응 복귀", "자동 원거리 견제", "자동 신속 발동", ];
     Explain = ''; break;
-    case "블레이즈 서포터": Image = 블레이즈서포터; Tag = "능동적이고 보조적인 AI"; FuncList = ["윈드밀 반응 복귀", "자동 원거리 견제", "자동 신속 발동", ];Func = '윈드밀 반응 복귀, 자동 원거리 견제, 자동 신속 발동 가능';
+    case "블레이즈 서포터": Image = 블레이즈서포터; Tag = "능동적이고 보조적인 AI";
+    FuncList = ["윈드밀 반응 복귀", "자동 원거리 견제", "자동 신속 발동", ];
     Explain = ''; break;
-    case "재우 오리지널": Image = 재우오리지널; Tag = "능동적이고 방어적인 AI"; FuncList = ["윈드밀 반응 복귀", "자동 원거리 견제", "자동 신속 발동", ];Func = '윈드밀 반응 복귀, 자동 원거리 견제, 자동 신속 발동 가능';
-    Explain = '첫 번째 재우`s AI입니다. 이 AI의 패턴을 기반으로 수많은 재우`s AI가 만들어졌습니다. 감시에 특화되어 있으며, 주인이 공격한 적에게 달라붙어 주변 적의 어그로를 끌면서 동시에 주인이 공격당하면 반격하도록 제작되었습니다. '; break;
-    case "전봇대": Image = 전봇대; Tag = "수동적이고 보조적인 AI"; FuncList = ["윈드밀 반응 복귀", "자동 원거리 견제", "자동 신속 발동", ];Func = '윈드밀 반응 복귀, 자동 원거리 견제, 자동 신속 발동 가능';
+    case "재우 오리지널": Image = 재우오리지널; Tag = "능동적이고 방어적인 AI";
+    FuncList = ["윈드밀 반응 복귀", "자동 원거리 견제", "자동 신속 발동", ];
+    Explain = '첫 번째 재우`s AI입니다. 이 AI의 패턴을 기반으로 수많은 재우`s AI가 만들어졌습니다. 감시에 특화되어 있으며, 주인이 공격한 적에게 달라붙어 주변 적의 어그로를 끌면서 동시에 주인이 공격당하면 반격하도록 제작되었습니다. ';
+    break;
+    case "전봇대": Image = 전봇대; Tag = "수동적이고 보조적인 AI";
+    FuncList = ["윈드밀 반응 복귀", "자동 원거리 견제", "자동 신속 발동", ];
     Explain = ''; break;
-    case "주인바라기": Image = 주인바라기; Tag = "매우 수동적이고 매우 보조적인 AI"; FuncList = ["윈드밀 반응 복귀", "자동 원거리 견제", "자동 신속 발동", ];Func = ' ';
+    case "주인바라기": Image = 주인바라기; Tag = "매우 수동적이고 매우 보조적인 AI";
+    FuncList = ["윈드밀 반응 복귀", "자동 원거리 견제", "자동 신속 발동", ];
     Explain = ''; break;
     default: break;
   };
@@ -65,13 +75,14 @@ function ExplainModal() {
     const centerX = buttonRect.left + buttonRect.width / 2;
     const centerY = buttonRect.top + buttonRect.height / 2;
     setModalPosition({ top: centerY + 20, left:centerX - 125})
+    console.log(tooltipUp)
     switch(content){
       case '윈드밀 반응 복귀': toolTipContents.current = '주인의 윈드밀 장전에 반응하여 모든 행동을 정지, 주인 위치로 복귀합니다. 빠른 탑승이 가능해 맵 이동 시 끼어있는 펫을 꺼낼 때에도 유용합니다.'; break;
       case '자동 원거리 견제': toolTipContents.current = '펫, 주인을 노리는 원거리 공격에 반응하는 견제 패턴입니다. 즉시 모든 행동을 중지, 근접 공격으로 빠르게 견제합니다. 거리에 따라 실패할 수 있습니다.'; break;
       case '자동 신속 발동': toolTipContents.current = '전투 중 신속 게이지가 가득 차면 가능한 즉시 신속의 날개를 발동시킵니다. 특성을 자주 까먹어도 이제 펫이 챙겨줍니다.'; break;
     }
-    setTimeout(() => {
-    settooltipUP(true)}, 500)
+    //setTimeout(() => {settooltipUP(true)}, 500)
+    settooltipUP(true)
   };
   const handleMouseLeave = (content: string, event: React.MouseEvent) =>{
     settooltipUP(false)
@@ -81,7 +92,9 @@ function ExplainModal() {
     settooltipUP(false)
     setmodalBoolValue(false)
   }
-    return (<>{(modalBoolValue) === true &&(
+    return (
+      < >
+      {(modalBoolValue) === true &&(
       <Container onClick={CloseModal}>
         <BoxContainer>
         <AIImage image={Image}/>
@@ -90,7 +103,7 @@ function ExplainModal() {
           <FuncContainer >
             {FuncList.length > 0 && (<>
             {FuncList.map((item, index) => (
-            <FuncButton key = {index} onMouseEnter={(e) => handleMouseEnter(item, e)} onMouseLeave={(e)=>handleMouseLeave(item, e)}>
+            <FuncButton key = {index + item} onMouseEnter={(e) => handleMouseEnter(item, e)} onMouseLeave={(e)=>handleMouseLeave(item, e)}>
               {item}
             </FuncButton>))}</>)}
 
@@ -99,12 +112,16 @@ function ExplainModal() {
           
         </BoxContainer>
         {tooltipUp === true &&(
-          <TooltipContainer isOn = {tooltipUp} onMouseEnter={()=>settooltipUP(true)} style={{top: modalPosition.top, left: modalPosition.left }} onMouseLeave={()=>settooltipUP(false)} >
+          <TooltipContainer
+          onMouseEnter={()=>settooltipUP(true)} onMouseLeave={()=>settooltipUP(false)}
+          initial={{ opacity: 0}} animate={{ opacity: [0, 0, 1]}} exit={{ opacity: 0 }} transition={{ duration: 0.3, exit:0 }} key={toolTipContents.current} style={{top: modalPosition.top, left: modalPosition.left }} >
             <h3>{toolTipContents.current}</h3>
           </TooltipContainer>
+          
         )}
           </Container>
-    )}</>);
+    )}
+    </>);
 } 
 
 export default ExplainModal;
@@ -152,16 +169,11 @@ background-color: rgba(100, 100, 100, 0.6);
   }
 `
 
-const fadeIn = keyframes`
-  0% {opacity: 0;}
-  100% {opacity: 1;}
-`;
-const fadeOut = keyframes`
-  0% {opacity: 1;}
-  100% {opacity: 0;}
-`;
-
-const TooltipContainer = styled.div<{isOn:boolean}>`
+//애니메이션에 꽤 심한 문제, 마우스를 스치듯이 흘리면 툴팁이 계속 나옴
+//<{isOn:boolean}>`
+/*opacity: ${({ isOn }) => (isOn ? 1 : 0)};*/
+//animation: ${({ isOn }) => (isOn ? css`${fadeIn} ease-in-out 0.2s forwards` : css`${fadeOut} ease-in-out 0.2s forwards`)};
+const TooltipContainer = styled(motion.div)` 
 position: fixed;
 display: flex;
 justify-content: center;
@@ -169,9 +181,8 @@ align-items: center;
 padding: 10px;
 background-color: rgba(0, 0, 0, 0.9);
 color: white;
-  width: 250px; /* 상위 컨테이너의 50%로 설정 (내용물에 비례) */
-  opacity: ${({ isOn }) => (isOn ? 1 : 0)};
-  animation: ${({ isOn }) => (isOn ? css`${fadeIn} ease-in-out 0.2s` : css`${fadeOut} ease-in-out 0.2s`)};
+width: 250px; /* 상위 컨테이너의 50%로 설정 (내용물에 비례) */
+
 `;
 
 const FuncContainer = styled.div`
@@ -180,8 +191,8 @@ flex-direction: row ;
 justify-content: center;
 align-items: center;
 text-align: center;
-margin-top: 10px;
-margin-bottom: 10px;
+margin-top: 15px;
+margin-bottom: 30px;
 gap: 10px;
 `
 const FuncButton = styled.div`
@@ -211,10 +222,10 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 text-align: center;
-width: 650px;
+width: 550px;
 background-color: rgba(81, 165, 196);
 line-height: 1.5;
-padding: 15px;
+padding: 25px;
   border-radius: 7px;
   span.yellow-text {
   font-size: 25px;

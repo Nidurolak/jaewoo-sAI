@@ -22,3 +22,7 @@ export const ExplainModalBool = atom({
     key: "ExplainMoadlState",
     default: false,
 })
+export const WheelBool = atom({
+    key: "DownloadListBool",
+    default: "AI"
+})
