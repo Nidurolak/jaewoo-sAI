@@ -7,16 +7,16 @@ import { AIMaking, TestAIMaking, conPt, conWarper, eventWarper, seqPt, seqWarper
 import { ConditionType, SequenceType, StringTest, AITemplet } from '../utils/types';
 import { AI_TOOL } from '../components/AITool';
 import MainButton from '../assets/MainButton.svg'
-import Mainbutton3 from '../assets/MainButton3.png' 
+import Mainbutton3 from '../assets/MainButton3.png'
 import SuccessModal from '../components/SuccessModal'
 import AIButtonModal from '../components/AIButton';
 import ExplainModal from '../components/ExplainModal';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useAnimation } from 'framer-motion';
 import uuid from 'react-uuid';
 import { useRecoilState } from 'recoil';
 import { WheelBool } from '../store/atom';
 
-function Main() { 
+function Main() {
   const [wheelBoolstate, setwheelBoolstate] = useRecoilState(WheelBool)
   const [yPosition, setYPosition] = useState(0);
 
@@ -26,49 +26,76 @@ function Main() {
     // e.deltaY 값은 마우스 휠의 스크롤 양을 나타냅니다.
     // 양수면 아래로 스크롤, 음수면 위로 스크롤
     console.log(wheelBoolstate)
-    if(wheelBoolstate === "AI"){
+    if (wheelBoolstate === "AI") {
       console.log('Mouse wheel scrolled:', e.deltaY);
-      if(e.deltaY < 0){
+      if (e.deltaY < 0) {
         setwheelBoolstate("None")
-        setTimeout(() => {setwheelBoolstate("Main"); console.log("zzzz")}, 2000);
+        setTimeout(() => { setwheelBoolstate("Main"); console.log("zzzz") }, 2000);
       }
 
-    //버튼을 누르면 내려보낼 예정이지만 일단은 마우스 드래그로
-    if(wheelBoolstate !== "AI"){
-      console.log('Mouse wheel scrolled:', e.deltaY);
-      if(e.deltaY > 0){
-        setwheelBoolstate("AI")
-        setTimeout(() => {setwheelBoolstate("AI"); console.log("zzzz")}, 2000);
-      }
+      //버튼을 누르면 내려보낼 예정이지만 일단은 마우스 드래그로
+      if (wheelBoolstate !== "AI") {
+        console.log('Mouse wheel scrolled:', e.deltaY);
+        if (e.deltaY > 0) {
+          setwheelBoolstate("AI")
+          setTimeout(() => { setwheelBoolstate("AI"); console.log("zzzz") }, 2000);
+        }
 
+      }
     }
   }
-}
-  
+
+  const aniControls = useAnimation();
+  useEffect(() => {
+    if (wheelBoolstate === "AI" || wheelBoolstate === "None") {
+      aniControls.start({
+        y: wheelBoolstate === "AI" ? [-200, 0] : [0, -200],
+        opacity: wheelBoolstate === "AI" ? [0, 0, 1] : [1, 1, 0],
+        transition: { duration: 1.5 },
+      });
+    }
+  }, [wheelBoolstate, aniControls]);
 
   return (
     <AnimatePresence>
-    <TotalContainer onWheel={handleWheel}> 
-    <ListContainer
-          initial={{y: 0, opacity: 1}}
-          animate={wheelBoolstate !== "AI" ? { y: [0, -100], opacity: [1,  1]} : { y: 0 , opacity:1}}
-          transition={{ duration: 1 }}
-          >
-      <AIButtonModal name="펫 디펜더" explain="" />
-      <AIButtonModal name="주인바라기" explain="" />
-      <AIButtonModal name="재우 오리지널" explain="" />
-      <AIButtonModal name="볼트 서포터" explain="" />
-      <AIButtonModal name="로드롤러" explain="" />
-      <AIButtonModal name="전봇대" explain="" />
-    </ListContainer>
-    <ExplainModal />
-    <SuccessModal />
-    {/**/}
-  </TotalContainer>
+      <TotalContainer onWheel={handleWheel}>
+        {wheelBoolstate === 'Main' ?
+          <MainContainer>
+            <button onClick={()=>setwheelBoolstate("AI")}>AI 펼치기</button>
+          </MainContainer>
+          :
+          <>
+            <ListContainer animate={aniControls}>
+              <AIButtonModal name="펫 디펜더" explain="" />
+              <AIButtonModal name="주인바라기" explain="" />
+              <AIButtonModal name="재우 오리지널" explain="" />
+              <AIButtonModal name="볼트 서포터" explain="" />
+              <AIButtonModal name="로드롤러" explain="" />
+              <AIButtonModal name="전봇대" explain="" />
+            </ListContainer>
+            <ExplainModal />
+            <SuccessModal />
+          </>
+        }
+        {/**/}
+      </TotalContainer>
     </AnimatePresence>
   );
 }
 export default Main
+
+const MainContainer = styled(motion.div)`
+display: flex;
+flex-direction: column; 
+justify-content: center;
+align-items: center;
+width: 100vw;
+height: 100vh;
+margin: 0 auto;
+gap: 10px;
+white-space: pre;
+background-color: rgba(100, 100, 100);
+`
 
 const TotalContainer = styled.div`
 display: flex;

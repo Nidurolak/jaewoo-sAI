@@ -21,7 +21,7 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import gen_button_confirm from '../assets/Sound/gen_button_confirm.wav'
 import gen_hover from '../assets/Sound/gen_hover.wav'
 import { CurrentAIName, ExplainModalBool, DownloadModalCopyBool } from '../store/atom';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useAnimation } from 'framer-motion';
 import uuid from "react-uuid";
 
 //TS2559: Type '{ children: never[]; }' has no properties in common with type 'IntrinsicAttributes'.
@@ -70,6 +70,8 @@ function ExplainModal() {
   const [tooltipUp, settooltipUP] = useState(false)
   const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
 
+
+
   const handleMouseEnter = (content: string, event: React.MouseEvent) => {
     const buttonRect = event.currentTarget.getBoundingClientRect();
     const centerX = buttonRect.left + buttonRect.width / 2;
@@ -114,7 +116,7 @@ function ExplainModal() {
         {tooltipUp === true &&(
           <TooltipContainer
           onMouseEnter={()=>settooltipUP(true)} onMouseLeave={()=>settooltipUP(false)}
-          initial={{ opacity: 0}} animate={{ opacity: [0, 0, 1]}} exit={{ opacity: 0 }} transition={{ duration: 0.3, exit:0 }} key={toolTipContents.current} style={{top: modalPosition.top, left: modalPosition.left }} >
+          initial={{ opacity: 0}} animate={{ opacity: [0, 0, 1]}} exit={{ opacity: [0, 0, 1]}} transition={{ duration: 1, exit:1 }} key={toolTipContents.current} style={{top: modalPosition.top, left: modalPosition.left }} >
             <h3>{toolTipContents.current}</h3>
           </TooltipContainer>
           
