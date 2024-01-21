@@ -15,7 +15,10 @@ import { AnimatePresence, motion, useAnimation } from 'framer-motion';
 import uuid from 'react-uuid';
 import { useRecoilState } from 'recoil';
 import { WheelBool } from '../store/atom';
+import 재우님 from '../assets/Icon/재우님.jpg'
+import 펫디펜더 from '../assets/Icon/펫디펜더.jpg'
 
+ 
 function Main() {
   const [wheelBoolstate, setwheelBoolstate] = useRecoilState(WheelBool)
   const [yPosition, setYPosition] = useState(0);
@@ -61,6 +64,9 @@ function Main() {
       <TotalContainer onWheel={handleWheel}>
         {wheelBoolstate === 'Main' ?
           <MainContainer>
+            <MainImage image={재우님}>
+
+            </MainImage>
             <button onClick={()=>setwheelBoolstate("AI")}>AI 펼치기</button>
           </MainContainer>
           :
@@ -84,6 +90,18 @@ function Main() {
 }
 export default Main
 
+const MainImage = styled(motion.div)<{ image: any }>`
+background-color: rgba(255, 255, 255, 0);
+background-image: ${({ image }) => `url(${image})`};
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: rgba(255, 255, 255, 1);
+  width: 320px;
+  height: 320px;
+  border-radius: 160px;
+`
+
 const MainContainer = styled(motion.div)`
 display: flex;
 flex-direction: column; 
@@ -94,7 +112,7 @@ height: 100vh;
 margin: 0 auto;
 gap: 10px;
 white-space: pre;
-background-color: rgba(100, 100, 100);
+background-color: rgba(100, 100, 100, 1);
 `
 
 const TotalContainer = styled.div`
