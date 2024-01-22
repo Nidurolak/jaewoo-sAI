@@ -59,15 +59,36 @@ function Main() {
     }
   }, [wheelBoolstate, aniControls]);
 
+
+  const containerVariants = {
+    hidden: { opacity: 0, y: 100},
+    visible: { opacity: 1, y:0, transition: { staggerChildren: 1.5 } },
+    
+  };
+
+  const childVariants = {
+    hidden: { y: 100, opacity: 0 },
+    visible: { y: [100, 100, 0], opacity: 1, transition: { duration: 2 } },
+  };
+
+
   return (
     <AnimatePresence>
       <TotalContainer onWheel={handleWheel}>
         {wheelBoolstate === 'Main' ?
-          <MainContainer>
-            <MainImage image={재우님}>
+          <MainContainer
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          >
+            <MainImage
+            variants={childVariants}
+            image={재우님}>
 
             </MainImage>
-            <button onClick={()=>setwheelBoolstate("AI")}>AI 펼치기</button>
+            <DownButton
+            variants={childVariants}
+            onClick={()=>setwheelBoolstate("AI")}>AI 펼치기</DownButton>
           </MainContainer>
           :
           <>
@@ -90,6 +111,24 @@ function Main() {
 }
 export default Main
 
+const DownButton = styled(motion.button)`
+background-color: rgba(255, 255, 255, 0);
+background-image: url(${Mainbutton3});
+background: url(${Mainbutton3});
+background-size: 100% 100%;
+background-position: center;
+background-repeat: no-repeat;
+  color: rgba(255, 255, 255, 1);
+  width: 220px; /* 변경된 부분 */
+  height: 70px; /* 변경된 부분 */
+  border: none;
+  font-size: 17px;
+  font-family: Mabinogi_Classic_TTF;
+  cursor: pointer;
+  &:active {
+    filter: brightness(120%); /* 클릭 시 밝기 감소 효과 */
+  }
+`
 const MainImage = styled(motion.div)<{ image: any }>`
 background-color: rgba(255, 255, 255, 0);
 background-image: ${({ image }) => `url(${image})`};
