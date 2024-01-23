@@ -17,6 +17,7 @@ import { useRecoilState } from 'recoil';
 import { WheelBool } from '../store/atom';
 import 재우님 from '../assets/Icon/재우님.jpg'
 import 펫디펜더 from '../assets/Icon/펫디펜더.jpg'
+import { ChildProcess } from 'child_process';
 
  
 function Main() {
@@ -62,13 +63,30 @@ function Main() {
 
   const containerVariants = {
     hidden: { opacity: 0, y: 100},
-    visible: { opacity: 1, y:0, transition: { staggerChildren: 1.5 } },
-    
+    visible: { opacity: 1, y:0, transition: { staggerChildren: 0.3, } },
   };
 
-  const childVariants = {
+  const MainLogoVariants = {
     hidden: { y: 100, opacity: 0 },
-    visible: { y: [100, 100, 0], opacity: 1, transition: { duration: 2 } },
+    visible: { y: [100, 100, 0], opacity: 1, transition: { duration: 1 } },
+  };
+  const childVariants = {
+    hidden: { y: 0, opacity: 0 },
+    visible: { y: [50, 10, 0], opacity: [0, 0.4, 1], transition: { duration: 0.8 } },
+  };
+  const childVariants0 = {
+    hidden: { y: 0, opacity: 0, scale:0 },
+    visible: { 
+      rotate: [160, 0], 
+      scale: [0, 1],  
+      opacity: [0, 1, 1.4, 1],
+      transition: {
+        type: "spring",
+        stiffness: 300,
+        damping: 12,
+        duration: 2
+      },  
+     },
   };
 
 
@@ -81,14 +99,21 @@ function Main() {
           initial="hidden"
           animate="visible"
           >
-            <MainImage
-            variants={childVariants}
-            image={재우님}>
-
-            </MainImage>
+            <MainImage image={재우님} variants={childVariants0}/>
+            <motion.h2 
+            variants={childVariants}>마비노기 재우's AI 다운로더</motion.h2>
+            <motion.h3 variants={childVariants}>똑똑한 주인을 위한 똑똑한 펫 AI</motion.h3>
+            <motion.div
+            variants={childVariants}>
             <DownButton
-            variants={childVariants}
-            onClick={()=>setwheelBoolstate("AI")}>AI 펼치기</DownButton>
+            onClick={()=>setwheelBoolstate("AI")}>
+              AI 보기
+            </DownButton>
+            <DownButton
+            onClick={()=>setwheelBoolstate("AI")}>
+              재우's AI란?
+            </DownButton>
+            </motion.div>
           </MainContainer>
           :
           <>
@@ -111,6 +136,10 @@ function Main() {
 }
 export default Main
 
+const ButtonContainer = styled(motion.div)`
+  
+`
+
 const DownButton = styled(motion.button)`
 background-color: rgba(255, 255, 255, 0);
 background-image: url(${Mainbutton3});
@@ -119,7 +148,7 @@ background-size: 100% 100%;
 background-position: center;
 background-repeat: no-repeat;
   color: rgba(255, 255, 255, 1);
-  width: 220px; /* 변경된 부분 */
+  width: 200px; /* 변경된 부분 */
   height: 70px; /* 변경된 부분 */
   border: none;
   font-size: 17px;
@@ -152,6 +181,18 @@ margin: 0 auto;
 gap: 10px;
 white-space: pre;
 background-color: rgba(100, 100, 100, 1);
+ h2 {
+  color: white;
+  font-weight: 250;
+  font-size: 55px;
+  font-family: inherit;
+  }
+ h3 {
+  color: white;
+  font-weight: 250;
+  font-size: 25px;
+  font-family: inherit;
+  }
 `
 
 const TotalContainer = styled.div`
