@@ -63,13 +63,9 @@ function Main() {
 
   const containerVariants = {
     hidden: { opacity: 0, y: 100},
-    visible: { opacity: 1, y:0, transition: { staggerChildren: 0.3, } },
+    visible: { opacity: 1, y:0, transition: { staggerChildren: 0.3} },
   };
 
-  const MainLogoVariants = {
-    hidden: { y: 100, opacity: 0 },
-    visible: { y: [100, 100, 0], opacity: 1, transition: { duration: 1 } },
-  };
   const childVariants = {
     hidden: { y: 0, opacity: 0 },
     visible: { y: [50, 10, 0], opacity: [0, 0.4, 1], transition: { duration: 0.8 } },
@@ -103,7 +99,7 @@ function Main() {
             <motion.h2 
             variants={childVariants}>마비노기 재우's AI 다운로더</motion.h2>
             <motion.h3 variants={childVariants}>똑똑한 주인을 위한 똑똑한 펫 AI</motion.h3>
-            <motion.div
+            <ButtonContainer
             variants={childVariants}>
             <DownButton
             onClick={()=>setwheelBoolstate("AI")}>
@@ -113,7 +109,7 @@ function Main() {
             onClick={()=>setwheelBoolstate("AI")}>
               재우's AI란?
             </DownButton>
-            </motion.div>
+            </ButtonContainer>
           </MainContainer>
           :
           <>
@@ -137,7 +133,12 @@ function Main() {
 export default Main
 
 const ButtonContainer = styled(motion.div)`
-  
+display: flex;
+flex-direction: row; 
+justify-content: center;
+align-items: center;
+gap: 40px;
+margin-top: 50px;
 `
 
 const DownButton = styled(motion.button)`
@@ -180,7 +181,7 @@ height: 100vh;
 margin: 0 auto;
 gap: 10px;
 white-space: pre;
-background-color: rgba(100, 100, 100, 1);
+background-color: rgba(111, 195, 226);
  h2 {
   color: white;
   font-weight: 250;
@@ -201,6 +202,9 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 overflow: hidden;
+width: 100vw;
+height: 100vh;
+background-color: rgba(111, 195, 226);
 `
 
 const ListContainer = styled(motion.div)`
@@ -209,9 +213,9 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 width: 100vw;
-height: 100vh;
+height: 120vh;
 margin: 0 auto;
 gap: 10px;
 white-space: pre;
-background-color: rgba(131, 215, 246);
+background-color: rgba(111, 195, 226);
 `
