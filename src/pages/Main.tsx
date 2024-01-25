@@ -19,7 +19,7 @@ import 재우님 from '../assets/Icon/재우님.jpg'
 import 펫디펜더 from '../assets/Icon/펫디펜더.jpg'
 import { ChildProcess } from 'child_process';
 
- 
+
 function Main() {
   const [wheelBoolstate, setwheelBoolstate] = useRecoilState(WheelBool)
   const [yPosition, setYPosition] = useState(0);
@@ -28,107 +28,139 @@ function Main() {
   //마비노기 식으로 할려면 표로 정리해볼 필요가 있겠다.
   const handleWheel = (e: React.WheelEvent) => {
     // e.deltaY 값은 마우스 휠의 스크롤 양을 나타냅니다.
+
     // 양수면 아래로 스크롤, 음수면 위로 스크롤
     console.log(wheelBoolstate)
     if (wheelBoolstate === "AI") {
       console.log('Mouse wheel scrolled:', e.deltaY);
       if (e.deltaY < 0) {
-        setwheelBoolstate("None")
-        setTimeout(() => { setwheelBoolstate("Main"); console.log("zzzz") }, 2000);
+
+        //원래는 메인인데 문제가 생긴거 같아. 다른 경우의 수를 삼항연산자에 넣어야해
+        setwheelBoolstate("Main")
       }
 
-      //버튼을 누르면 내려보낼 예정이지만 일단은 마우스 드래그로
-      if (wheelBoolstate !== "AI") {
-        console.log('Mouse wheel scrolled:', e.deltaY);
-        if (e.deltaY > 0) {
-          setwheelBoolstate("AI")
-          setTimeout(() => { setwheelBoolstate("AI"); console.log("zzzz") }, 2000);
-        }
-
-      }
     }
   }
-
-  const aniControls = useAnimation();
-  useEffect(() => {
-    if (wheelBoolstate === "AI" || wheelBoolstate === "None") {
-      aniControls.start({
-        y: wheelBoolstate === "AI" ? [-200, 0] : [0, -200],
-        opacity: wheelBoolstate === "AI" ? [0, 0, 1] : [1, 1, 0],
-        transition: { duration: 1.5 },
-      });
-    }
-  }, [wheelBoolstate, aniControls]);
+  const MainToAI = () => {
+    //버튼을 누르면 내려보낼 예정이지만 일단은 마우스 드래그로
+    setwheelBoolstate("None")
+    setTimeout(() => { setwheelBoolstate("AI"); console.log("ccc") }, 1500);
+  }
 
 
-  const containerVariants = {
-    hidden: { opacity: 0, y: 100},
-    visible: { opacity: 1, y:0, transition: { staggerChildren: 0.3} },
-  };
+const aniControls = useAnimation();
+const MainLogoaniControls = useAnimation();
+const H2aniControls = useAnimation();
+const H3aniControls = useAnimation();
+const MainButtonaniControls = useAnimation();
+useEffect(() => {
+  if (wheelBoolstate === "Main" || wheelBoolstate === "None") {
+    aniControls.start({
+      y: wheelBoolstate === "Main" ? [-200, 0] : [0, -200],
+      opacity: wheelBoolstate === "Main" ? [0, 0, 1] : [1, 1, 0],
+      transition: { duration: 1.5 },
+    });
+  }
+  if (wheelBoolstate === "AI") {
+    //if (wheelBoolstate === "AI" || wheelBoolstate === "None") {
+    aniControls.start({
+      y: wheelBoolstate === "AI" ? [-200, 0] : [0, -200],
+      opacity: wheelBoolstate === "AI" ? [0, 0, 1] : [1, 1, 0],
+      transition: { duration: 1.5 },
+    });
+  }
+}, [wheelBoolstate, aniControls]);
 
-  const childVariants = {
-    hidden: { y: 0, opacity: 0 },
-    visible: { y: [50, 10, 0], opacity: [0, 0.4, 1], transition: { duration: 0.8 } },
-  };
-  const childVariants0 = {
-    hidden: { y: 0, opacity: 0, scale:0 },
-    visible: { 
-      rotate: [160, 0], 
-      scale: [0, 1],  
-      opacity: [0, 1, 1.4, 1],
-      transition: {
-        type: "spring",
-        stiffness: 300,
-        damping: 12,
-        duration: 2
-      },  
-     },
-  };
+useEffect(()=>{
+  console.log(wheelBoolstate)
+}, [wheelBoolstate])
 
+const containerVariants = {
+  hidden: { opacity: 0, y: 100, transition: { duratiton: 2 }  },
+  visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.8 } },
+};
 
-  return (
-    <AnimatePresence>
-      <TotalContainer onWheel={handleWheel}>
-        {wheelBoolstate === 'Main' ?
-          <MainContainer
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          >
-            <MainImage image={재우님} variants={childVariants0}/>
-            <motion.h2 
-            variants={childVariants}>마비노기 재우's AI 다운로더</motion.h2>
-            <motion.h3 variants={childVariants}>똑똑한 주인을 위한 똑똑한 펫 AI</motion.h3>
-            <ButtonContainer
-            variants={childVariants}>
+const childVariants = {
+  hidden: { y: 0, opacity: 0 },
+  visible: { y: [50, 10, 0], opacity: [0, 0.4, 1], transition: { duration: 0.8 } },
+};
+const childVariants0 = {
+  hidden: { y: 0, opacity: 0, scale: 0 },
+  visible: {
+    rotate: [160, 0],
+    scale: [0, 1],
+    opacity: [0, 1, 1.4, 1],
+    transition: {
+      type: "spring",
+      stiffness: 300,
+      damping: 12,
+      duration: 2
+    },
+  },
+};
+
+/*
+          initial={{y : -200, opacity : 0}}
+          animate={{y : 0, opacity : 1 , transition : {duration: 1.5}}}
+          exit={{y : -200, opacity : 0 , transition : {duration: 1.5}}} */
+
+return (
+    <TotalContainer onWheel={handleWheel}>
+    <AnimatePresence mode='wait'>
+      {wheelBoolstate === 'Main' ?
+        <MainContainer
+        initial={{y : -200, opacity : 0}}
+        animate={{y : 0, opacity : 1, transition : {duration: 1.5, delayChildren: 2.5, staggerChildren: 5}}}
+        exit={{y : -200, opacity : 0, transition : {duration: 1.5}}}
+        key = 'MainKey'
+        >
+          <MainImage image={재우님}/>
+          <motion.h2
+        initial={{y : 200, opacity : 0}}
+        animate={{y : 0, opacity : [0, 0, 1], transition : {duration: 2.4}}}
+        exit={{y : -200, opacity : 0, transition : {duration: 1.5}}}>마비노기 재우's AI 다운로더</motion.h2>
+          <motion.h3
+        initial={{y : 200, opacity : 0}}
+        animate={{y : 0, opacity : [0, 0, 0, 1], transition : {duration: 3.2}}}
+        exit={{y : -200, opacity : 0, transition : {duration: 1.5}}}>똑똑한 주인을 위한 똑똑한 펫 AI</motion.h3>
+          <ButtonContainer
+        initial={{y : 200, opacity : 0}}
+        animate={{y : 0, opacity : [0, 0, 0, 0, 1], transition : {duration: 4.0}}}
+        exit={{y : -200, opacity : 0, transition : {duration: 1.5}}}>
             <DownButton
-            onClick={()=>setwheelBoolstate("AI")}>
+              onClick={() => MainToAI()}>
               AI 보기
             </DownButton>
             <DownButton
-            onClick={()=>setwheelBoolstate("AI")}>
+              onClick={() => setwheelBoolstate("AI")}>
               재우's AI란?
             </DownButton>
-            </ButtonContainer>
-          </MainContainer>
-          :
-          <>
-            <ListContainer animate={aniControls}>
-              <AIButtonModal name="펫 디펜더" explain="" />
-              <AIButtonModal name="주인바라기" explain="" />
-              <AIButtonModal name="재우 오리지널" explain="" />
-              <AIButtonModal name="볼트 서포터" explain="" />
-              <AIButtonModal name="로드롤러" explain="" />
-              <AIButtonModal name="전봇대" explain="" />
-            </ListContainer>
-            <ExplainModal />
-            <SuccessModal />
-          </>
-        }
-        {/**/}
-      </TotalContainer>
-    </AnimatePresence>
-  );
+          </ButtonContainer>
+        </MainContainer>
+        :(
+        <motion.div
+          key = 'ListKey'
+          initial={{y : -200, opacity : 0}}
+          animate={{y : 0, opacity : 1 , transition : {duration: 1.5}}}
+          exit={{y : -200, opacity : 0 , transition : {duration: 1.5}}}
+          transition ={{duration: 1.5}}>
+          <ListContainer
+          >
+            <AIButtonModal name="펫 디펜더" explain="" />
+            <AIButtonModal name="주인바라기" explain="" />
+            <AIButtonModal name="재우 오리지널" explain="" />
+            <AIButtonModal name="볼트 서포터" explain="" />
+            <AIButtonModal name="로드롤러" explain="" />
+            <AIButtonModal name="전봇대" explain="" />
+          </ListContainer>
+          <ExplainModal />
+          <SuccessModal />
+        </motion.div>)
+      }
+      {/**/}
+  </AnimatePresence>
+    </TotalContainer>
+);
 }
 export default Main
 
@@ -159,7 +191,7 @@ background-repeat: no-repeat;
     filter: brightness(120%); /* 클릭 시 밝기 감소 효과 */
   }
 `
-const MainImage = styled(motion.div)<{ image: any }>`
+const MainImage = styled(motion.div) <{ image: any }>`
 background-color: rgba(255, 255, 255, 0);
 background-image: ${({ image }) => `url(${image})`};
   background-repeat: no-repeat;
@@ -196,7 +228,7 @@ background-color: rgba(111, 195, 226);
   }
 `
 
-const TotalContainer = styled.div`
+const TotalContainer = styled(motion.div)`
 display: flex;
 flex-direction: column; 
 justify-content: center;
