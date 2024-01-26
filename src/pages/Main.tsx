@@ -31,7 +31,7 @@ function Main() {
 
     // 양수면 아래로 스크롤, 음수면 위로 스크롤
     console.log(wheelBoolstate)
-    if (wheelBoolstate === "AI") {
+    if (wheelBoolstate !== "Main") {
       console.log('Mouse wheel scrolled:', e.deltaY);
       if (e.deltaY < 0) {
 
@@ -109,30 +109,30 @@ return (
     <AnimatePresence mode='wait'>
       {wheelBoolstate === 'Main' ?
         <MainContainer
-        initial={{y : -200, opacity : 0}}
-        animate={{y : 0, opacity : 1, transition : {duration: 1.5, delayChildren: 2.5, staggerChildren: 5}}}
-        exit={{y : -200, opacity : 0, transition : {duration: 1.5}}}
-        key = 'MainKey'
         >
-          <MainImage image={재우님}/>
+          <MainImage image={재우님}
+        initial={{y : 0, rotate: 160, opacity : 0, scale: 0}}
+        animate={{ y: 0, rotate: 0, opacity : 1, scale: 1, transition : { type: "spring", stiffness: 200, damping: 10, duration: 1.5, delayChildren: 2.5, staggerChildren: 5}}}
+        exit={{y : -200, opacity : 0, transition : {duration: 0.8}}}
+        key = 'MainKey'/>
           <motion.h2
         initial={{y : 200, opacity : 0}}
-        animate={{y : 0, opacity : [0, 0, 1], transition : {duration: 2.4}}}
-        exit={{y : -200, opacity : 0, transition : {duration: 1.5}}}>마비노기 재우's AI 다운로더</motion.h2>
+        animate={{y : 0, opacity : [0, 0, 1], transition : {duration: 2.0}}}
+        exit={{y : -200, opacity : 0, transition : {duration: 0.8}}}>마비노기 재우's AI 다운로더</motion.h2>
           <motion.h3
         initial={{y : 200, opacity : 0}}
-        animate={{y : 0, opacity : [0, 0, 0, 1], transition : {duration: 3.2}}}
-        exit={{y : -200, opacity : 0, transition : {duration: 1.5}}}>똑똑한 주인을 위한 똑똑한 펫 AI</motion.h3>
+        animate={{y : 0, opacity : [0, 0, 0, 1], transition : {duration: 2.1}}}
+        exit={{y : -200, opacity : 0, transition : {duration: 0.8}}}>똑똑한 주인을 위한 똑똑한 펫 AI</motion.h3>
           <ButtonContainer
         initial={{y : 200, opacity : 0}}
-        animate={{y : 0, opacity : [0, 0, 0, 0, 1], transition : {duration: 4.0}}}
-        exit={{y : -200, opacity : 0, transition : {duration: 1.5}}}>
+        animate={{y : 0, opacity : [0, 0, 0, 0, 1], transition : {duration: 2.2}}}
+        exit={{y : -200, opacity : 0, transition : {duration: 0.8}}}>
             <DownButton
               onClick={() => MainToAI()}>
               AI 보기
             </DownButton>
             <DownButton
-              onClick={() => setwheelBoolstate("AI")}>
+              onClick={() => setwheelBoolstate("EXP")}>
               재우's AI란?
             </DownButton>
           </ButtonContainer>
@@ -200,7 +200,7 @@ background-image: ${({ image }) => `url(${image})`};
   color: rgba(255, 255, 255, 1);
   width: 320px;
   height: 320px;
-  border-radius: 160px;
+  border-radius: 50%;
 `
 
 const MainContainer = styled(motion.div)`
@@ -233,7 +233,6 @@ display: flex;
 flex-direction: column; 
 justify-content: center;
 align-items: center;
-overflow: hidden;
 width: 100vw;
 height: 100vh;
 background-color: rgba(111, 195, 226);
