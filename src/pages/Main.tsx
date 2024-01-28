@@ -14,7 +14,7 @@ import ExplainModal from '../components/ExplainModal';
 import { AnimatePresence, motion, useAnimation } from 'framer-motion';
 import uuid from 'react-uuid';
 import { useRecoilState } from 'recoil';
-import { WheelBool } from '../store/atom';
+import { WheelBool, ExpWheelBool } from '../store/atom';
 import 재우님 from '../assets/Icon/재우님.jpg'
 import 펫디펜더 from '../assets/Icon/펫디펜더.jpg'
 import { ChildProcess } from 'child_process';
@@ -22,6 +22,7 @@ import { ChildProcess } from 'child_process';
 
 function Main() {
   const [wheelBoolstate, setwheelBoolstate] = useRecoilState(WheelBool)
+  const [expWheelBoolstate, setexpWheelBoolState] = useRecoilState(ExpWheelBool)
   const [yPosition, setYPosition] = useState(0);
 
   //마비노기 공식 홈페이지의 그것과 비슷하게 해보고 싶었는데 뭔가 잘 안되네....
@@ -29,138 +30,158 @@ function Main() {
   const handleWheel = (e: React.WheelEvent) => {
     // e.deltaY 값은 마우스 휠의 스크롤 양을 나타냅니다.
 
+    //Main, AI일 때는 단방향 이동이 가능하지만 EXP에는 기준이 따로 있어야한다.
     // 양수면 아래로 스크롤, 음수면 위로 스크롤
     console.log(wheelBoolstate)
-    if (wheelBoolstate !== "Main") {
+    if (wheelBoolstate == "AI") {
       console.log('Mouse wheel scrolled:', e.deltaY);
       if (e.deltaY < 0) {
 
         //원래는 메인인데 문제가 생긴거 같아. 다른 경우의 수를 삼항연산자에 넣어야해
         setwheelBoolstate("Main")
       }
+    }
 
+    else if (wheelBoolstate == "EXP") {
+      if (e.deltaY < 0) {
+        if (expWheelBoolstate === 0) {
+          setwheelBoolstate("Main")
+          console.log("메인으로")
+        }
+        else {
+          setexpWheelBoolState(expWheelBoolstate - 1)
+          console.log("위로")
+        }
+      }
+      if(e.deltaY >0){
+        setexpWheelBoolState(expWheelBoolstate + 1)
+        console.log("아래로")
+      }
+      console.log(expWheelBoolstate)
     }
   }
   const MainToAI = () => {
     //버튼을 누르면 내려보낼 예정이지만 일단은 마우스 드래그로
-    setwheelBoolstate("None")
-    setTimeout(() => { setwheelBoolstate("AI"); console.log("ccc") }, 1500);
-  }
+    setwheelBoolstate("AI")
+    }
 
 
-const aniControls = useAnimation();
-const MainLogoaniControls = useAnimation();
-const H2aniControls = useAnimation();
-const H3aniControls = useAnimation();
-const MainButtonaniControls = useAnimation();
-useEffect(() => {
-  if (wheelBoolstate === "Main" || wheelBoolstate === "None") {
-    aniControls.start({
-      y: wheelBoolstate === "Main" ? [-200, 0] : [0, -200],
-      opacity: wheelBoolstate === "Main" ? [0, 0, 1] : [1, 1, 0],
-      transition: { duration: 1.5 },
-    });
-  }
-  if (wheelBoolstate === "AI") {
-    //if (wheelBoolstate === "AI" || wheelBoolstate === "None") {
-    aniControls.start({
-      y: wheelBoolstate === "AI" ? [-200, 0] : [0, -200],
-      opacity: wheelBoolstate === "AI" ? [0, 0, 1] : [1, 1, 0],
-      transition: { duration: 1.5 },
-    });
-  }
-}, [wheelBoolstate, aniControls]);
+  const aniControls = useAnimation();
+  const MainLogoaniControls = useAnimation();
+  const H2aniControls = useAnimation();
+  const H3aniControls = useAnimation();
+  const MainButtonaniControls = useAnimation();
+  useEffect(() => {
+    if (wheelBoolstate === "Main" || wheelBoolstate === "None") {
+      aniControls.start({
+        y: wheelBoolstate === "Main" ? [-200, 0] : [0, -200],
+        opacity: wheelBoolstate === "Main" ? [0, 0, 1] : [1, 1, 0],
+        transition: { duration: 1.5 },
+      });
+    }
+    if (wheelBoolstate === "AI") {
+      //if (wheelBoolstate === "AI" || wheelBoolstate === "None") {
+      aniControls.start({
+        y: wheelBoolstate === "AI" ? [-200, 0] : [0, -200],
+        opacity: wheelBoolstate === "AI" ? [0, 0, 1] : [1, 1, 0],
+        transition: { duration: 1.5 },
+      });
+    }
+  }, [wheelBoolstate, aniControls]);
 
-useEffect(()=>{
-  console.log(wheelBoolstate)
-}, [wheelBoolstate])
+  useEffect(() => {
+    console.log(wheelBoolstate)
+  }, [wheelBoolstate])
 
-const containerVariants = {
-  hidden: { opacity: 0, y: 100, transition: { duratiton: 2 }  },
-  visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.8 } },
-};
+  const containerVariants = {
+    hidden: { opacity: 0, y: 100, transition: { duratiton: 2 } },
+    visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.8 } },
+  };
 
-const childVariants = {
-  hidden: { y: 0, opacity: 0 },
-  visible: { y: [50, 10, 0], opacity: [0, 0.4, 1], transition: { duration: 0.8 } },
-};
-const childVariants0 = {
-  hidden: { y: 0, opacity: 0, scale: 0 },
-  visible: {
-    rotate: [160, 0],
-    scale: [0, 1],
-    opacity: [0, 1, 1.4, 1],
-    transition: {
-      type: "spring",
-      stiffness: 300,
-      damping: 12,
-      duration: 2
+  const childVariants = {
+    hidden: { y: 0, opacity: 0 },
+    visible: { y: [50, 10, 0], opacity: [0, 0.4, 1], transition: { duration: 0.8 } },
+  };
+  const childVariants0 = {
+    hidden: { y: 0, opacity: 0, scale: 0 },
+    visible: {
+      rotate: [160, 0],
+      scale: [0, 1],
+      opacity: [0, 1, 1.4, 1],
+      transition: {
+        type: "spring",
+        stiffness: 300,
+        damping: 12,
+        duration: 2
+      },
     },
-  },
-};
+  };
 
-/*
-          initial={{y : -200, opacity : 0}}
-          animate={{y : 0, opacity : 1 , transition : {duration: 1.5}}}
-          exit={{y : -200, opacity : 0 , transition : {duration: 1.5}}} */
+  /*
+            initial={{y : -200, opacity : 0}}
+            animate={{y : 0, opacity : 1 , transition : {duration: 1.5}}}
+            exit={{y : -200, opacity : 0 , transition : {duration: 1.5}}} */
 
-return (
+  return (
     <TotalContainer onWheel={handleWheel}>
-    <AnimatePresence mode='wait'>
-      {wheelBoolstate === 'Main' ?
-        <MainContainer
-        >
-          <MainImage image={재우님}
-        initial={{y : 0, rotate: 160, opacity : 0, scale: 0}}
-        animate={{ y: 0, rotate: 0, opacity : 1, scale: 1, transition : { type: "spring", stiffness: 200, damping: 10, duration: 1.5, delayChildren: 2.5, staggerChildren: 5}}}
-        exit={{y : -200, opacity : 0, transition : {duration: 0.8}}}
-        key = 'MainKey'/>
-          <motion.h2
-        initial={{y : 200, opacity : 0}}
-        animate={{y : 0, opacity : [0, 0, 1], transition : {duration: 2.0}}}
-        exit={{y : -200, opacity : 0, transition : {duration: 0.8}}}>마비노기 재우's AI 다운로더</motion.h2>
-          <motion.h3
-        initial={{y : 200, opacity : 0}}
-        animate={{y : 0, opacity : [0, 0, 0, 1], transition : {duration: 2.1}}}
-        exit={{y : -200, opacity : 0, transition : {duration: 0.8}}}>똑똑한 주인을 위한 똑똑한 펫 AI</motion.h3>
-          <ButtonContainer
-        initial={{y : 200, opacity : 0}}
-        animate={{y : 0, opacity : [0, 0, 0, 0, 1], transition : {duration: 2.2}}}
-        exit={{y : -200, opacity : 0, transition : {duration: 0.8}}}>
-            <DownButton
-              onClick={() => MainToAI()}>
-              AI 보기
-            </DownButton>
-            <DownButton
-              onClick={() => setwheelBoolstate("EXP")}>
-              재우's AI란?
-            </DownButton>
-          </ButtonContainer>
-        </MainContainer>
-        :(
-        <motion.div
-          key = 'ListKey'
-          initial={{y : -200, opacity : 0}}
-          animate={{y : 0, opacity : 1 , transition : {duration: 1.5}}}
-          exit={{y : -200, opacity : 0 , transition : {duration: 1.5}}}
-          transition ={{duration: 1.5}}>
-          <ListContainer
+      <AnimatePresence mode='wait'>
+        {wheelBoolstate === 'Main' ?
+          <MainContainer
           >
-            <AIButtonModal name="펫 디펜더" explain="" />
-            <AIButtonModal name="주인바라기" explain="" />
-            <AIButtonModal name="재우 오리지널" explain="" />
-            <AIButtonModal name="볼트 서포터" explain="" />
-            <AIButtonModal name="로드롤러" explain="" />
-            <AIButtonModal name="전봇대" explain="" />
-          </ListContainer>
-          <ExplainModal />
-          <SuccessModal />
-        </motion.div>)
-      }
-      {/**/}
-  </AnimatePresence>
+            <MainImage image={재우님}
+              initial={{ y: 0, rotate: 160, opacity: 0, scale: 0 }}
+              animate={{ y: 0, rotate: 0, opacity: 1, scale: 1, transition: { type: "spring", stiffness: 200, damping: 10, duration: 1.5, delayChildren: 2.5, staggerChildren: 5 } }}
+              exit={{ y: -200, opacity: 0, transition: { duration: 0.8 } }}
+              key='MainKey' />
+            <motion.h2
+              initial={{ y: 200, opacity: 0 }}
+              animate={{ y: 0, opacity: [0, 0, 1], transition: { duration: 2.0 } }}
+              exit={{ y: -200, opacity: 0, transition: { duration: 0.8 } }}>마비노기 재우's AI 다운로더</motion.h2>
+            <motion.h3
+              initial={{ y: 200, opacity: 0 }}
+              animate={{ y: 0, opacity: [0, 0, 0, 1], transition: { duration: 2.1 } }}
+              exit={{ y: -200, opacity: 0, transition: { duration: 0.8 } }}>똑똑한 주인을 위한 똑똑한 펫 AI</motion.h3>
+            <ButtonContainer
+              initial={{ y: 200, opacity: 0 }}
+              animate={{ y: 0, opacity: [0, 0, 0, 0, 1], transition: { duration: 2.2 } }}
+              exit={{ y: -200, opacity: 0, transition: { duration: 0.8 } }}>
+              <DownButton
+                onClick={() => setwheelBoolstate("AI")}>
+                AI 보기
+              </DownButton>
+              <DownButton
+                onClick={() => setwheelBoolstate("EXP")}>
+                재우's AI란?
+              </DownButton>
+            </ButtonContainer>
+          </MainContainer>
+          //ai 페이지
+          : wheelBoolstate === "AI" ? (
+            <motion.div
+              key='ListKey'
+              initial={{ y: -200, opacity: 0 }}
+              animate={{ y: 0, opacity: 1, transition: { duration: 1.5 } }}
+              exit={{ y: -200, opacity: 0, transition: { duration: 1.5 } }}
+              transition={{ duration: 1.5 }}>
+              <ListContainer
+              >
+                <AIButtonModal name="펫 디펜더" explain="" />
+                <AIButtonModal name="주인바라기" explain="" />
+                <AIButtonModal name="재우 오리지널" explain="" />
+                <AIButtonModal name="볼트 서포터" explain="" />
+                <AIButtonModal name="로드롤러" explain="" />
+                <AIButtonModal name="전봇대" explain="" />
+              </ListContainer>
+              <ExplainModal />
+              <SuccessModal />
+            </motion.div>)
+            //제품설명 페이지
+            : (<motion.div key='EXPKey'></motion.div>)
+        }
+        {/**/}
+      </AnimatePresence>
     </TotalContainer>
-);
+  );
 }
 export default Main
 
@@ -244,7 +265,7 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 width: 100vw;
-height: 120vh;
+height: 100vh;
 margin: 0 auto;
 gap: 10px;
 white-space: pre;

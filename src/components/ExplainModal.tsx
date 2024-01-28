@@ -36,29 +36,29 @@ function ExplainModal() {
   let Explain:string = ''
   let FuncList:string[]= []
   switch (currentAIName) {
-    case "펫 디펜더": Image = 펫디펜더; Tag = "수동적이고 방어적인 AI";
+    case "펫 디펜더": Image = 펫디펜더; Tag = "주인의 위치에서 디펜스로 적의 공격을 흘림";
     FuncList = ["윈드밀 반응 복귀", "자동 원거리 견제", "자동 신속 발동", ];
     Explain = ''; break;
-    case "로드롤러": Image = 로드롤러; Tag = "매우 수동적이고 매우 방어적인 AI";
+    case "로드롤러": Image = 로드롤러; Tag = "주인의 위치에서 윈드밀로 적의 공격을 반격";
     FuncList = ["윈드밀 반응 복귀", "자동 원거리 견제", "자동 신속 발동", ];
     Explain = ''; break;
-    case "메디이익": Image = 메디이익; Tag = "능동적이고 보조적인 AI";
+    case "메디이익": Image = 메디이익; Tag = "자동으로 힐링을 시전";
     FuncList = ["윈드밀 반응 복귀", "자동 원거리 견제", "자동 신속 발동", ];
     Explain = ''; break;
-    case "볼트 서포터": Image = 볼트서포터; Tag = "능동적이고 공격적인 AI";
+    case "볼트 서포터": Image = 볼트서포터; Tag = "파이어볼트로 공격을 보조";
     FuncList = ["윈드밀 반응 복귀", "자동 원거리 견제", "자동 신속 발동", ];
     Explain = ''; break;
-    case "블레이즈 서포터": Image = 블레이즈서포터; Tag = "능동적이고 보조적인 AI";
+    case "블레이즈 서포터": Image = 블레이즈서포터; Tag = "블레이즈 충전을 보조";
     FuncList = ["윈드밀 반응 복귀", "자동 원거리 견제", "자동 신속 발동", ];
     Explain = ''; break;
-    case "재우 오리지널": Image = 재우오리지널; Tag = "능동적이고 방어적인 AI";
+    case "재우 오리지널": Image = 재우오리지널; Tag = "주인이 공격한 적 주변에서 시선을 끔";
     FuncList = ["윈드밀 반응 복귀", "자동 원거리 견제", "자동 신속 발동", ];
     Explain = '첫 번째 재우`s AI입니다. 이 AI의 패턴을 기반으로 수많은 재우`s AI가 만들어졌습니다. 감시에 특화되어 있으며, 주인이 공격한 적에게 달라붙어 주변 적의 어그로를 끌면서 동시에 주인이 공격당하면 반격하도록 제작되었습니다. ';
     break;
-    case "전봇대": Image = 전봇대; Tag = "수동적이고 보조적인 AI";
+    case "전봇대": Image = 전봇대; Tag = "라이트닝 볼트를 장전하여 체인효과를 유도";
     FuncList = ["윈드밀 반응 복귀", "자동 원거리 견제", "자동 신속 발동", ];
     Explain = ''; break;
-    case "주인바라기": Image = 주인바라기; Tag = "매우 수동적이고 매우 보조적인 AI";
+    case "주인바라기": Image = 주인바라기; Tag = "아무것도 하지 않고 주인만 따라다님";
     FuncList = ["윈드밀 반응 복귀", "자동 원거리 견제", "자동 신속 발동", ];
     Explain = ''; break;
     default: break;

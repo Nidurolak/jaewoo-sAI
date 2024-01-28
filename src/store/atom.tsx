@@ -26,3 +26,7 @@ export const WheelBool = atom({
     key: "DownloadListBool",
     default: "Main"
 })
+export const ExpWheelBool = atom({
+    key: "ExpListBool",
+    default: 0
+})
