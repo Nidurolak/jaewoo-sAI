@@ -20,12 +20,54 @@ import 주인바라기 from '../assets/Icon/주인바라기.jpg'
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import gen_button_confirm from '../assets/Sound/gen_button_confirm.wav'
 import gen_hover from '../assets/Sound/gen_hover.wav'
-import { CurrentAIName, DownloadModalBool, DownloadModalCopyBool } from '../store/atom';
+import { CurrentAIName, DownloadModalBool, DownloadModalCopyBool, ExpWheelBool, WheelBool } from '../store/atom';
+import { motion } from 'framer-motion';
  
 
-function QNAComp(){
+function QNAComp(value: any){
 
-    return(<></>)
+    const [wheelBoolstate, setwheelBoolstate] = useRecoilState(WheelBool)
+    const [expWheelBoolstate, setexpWheelBoolState] = useRecoilState(ExpWheelBool)
+
+    let componentToRender;
+
+    const QNAVariant = {
+      init : {y: -200, opacity: 0},
+      visible : {y: 0, opacity: 1, transition: { duration: 1.5 }},
+      exit: {y: -200, opacity: 0, transition: { duration: 1.5 }}
+    }
+
+    switch(expWheelBoolstate){
+        case 0:
+          componentToRender =
+          <motion.div variants={QNAVariant} initial='init' animate='visible' exit='exit' key='EXPKey0'>0 번째 컴포넌트</motion.div>;
+          break;
+        case 1:
+          componentToRender =
+         <motion.div variants={QNAVariant} initial='init' animate='visible' exit='exit' key='EXPKey1'>첫 번째 컴포넌트</motion.div>;
+          break;
+        case 2:
+          componentToRender = 
+          <motion.div variants={QNAVariant} initial='init' animate='visible' exit='exit' key='EXPKey2'>두 번째 컴포넌트</motion.div>;
+          break;
+        case 3:
+          componentToRender = 
+          <motion.div variants={QNAVariant} initial='init' animate='visible' exit='exit' key='EXPKey3'>세 번째 컴포넌트</motion.div>;
+          break;
+        default:
+          componentToRender = 
+          <motion.div variants={QNAVariant} initial='init' animate='visible' exit='exit' key='EXPKey4'>잘못된 숫자</motion.div>;
+    }
+
+    return(<QNAContainer key='EXPKey'>{componentToRender}</QNAContainer>)
 }
 
 export default QNAComp
+
+const QNAContainer = styled(motion.div)`
+display: flex;
+align-items: center;
+flex-direction: column;
+align-items: center;
+  font-size: 17px;
+`
