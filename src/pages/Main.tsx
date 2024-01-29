@@ -18,6 +18,7 @@ import { WheelBool, ExpWheelBool } from '../store/atom';
 import 재우님 from '../assets/Icon/재우님.jpg'
 import 펫디펜더 from '../assets/Icon/펫디펜더.jpg'
 import { ChildProcess } from 'child_process';
+import QNAComp from '../components/QNAComp';
 
 
 function Main() {
@@ -60,17 +61,8 @@ function Main() {
       console.log(expWheelBoolstate)
     }
   }
-  const MainToAI = () => {
-    //버튼을 누르면 내려보낼 예정이지만 일단은 마우스 드래그로
-    setwheelBoolstate("AI")
-    }
-
 
   const aniControls = useAnimation();
-  const MainLogoaniControls = useAnimation();
-  const H2aniControls = useAnimation();
-  const H3aniControls = useAnimation();
-  const MainButtonaniControls = useAnimation();
   useEffect(() => {
     if (wheelBoolstate === "Main" || wheelBoolstate === "None") {
       aniControls.start({
@@ -145,14 +137,8 @@ function Main() {
               initial={{ y: 200, opacity: 0 }}
               animate={{ y: 0, opacity: [0, 0, 0, 0, 1], transition: { duration: 2.2 } }}
               exit={{ y: -200, opacity: 0, transition: { duration: 0.8 } }}>
-              <DownButton
-                onClick={() => setwheelBoolstate("AI")}>
-                AI 보기
-              </DownButton>
-              <DownButton
-                onClick={() => setwheelBoolstate("EXP")}>
-                재우's AI란?
-              </DownButton>
+              <DownButton onClick={() => setwheelBoolstate("AI")}>AI 보기</DownButton>
+              <DownButton onClick={() => setwheelBoolstate("EXP")}>재우's AI란?</DownButton>
             </ButtonContainer>
           </MainContainer>
           //ai 페이지
@@ -163,8 +149,7 @@ function Main() {
               animate={{ y: 0, opacity: 1, transition: { duration: 1.5 } }}
               exit={{ y: -200, opacity: 0, transition: { duration: 1.5 } }}
               transition={{ duration: 1.5 }}>
-              <ListContainer
-              >
+              <ListContainer>
                 <AIButtonModal name="펫 디펜더" explain="" />
                 <AIButtonModal name="주인바라기" explain="" />
                 <AIButtonModal name="재우 오리지널" explain="" />
@@ -176,7 +161,10 @@ function Main() {
               <SuccessModal />
             </motion.div>)
             //제품설명 페이지
-            : (<motion.div key='EXPKey'></motion.div>)
+            : (<QNAComp key='EXPKeyHead'>
+
+
+            </QNAComp>)
         }
         {/**/}
       </AnimatePresence>
