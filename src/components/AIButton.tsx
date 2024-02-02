@@ -60,7 +60,7 @@ function AIButtonModal(value: AITemplet) {
     content = totalWarper(AI_TOOL().Pet_BoltSupport_AI); 
     Image = 볼트서포터; Name = value.name; break;
     case "블레이즈 서포터": 
-    content = 블레이즈서포터; 
+    content = totalWarper(AI_TOOL().Pet_Blaze_AI); 
     Image = 블레이즈서포터; Name = value.name; break;
     case "재우 오리지널": 
     content = totalWarper(AI_TOOL().Pet_Original_AI); 

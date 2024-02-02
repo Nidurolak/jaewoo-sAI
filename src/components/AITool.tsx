@@ -77,7 +77,7 @@ export function AI_TOOL() {
         sequence: [seqPt(seq_cancel), seqPt(seq_Ready_StWind)]
     });
     let Pet_Targeted_StWind: string = eventWarper({
-        name: "자동 신속 사용1", main: "now_targeted", value0:"alert",
+        name: "자동 신속 사용1", main: "now_targeting", value0:"alert",
         condition: [conPt(con_pet_Ready_ST)],
         sequence: [seqPt(seq_cancel), seqPt(seq_Ready_StWind)]
     });
@@ -468,7 +468,6 @@ export function AI_TOOL() {
     let seq_ReadyElecbolt1: SequenceType = {tabNum:4, case:"sequence", main: "stack_skill", value0: "lightningbolt", value1: "2"}
     let seq_ReadyElecbolt2: SequenceType = {tabNum:4, case:"sequence", main: "stack_skill", value0: "lightningbolt", value1: "3"}
     let seq_UseElecbolt: SequenceType = {tabNum:4, case:"sequence", main: "stackmagic_attack", value0: "lightningbolt", value1: "1", value2:"0"}
-    let seq_SkillUse_Elecvbolt: SequenceType = {tabNum:4, case:"sequence", main: "stackmagic_attack", value0:"firebolt", value1:"1", value2:"5000"}
     
     let Pet_ReadyElecBolt_MasterReady: string = eventWarper({
         name:"라볼트 준비 - 주인 준비", main:"master_skill_prepare", value0:"all",
@@ -523,9 +522,6 @@ export function AI_TOOL() {
         sequence: [seqPt(seq_UseElecbolt)]
     })
 
-
-
-
     let Pet_Battery_AI: string[] = [
         Pet_MasterActive_StWind,
         Pet_SeekTarget_StWind,
@@ -548,12 +544,37 @@ export function AI_TOOL() {
     //let seq_: string = SequenceType = {tabNum:4, case:"sequence", main: "", value0: "", value1: ""}
     //let Pet_: string = eventWarper({name:"",main:"",condition: [], sequence: []})
 
-    let seq_: string = SequenceType = {tabNum:4, case:"sequence", main: "", value0: "", value1: ""}
+    let seq_Blaze_Stacking_Wait: SequenceType = {tabNum:4, case:"sequence", main: "wait", value0: "1000", value1: "2000"}
+    let seq_Blaze_StackATK_Ice: SequenceType = {tabNum:4, case:"sequence", main: "stackmagic_attack", value0: "icebolt", value1: "1", value2: '0'}
+    let seq_Blaze_Ready_IceReady: SequenceType = {tabNum:4, case:"sequence", main: "prepare_skill", value0: "icebolt", value1: "0", value2: '0'}
+    let seq_Blaze_Ready_Ice: SequenceType = {tabNum:4, case:"sequence", main: "stack_skill", value0: "icebolt", value1: "2"}
     //let seq_: string = SequenceType = {tabNum:4, case:"sequence", main: "", value0: "", value1: ""}
     //let seq_: string = SequenceType = {tabNum:4, case:"sequence", main: "", value0: "", value1: ""}
     //let seq_: string = SequenceType = {tabNum:4, case:"sequence", main: "", value0: "", value1: ""}
     //let seq_: string = SequenceType = {tabNum:4, case:"sequence", main: "", value0: "", value1: ""}
 
+    let Pet_Blaze_ATK: string = eventWarper({
+        name:"블레이즈 시간 끌기", main:"master_attack", value0: "basic",
+        condition:[],
+        sequence: [seqPt(seq_Blaze_Stacking_Wait), seqPt(seq_Blaze_StackATK_Ice)]
+    })
+    let Pet_Blaze_ATK0: string = eventWarper({
+        name:"블레이즈 시간 끌기 이어서", main:"attack", value0: "icebolt", value1: "false",
+        condition:[],
+        sequence: [seqPt(seq_Blaze_Stacking_Wait), seqPt(seq_Blaze_StackATK_Ice)]
+    })
+
+    let Pet_Blaze_Reload: string = eventWarper({
+        name:"블레이즈 재장전", main:"master_attack", value0: "all",
+        condition:[conPt(con_enemy_Hit_Blow), conPt(con_enemy_Hit_Shoved)],
+        sequence: [refeat({refeatValue:[seq_Blaze_Ready_IceReady, seq_Blaze_Ready_Ice], refeatNum:2}), refeat({refeatValue:[seq_chase_Master_Run, seq_wait_Middle], refeatNum:3})]
+    })
+
+    let Pet_Blaze_Load: string = eventWarper({
+        name:"블레이즈 장전", main:"master_skill_prepare", value0: "defence",
+        condition:[],
+        sequence: [refeat({refeatValue:[seq_Blaze_Ready_IceReady, seq_Blaze_Ready_Ice], refeatNum:2}), refeat({refeatValue:[seq_chase_Master_Run, seq_wait_Middle], refeatNum:3})]
+    })
 
 
     let Pet_Blaze_AI: string[] = [
@@ -563,7 +584,10 @@ export function AI_TOOL() {
         Pet_Master_Chase,
         Pet_MasterAttacked_Stand_Revenge,
         Pet_MasterAttacked_Down_Revenge,
-
+        Pet_Blaze_ATK,
+        Pet_Blaze_ATK0,
+        Pet_Blaze_Reload,
+        Pet_Blaze_Load
     ]
 
     return {
@@ -600,6 +624,7 @@ export function AI_TOOL() {
         Pet_RoadRoller_AI,
         Pet_BoltSupport_AI,
         Pet_Battery_AI,
+        Pet_Blaze_AI
         
     }
 }
