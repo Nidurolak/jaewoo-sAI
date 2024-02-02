@@ -1,5 +1,6 @@
 import { type } from "os";
 import React from "react";
+import {ButtonHTMLAttributes} from "react";
 
 export interface AITemplet{
     name?: string;
@@ -42,4 +43,10 @@ export interface EventTypes {
 
 export interface ButtonDataForRecoil{
     name?: string;
+}
+
+//도무지 해결이 안되네......타협을 한다.
+export interface BackGUI{
+    type?: string ;
+    //onClick: ButtonHTMLAttributes<HTMLButtonElement>["onClick"];
 }

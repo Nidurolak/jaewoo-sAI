@@ -547,6 +547,25 @@ export function AI_TOOL() {
     */
     //let seq_: string = SequenceType = {tabNum:4, case:"sequence", main: "", value0: "", value1: ""}
     //let Pet_: string = eventWarper({name:"",main:"",condition: [], sequence: []})
+
+    let seq_: string = SequenceType = {tabNum:4, case:"sequence", main: "", value0: "", value1: ""}
+    //let seq_: string = SequenceType = {tabNum:4, case:"sequence", main: "", value0: "", value1: ""}
+    //let seq_: string = SequenceType = {tabNum:4, case:"sequence", main: "", value0: "", value1: ""}
+    //let seq_: string = SequenceType = {tabNum:4, case:"sequence", main: "", value0: "", value1: ""}
+    //let seq_: string = SequenceType = {tabNum:4, case:"sequence", main: "", value0: "", value1: ""}
+
+
+
+    let Pet_Blaze_AI: string[] = [
+        Pet_MasterActive_StWind,
+        Pet_SeekTarget_StWind,
+        Pet_Targeted_StWind,
+        Pet_Master_Chase,
+        Pet_MasterAttacked_Stand_Revenge,
+        Pet_MasterAttacked_Down_Revenge,
+
+    ]
+
     return {
         Pet_MasterActive_StWind,
         Pet_SeekTarget_StWind,

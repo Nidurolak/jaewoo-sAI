@@ -4,10 +4,11 @@ import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import clipboardCopy from 'clipboard-copy';
 import { AIMaking, TestAIMaking, conPt, conWarper, eventWarper, seqPt, seqWarper, totalWarper } from '../hooks/AiMakerHook';
-import { ConditionType, SequenceType, StringTest, AITemplet } from '../utils/types';
+import { ConditionType, SequenceType, StringTest, AITemplet, BackGUI } from '../utils/types';
 import { AI_TOOL } from './AITool';
 import MainButton from '../assets/MainButton.svg'
 import Mainbutton3 from '../assets/MainButton3.png'
+import Mainbutton20070 from '../assets/MainButton20070.png'
 import 로드롤러 from '../assets/Icon/로드롤러.jpg'
 import 메디이익 from '../assets/Icon/메디이익.jpg'
 import 볼트서포터 from '../assets/Icon/볼트서포터.jpg'
@@ -17,10 +18,12 @@ import 재우오리지널 from '../assets/Icon/재우오리지널.jpg'
 import 전봇대 from '../assets/Icon/전봇대.jpg'
 import 펫디펜더 from '../assets/Icon/펫디펜더.jpg'
 import 주인바라기 from '../assets/Icon/주인바라기.jpg'
+import 컴뱃파트너 from '../assets/Icon/컴뱃파트너.jpg'
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import gen_button_confirm from '../assets/Sound/gen_button_confirm.wav'
 import gen_hover from '../assets/Sound/gen_hover.wav'
 import { CurrentAIName, DownloadModalBool, DownloadModalCopyBool, ExplainModalBool } from '../store/atom';
+import ButtonComp from './ButtonComp';
 
 function AIButtonModal(value: AITemplet) {
   let Image;
@@ -67,7 +70,13 @@ function AIButtonModal(value: AITemplet) {
     Image = 전봇대; Name = value.name; break;
     case "주인바라기": 
     content = totalWarper(AI_TOOL().Pet_Chaser_AI_Package); 
-    Image = 주인바라기; Name = value.name; break
+    Image = 주인바라기; Name = value.name; break;
+    case "폭스 헌터": 
+    content = totalWarper(AI_TOOL().Pet_Chaser_AI_Package); 
+    Image = 컴뱃파트너; Name = value.name; break;
+    case "기르시드 헬퍼": 
+    content = totalWarper(AI_TOOL().Pet_Chaser_AI_Package); 
+    Image = 오리지널Lite; Name = value.name; break;
     default: break;
 };
 
@@ -112,10 +121,10 @@ function AIButtonModal(value: AITemplet) {
   return (<BoxContainer>
     <AIDetailContainer onClick={ExplainModalUp}>
       <AIImage image={Image} />
-      <DownButton>{Name} AI</DownButton>
+      <AIListButton type='normal'>{Name} AI</AIListButton>
     </AIDetailContainer>
-    <DownButton onClick={handleCopyToClipboard}>클립보드 복사하기</DownButton>
-    <DownButton onClick={FileDownload}>AI파일 다운받기</DownButton>
+    <AIListButton type='AIDown' onClick={handleCopyToClipboard}>클립보드 복사하기</AIListButton>
+    <AIListButton type = 'AIDown' onClick={FileDownload}>AI파일 다운받기</AIListButton>
   </BoxContainer>)
 }
 
@@ -132,7 +141,9 @@ padding-right: 10px;
 width: 600px;
 height: 120px;
 background-color: rgba(81, 165, 196);
-  border-radius: 7px;
+  border-radius: 6px;
+  border: 2px solid;
+  border-color: rgb(25, 76, 138);
 `
 
 const AIDetailContainer = styled.div`
@@ -158,16 +169,33 @@ background-image: ${({ image }) => `url(${image})`};
   height: 70px;
   border-radius: 3px;
 `
-const DownButton = styled.button`
+
+const getWidthAndHeight = (type: BackGUI['type']) => {
+  switch (type) {
+    case 'small':
+      return { width: '120px', height: '70px' };
+    case 'AIDown':
+      return { width: '140px', height: '70px' };
+    case 'normal':
+      return { width: '200px', height: '70px' };
+    case 'xlarge':
+      return { width: '400px', height: '150px' };
+    default:
+      return { width: 'auto', height: 'auto' };
+  }
+};
+
+
+const AIListButton = styled.button<BackGUI>`
 background-color: rgba(255, 255, 255, 0);
-background-image: url(${Mainbutton3});
-background: url(${Mainbutton3});
+background-image: url(${Mainbutton20070});
+background: url(${Mainbutton20070});
 background-size: 100% 100%;
 background-position: center;
 background-repeat: no-repeat;
   color: rgba(255, 255, 255, 1);
-  width: 220px; /* 변경된 부분 */
-  height: 70px; /* 변경된 부분 */
+  width: ${(props) => getWidthAndHeight(props.type).width};
+  height: ${(props) => getWidthAndHeight(props.type).height};
   border: none;
   font-size: 17px;
   font-family: Mabinogi_Classic_TTF;

@@ -8,6 +8,7 @@ import { ConditionType, SequenceType, StringTest, AITemplet } from '../utils/typ
 import { AI_TOOL } from './AITool';
 import MainButton from '../assets/MainButton.svg'
 import Mainbutton3 from '../assets/MainButton3.png'
+import Mainbutton800400 from '../assets/MainButton800400.png'
 import 로드롤러 from '../assets/Icon/로드롤러.jpg'
 import 메디이익 from '../assets/Icon/메디이익.jpg'
 import 볼트서포터 from '../assets/Icon/볼트서포터.jpg'
@@ -68,7 +69,7 @@ function QNAComp(value: any){
           break;
         case 2:
           componentToRender = <QNABox variants={QNAVariant} initial='init' animate='visible' exit='exit' key='EXPKey2'>
-            두 번째 컴포넌트
+            재우스 AI를 사용하는 방법
           </QNABox>;
           break;
         case 3:
@@ -105,6 +106,11 @@ align-items: center;
 const QNABox = styled(motion.div)`
 `
 
+const QNABox2Container = styled(motion.div)`
+  width: 650px;
+  height: 400px;
+`
+
 const QNABox1TextBox = styled(motion.div)`
 display: flex;
 flex-direction: column;
@@ -114,12 +120,14 @@ gap: 10px;
 const QNABox1 = styled(motion.div)`
 display: flex;
 flex-direction: column;
+justify-content: center;
 gap: 50px;
-width: 750px;
+width: 800px;
+height: 500px;
 background-color: rgba(255, 255, 255, 0);
 color: rgba(255, 255, 255, 1);
-background-image: url(${Mainbutton3});
-background: url(${Mainbutton3});
+background-image: url(${Mainbutton800400});
+background: url(${Mainbutton800400});
 background-size: 100% 100%;
 background-position: center;
 background-repeat: no-repeat;
@@ -130,12 +138,14 @@ const QNABox0 = styled(motion.div)`
 display: flex;
 flex-direction: row;
 align-items: center;
+justify-content: center;
 gap: 50px;
-width: 750px;
+width: 800px;
+height: 400px;
 background-color: rgba(255, 255, 255, 0);
 color: rgba(255, 255, 255, 1);
-background-image: url(${Mainbutton3});
-background: url(${Mainbutton3});
+background-image: url(${Mainbutton800400});
+background: url(${Mainbutton800400});
 background-size: 100% 100%;
 background-position: center;
 background-repeat: no-repeat;

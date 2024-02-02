@@ -6,15 +6,19 @@ import clipboardCopy from 'clipboard-copy';
 import { AIMaking, TestAIMaking, conPt, conWarper, eventWarper, seqPt, seqWarper, totalWarper } from '../hooks/AiMakerHook';
 import { ConditionType, SequenceType, StringTest, AITemplet } from '../utils/types';
 import { AI_TOOL } from '../components/AITool';
-import MainButton from '../assets/MainButton.svg'
 import Mainbutton3 from '../assets/MainButton3.png'
+import Mainbutton20070 from '../assets/MainButton20070.png'
+import UpIcon from '../assets/UpIcon.png'
+import UpIconBlue from '../assets/UpIconBlue.png'
+import DownIcon from '../assets/DownIcon.png'
+import DownIconBlue from '../assets/DownIconBlue.png'
 import SuccessModal from '../components/SuccessModal'
 import AIButtonModal from '../components/AIButton';
 import ExplainModal from '../components/ExplainModal';
 import { AnimatePresence, motion, useAnimation } from 'framer-motion';
 import uuid from 'react-uuid';
 import { useRecoilState } from 'recoil';
-import { WheelBool, ExpWheelBool } from '../store/atom';
+import { WheelBool, ExpWheelBool, CurrentAIName } from '../store/atom';
 import 재우님 from '../assets/Icon/재우님.jpg'
 import 펫디펜더 from '../assets/Icon/펫디펜더.jpg'
 import { ChildProcess } from 'child_process';
@@ -23,8 +27,14 @@ import QNAComp from '../components/QNAComp';
 
 function Main() {
   const [wheelBoolstate, setwheelBoolstate] = useRecoilState(WheelBool)
+  const [currentAIName, setCurrentAIName] = useRecoilState(CurrentAIName)
   const [expWheelBoolstate, setexpWheelBoolState] = useRecoilState(ExpWheelBool)
   const [yPosition, setYPosition] = useState(0);
+
+
+  const UpDownButton = ()=>{
+
+  }
 
   //마비노기 공식 홈페이지의 그것과 비슷하게 해보고 싶었는데 뭔가 잘 안되네....
   //마비노기 식으로 할려면 표로 정리해볼 필요가 있겠다.
@@ -34,7 +44,7 @@ function Main() {
     //Main, AI일 때는 단방향 이동이 가능하지만 EXP에는 기준이 따로 있어야한다.
     // 양수면 아래로 스크롤, 음수면 위로 스크롤
     console.log(wheelBoolstate)
-    if (wheelBoolstate == "AI") {
+    if (wheelBoolstate == "AI" && currentAIName == '') {
       console.log('Mouse wheel scrolled:', e.deltaY);
       if (e.deltaY < 0) {
 
@@ -42,7 +52,6 @@ function Main() {
         setwheelBoolstate("Main")
       }
     }
-
     else if (wheelBoolstate == "EXP") {
       if (e.deltaY < 0) {
         if (expWheelBoolstate === 0) {
@@ -116,10 +125,11 @@ function Main() {
 
   return (
     <TotalContainer onWheel={handleWheel}>
+      <WheelDiv image={UpIconBlue} initial={{ y: 0}} animate={{y: [0, -15, 0]}}
+      transition={{duration: 2, ease: 'easeInOut', repeat: Infinity}}/>
       <AnimatePresence mode='wait'>
         {wheelBoolstate === 'Main' ?
-          <MainContainer
-          >
+          <MainContainer>
             <MainImage image={재우님}
               initial={{ y: 0, rotate: 160, opacity: 0, scale: 0 }}
               animate={{ y: 0, rotate: 0, opacity: 1, scale: 1, transition: { type: "spring", stiffness: 200, damping: 10, duration: 1.5, delayChildren: 2.5, staggerChildren: 5 } }}
@@ -137,8 +147,8 @@ function Main() {
               initial={{ y: 200, opacity: 0 }}
               animate={{ y: 0, opacity: [0, 0, 0, 0, 1], transition: { duration: 2.2 } }}
               exit={{ y: -200, opacity: 0, transition: { duration: 0.8 } }}>
-              <DownButton onClick={() => setwheelBoolstate("AI")}>AI 보기</DownButton>
-              <DownButton onClick={() => setwheelBoolstate("EXP")}>재우's AI란?</DownButton>
+              <MainButton onClick={() => setwheelBoolstate("AI")}>AI 보기</MainButton>
+              <MainButton onClick={() => setwheelBoolstate("EXP")}>재우's AI란?</MainButton>
             </ButtonContainer>
           </MainContainer>
           //ai 페이지
@@ -150,12 +160,18 @@ function Main() {
               exit={{ y: -200, opacity: 0, transition: { duration: 1.5 } }}
               transition={{ duration: 1.5 }}>
               <ListContainer>
-                <AIButtonModal name="펫 디펜더" explain="" />
-                <AIButtonModal name="주인바라기" explain="" />
-                <AIButtonModal name="재우 오리지널" explain="" />
-                <AIButtonModal name="볼트 서포터" explain="" />
-                <AIButtonModal name="로드롤러" explain="" />
-                <AIButtonModal name="전봇대" explain="" />
+                <ListBox>
+                <AIButtonModal name="펫 디펜더"/>
+                <AIButtonModal name="주인바라기"/>
+                <AIButtonModal name="재우 오리지널"/>
+                <AIButtonModal name="로드롤러"/>
+                <AIButtonModal name="볼트 서포터"/>
+                <AIButtonModal name="전봇대"/>
+                <AIButtonModal name="메디이익"/>
+                <AIButtonModal name="블레이즈 서포터"/>
+                <AIButtonModal name="폭스 헌터"/>
+                <AIButtonModal name="기르시드 헬퍼"/>
+                </ListBox>
               </ListContainer>
               <ExplainModal />
               <SuccessModal />
@@ -168,10 +184,27 @@ function Main() {
         }
         {/**/}
       </AnimatePresence>
+      {wheelBoolstate === 'EXP' && expWheelBoolstate <= 1 && <WheelDiv image={DownIconBlue} initial={{ y: 0}} animate={{y: [0, 15, 0]}}
+      transition={{duration: 2, ease: 'easeInOut', repeat: Infinity}}/>}
+      
     </TotalContainer>
   );
 }
 export default Main
+
+const WheelDiv = styled(motion.div)<{ image: any }>`
+background-color: rgba(255, 255, 255, 0);
+background-image: ${({ image }) => `url(${image})`};
+background-size: 100% 100%;
+background-position: center;
+background-repeat: no-repeat;
+  color: rgba(255, 255, 255, 1);
+  width: 30px; /* 변경된 부분 */
+  height: 30px; /* 변경된 부분 */
+  border: none;
+  position: absolute;
+  ${({ image }) => (image == UpIconBlue ? 'top: 40px;' : 'bottom: 40px;')}
+`
 
 const ButtonContainer = styled(motion.div)`
 display: flex;
@@ -182,10 +215,10 @@ gap: 40px;
 margin-top: 50px;
 `
 
-const DownButton = styled(motion.button)`
+const MainButton = styled(motion.button)`
 background-color: rgba(255, 255, 255, 0);
-background-image: url(${Mainbutton3});
-background: url(${Mainbutton3});
+background-image: url(${Mainbutton20070});
+background: url(${Mainbutton20070});
 background-size: 100% 100%;
 background-position: center;
 background-repeat: no-repeat;
@@ -245,11 +278,12 @@ align-items: center;
 width: 100vw;
 height: 100vh;
 background-color: rgba(111, 195, 226);
+padding-top: 20px;
+padding-bottom: 20px;
 `
 
 const ListContainer = styled(motion.div)`
 display: flex;
-flex-direction: column; 
 justify-content: center;
 align-items: center;
 width: 100vw;
@@ -258,4 +292,16 @@ margin: 0 auto;
 gap: 10px;
 white-space: pre;
 background-color: rgba(111, 195, 226);
+`
+
+const ListBox = styled(motion.div)`
+display: grid;
+grid-gap: 20px;
+align-items: flex-start;
+  grid-template-columns: repeat(2, 1fr);
+justify-content: flex-start;
+align-items: center;
+width: 1250;
+max-height: 100%;
+white-space: pre;
 `
