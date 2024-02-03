@@ -28,7 +28,6 @@ import ButtonComp from './ButtonComp';
 function MobileRejected (){
     return(<Container>
         <h2>모바일에선 접속하실 수 없습니다!</h2>
-        <h3></h3>
     </Container>)
 }
 
@@ -40,11 +39,13 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: center;
     background-color: rgba(111, 195, 226);
+    width: 100vw;
+    height: 100hw;
 
     h2 {
   color: white;
   font-weight: 250;
-  font-size: 55px;
+  font-size: 25px;
   font-family: inherit;
   }
  h3 {
