@@ -15,6 +15,7 @@ import DownIconBlue from '../assets/DownIconBlue.png'
 import SuccessModal from '../components/SuccessModal'
 import AIButtonModal from '../components/AIButton';
 import ExplainModal from '../components/ExplainModal';
+import MobileRejected from '../components/MobileRejected';
 import { AnimatePresence, motion, useAnimation } from 'framer-motion';
 import uuid from 'react-uuid';
 import { useRecoilState } from 'recoil';
@@ -22,6 +23,7 @@ import { WheelBool, ExpWheelBool, CurrentAIName } from '../store/atom';
 import 재우님 from '../assets/Icon/재우님.jpg'
 import 펫디펜더 from '../assets/Icon/펫디펜더.jpg'
 import { ChildProcess } from 'child_process';
+import { isMobile } from 'react-device-detect';
 import QNAComp from '../components/QNAComp';
 
 
@@ -29,12 +31,6 @@ function Main() {
   const [wheelBoolstate, setwheelBoolstate] = useRecoilState(WheelBool)
   const [currentAIName, setCurrentAIName] = useRecoilState(CurrentAIName)
   const [expWheelBoolstate, setexpWheelBoolState] = useRecoilState(ExpWheelBool)
-  const [yPosition, setYPosition] = useState(0);
-
-
-  const UpDownButton = ()=>{
-
-  }
 
   //마비노기 공식 홈페이지의 그것과 비슷하게 해보고 싶었는데 뭔가 잘 안되네....
   //마비노기 식으로 할려면 표로 정리해볼 필요가 있겠다.
@@ -45,29 +41,14 @@ function Main() {
     // 양수면 아래로 스크롤, 음수면 위로 스크롤
     console.log(wheelBoolstate)
     if (wheelBoolstate == "AI" && currentAIName == '') {
-      console.log('Mouse wheel scrolled:', e.deltaY);
-      if (e.deltaY < 0) {
-
-        //원래는 메인인데 문제가 생긴거 같아. 다른 경우의 수를 삼항연산자에 넣어야해
-        setwheelBoolstate("Main")
-      }
+      if (e.deltaY < 0) {setwheelBoolstate("Main")}
     }
     else if (wheelBoolstate == "EXP") {
       if (e.deltaY < 0) {
-        if (expWheelBoolstate === 0) {
-          setwheelBoolstate("Main")
-          console.log("메인으로")
-        }
-        else {
-          setexpWheelBoolState(expWheelBoolstate - 1)
-          console.log("위로")
-        }
+        if (expWheelBoolstate === 0) {setwheelBoolstate("Main")}
+        else {setexpWheelBoolState(expWheelBoolstate - 1)}
       }
-      if(e.deltaY >0){
-        setexpWheelBoolState(expWheelBoolstate + 1)
-        console.log("아래로")
-      }
-      console.log(expWheelBoolstate)
+      if(e.deltaY >0){setexpWheelBoolState(expWheelBoolstate + 1)}
     }
   }
 
@@ -81,7 +62,6 @@ function Main() {
       });
     }
     if (wheelBoolstate === "AI") {
-      //if (wheelBoolstate === "AI" || wheelBoolstate === "None") {
       aniControls.start({
         y: wheelBoolstate === "AI" ? [-200, 0] : [0, -200],
         opacity: wheelBoolstate === "AI" ? [0, 0, 1] : [1, 1, 0],
@@ -94,39 +74,10 @@ function Main() {
     console.log(wheelBoolstate)
   }, [wheelBoolstate])
 
-  const containerVariants = {
-    hidden: { opacity: 0, y: 100, transition: { duratiton: 2 } },
-    visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.8 } },
-  };
-
-  const childVariants = {
-    hidden: { y: 0, opacity: 0 },
-    visible: { y: [50, 10, 0], opacity: [0, 0.4, 1], transition: { duration: 0.8 } },
-  };
-  const childVariants0 = {
-    hidden: { y: 0, opacity: 0, scale: 0 },
-    visible: {
-      rotate: [160, 0],
-      scale: [0, 1],
-      opacity: [0, 1, 1.4, 1],
-      transition: {
-        type: "spring",
-        stiffness: 300,
-        damping: 12,
-        duration: 2
-      },
-    },
-  };
-
-  /*
-            initial={{y : -200, opacity : 0}}
-            animate={{y : 0, opacity : 1 , transition : {duration: 1.5}}}
-            exit={{y : -200, opacity : 0 , transition : {duration: 1.5}}} */
-
   return (
     <TotalContainer onWheel={handleWheel}>
-      <WheelDiv image={UpIconBlue} initial={{ y: 0}} animate={{y: [0, -15, 0]}}
-      transition={{duration: 2, ease: 'easeInOut', repeat: Infinity}}/>
+      {wheelBoolstate !== 'Main' && <WheelDiv image={UpIconBlue} initial={{ y: 0}} animate={{y: [0, -15, 0]}}
+      transition={{duration: 2, ease: 'easeInOut', repeat: Infinity}} onClick={() => handleWheel({ deltaY: -100 } as React.WheelEvent)}/>}
       <AnimatePresence mode='wait'>
         {wheelBoolstate === 'Main' ?
           <MainContainer>
@@ -185,7 +136,7 @@ function Main() {
         {/**/}
       </AnimatePresence>
       {wheelBoolstate === 'EXP' && expWheelBoolstate <= 1 && <WheelDiv image={DownIconBlue} initial={{ y: 0}} animate={{y: [0, 15, 0]}}
-      transition={{duration: 2, ease: 'easeInOut', repeat: Infinity}}/>}
+      transition={{duration: 2, ease: 'easeInOut', repeat: Infinity}} onClick={() => handleWheel({ deltaY: 100 } as React.WheelEvent)}/>}
       
     </TotalContainer>
   );
@@ -203,6 +154,7 @@ background-repeat: no-repeat;
   height: 30px; /* 변경된 부분 */
   border: none;
   position: absolute;
+  cursor: pointer;
   ${({ image }) => (image == UpIconBlue ? 'top: 40px;' : 'bottom: 40px;')}
 `
 
@@ -291,7 +243,7 @@ height: 100vh;
 margin: 0 auto;
 gap: 10px;
 white-space: pre;
-background-color: rgba(111, 195, 226);
+background-color: rgba(0,0,0,0);
 `
 
 const ListBox = styled(motion.div)`

@@ -173,62 +173,62 @@ export function AI_TOOL() {
     let Pet_MasterTargeted_Alert_DoNothing: string = eventWarper({
         name: "주인 가인식시 - 주인추적", main: "master_targeted", value0: "alert",
         condition: [],
-        sequence: [seqPt(seq_cancel), refeat({ refeatValue: [seq_chase_Master_Walk, seq_wait_Short], refeatNum: 8 }),]
+        sequence: [seqPt(seq_cancel), refeat({ refeatValue: [seq_chase_Master_Walk, seq_wait_Short], refeatNum: 11 }),]
     })
     let Pet_MasterTargeted_AtK_DoNothing: string = eventWarper({
         name: "주인 인식시 - 주인추적", main: "master_targeted", value0: "attack",
         condition: [],
-        sequence: [seqPt(seq_cancel), refeat({ refeatValue: [seq_chase_Master_Walk, seq_wait_Short], refeatNum: 8 }),]
+        sequence: [seqPt(seq_cancel), refeat({ refeatValue: [seq_chase_Master_Walk, seq_wait_Short], refeatNum: 11 }),]
     })
     let Pet_AttackedDown_DoNothing: string = eventWarper({
         name: "피격다운시 - 주인추적", main: "attacked", value0: "all", value1: "true",
         condition: [],
-        sequence: [seqPt(seq_cancel), refeat({ refeatValue: [seq_chase_Master_Walk, seq_wait_Short], refeatNum: 8 }),]
+        sequence: [seqPt(seq_cancel), refeat({ refeatValue: [seq_chase_Master_Walk, seq_wait_Short], refeatNum: 11 }),]
     })
     let Pet_AttackedStand_DoNothing: string = eventWarper({
         name: "피격노다운시 - 주인추적", main: "attacked", value0: "all", value1: "false",
         condition: [],
-        sequence: [seqPt(seq_cancel), refeat({ refeatValue: [seq_chase_Master_Walk, seq_wait_Short], refeatNum: 8 }),]
+        sequence: [seqPt(seq_cancel), refeat({ refeatValue: [seq_chase_Master_Walk, seq_wait_Short], refeatNum: 11 }),]
     })
     let Pet_MasterAttacked_Stand_DoNothing: string = eventWarper({
         name: "주인 피격다운시 - 주인추적", main: "master_attacked", value0: "all", value1: "false",
         condition: [],
-        sequence: [seqPt(seq_cancel), refeat({ refeatValue: [seq_chase_Master_Walk, seq_wait_Short], refeatNum: 8 }),]
+        sequence: [seqPt(seq_cancel), refeat({ refeatValue: [seq_chase_Master_Walk, seq_wait_Short], refeatNum: 11 }),]
     })
     let Pet_MasterAttacked_Down_DoNothing: string = eventWarper({
         name: "주인 피격노다운시 - 주인추적", main: "master_attacked", value0: "all", value1: "true",
         condition: [],
-        sequence: [seqPt(seq_cancel), refeat({ refeatValue: [seq_chase_Master_Walk, seq_wait_Short], refeatNum: 8 }),]
+        sequence: [seqPt(seq_cancel), refeat({ refeatValue: [seq_chase_Master_Walk, seq_wait_Short], refeatNum: 11 }),]
     })
     let Pet_MasterAttack_Down_DoNothing: string = eventWarper({
         name: "주인 공격시 - 주인추적", main: "master_attack", value0: "all",
         condition: [conPt(con_enemy_Hit_Blow), conPt(con_enemy_Hit_Hit), conPt(con_enemy_Hit_Shoved)],
-        sequence: [seqPt(seq_cancel), refeat({ refeatValue: [seq_chase_Master_Walk, seq_wait_Short], refeatNum: 8 }),]
+        sequence: [seqPt(seq_cancel), refeat({ refeatValue: [seq_chase_Master_Walk, seq_wait_Short], refeatNum: 11 }),]
     })
     let Pet_MasterReady_DoNothing: string = eventWarper({
         name: "주인 스킬 준비 - 주인추적", main: "master_skill_prepare", value0: "all",
         condition: [],
-        sequence: [seqPt(seq_cancel), refeat({ refeatValue: [seq_chase_Master_Walk, seq_wait_Short], refeatNum: 8 }),]
+        sequence: [seqPt(seq_cancel), refeat({ refeatValue: [seq_chase_Master_Walk, seq_wait_Short], refeatNum: 11 }),]
     })
     let Pet_Targeting_DoNothing: string = eventWarper({
         name: "펫 인식함 - 주인추적", main: "seek_target",
         condition: [],
-        sequence: [seqPt(seq_cancel), refeat({ refeatValue: [seq_chase_Master_Walk, seq_wait_Short], refeatNum: 8 }),]
+        sequence: [seqPt(seq_cancel), refeat({ refeatValue: [seq_chase_Master_Walk, seq_wait_Short], refeatNum: 11 }),]
     })
     let Pet_Targeted_DoNothing: string = eventWarper({
         name: "펫 인식중 - 주인추적", main: "now_targeting",
         condition: [],
-        sequence: [seqPt(seq_cancel), refeat({ refeatValue: [seq_chase_Master_Walk, seq_wait_Short], refeatNum: 8 }),]
+        sequence: [seqPt(seq_cancel), refeat({ refeatValue: [seq_chase_Master_Walk, seq_wait_Short], refeatNum: 11 }),]
     })
     let Pet_Attack_DoNothing: string = eventWarper({
         name: "펫 추가타넣지않기1 - 주인추적", main: "attack", value0: "all", value1: "false",
         condition: [],
-        sequence: [seqPt(seq_cancel), refeat({ refeatValue: [seq_chase_Master_Walk, seq_wait_Short], refeatNum: 8 }),]
+        sequence: [seqPt(seq_cancel), refeat({ refeatValue: [seq_chase_Master_Walk, seq_wait_Short], refeatNum: 11 }),]
     })
     let Pet_AttackDown_DoNothing: string = eventWarper({
         name: "펫 추가타넣지않기2 - 주인추적", main: "attack", value0: "all", value1: "true",
         condition: [],
-        sequence: [seqPt(seq_cancel), refeat({ refeatValue: [seq_chase_Master_Walk, seq_wait_Short], refeatNum: 8 }),]
+        sequence: [seqPt(seq_cancel), refeat({ refeatValue: [seq_chase_Master_Walk, seq_wait_Short], refeatNum: 11 }),]
     })
     let Pet_Chaser_AI_Package: string[] = [
         Pet_MasterActive_StWind,
