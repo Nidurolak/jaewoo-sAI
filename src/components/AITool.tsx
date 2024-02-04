@@ -309,10 +309,10 @@ export function AI_TOOL() {
     =========================로드롤러용 패턴====================================
     */
     let seq_ReadyWindMill: SequenceType = {tabNum:4, case:"sequence", main: "prepare_skill", value0: "windmill", value1: "0", value2: "0"}
-    let seq_SkillUse_ToEnemyGround: SequenceType = {tabNum:4, case:"sequence", main: "pos_toward_target", value0:"10000"}
-    let seq_SkillUse_ToEnenmyDirectLong: SequenceType = {tabNum:4, case: "sequence", main: "enemy", value0:"10000"}
-    let seq_SkillUse_ToEnenmyDirectMiddle: SequenceType = {tabNum:4, case: "sequence", main: "enemy", value0:"5000"}
-    let seq_SkillUse_ToEnenmyDirectInfinite: SequenceType = {tabNum:4, case: "sequence", main: "enemy", value0:"0"}
+    let seq_SkillUse_ToEnemyGround: SequenceType = {tabNum:4, case:"sequence", main: "process_skill", value0: "pos_toward_target", value1:"10000"}
+    let seq_SkillUse_ToEnenmyDirectLong: SequenceType = {tabNum:4, case: "sequence", main: "process_skill", value0: "enemy", value1:"10000"}
+    let seq_SkillUse_ToEnenmyDirectMiddle: SequenceType = {tabNum:4, case: "sequence", main: "process_skill", value0: "enemy", value1:"5000"}
+    let seq_SkillUse_ToEnenmyDirectInfinite: SequenceType = {tabNum:4, case: "sequence", main: "process_skill", value0: "enemy", value1:"0"}
     
     let Pet_ReadyToWindmill_MasterReady: string = eventWarper({
         name: "윈드밀 준비 - 주인 스킬 준비", main: "master_skill_prepare", value0: "all",
@@ -386,7 +386,6 @@ export function AI_TOOL() {
         Pet_UseWindmill_ATK,
         Pet_ReadyToWindmill_Targeted,
         Pet_ReadyToWindmill_MasterTargeted,
-        Pet_UseWindmill_NowTargeting,
     ]
     /*
     =========================볼트 서포터용 패턴====================================
