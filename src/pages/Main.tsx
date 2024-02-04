@@ -48,7 +48,11 @@ function Main() {
         if (expWheelBoolstate === 0) {setwheelBoolstate("Main")}
         else {setexpWheelBoolState(expWheelBoolstate - 1)}
       }
-      if(e.deltaY >0){setexpWheelBoolState(expWheelBoolstate + 1)}
+      if(e.deltaY >0){
+        if(expWheelBoolstate < 2){
+          setexpWheelBoolState(expWheelBoolstate + 1)
+        }
+      }
     }
   }
 
@@ -98,8 +102,8 @@ function Main() {
               initial={{ y: 200, opacity: 0 }}
               animate={{ y: 0, opacity: [0, 0, 0, 0, 1], transition: { duration: 2.2 } }}
               exit={{ y: -200, opacity: 0, transition: { duration: 0.8 } }}>
-              <MainButton onClick={() => setwheelBoolstate("AI")}>AI 보기</MainButton>
               <MainButton onClick={() => setwheelBoolstate("EXP")}>재우's AI란?</MainButton>
+              <MainButton onClick={() => setwheelBoolstate("AI")}>AI 보기</MainButton>
             </ButtonContainer>
           </MainContainer>
           //ai 페이지
@@ -135,7 +139,7 @@ function Main() {
         }
         {/**/}
       </AnimatePresence>
-      {wheelBoolstate === 'EXP' && expWheelBoolstate <= 1 && <WheelDiv image={DownIconBlue} initial={{ y: 0}} animate={{y: [0, 15, 0]}}
+      {expWheelBoolstate < 2 && wheelBoolstate === 'EXP' && expWheelBoolstate <= 1 && <WheelDiv image={DownIconBlue} initial={{ y: 0}} animate={{y: [0, 15, 0]}}
       transition={{duration: 2, ease: 'easeInOut', repeat: Infinity}} onClick={() => handleWheel({ deltaY: 100 } as React.WheelEvent)}/>}
       
     </TotalContainer>

@@ -68,14 +68,10 @@ function QNAComp(value: any){
           </QNABox1>;
           break;
         case 2:
-          componentToRender = <QNABox variants={QNAVariant} initial='init' animate='visible' exit='exit' key='EXPKey2'>
-            재우스 AI를 사용하는 방법
-          </QNABox>;
-          break;
-        case 3:
-          componentToRender = <QNABox variants={QNAVariant} initial='init' animate='visible' exit='exit' key='EXPKey3'>
-            세 번째 컴포넌트
-          </QNABox>;
+          componentToRender = <QNABox2Container variants={QNAVariant} initial='init' animate='visible' exit='exit' key='EXPKey2'>
+            <h3>재우스 AI를 사용하는 방법</h3>
+            <QNABox2MiddleBox></QNABox2MiddleBox>
+          </QNABox2Container>;
           break;
         default:
           componentToRender = <QNABox variants={QNAVariant} initial='init' animate='visible' exit='exit' key='EXPKey4'>
@@ -106,9 +102,26 @@ align-items: center;
 const QNABox = styled(motion.div)`
 `
 
+const QNABox2MiddleBox = styled(motion.div)`
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  background-color: wheat;
+  padding-top: 40px;
+`
+
 const QNABox2Container = styled(motion.div)`
-  width: 650px;
-  height: 400px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 1460px;
+  height: 70vh;
+  background-color: gray;
+  padding-top: 40px;
 `
 
 const QNABox1TextBox = styled(motion.div)`
