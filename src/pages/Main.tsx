@@ -25,6 +25,7 @@ import 펫디펜더 from '../assets/Icon/펫디펜더.jpg'
 import { ChildProcess } from 'child_process';
 import { isMobile } from 'react-device-detect';
 import QNAComp from '../components/QNAComp';
+import AIList from '../components/AIList';
 
 
 function Main() {
@@ -108,29 +109,7 @@ function Main() {
           </MainContainer>
           //ai 페이지
           : wheelBoolstate === "AI" ? (
-            <motion.div
-              key='ListKey'
-              initial={{ y: -200, opacity: 0 }}
-              animate={{ y: 0, opacity: 1, transition: { duration: 1.5 } }}
-              exit={{ y: -200, opacity: 0, transition: { duration: 1.5 } }}
-              transition={{ duration: 1.5 }}>
-              <ListContainer>
-                <ListBox>
-                <AIButtonModal name="펫 디펜더"/>
-                <AIButtonModal name="주인바라기"/>
-                <AIButtonModal name="재우 오리지널"/>
-                <AIButtonModal name="로드롤러"/>
-                <AIButtonModal name="볼트 서포터"/>
-                <AIButtonModal name="전봇대"/>
-                <AIButtonModal name="메디이익"/>
-                <AIButtonModal name="블레이즈 서포터"/>
-                <AIButtonModal name="폭스 헌터"/>
-                <AIButtonModal name="기르시드 헬퍼"/>
-                </ListBox>
-              </ListContainer>
-              <ExplainModal />
-              <SuccessModal />
-            </motion.div>)
+            <AIList></AIList>)
             //제품설명 페이지
             : (<QNAComp key='EXPKeyHead'>
 
@@ -206,8 +185,8 @@ display: flex;
 flex-direction: column; 
 justify-content: center;
 align-items: center;
-width: 100vw;
-height: 100vh;
+max-width: 100vw;
+max-height: 100vh;
 margin: 0 auto;
 gap: 10px;
 white-space: pre;
@@ -236,28 +215,4 @@ height: 100vh;
 background-color: rgba(111, 195, 226);
 padding-top: 20px;
 padding-bottom: 20px;
-`
-
-const ListContainer = styled(motion.div)`
-display: flex;
-justify-content: center;
-align-items: center;
-width: 100vw;
-height: 100vh;
-margin: 0 auto;
-gap: 10px;
-white-space: pre;
-background-color: rgba(0,0,0,0);
-`
-
-const ListBox = styled(motion.div)`
-display: grid;
-grid-gap: 20px;
-align-items: flex-start;
-  grid-template-columns: repeat(2, 1fr);
-justify-content: flex-start;
-align-items: center;
-width: 1250;
-max-height: 100%;
-white-space: pre;
 `

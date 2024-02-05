@@ -247,7 +247,7 @@ export function AI_TOOL() {
     /*
     =========================오리지널용 패턴====================================
     */
-    let seq_chase_Enemy_Run_Short: SequenceType = { tabNum: 4, case: "sequence", main: "chase", value0: "enemy", value1: "0", value2: "true"};
+    let seq_chase_Enemy_Run_Infinity: SequenceType = { tabNum: 4, case: "sequence", main: "chase", value0: "enemy", value1: "0", value2: "true"};
     let seq_chase_Enemy_Run_Long: SequenceType = { tabNum: 4, case: "sequence", main: "chase", value0: "enemy", value1: "5000", value2: "true"};
     let seq_chase_Enemy_Circle: SequenceType = { tabNum: 4, case: "sequence", main: "move_around", value0: "true", value1: "100", value2: "false", value3: "4000"};
     let Pet_Magic_Protect_Master: string = eventWarper({
@@ -386,6 +386,7 @@ export function AI_TOOL() {
         Pet_UseWindmill_ATK,
         Pet_ReadyToWindmill_Targeted,
         Pet_ReadyToWindmill_MasterTargeted,
+        Pet_UseWindmill_NowTargeting
     ]
     /*
     =========================볼트 서포터용 패턴====================================
@@ -538,20 +539,13 @@ export function AI_TOOL() {
         Pet_UseElecbolt_Aimed,
     ]
     /*
-    =========================예비용 패턴====================================
+    =========================블레이즈 서포터용 패턴====================================
     */
-    //let seq_: string = SequenceType = {tabNum:4, case:"sequence", main: "", value0: "", value1: ""}
-    //let Pet_: string = eventWarper({name:"",main:"",condition: [], sequence: []})
-
     let seq_Blaze_Stacking_Wait: SequenceType = {tabNum:4, case:"sequence", main: "wait", value0: "1000", value1: "2000"}
     let seq_Blaze_StackATK_Ice: SequenceType = {tabNum:4, case:"sequence", main: "stackmagic_attack", value0: "icebolt", value1: "1", value2: '0'}
     let seq_Blaze_Ready_IceReady: SequenceType = {tabNum:4, case:"sequence", main: "prepare_skill", value0: "icebolt", value1: "0", value2: '0'}
     let seq_Blaze_Ready_Ice: SequenceType = {tabNum:4, case:"sequence", main: "stack_skill", value0: "icebolt", value1: "2"}
-    //let seq_: string = SequenceType = {tabNum:4, case:"sequence", main: "", value0: "", value1: ""}
-    //let seq_: string = SequenceType = {tabNum:4, case:"sequence", main: "", value0: "", value1: ""}
-    //let seq_: string = SequenceType = {tabNum:4, case:"sequence", main: "", value0: "", value1: ""}
-    //let seq_: string = SequenceType = {tabNum:4, case:"sequence", main: "", value0: "", value1: ""}
-
+ 
     let Pet_Blaze_ATK: string = eventWarper({
         name:"블레이즈 시간 끌기", main:"master_attack", value0: "basic",
         condition:[],
@@ -589,6 +583,176 @@ export function AI_TOOL() {
         Pet_Blaze_Load
     ]
 
+    /*
+    =========================메디이익용 패턴====================================
+    */
+    let seq_Healing_Ready: SequenceType = {tabNum:4, case:"sequence", main: "prepare_skill", value0: "healing", value1: "0", value2:"0"}
+    let seq_Process_To_Master: SequenceType = {tabNum:4, case:"sequence", main: "process_skill", value0: "master", value1: "0"}
+    let seq_FirstAid_Ready: SequenceType = {tabNum:4, case:"sequence", main: "prepare_skill", value0: "firstaid", value1: "0", value2:"0"}
+    let seq_Healing_Wait: SequenceType = {tabNum:4, case:"sequence", main: "wait", value0: "660", value1: "660"}
+
+    let con_Check_Heal: ConditionType = { tabNum: 3, case: "condition", main: "skill_preparable", value0: "healing" }
+    let con_Check_Health: ConditionType = { tabNum: 3, case: "condition", main: "master_damaged_life_greater", value0: "100" }
+    let con_Check_FirstAid: ConditionType = { tabNum: 3, case: "condition", main: "skill_preparable", value0: "firstaid" }
+
+    let Pet_Heal_MasterATKedDown: string = eventWarper({
+        name:"힐링-주인피격-노다운", main:"master_attacked", value0: "all", value1:"true",
+        condition:[conPt(con_Check_Heal), conPt(con_Check_Health)],
+        sequence: [seqPt(seq_Healing_Ready), refeat({refeatValue:[seq_Process_To_Master, seq_Healing_Wait], refeatNum:5})]
+    })
+    
+    let Pet_Heal_MasterATKed: string = eventWarper({
+        name:"힐링-주인피격-다운", main:"master_attacked", value0: "all", value1:"false",
+        condition:[conPt(con_Check_Heal), conPt(con_Check_Health)],
+        sequence: [seqPt(seq_Healing_Ready), refeat({refeatValue:[seq_Process_To_Master, seq_Healing_Wait], refeatNum:5})]
+    })
+    
+    let Pet_Heal_MasterSkillReady: string = eventWarper({
+        name:"힐링-주인스킬준비", main:"master_skill_prepare", value0: "all",
+        condition:[conPt(con_Check_Heal), conPt(con_Check_Health)],
+        sequence: [seqPt(seq_Healing_Ready), refeat({refeatValue:[seq_Process_To_Master, seq_Healing_Wait], refeatNum:5})]
+    })
+    let Pet_FirstAid_MasterSkillReady: string = eventWarper({
+        name:"응치-주인스킬준비", main:"master_skill_prepare", value0: "firstaid",
+        condition:[ conPt(con_Check_FirstAid)],
+        sequence: [seqPt(seq_FirstAid_Ready), seqPt(seq_Process_To_Master)]
+    })
+    let Pet_Heal_MasterATK: string = eventWarper({
+        name:"힐링-주인공격", main:"master_attack", value0: "all",
+        condition:[conPt(con_Check_Heal), conPt(con_Check_Health)],
+        sequence: [seqPt(seq_Healing_Ready), refeat({refeatValue:[seq_Process_To_Master, seq_Healing_Wait], refeatNum:5})]
+    })
+    let Pet_Heal_Seek: string = eventWarper({
+        name:"힐링-인식", main:"seek_target",
+        condition:[conPt(con_Check_Heal), conPt(con_Check_Health)],
+        sequence: [seqPt(seq_Healing_Ready), refeat({refeatValue:[seq_Process_To_Master, seq_Healing_Wait], refeatNum:5})]
+    })
+
+    let Pet_Heal_Seeking: string = eventWarper({
+        name:"힐링-인식중", main:"now_targeting",
+        condition:[conPt(con_Check_Heal), conPt(con_Check_Health)],
+        sequence: [seqPt(seq_Healing_Ready), refeat({refeatValue:[seq_Process_To_Master, seq_Healing_Wait], refeatNum:5})]
+    })
+    let Pet_Heal_ATKed: string = eventWarper({
+        name:"힐링-피격 노다운", main:"attacked", value0: "all", value1: "false",
+        condition:[conPt(con_Check_Heal), conPt(con_Check_Health)],
+        sequence: [seqPt(seq_Healing_Ready), refeat({refeatValue:[seq_Process_To_Master, seq_Healing_Wait], refeatNum:5})]
+    })
+    let Pet_Heal_ATKedDown: string = eventWarper({
+        name:"힐링-피격 노다운", main:"attacked", value0: "all", value1: "true",
+        condition:[conPt(con_Check_Heal), conPt(con_Check_Health)],
+        sequence: [seqPt(seq_Healing_Ready), refeat({refeatValue:[seq_Process_To_Master, seq_Healing_Wait], refeatNum:5})]
+    })
+
+    let Pet_Medic_AI: string[] = [
+        Pet_MasterActive_StWind,
+        Pet_SeekTarget_StWind,
+        Pet_Targeted_StWind,
+        Pet_Master_Chase,
+        Pet_Attack_DoNothing,
+        Pet_AttackDown_DoNothing,
+        Pet_Heal_MasterATKedDown,
+        Pet_Heal_MasterATKed,
+        Pet_Heal_MasterSkillReady,
+        Pet_Heal_MasterATK,
+        Pet_FirstAid_MasterSkillReady,
+        Pet_Heal_Seek,
+        Pet_Heal_Seeking,
+        Pet_Heal_ATKed,
+        Pet_Heal_ATKedDown,
+    ]
+
+    /*
+    =========================폭스 헌터 용 패턴====================================
+    */
+    let Pet_FoxHunter_ATKSeek: string = eventWarper({
+        name:"인식 적 공격", main:"seek_target",
+        condition: [],
+        sequence: [seqPt(seq_cancel), refeat({refeatValue:[seq_meleeATK], refeatNum:10})]
+    })
+    let Pet_FoxHunter_ATKTargetting: string = eventWarper({
+        name:"타겟팅 적 공격", main:"now_targeting",
+        condition: [],
+        sequence: [seqPt(seq_cancel), refeat({refeatValue:[seq_meleeATK], refeatNum:10})]
+    })
+    let Pet_FoxHunter_ATKSeeked: string = eventWarper({
+        name:"가인식당함 적 공격", main:"targeted", value0:"attack",
+        condition: [],
+        sequence: [seqPt(seq_cancel), refeat({refeatValue:[seq_meleeATK], refeatNum:10})]
+    })
+    let Pet_FoxHunter_ATKSeekedATK: string = eventWarper({
+        name:"인식당함 적 공격", main:"targeted", value0:"alert",
+        condition: [],
+        sequence: [seqPt(seq_cancel), refeat({refeatValue:[seq_meleeATK], refeatNum:10})]
+    })
+    let Pet_FoxHunter_Mater_ATKSeeked: string = eventWarper({
+        name:"주인가인식 적 공격", main:"master_targeted", value0:"alert",
+        condition: [],
+        sequence: [seqPt(seq_cancel), refeat({refeatValue:[seq_meleeATK], refeatNum:10})]
+    })
+    let Pet_FoxHunter_Master_ATKSeekedATK: string = eventWarper({
+        name:"주인인식 적 공격", main:"master_targeted", value0:"attack",
+        condition: [],
+        sequence: [seqPt(seq_cancel), refeat({refeatValue:[seq_meleeATK], refeatNum:10})]
+    })
+
+    let Pet_FoxHunter_AI: string[] = [
+        Pet_MasterActive_StWind,
+        Pet_SeekTarget_StWind,
+        Pet_Targeted_StWind,
+        Pet_FoxHunter_ATKSeek,
+        Pet_FoxHunter_ATKTargetting,
+        Pet_FoxHunter_ATKSeeked,
+        Pet_FoxHunter_ATKSeekedATK,
+        Pet_FoxHunter_Mater_ATKSeeked,
+        Pet_FoxHunter_Master_ATKSeekedATK,
+    ]
+
+
+    /*
+    =========================예비용 패턴====================================
+    */
+    //let seq_: SequenceType = {tabNum:4, case:"sequence", main: "", value0: "", value1: ""}
+    //let Pet_: string = eventWarper({name:"",main:"",condition: [], sequence: []})
+
+    /*
+    =========================기르가쉬 헬퍼 패턴====================================
+    */
+    let seq_GirHelp_Seek_Chase: SequenceType = {tabNum:4, case:"sequence", main: "", value0: "", value1: ""}
+    //let Pet_: string = eventWarper({name:"",main:"",condition: [], sequence: []})
+    let Pet_GirHelp_Seek: string = eventWarper({
+        name:"적 인식 -주인 추적", main:"seek_target",
+        condition: [],
+        sequence: [refeat({refeatValue:[seq_chase_Master_Run, seq_wait_Middle], refeatNum: 10})]
+    })
+    let Pet_GirHelp_Targeting: string = eventWarper({
+        name:"적 인식 -주인 추적", main:"now_targeting",
+        condition: [],
+        sequence: [refeat({refeatValue:[seq_chase_Master_Run, seq_wait_Middle], refeatNum: 10})]
+    })
+
+    let Pet_GirHelp_Mater_ReadyCounter: string = eventWarper({
+        name:"주인카운터 준비 - 닥평타", main:"master_skill_prepare", value0:"counter",
+        condition: [],
+        sequence: [seqPt(seq_cancel), refeat({refeatValue:[seq_meleeATK], refeatNum:10})]
+    })
+
+    let Pet_GirHelp_Mater_ReadyFirebolt: string = eventWarper({
+        name:"주인파볼트 준비 - 닥윈밀 전환", main:"master_skill_prepare", value0:"firebolt",
+        condition: [],
+        sequence: [refeat({refeatValue:[seq_cancel, seq_chase_Enemy_Run_Infinity, seq_ReadyWindMill, seq_SkillUse_ToEnemyGround, seq_cancel], refeatNum:20}), refeat({refeatValue:[seq_chase_Master_Run, seq_wait_Middle], refeatNum: 5})]
+    })
+
+    let Pet_GirHelper_AI: string[] = [
+        Pet_MasterActive_StWind,
+        Pet_SeekTarget_StWind,
+        Pet_Master_Chase,
+        Pet_GirHelp_Seek,
+        Pet_GirHelp_Targeting,
+        Pet_GirHelp_Mater_ReadyCounter,
+        Pet_GirHelp_Mater_ReadyFirebolt,
+    ]
+
     return {
         Pet_MasterActive_StWind,
         Pet_SeekTarget_StWind,
@@ -623,8 +787,10 @@ export function AI_TOOL() {
         Pet_RoadRoller_AI,
         Pet_BoltSupport_AI,
         Pet_Battery_AI,
-        Pet_Blaze_AI
-        
+        Pet_Blaze_AI,
+        Pet_Medic_AI,
+        Pet_FoxHunter_AI,
+        Pet_GirHelper_AI
     }
 }
 /*

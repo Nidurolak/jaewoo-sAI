@@ -89,6 +89,7 @@ text-align: center;
 width: 400px;
 height: 220px;
 background-color: rgba(81, 165, 196);
+border: 3px solid white;
 line-height: 1.5;
   border-radius: 7px;
   span.yellow-text {
