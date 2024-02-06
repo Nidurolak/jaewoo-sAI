@@ -700,6 +700,7 @@ export function AI_TOOL() {
         Pet_MasterActive_StWind,
         Pet_SeekTarget_StWind,
         Pet_Targeted_StWind,
+        Pet_Master_Chase,
         Pet_FoxHunter_ATKSeek,
         Pet_FoxHunter_ATKTargetting,
         Pet_FoxHunter_ATKSeeked,
