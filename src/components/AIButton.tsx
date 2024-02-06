@@ -22,13 +22,14 @@ import 컴뱃파트너 from '../assets/Icon/컴뱃파트너.jpg'
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import gen_button_confirm from '../assets/Sound/gen_button_confirm.wav'
 import gen_hover from '../assets/Sound/gen_hover.wav'
-import { CurrentAIName, DownloadModalBool, DownloadModalCopyBool, ExplainModalBool } from '../store/atom';
+import { AIListExplainModalBool, CurrentAIName, DownloadModalBool, DownloadModalCopyBool, ExplainModalBool } from '../store/atom';
 import ButtonComp from './ButtonComp';
 
 function AIButtonModal(value: AITemplet) {
   let Image;
   const [currentAIName, setCurrentAIName] = useRecoilState(CurrentAIName);
   const [downloadModalCopyBool, setdownloadModalCopyBool] = useRecoilState(DownloadModalCopyBool)
+  const [AIListexplainModalBool, setAIListexplainModalBool] = useRecoilState(AIListExplainModalBool)
   const [explainModalBool, setexplainModalBool] = useRecoilState(ExplainModalBool)
   const [modalBoolValue, setmodalBoolValue] = useRecoilState(DownloadModalBool)
   const Hoversound = useRef(new Audio(gen_hover))
@@ -158,6 +159,9 @@ background-image: ${({ image }) => `url(${image})`};
   width: 70px;
   height: 70px;
   border-radius: 3px;
+  ${AIDetailContainer}:hover & {
+    filter: brightness(120%);
+  }
 `
 
 const getWidthAndHeight = (type: BackGUI['type']) => {
@@ -190,6 +194,9 @@ background-repeat: no-repeat;
   font-size: 17px;
   font-family: Mabinogi_Classic_TTF;
   cursor: pointer;
+  &:hover{
+    filter: brightness(110%);
+  }
   &:active {
     filter: brightness(120%); /* 클릭 시 밝기 감소 효과 */
   }
