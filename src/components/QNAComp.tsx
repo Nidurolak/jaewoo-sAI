@@ -35,8 +35,8 @@ function QNAComp(value: any){
 
     const QNAVariant = {
       init : {y: -200, opacity: 0},
-      visible : {y: 0, opacity: 1, transition: { duration: 1.5 }},
-      exit: {y: -200, opacity: 0, transition: { duration: 1.5 }}
+      visible : {y: 0, opacity: 1, transition: { duration: 1 }},
+      exit: {y: -200, opacity: 0, transition: { duration: 1 }}
     }
 
     switch(expWheelBoolstate){
@@ -67,12 +67,6 @@ function QNAComp(value: any){
             
           </QNABox1>;
           break;
-        case 2:
-          componentToRender = <QNABox2Container variants={QNAVariant} initial='init' animate='visible' exit='exit' key='EXPKey2'>
-            <h3>재우스 AI를 사용하는 방법</h3>
-            <QNABox2MiddleBox></QNABox2MiddleBox>
-          </QNABox2Container>;
-          break;
         default:
           componentToRender = <QNABox variants={QNAVariant} initial='init' animate='visible' exit='exit' key='EXPKey4'>
             잘못된 숫자
@@ -94,35 +88,14 @@ align-items: center;
   font-size: 23px;
   font-family: Mabinogi_Classic_TTF;}
 
-  h2 {padding-left: 10px; color: white; font-size: 55px; font-family: inherit;}
-  h3 {padding-left: 10px; font-weight: 250; color: white; font-size: 25px; font-family: inherit;}
-  h4 { padding-left: 10px; font-weight: 250; color: white; font-size: 17px; font-family: inherit;}
+  h2 {word-spacing: 1px; word-break:keep-all; padding-left: 10px; color: white; font-size: 55px; font-family: inherit;}
+  h3 {word-spacing: 1px; word-break:keep-all; padding-left: 10px; font-weight: 250; color: white; font-size: 25px; font-family: inherit;}
+  h4 {word-spacing: 1px; word-break:keep-all; padding-left: 10px; font-weight: 250; color: white; font-size: 17px; font-family: inherit;}
 `
 
 const QNABox = styled(motion.div)`
 `
 
-const QNABox2MiddleBox = styled(motion.div)`
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  align-items: flex-start;
-  width: 100%;
-  height: 100%;
-  background-color: wheat;
-  padding-top: 40px;
-`
-
-const QNABox2Container = styled(motion.div)`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  width: 1460px;
-  height: 70vh;
-  background-color: gray;
-  padding-top: 40px;
-`
 
 const QNABox1TextBox = styled(motion.div)`
 display: flex;
@@ -153,8 +126,8 @@ flex-direction: row;
 align-items: center;
 justify-content: center;
 gap: 50px;
-width: 800px;
-height: 400px;
+width: 850px;
+height: 450px;
 background-color: rgba(255, 255, 255, 0);
 color: rgba(255, 255, 255, 1);
 background-image: url(${Mainbutton800400});
@@ -171,8 +144,8 @@ display: flex;
 align-items: center;
 flex-direction: column;
 align-items: center;
-gap: 50px;
-width: 300px;
+gap: 20px;
+width: 340px;
 `
 
 const QNAProfilImg = styled.div<{image: any}>`
@@ -186,4 +159,5 @@ background-image: ${({ image }) => `url(${image})`};
   width: 400px;
   height: 350px;
   border-radius: 15px;
+  border: 3px solid white;
 `

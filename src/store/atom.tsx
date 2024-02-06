@@ -22,6 +22,14 @@ export const ExplainModalBool = atom({
     key: "ExplainMoadlState",
     default: false,
 })
+export const AIListExplainModalBool = atom({
+    key: "AIListExplainMoadlState",
+    default: false,
+})
+export const AIMakerExplainModalBool = atom({
+    key: "AIMakerExplainMoadlState",
+    default: false,
+})
 export const WheelBool = atom({
     key: "DownloadListBool",
     default: "Main"

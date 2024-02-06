@@ -19,19 +19,23 @@ import MobileRejected from '../components/MobileRejected';
 import { AnimatePresence, motion, useAnimation } from 'framer-motion';
 import uuid from 'react-uuid';
 import { useRecoilState } from 'recoil';
-import { WheelBool, ExpWheelBool, CurrentAIName } from '../store/atom';
+import { WheelBool, ExpWheelBool, CurrentAIName, AIMakerExplainModalBool } from '../store/atom';
 import 재우님 from '../assets/Icon/재우님.jpg'
 import 펫디펜더 from '../assets/Icon/펫디펜더.jpg'
 import { ChildProcess } from 'child_process';
 import { isMobile } from 'react-device-detect';
 import QNAComp from '../components/QNAComp';
 import AIList from '../components/AIList';
+import AIListExplainModal from '../components/AIListExplainModal';
+import AIMaker from '../components/AIMaker';
 
 
 function Main() {
   const [wheelBoolstate, setwheelBoolstate] = useRecoilState(WheelBool)
   const [currentAIName, setCurrentAIName] = useRecoilState(CurrentAIName)
   const [expWheelBoolstate, setexpWheelBoolState] = useRecoilState(ExpWheelBool)
+  const [AIMakerexplainModalBool, setAIMakerexplainModalBool] = useRecoilState(AIMakerExplainModalBool);
+
 
   //마비노기 공식 홈페이지의 그것과 비슷하게 해보고 싶었는데 뭔가 잘 안되네....
   //마비노기 식으로 할려면 표로 정리해볼 필요가 있겠다.
@@ -50,7 +54,7 @@ function Main() {
         else {setexpWheelBoolState(expWheelBoolstate - 1)}
       }
       if(e.deltaY >0){
-        if(expWheelBoolstate < 2){
+        if(expWheelBoolstate < 1){
           setexpWheelBoolState(expWheelBoolstate + 1)
         }
       }
@@ -103,24 +107,22 @@ function Main() {
               initial={{ y: 200, opacity: 0 }}
               animate={{ y: 0, opacity: [0, 0, 0, 0, 1], transition: { duration: 2.2 } }}
               exit={{ y: -200, opacity: 0, transition: { duration: 0.8 } }}>
+              <MainButton  onClick={()=> setAIMakerexplainModalBool(true)}>AI 만들기</MainButton>
               <MainButton onClick={() => setwheelBoolstate("EXP")}>재우's AI란?</MainButton>
               <MainButton onClick={() => setwheelBoolstate("AI")}>AI 보기</MainButton>
             </ButtonContainer>
           </MainContainer>
           //ai 페이지
           : wheelBoolstate === "AI" ? (
-            <AIList></AIList>)
-            //제품설명 페이지
-            : (<QNAComp key='EXPKeyHead'>
-
-
-            </QNAComp>)
+          <AIList key='ListKeyHead' />)
+          //제품설명 페이지
+          : (<QNAComp key='EXPKeyHead' />)
         }
         {/**/}
       </AnimatePresence>
-      {expWheelBoolstate < 2 && wheelBoolstate === 'EXP' && expWheelBoolstate <= 1 && <WheelDiv image={DownIconBlue} initial={{ y: 0}} animate={{y: [0, 15, 0]}}
+      {expWheelBoolstate < 1 && wheelBoolstate === 'EXP' && expWheelBoolstate <= 1 && <WheelDiv image={DownIconBlue} initial={{ y: 0}} animate={{y: [0, 15, 0]}}
       transition={{duration: 2, ease: 'easeInOut', repeat: Infinity}} onClick={() => handleWheel({ deltaY: 100 } as React.WheelEvent)}/>}
-      
+      <AIMaker></AIMaker>
     </TotalContainer>
   );
 }
@@ -139,7 +141,8 @@ background-repeat: no-repeat;
   position: absolute;
   cursor: pointer;
   ${({ image }) => (image == UpIconBlue ? 'top: 40px;' : 'bottom: 40px;')}
-`
+  &:hover{filter: brightness(120%);}
+  `
 
 const ButtonContainer = styled(motion.div)`
 display: flex;
@@ -164,8 +167,11 @@ background-repeat: no-repeat;
   font-size: 17px;
   font-family: Mabinogi_Classic_TTF;
   cursor: pointer;
+  &:hover{
+    filter: brightness(110%);
+  }
   &:active {
-    filter: brightness(120%); /* 클릭 시 밝기 감소 효과 */
+    filter: brightness(130%);
   }
 `
 const MainImage = styled(motion.div) <{ image: any }>`
@@ -175,9 +181,10 @@ background-image: ${({ image }) => `url(${image})`};
   background-size: cover;
   background-position: center;
   color: rgba(255, 255, 255, 1);
-  width: 320px;
-  height: 320px;
+  width: 330px;
+  height: 330px;
   border-radius: 50%;
+  border: 5px solid rgb(25, 76, 138);
 `
 
 const MainContainer = styled(motion.div)`
