@@ -386,7 +386,6 @@ export function AI_TOOL() {
         Pet_UseWindmill_ATK,
         Pet_ReadyToWindmill_Targeted,
         Pet_ReadyToWindmill_MasterTargeted,
-        Pet_UseWindmill_NowTargeting
     ]
     /*
     =========================볼트 서포터용 패턴====================================
