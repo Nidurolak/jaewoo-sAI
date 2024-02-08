@@ -43,7 +43,7 @@ function SuccessModal() {
         {downloadModalCopyBool === false ?<h2>다운로드 성공!</h2> : <h2>복사 성공!</h2> }
           
           <span className='yellow-text'>{currentAIName} AI</span>
-          {downloadModalCopyBool === false ?<h3>파일을 다운받은 경로를 찾은 다음,<br/>내 문서 - 마비노기 - 동물캐릭터 AI 폴더로 옮기십시오.</h3> : <h3>인게임에서 새 AI - 소스 보기 탭에서 붙여넣기를 하십시오.<br/></h3> }
+          {downloadModalCopyBool === false ?<h3>파일을 다운받은 경로를 찾은 다음,<br/>내 문서 - 마비노기 - 동물캐릭터 AI 폴더로 옮기신 다음 파일 양식을 xml으로 고치십시오.</h3> : <h3>인게임에서 새 AI - 소스 보기 탭에서 붙여넣기를 하십시오.<br/></h3> }
           
           
         </BoxContainer>

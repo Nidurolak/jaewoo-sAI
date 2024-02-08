@@ -76,7 +76,7 @@ function AIButtonModal(value: AITemplet) {
     setCurrentAIName(value.name as string)
     setmodalBoolValue(true)
       const element = document.createElement("a");
-      const file = new Blob([content], {type: 'text/xml' });
+      const file = new Blob([content], {type: 'text/plain' });
       element.href = URL.createObjectURL(file);
       element.download = value.name as string;
       document.body.appendChild(element);
