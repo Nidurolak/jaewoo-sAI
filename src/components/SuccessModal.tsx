@@ -68,16 +68,16 @@ background-color: rgba(100, 100, 100, 0.6);
 & > * {
   color: rgba(255, 255, 255, 1);
   font-size: 23px;
-  font-family: Mabinogi_Classic_TTF;}
+  font-family: 'Mabinogi_Classic_TTF';}
 
   h2 {
     font-size: inherit;
-    font-family: inherit;
+    font-family: 'Mabinogi_Classic_TTF';
   }
  h3 {
-  font-weight: 250;
+  font-weight: 300;
     font-size: 15px;
-    font-family: inherit;
+    font-family: 'Mabinogi_Classic_TTF';
   }
 `
 const BoxContainer = styled.div`

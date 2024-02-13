@@ -192,7 +192,7 @@ background-repeat: no-repeat;
   height: ${(props) => getWidthAndHeight(props.type).height};
   border: none;
   font-size: 17px;
-  font-family: Mabinogi_Classic_TTF;
+  font-family: 'Mabinogi_Classic_TTF';
   cursor: pointer;
   &:hover{
     filter: brightness(110%);

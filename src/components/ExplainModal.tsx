@@ -168,7 +168,7 @@ background-color: rgba(100, 100, 100, 0.6);
 & > * {
   color: rgba(255, 255, 255, 1);
   font-size: 23px;
-  font-family: Mabinogi_Classic_TTF;}
+  font-family: 'Mabinogi_Classic_TTF';}
 
   h1 {word-spacing: 1px;word-break:keep-all; font-weight: 100;margin-top: 10px;font-size: 30px;font-family: inherit;}
   h2 {word-spacing: 1px;word-break:keep-all;  margin-top: 10px; font-size: inherit; font-family: inherit;}

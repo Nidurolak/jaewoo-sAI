@@ -165,7 +165,7 @@ background-repeat: no-repeat;
   height: 70px; /* 변경된 부분 */
   border: none;
   font-size: 17px;
-  font-family: Mabinogi_Classic_TTF;
+  font-family: 'Mabinogi_Classic_TTF';
   cursor: pointer;
   &:hover{
     filter: brightness(110%);
@@ -202,13 +202,13 @@ background-color: rgba(111, 195, 226);
   color: white;
   font-weight: 250;
   font-size: 55px;
-  font-family: inherit;
+  font-family: 'Mabinogi_Classic_TTF';
   }
  h3 {
   color: white;
   font-weight: 250;
   font-size: 25px;
-  font-family: inherit;
+  font-family: 'Mabinogi_Classic_TTF';
   }
 `
 

@@ -61,24 +61,24 @@ background-color: rgba(100, 100, 100, 0.6);
 & > * {
   color: rgba(255, 255, 255, 1);
   font-size: 23px;
-  font-family: Mabinogi_Classic_TTF;}
+  font-family: 'Mabinogi_Classic_TTF';}
 
   h1 {
     font-weight: 100;
     margin-top: 10px;
     font-size: 30px;
-    font-family: Mabinogi_Classic_TTF;
+    font-family: 'Mabinogi_Classic_TTF';
   }
   h2 {
     margin-top: 10px;
     font-size: inherit;
-    font-family: inherit;
+    font-family: 'Mabinogi_Classic_TTF';
   }
  h3 {
  text-align: justify;
   font-weight: 100;
     font-size: 15px;
-    font-family: inherit;
+    font-family: 'Mabinogi_Classic_TTF';
     white-space: pre-wrap;
   }
 `

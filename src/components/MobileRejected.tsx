@@ -56,14 +56,14 @@ const Container = styled.div`
     gap: 40px;
     h2 {
   color: white;
-  font-weight: 250;
+  font-weight: 300;
   font-size: 25px;
-  font-family: inherit;
+  font-family: 'Mabinogi_Classic_TTF';
   }
  h3 {
   color: white;
-  font-weight: 250;
+  font-weight: 300;
   font-size: 25px;
-  font-family: inherit;
+  font-family: 'Mabinogi_Classic_TTF';
   }
 `

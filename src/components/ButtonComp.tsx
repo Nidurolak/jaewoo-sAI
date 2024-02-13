@@ -61,7 +61,7 @@ const ButtonCompGUI = styled(motion.button)<BackGUI>`
   height: ${(props) => getWidthAndHeight(props.type).height};
   border: none;
   font-size: 17px;
-  font-family: Mabinogi_Classic_TTF;
+  font-family: 'Mabinogi_Classic_TTF';
   cursor: pointer;
   &:active {
     filter: brightness(120%); /* 클릭 시 밝기 감소 효과 */

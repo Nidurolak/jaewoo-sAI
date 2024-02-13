@@ -72,7 +72,7 @@ background-repeat: no-repeat;
   height: 300px; /* 변경된 부분 */
   border: none;
   font-size: 17px;
-  font-family: Mabinogi_Classic_TTF;
+  font-family: 'Mabinogi_Classic_TTF';
   cursor: pointer;
   &:hover{
     filter: brightness(110%);
@@ -98,9 +98,9 @@ background-color: rgba(100, 100, 100, 0.6);
 & > * {
   color: rgba(255, 255, 255, 1);
   font-size: 23px;
-  font-family: Mabinogi_Classic_TTF;}
+  font-family: 'Mabinogi_Classic_TTF';}
 
-  h1 {word-spacing: 1px;word-break:keep-all; font-weight: 100;margin-top: 10px;font-size: 45px;font-family: inherit;}
-  h2 {word-spacing: 1px;word-break:keep-all;  margin-top: 10px; font-size: inherit; font-family: inherit;}
-  h3 {word-spacing: 1px;word-break:keep-all;  text-align: justify; font-weight: 100; font-size: 15px; font-family: inherit; white-space: pre-wrap;}
+  h1 {word-spacing: 1px;word-break:keep-all; font-weight: 100;margin-top: 10px;font-size: 45px;font-family: 'Mabinogi_Classic_TTF';}
+  h2 {word-spacing: 1px;word-break:keep-all;  margin-top: 10px; font-size: inherit; font-family: 'Mabinogi_Classic_TTF';}
+  h3 {word-spacing: 1px;word-break:keep-all;  text-align: justify; font-weight: 100; font-size: 15px; font-family: 'Mabinogi_Classic_TTF'; white-space: pre-wrap;}
 `

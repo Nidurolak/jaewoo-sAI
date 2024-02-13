@@ -88,9 +88,9 @@ align-items: center;
   font-size: 23px;
   font-family: Mabinogi_Classic_TTF;}
 
-  h2 {word-spacing: 1px; word-break:keep-all; padding-left: 10px; color: white; font-size: 55px; font-family: inherit;}
-  h3 {word-spacing: 1px; word-break:keep-all; padding-left: 10px; font-weight: 250; color: white; font-size: 25px; font-family: inherit;}
-  h4 {word-spacing: 1px; word-break:keep-all; padding-left: 10px; font-weight: 250; color: white; font-size: 17px; font-family: inherit;}
+  h2 {word-spacing: 1px; word-break:keep-all; padding-left: 10px; color: white; font-size: 55px; font-family: 'Mabinogi_Classic_TTF';}
+  h3 {word-spacing: 1px; word-break:keep-all; padding-left: 10px; font-weight: 300; color: white; font-size: 25px; font-family: 'Mabinogi_Classic_TTF';}
+  h4 {word-spacing: 1px; word-break:keep-all; padding-left: 10px; font-weight: 300; color: white; font-size: 17px; font-family: 'Mabinogi_Classic_TTF';}
 `
 
 const QNABox = styled(motion.div)`
