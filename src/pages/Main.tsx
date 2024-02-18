@@ -1,32 +1,14 @@
 import React, { useState, ChangeEvent, useEffect } from 'react';
 import { styled } from 'styled-components';
-import { useQuery } from 'react-query';
-import { useNavigate } from 'react-router-dom';
-import clipboardCopy from 'clipboard-copy';
-import { AIMaking, TestAIMaking, conPt, conWarper, eventWarper, seqPt, seqWarper, totalWarper } from '../hooks/AiMakerHook';
-import { ConditionType, SequenceType, StringTest, AITemplet } from '../utils/types';
-import { AI_TOOL } from '../components/AITool';
-import Mainbutton3 from '../assets/MainButton3.png'
 import Mainbutton20070 from '../assets/MainButton20070.png'
-import UpIcon from '../assets/UpIcon.png'
 import UpIconBlue from '../assets/UpIconBlue.png'
-import DownIcon from '../assets/DownIcon.png'
 import DownIconBlue from '../assets/DownIconBlue.png'
-import SuccessModal from '../components/SuccessModal'
-import AIButtonModal from '../components/AIButton';
-import ExplainModal from '../components/ExplainModal';
-import MobileRejected from '../components/MobileRejected';
 import { AnimatePresence, motion, useAnimation } from 'framer-motion';
-import uuid from 'react-uuid';
 import { useRecoilState } from 'recoil';
 import { WheelBool, ExpWheelBool, CurrentAIName, AIMakerExplainModalBool } from '../store/atom';
 import 재우님 from '../assets/Icon/재우님.jpg'
-import 펫디펜더 from '../assets/Icon/펫디펜더.jpg'
-import { ChildProcess } from 'child_process';
-import { isMobile } from 'react-device-detect';
 import QNAComp from '../components/QNAComp';
 import AIList from '../components/AIList';
-import AIListExplainModal from '../components/AIListExplainModal';
 import AIMaker from '../components/AIMaker';
 
 
@@ -40,11 +22,6 @@ function Main() {
   //마비노기 공식 홈페이지의 그것과 비슷하게 해보고 싶었는데 뭔가 잘 안되네....
   //마비노기 식으로 할려면 표로 정리해볼 필요가 있겠다.
   const handleWheel = (e: React.WheelEvent) => {
-    // e.deltaY 값은 마우스 휠의 스크롤 양을 나타냅니다.
-
-    //Main, AI일 때는 단방향 이동이 가능하지만 EXP에는 기준이 따로 있어야한다.
-    // 양수면 아래로 스크롤, 음수면 위로 스크롤
-    console.log(wheelBoolstate)
     if (wheelBoolstate == "AI" && currentAIName == '') {
       if (e.deltaY < 0) {setwheelBoolstate("Main")}
     }
@@ -89,6 +66,7 @@ function Main() {
       transition={{duration: 2, ease: 'easeInOut', repeat: Infinity}} onClick={() => handleWheel({ deltaY: -100 } as React.WheelEvent)}/>}
       <AnimatePresence mode='wait'>
         {wheelBoolstate === 'Main' ?
+          //메인 랜딩 페이지
           <MainContainer>
             <MainImage image={재우님}
               initial={{ y: 0, rotate: 160, opacity: 0, scale: 0 }}
@@ -118,7 +96,6 @@ function Main() {
           //제품설명 페이지
           : (<QNAComp key='EXPKeyHead' />)
         }
-        {/**/}
       </AnimatePresence>
       {expWheelBoolstate < 1 && wheelBoolstate === 'EXP' && expWheelBoolstate <= 1 && <WheelDiv image={DownIconBlue} initial={{ y: 0}} animate={{y: [0, 15, 0]}}
       transition={{duration: 2, ease: 'easeInOut', repeat: Infinity}} onClick={() => handleWheel({ deltaY: 100 } as React.WheelEvent)}/>}

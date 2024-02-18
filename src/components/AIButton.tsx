@@ -1,9 +1,7 @@
 import React, { useState, ChangeEvent, useEffect, useRef } from 'react';
 import { styled } from 'styled-components';
-import { useQuery } from 'react-query';
-import { useNavigate } from 'react-router-dom';
 import clipboardCopy from 'clipboard-copy';
-import { AIMaking, TestAIMaking, conPt, conWarper, eventWarper, seqPt, seqWarper, totalWarper } from '../hooks/AiMakerHook';
+import {  totalWarper } from '../hooks/AiMakerHook';
 import { ConditionType, SequenceType, StringTest, AITemplet, BackGUI } from '../utils/types';
 import { AI_TOOL } from './AITool';
 import MainButton from '../assets/MainButton.svg'

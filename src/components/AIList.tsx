@@ -1,21 +1,15 @@
 import React, { useState, ChangeEvent, useEffect, useRef } from 'react';
 import styled, { css, keyframes } from 'styled-components';
-import Mainbutton20070 from '../assets/MainButton20070.png'
-
-import uuid from "react-uuid";
 import AIButtonModal from './AIButton';
 import ExplainModal from './ExplainModal';
 import SuccessModal from './SuccessModal';
 import AIListExplainModal from './AIListExplainModal';
-import ButtonComp from './ButtonComp';
 import { motion } from 'framer-motion';
 import { useRecoilState } from 'recoil';
 import { AIListExplainModalBool } from '../store/atom';
 
 
 function AIList (value : any){
-    const [AIListexplainModalBool, setAIListexplainModalBool] = useRecoilState(AIListExplainModalBool);
-
 
     return (
         <AIContainer key={value.key}
