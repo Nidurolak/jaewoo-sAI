@@ -20,46 +20,26 @@ function Main() {
 
 
   //마비노기 공식 홈페이지의 그것과 비슷하게 해보고 싶었는데 뭔가 잘 안되네....
-  //마비노기 식으로 할려면 표로 정리해볼 필요가 있겠다.
+
+  //드래그 시 상하 감지 후 로직 발동, 하드 코딩한 수준이라 다른 프로젝트에서 구조를 참고할 순 있어도 쌩으로 쓰긴 힘들어보인다.
   const handleWheel = (e: React.WheelEvent) => {
-    if (wheelBoolstate == "AI" && currentAIName == '') {
-      if (e.deltaY < 0) {setwheelBoolstate("Main")}
-    }
-    else if (wheelBoolstate == "EXP") {
-      if (e.deltaY < 0) {
-        if (expWheelBoolstate === 0) {setwheelBoolstate("Main")}
-        else {setexpWheelBoolState(expWheelBoolstate - 1)}
+    if(window.scrollY == 0){
+      if (wheelBoolstate == "AI" && currentAIName == '') {
+        if (e.deltaY < 0) {setwheelBoolstate("Main")}
       }
-      if(e.deltaY >0){
-        if(expWheelBoolstate < 1){
-          setexpWheelBoolState(expWheelBoolstate + 1)
+      else if (wheelBoolstate == "EXP") {
+        if (e.deltaY < 0) {
+          if (expWheelBoolstate === 0) {setwheelBoolstate("Main")}
+          else {setexpWheelBoolState(expWheelBoolstate - 1)}
+        }
+        if(e.deltaY >0){
+          if(expWheelBoolstate < 1){
+            setexpWheelBoolState(expWheelBoolstate + 1)
+          }
         }
       }
     }
   }
-
-  const aniControls = useAnimation();
-  useEffect(() => {
-    if (wheelBoolstate === "Main" || wheelBoolstate === "None") {
-      aniControls.start({
-        y: wheelBoolstate === "Main" ? [-200, 0] : [0, -200],
-        opacity: wheelBoolstate === "Main" ? [0, 0, 1] : [1, 1, 0],
-        transition: { duration: 1.5 },
-      });
-    }
-    if (wheelBoolstate === "AI") {
-      aniControls.start({
-        y: wheelBoolstate === "AI" ? [-200, 0] : [0, -200],
-        opacity: wheelBoolstate === "AI" ? [0, 0, 1] : [1, 1, 0],
-        transition: { duration: 1.5 },
-      });
-    }
-  }, [wheelBoolstate, aniControls]);
-
-  useEffect(() => {
-    console.log(wheelBoolstate)
-  }, [wheelBoolstate])
-
   return (
     <TotalContainer onWheel={handleWheel}>
       {wheelBoolstate !== 'Main' && <WheelDiv image={UpIconBlue} initial={{ y: 0}} animate={{y: [0, -15, 0]}}
@@ -67,6 +47,8 @@ function Main() {
       <AnimatePresence mode='wait'>
         {wheelBoolstate === 'Main' ?
           //메인 랜딩 페이지
+          //프레이머 모션의 이니셜, 애니메이트, 엑시트, 키를 변수화하지 않고 전부 넣고 관리했음
+          //가독성은 떨어질 수 있어도 문제가 생긴 부분을 빠르게 고칠 수 있다.
           <MainContainer>
             <MainImage image={재우님}
               initial={{ y: 0, rotate: 160, opacity: 0, scale: 0 }}
@@ -91,8 +73,7 @@ function Main() {
             </ButtonContainer>
           </MainContainer>
           //ai 페이지
-          : wheelBoolstate === "AI" ? (
-          <AIList key='ListKeyHead' />)
+          : wheelBoolstate === "AI" ? (<AIList key='ListKeyHead' />)
           //제품설명 페이지
           : (<QNAComp key='EXPKeyHead' />)
         }
@@ -106,14 +87,14 @@ function Main() {
 export default Main
 
 const WheelDiv = styled(motion.div)<{ image: any }>`
-background-color: rgba(255, 255, 255, 0);
-background-image: ${({ image }) => `url(${image})`};
-background-size: 100% 100%;
-background-position: center;
-background-repeat: no-repeat;
+  background-color: rgba(255, 255, 255, 0);
+  background-image: ${({ image }) => `url(${image})`};
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
   color: rgba(255, 255, 255, 1);
-  width: 30px; /* 변경된 부분 */
-  height: 30px; /* 변경된 부분 */
+  width: 30px;
+  height: 30px;
   border: none;
   position: absolute;
   cursor: pointer;
@@ -122,21 +103,21 @@ background-repeat: no-repeat;
   `
 
 const ButtonContainer = styled(motion.div)`
-display: flex;
-flex-direction: row; 
-justify-content: center;
-align-items: center;
-gap: 40px;
-margin-top: 50px;
+  display: flex;
+  flex-direction: row; 
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin-top: 50px;
 `
 
 const MainButton = styled(motion.button)`
-background-color: rgba(255, 255, 255, 0);
-background-image: url(${Mainbutton20070});
-background: url(${Mainbutton20070});
-background-size: 100% 100%;
-background-position: center;
-background-repeat: no-repeat;
+  background-color: rgba(255, 255, 255, 0);
+  background-image: url(${Mainbutton20070});
+  background: url(${Mainbutton20070});
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
   color: rgba(255, 255, 255, 1);
   width: 200px; /* 변경된 부분 */
   height: 70px; /* 변경된 부분 */
@@ -144,16 +125,12 @@ background-repeat: no-repeat;
   font-size: 17px;
   font-family: 'Mabinogi_Classic_TTF';
   cursor: pointer;
-  &:hover{
-    filter: brightness(110%);
-  }
-  &:active {
-    filter: brightness(130%);
-  }
+  &:hover{filter: brightness(110%);}
+  &:active {filter: brightness(130%);}
 `
 const MainImage = styled(motion.div) <{ image: any }>`
-background-color: rgba(255, 255, 255, 0);
-background-image: ${({ image }) => `url(${image})`};
+  background-color: rgba(255, 255, 255, 0);
+  background-image: ${({ image }) => `url(${image})`};
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -165,38 +142,30 @@ background-image: ${({ image }) => `url(${image})`};
 `
 
 const MainContainer = styled(motion.div)`
-display: flex;
-flex-direction: column; 
-justify-content: center;
-align-items: center;
-max-width: 100vw;
-max-height: 100vh;
-margin: 0 auto;
-gap: 10px;
-white-space: pre;
-background-color: rgba(111, 195, 226);
- h2 {
-  color: white;
-  font-weight: 250;
-  font-size: 55px;
-  font-family: 'Mabinogi_Classic_TTF';
-  }
- h3 {
-  color: white;
-  font-weight: 250;
-  font-size: 25px;
-  font-family: 'Mabinogi_Classic_TTF';
-  }
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;
+  max-width: 100vw;
+  height: 100%;
+  margin: 0 auto;
+  gap: 10px;
+  white-space: pre;
+  background-color: rgba(111, 195, 226);
+ h2 {color: white; font-weight: 250; font-size: 55px; font-family: 'Mabinogi_Classic_TTF';}
+ h3 {color: white; font-weight: 250; font-size: 25px; font-family: 'Mabinogi_Classic_TTF';}
 `
 
 const TotalContainer = styled(motion.div)`
-display: flex;
-flex-direction: column; 
-justify-content: center;
-align-items: center;
-width: 100vw;
-height: 100vh;
-background-color: rgba(111, 195, 226);
-padding-top: 20px;
-padding-bottom: 20px;
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  min-width: 100vw;
+  background-color: rgba(111, 195, 226);
+  padding-top: 20px;
+  padding-bottom: 20px;
 `

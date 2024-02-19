@@ -1,33 +1,8 @@
 import React, { useState, ChangeEvent, useEffect } from 'react';
 import { styled } from 'styled-components';
-import { useQuery } from 'react-query';
-import { useNavigate } from 'react-router-dom';
-import clipboardCopy from 'clipboard-copy';
-import { TestAIMaking, conPt, conWarper, eventWarper, seqPt, seqWarper, totalWarper } from '../hooks/AiMakerHook';
-import { ConditionType, SequenceType, StringTest, AITemplet } from '../utils/types';
-import { AI_TOOL } from '../components/AITool';
-import Mainbutton3 from '../assets/MainButton3.png'
 import Mainbutton800400 from '../assets/MainButton800400.png' 
-import UpIcon from '../assets/UpIcon.png'
-import UpIconBlue from '../assets/UpIconBlue.png'
-import DownIcon from '../assets/DownIcon.png'
-import DownIconBlue from '../assets/DownIconBlue.png'
-import SuccessModal from '../components/SuccessModal'
-import AIButtonModal from '../components/AIButton';
-import ExplainModal from '../components/ExplainModal';
-import MobileRejected from '../components/MobileRejected';
-import { AnimatePresence, motion, useAnimation } from 'framer-motion';
-import uuid from 'react-uuid';
 import { useRecoilState } from 'recoil';
-import { WheelBool, ExpWheelBool, CurrentAIName, AIMakerExplainModalBool } from '../store/atom';
-import 재우님 from '../assets/Icon/재우님.jpg'
-import 펫디펜더 from '../assets/Icon/펫디펜더.jpg'
-import { ChildProcess } from 'child_process';
-import { isMobile } from 'react-device-detect';
-import QNAComp from '../components/QNAComp';
-import AIList from '../components/AIList';
-import AIListExplainModal from '../components/AIListExplainModal';
-
+import { AIMakerExplainModalBool } from '../store/atom';
 
 function AIMaker (){
     const [AIMakerexplainModalBool, setAIMakerexplainModalBool] = useRecoilState(AIMakerExplainModalBool);

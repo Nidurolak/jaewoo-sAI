@@ -1,10 +1,6 @@
 import React, { useState, ChangeEvent, useEffect } from 'react';
-import { styled } from 'styled-components';
-import { useQuery } from 'react-query';
-import { useNavigate } from 'react-router-dom';
-import clipboardCopy from 'clipboard-copy';
-import { TestAIMaking, conPt, conWarper, eventWarper, seqPt, seqWarper, totalWarper } from '../hooks/AiMakerHook';
-import { ConditionType, SequenceType, StringTest, EventTypes } from '../utils/types';
+import { conPt, eventWarper, seqPt,} from '../hooks/AiMakerHook';
+import { ConditionType, SequenceType,} from '../utils/types';
 
 /*
 export interface SequenceType {

@@ -5,8 +5,6 @@ import ExplainModal from './ExplainModal';
 import SuccessModal from './SuccessModal';
 import AIListExplainModal from './AIListExplainModal';
 import { motion } from 'framer-motion';
-import { useRecoilState } from 'recoil';
-import { AIListExplainModalBool } from '../store/atom';
 
 
 function AIList (value : any){
@@ -18,6 +16,7 @@ function AIList (value : any){
           exit={{ y: -200, opacity: 0, transition: { duration: 1.5 } }}
           transition={{ duration: 1.5 }}>
           <ListContainer>
+            {/*반응형 웹으로 만들려면 어쨰야할까.....*/}
             <ListBox>
             <AIButtonModal name="펫 디펜더"/>
             <AIButtonModal name="주인바라기"/>
@@ -54,7 +53,7 @@ justify-content: center;
 align-items: center;
 max-width: 100vw;
 width: 100%;
-height: 100%;
+height: auto;
 margin: 0 auto;
 gap: 10px;
 white-space: pre;
@@ -69,7 +68,9 @@ align-items: flex-start;
 justify-content: flex-start;
 align-items: center;
 width: 100%;
-max-width: 1250px;
-max-height: 100%;
-white-space: pre;
+max-width: 1650px;
+
+@media (max-width: 1200px) {
+    grid-template-columns: 1fr;
+  }
 `

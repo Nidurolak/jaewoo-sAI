@@ -1,43 +1,5 @@
 import React, { useState, ChangeEvent, useEffect, useRef } from 'react';
-import { styled } from 'styled-components';
-import { useSetRecoilState } from 'recoil';
-import { useMutation } from 'react-query';
 import {ConditionType, EventTypes, SequenceType, StringTest} from "../utils/types";
-import { useForm, Controller, EventType } from 'react-hook-form';
-import { useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
-
-export function AIMaking(value : StringTest){
-    const resString :string[] = [];
-
-    for(let i = 0; i < value.tabNum; i++){
-        resString.push("\t")
-    }
-    switch(value.main){
-        case "FrontCase": resString.push("a"); break;
-        case "MiddleCase": resString.push("b"); break;
-        case "LastCase": resString.push("c"); break;
-        default : break;
-    }
-
-    return resString.join("")
-}
-
-export function TestAIMaking(value : StringTest){
-    const resString :string[] = [];
-
-    for(let i = 0; i < value.tabNum; i++){
-        resString.push("\t")
-    }
-    switch(value.main){
-        case "FrontCase": resString.push("a"); break;
-        case "MiddleCase": resString.push("b"); break;
-        case "LastCase": resString.push("c"); break;
-        default : break;
-    }
-
-    return resString.join("")
-}
-
 
 //AI 행동 시퀸스를 조립하는 부분, 여기서 필요한 건
 //cmd name
@@ -46,6 +8,8 @@ export function TestAIMaking(value : StringTest){
 //stack_magic, charge
 //run, timeout이다.
 //cmd name은 공통적으로 들어가지만 뒤의 벨류들은 전부 선택이다. 블로그에 경우의 수를 적어두겠다.
+
+//행동(시퀸스)의 상세(파티클)를 만드는 기능, 한 줄의 패턴 코드를 리턴한다. seqWarper로 조립하기 전에 사용 금지
 export function seqPt(value : SequenceType){
     const resString :string[] = [];
  
@@ -73,6 +37,7 @@ export function seqPt(value : SequenceType){
     return resString.join("")
 }
 
+//sePt로 나온 패턴 코드를 조립하여 집합을 만드는 기능, 이 기능을 쓸 때 sePt가 조건에 맞는지 확인 요망
 export function seqWarper(value : string[]){
     const resString :string[] = [];
  
@@ -85,6 +50,7 @@ export function seqWarper(value : string[]){
     return resString.join("")
 }
 
+//조건(컨디션)의 상세(파티클)를 만드는 기능, 한 줄의 패턴 코드를 리턴한다. conWarper 조립하기 전에 사용 금지
 export function conPt(value : ConditionType){
     const resString :string[] = [];
  
@@ -105,6 +71,7 @@ export function conPt(value : ConditionType){
     return resString.join("")
 }
 
+//conPt로 나온 패턴 코드를 조립하여 집합을 만드는 기능, 이 기능을 쓸 때 conPt가 조건에 맞는지 확인 요망
 export function conWarper(value : string[]){
     const resString :string[] = [];
     
@@ -120,6 +87,7 @@ export function conWarper(value : string[]){
     return resString.join("")
 }
 
+//상황(이벤트)를 조립하는 기능, 이 기능을 쓸 때 conWarper,seqWarper가 조건에 맞는지 확인 요망
 export function eventWarper(value : EventTypes){
     const resString :string[] = [];
  
@@ -151,6 +119,8 @@ export function eventWarper(value : EventTypes){
     resString.push("\n\t</rule>")
     return resString.join("")
 }
+
+//이벤트, 컨디션, 시퀸스를 조립한 코드를 마감하는 기능, 텍스트 string들을 차례로 배열에 push한 다음 하나의 string으로 재조립
 export function totalWarper(value : string[]){
     const resString :string[] = [];
  
@@ -161,11 +131,3 @@ export function totalWarper(value : string[]){
     resString.push("\n</rules>")
     return resString.join("")
 }
-
-
-
-export function sequenceMaker(value : StringTest){
-    
-}
-
-//

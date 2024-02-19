@@ -11,6 +11,7 @@ export const GlobalStyle = createGlobalStyle`
         list-style: none; 
         text-decoration: none;
         font-family: 'Mabinogi_Classic_TTF';
+  background-color: rgba(111, 195, 226);
     }
 
 `;

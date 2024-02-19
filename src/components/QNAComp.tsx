@@ -9,7 +9,6 @@ import { motion } from 'framer-motion';
 
 function QNAComp(value: any){
 
-    const [wheelBoolstate, setwheelBoolstate] = useRecoilState(WheelBool)
     const [expWheelBoolstate, setexpWheelBoolState] = useRecoilState(ExpWheelBool)
 
     let componentToRender;
@@ -130,9 +129,9 @@ width: 340px;
 `
 
 const QNAProfilImg = styled.div<{image: any}>`
-background-color: rgba(255, 255, 255, 0);
-background-color: rgba(255, 255, 255, 0);
-background-image: ${({ image }) => `url(${image})`};
+  background-color: rgba(255, 255, 255, 0);
+  background-color: rgba(255, 255, 255, 0);
+  background-image: ${({ image }) => `url(${image})`};
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

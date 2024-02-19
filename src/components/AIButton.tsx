@@ -2,10 +2,8 @@ import React, { useState, ChangeEvent, useEffect, useRef } from 'react';
 import { styled } from 'styled-components';
 import clipboardCopy from 'clipboard-copy';
 import {  totalWarper } from '../hooks/AiMakerHook';
-import { ConditionType, SequenceType, StringTest, AITemplet, BackGUI } from '../utils/types';
+import { AITemplet, BackGUI } from '../utils/types';
 import { AI_TOOL } from './AITool';
-import MainButton from '../assets/MainButton.svg'
-import Mainbutton3 from '../assets/MainButton3.png'
 import Mainbutton20070 from '../assets/MainButton20070.png'
 import 로드롤러 from '../assets/Icon/로드롤러.jpg'
 import 메디이익 from '../assets/Icon/메디이익.jpg'
@@ -17,20 +15,18 @@ import 전봇대 from '../assets/Icon/전봇대.jpg'
 import 펫디펜더 from '../assets/Icon/펫디펜더.jpg'
 import 주인바라기 from '../assets/Icon/주인바라기.jpg'
 import 컴뱃파트너 from '../assets/Icon/컴뱃파트너.jpg'
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState} from "recoil";
 import gen_button_confirm from '../assets/Sound/gen_button_confirm.wav'
 import gen_hover from '../assets/Sound/gen_hover.wav'
 import { AIListExplainModalBool, CurrentAIName, DownloadModalBool, DownloadModalCopyBool, ExplainModalBool } from '../store/atom';
-import ButtonComp from './ButtonComp';
 
 function AIButtonModal(value: AITemplet) {
   let Image;
   const [currentAIName, setCurrentAIName] = useRecoilState(CurrentAIName);
   const [downloadModalCopyBool, setdownloadModalCopyBool] = useRecoilState(DownloadModalCopyBool)
-  const [AIListexplainModalBool, setAIListexplainModalBool] = useRecoilState(AIListExplainModalBool)
   const [explainModalBool, setexplainModalBool] = useRecoilState(ExplainModalBool)
   const [modalBoolValue, setmodalBoolValue] = useRecoilState(DownloadModalBool)
-  const Hoversound = useRef(new Audio(gen_hover))
+
   const Confirmsound = useRef(new Audio(gen_button_confirm));
   const handleSoundPlay = () => {
     Confirmsound.current.currentTime = 0;
@@ -40,11 +36,11 @@ function AIButtonModal(value: AITemplet) {
   const ExplainModalUp = () =>{
     setexplainModalBool(true)
     setCurrentAIName(value.name as string)
-
   }
 
   let Name;
   let content = '';
+  //받아온 이름에 따라 다운받는 AI 변화
   switch (value.name) {
     case "펫 디펜더": content = totalWarper(AI_TOOL().Pet_Defender_AI_Package);
     Image = 펫디펜더; Name = value.name; break;
@@ -74,6 +70,7 @@ function AIButtonModal(value: AITemplet) {
     setCurrentAIName(value.name as string)
     setmodalBoolValue(true)
       const element = document.createElement("a");
+      //xml이 마비노기 호환파일인데 이상하게 작성이 제대로 안된다...
       const file = new Blob([content], {type: 'text/plain' });
       element.href = URL.createObjectURL(file);
       element.download = value.name as string;
