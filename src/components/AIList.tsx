@@ -7,34 +7,34 @@ import AIListExplainModal from './AIListExplainModal';
 import { motion } from 'framer-motion';
 
 
-function AIList (value : any){
+function AIList(value: any) {
 
-    return (
-        <AIContainer key={value.key}
-          initial={{ y: -200, opacity: 0 }}
-          animate={{ y: 0, opacity: 1, transition: { duration: 1.5 } }}
-          exit={{ y: -200, opacity: 0, transition: { duration: 1.5 } }}
-          transition={{ duration: 1.5 }}>
-          <ListContainer>
-            {/*반응형 웹으로 만들려면 어쨰야할까.....*/}
-            <ListBox>
-            <AIButtonModal name="펫 디펜더"/>
-            <AIButtonModal name="주인바라기"/>
-            <AIButtonModal name="재우 오리지널"/>
-            <AIButtonModal name="로드롤러"/>
-            <AIButtonModal name="볼트 서포터"/>
-            <AIButtonModal name="전봇대"/>
-            <AIButtonModal name="메디이익"/>
-            <AIButtonModal name="블레이즈 서포터"/>
-            <AIButtonModal name="폭스 헌터"/>
-            <AIButtonModal name="기르가쉬 헬퍼"/>
-            </ListBox>
-          </ListContainer>
-          <ExplainModal />
-          <SuccessModal />
-          {/*<EXPButton onClick={()=> setAIListexplainModalBool(true)}>처음이신가요?</EXPButton> */}
-          <AIListExplainModal />
-        </AIContainer>)
+  return (
+    <AIContainer key={value.key}
+      initial={{ y: -200, opacity: 0 }}
+      animate={{ y: 0, opacity: 1, transition: { duration: 1.5 } }}
+      exit={{ y: -200, opacity: 0, transition: { duration: 1.5 } }}
+      transition={{ duration: 1.5 }}>
+      <ListContainer>
+        {/*반응형 웹으로 만들려면 어쨰야할까.....*/}
+        <ListBox>
+          <AIButtonModal name="펫 디펜더" />
+          <AIButtonModal name="주인바라기" />
+          <AIButtonModal name="재우 오리지널" />
+          <AIButtonModal name="로드롤러" />
+          <AIButtonModal name="볼트 서포터" />
+          <AIButtonModal name="전봇대" />
+          <AIButtonModal name="메디이익" />
+          <AIButtonModal name="블레이즈 서포터" />
+          <AIButtonModal name="폭스 헌터" />
+          <AIButtonModal name="기르가쉬 헬퍼" />
+        </ListBox>
+      </ListContainer>
+      <ExplainModal />
+      <SuccessModal />
+      {/*<EXPButton onClick={()=> setAIListexplainModalBool(true)}>처음이신가요?</EXPButton> */}
+      <AIListExplainModal />
+    </AIContainer>)
 }
 
 export default AIList;
@@ -45,6 +45,7 @@ const AIContainer = styled(motion.div)`
     flex-direction: column;
     justify-content: center;
     height: 90vh;
+  background-color: rgba(111, 195, 226);
 `
 
 const ListContainer = styled(motion.div)`

@@ -11,11 +11,6 @@ export const GlobalStyle = createGlobalStyle`
         list-style: none; 
         text-decoration: none;
         font-family: 'Mabinogi_Classic_TTF';
-  background-color: rgba(111, 195, 226);
-    }
-
-    h1, h2, h3, h4, h5, h6 {
-        background-color: transparent; /* h1과 h2 요소의 배경색을 투명으로 설정 */
     }
 `;
 

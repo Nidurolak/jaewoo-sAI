@@ -23,17 +23,17 @@ function Main() {
 
   //드래그 시 상하 감지 후 로직 발동, 하드 코딩한 수준이라 다른 프로젝트에서 구조를 참고할 순 있어도 쌩으로 쓰긴 힘들어보인다.
   const handleWheel = (e: React.WheelEvent) => {
-    if(window.scrollY == 0){
+    if (window.scrollY == 0) {
       if (wheelBoolstate == "AI" && currentAIName == '') {
-        if (e.deltaY < 0) {setwheelBoolstate("Main")}
+        if (e.deltaY < 0) { setwheelBoolstate("Main") }
       }
       else if (wheelBoolstate == "EXP") {
         if (e.deltaY < 0) {
-          if (expWheelBoolstate === 0) {setwheelBoolstate("Main")}
-          else {setexpWheelBoolState(expWheelBoolstate - 1)}
+          if (expWheelBoolstate === 0) { setwheelBoolstate("Main") }
+          else { setexpWheelBoolState(expWheelBoolstate - 1) }
         }
-        if(e.deltaY >0){
-          if(expWheelBoolstate < 1){
+        if (e.deltaY > 0) {
+          if (expWheelBoolstate < 1) {
             setexpWheelBoolState(expWheelBoolstate + 1)
           }
         }
@@ -42,8 +42,8 @@ function Main() {
   }
   return (
     <TotalContainer onWheel={handleWheel}>
-      {wheelBoolstate !== 'Main' && <WheelDiv image={UpIconBlue} initial={{ y: 0}} animate={{y: [0, -15, 0]}}
-      transition={{duration: 2, ease: 'easeInOut', repeat: Infinity}} onClick={() => handleWheel({ deltaY: -100 } as React.WheelEvent)}/>}
+      {wheelBoolstate !== 'Main' && <WheelDiv image={UpIconBlue} initial={{ y: 0 }} animate={{ y: [0, -15, 0] }}
+        transition={{ duration: 2, ease: 'easeInOut', repeat: Infinity }} onClick={() => handleWheel({ deltaY: -100 } as React.WheelEvent)} />}
       <AnimatePresence mode='wait'>
         {wheelBoolstate === 'Main' ?
           //메인 랜딩 페이지
@@ -67,26 +67,26 @@ function Main() {
               initial={{ y: 200, opacity: 0 }}
               animate={{ y: 0, opacity: [0, 0, 0, 0, 1], transition: { duration: 2.2 } }}
               exit={{ y: -200, opacity: 0, transition: { duration: 0.8 } }}>
-              <MainButton  onClick={()=> setAIMakerexplainModalBool(true)}>AI 만들기</MainButton>
+              <MainButton onClick={() => setAIMakerexplainModalBool(true)}>AI 만들기</MainButton>
               <MainButton onClick={() => setwheelBoolstate("EXP")}>재우's AI란?</MainButton>
               <MainButton onClick={() => setwheelBoolstate("AI")}>AI 보기</MainButton>
             </ButtonContainer>
           </MainContainer>
           //ai 페이지
           : wheelBoolstate === "AI" ? (<AIList key='ListKeyHead' />)
-          //제품설명 페이지
-          : (<QNAComp key='EXPKeyHead' />)
+            //제품설명 페이지
+            : (<QNAComp key='EXPKeyHead' />)
         }
       </AnimatePresence>
-      {expWheelBoolstate < 1 && wheelBoolstate === 'EXP' && expWheelBoolstate <= 1 && <WheelDiv image={DownIconBlue} initial={{ y: 0}} animate={{y: [0, 15, 0]}}
-      transition={{duration: 2, ease: 'easeInOut', repeat: Infinity}} onClick={() => handleWheel({ deltaY: 100 } as React.WheelEvent)}/>}
+      {expWheelBoolstate < 1 && wheelBoolstate === 'EXP' && expWheelBoolstate <= 1 && <WheelDiv image={DownIconBlue} initial={{ y: 0 }} animate={{ y: [0, 15, 0] }}
+        transition={{ duration: 2, ease: 'easeInOut', repeat: Infinity }} onClick={() => handleWheel({ deltaY: 100 } as React.WheelEvent)} />}
       <AIMaker></AIMaker>
     </TotalContainer>
   );
 }
 export default Main
 
-const WheelDiv = styled(motion.div)<{ image: any }>`
+const WheelDiv = styled(motion.div) <{ image: any }>`
   background-color: rgba(255, 255, 255, 0);
   background-image: ${({ image }) => `url(${image})`};
   background-size: 100% 100%;
