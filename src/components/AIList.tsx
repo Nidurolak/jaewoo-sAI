@@ -25,7 +25,7 @@ function AIList(value: any) {
           <AIButtonModal name="볼트 서포터" />
           <AIButtonModal name="전봇대" />
           <AIButtonModal name="메디이익" />
-          <AIButtonModal name="블레이즈 서포터" />
+          <AIButtonModal name="유도 미사일" />
           <AIButtonModal name="폭스 헌터" />
           <AIButtonModal name="기르가쉬 헬퍼" />
         </ListBox>

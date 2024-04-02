@@ -50,7 +50,7 @@ function AIButtonModal(value: AITemplet) {
     Image = 메디이익; Name = value.name; break;
     case "볼트 서포터": content = totalWarper(AI_TOOL().Pet_BoltSupport_AI); 
     Image = 볼트서포터; Name = value.name; break;
-    case "블레이즈 서포터": content = totalWarper(AI_TOOL().Pet_Blaze_AI); 
+    case "유도 미사일": content = totalWarper(AI_TOOL().Pet_Blaze_AI); 
     Image = 블레이즈서포터; Name = value.name; break;
     case "재우 오리지널": content = totalWarper(AI_TOOL().Pet_Original_AI); 
     Image = 재우오리지널; Name = value.name; break;
@@ -83,7 +83,7 @@ function AIButtonModal(value: AITemplet) {
     case "로드롤러": Name = value.name; break;
     case "메디이익": Name = value.name; break;
     case "볼트 서포터": Name = value.name; break;
-    case "블레이즈 서포터": Name = value.name; break;
+    case "유도 미사일": Name = value.name; break;
     case "재우 오리지널": Name = value.name; break;
     case "전봇대": Name = value.name; break;
     case "주인바라기": Name = value.name; break;
