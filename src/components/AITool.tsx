@@ -36,6 +36,7 @@ export function AI_TOOL() {
     let seq_meleeATK: SequenceType = { tabNum: 4, case: "sequence", main: "melee_attack", value0: "10000" };
     let seq_meleeATKShort: SequenceType = { tabNum: 4, case: "sequence", main: "melee_attack", value0: "1000" };
     let seq_chase_Master_Run: SequenceType = { tabNum: 4, case: "sequence", main: "chase", value0: "master", value1: "0", value2: "true" };
+    let seq_chase_Target_ClockRun_Far_Long: SequenceType = { tabNum: 4, case: "sequence", main: "move_around", value0: "true", value1: "1000", value2: "true", value3:"10000"};
     let seq_chase_Master_Walk: SequenceType = { tabNum: 4, case: "sequence", main: "chase", value0: "master", value1: "0", value2: "false" };
     let seq_wait_Long: SequenceType = { tabNum: 4, case: "sequence", main: "wait", value0: "10000", value1: "10000", };
     let seq_wait_Middle: SequenceType = { tabNum: 4, case: "sequence", main: "wait", value0: "4000", value1: "4000", };
@@ -749,6 +750,53 @@ export function AI_TOOL() {
         Pet_GirHelp_Mater_ReadyFirebolt,
     ]
 
+    /*
+    =========================타겟 체이서 패턴====================================
+    */
+
+    let seq_TargetChaser_Seek_Chase: SequenceType = {tabNum:4, case:"sequence", main: "", value0: "", value1: ""}
+    //let Pet_: string = eventWarper({name:"",main:"",condition: [], sequence: []})
+
+    let Pet_TargetChaser_ReadyChase: string = eventWarper({
+        name:"주인디펜스 준비 - 주인 곁 대기", main:"master_skill_prepare", value0:"defence",
+        condition: [],
+        sequence: [seqPt(seq_cancel), refeat({refeatValue:[seq_chase_Master_Run, seq_wait_Middle], refeatNum: 10})]
+    })
+
+    let Pet_TargetChaser_ReadyIcebolt: string = eventWarper({
+        name:"주인아볼트 준비 - 추적 준비", main:"master_skill_prepare", value0:"firebolt",
+        condition: [],
+        sequence: [seqPt(seq_cancel), refeat({refeatValue:[seq_chase_Master_Run, seq_wait_Short], refeatNum: 13})]
+    })
+    let Pet_TargetChaser_ChaseIcebolt_Round: string = eventWarper({
+        name:"주인아볼트 사격 - 타겟 시계방향 추적", main:"master_attack", value0: "icebolt",
+        condition:[],
+        sequence : [seqPt(seq_cancel), refeat({refeatValue:[seq_chase_Target_ClockRun_Far_Long], refeatNum: 24}), seqPt(seq_chase_Master_Walk), seqPt(seq_wait_Long)]
+    })
+    let Pet_TargetChaser_ATK0 : string = eventWarper({
+        name:"펫 지속 공격 0", main:"attack", value0:"all", value1:"false",
+        condition:[],
+        sequence : [refeat({refeatValue:[seq_meleeATK], refeatNum:10})]
+    })
+    let Pet_TargetChaser_ATK1 : string = eventWarper({
+        name:"펫 지속 공격 1", main:"attack", value0:"all", value1:"true",
+        condition:[],
+        sequence : [refeat({refeatValue:[seq_meleeATK], refeatNum:10})]
+    })
+
+    let Pet_TargetChaser_AI: string[] = [
+        Pet_MasterActive_StWind,
+        Pet_SeekTarget_StWind,
+        Pet_Master_Chase,
+        Pet_TargetChaser_ReadyChase,
+        Pet_TargetChaser_ReadyIcebolt,
+        Pet_TargetChaser_ChaseIcebolt_Round,
+        Pet_TargetChaser_ATK0,
+        Pet_TargetChaser_ATK1,
+    ]
+
+
+
     return {
         Pet_MasterActive_StWind,
         Pet_SeekTarget_StWind,
@@ -786,7 +834,8 @@ export function AI_TOOL() {
         Pet_Blaze_AI,
         Pet_Medic_AI,
         Pet_FoxHunter_AI,
-        Pet_GirHelper_AI
+        Pet_GirHelper_AI,
+        Pet_TargetChaser_AI,
     }
 }
 /*
