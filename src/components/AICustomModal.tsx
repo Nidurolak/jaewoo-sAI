@@ -11,7 +11,7 @@ import 전봇대 from '../assets/Icon/전봇대.jpg'
 import 펫디펜더 from '../assets/Icon/펫디펜더.jpg'
 import 주인바라기 from '../assets/Icon/주인바라기.jpg'
 import 컴뱃파트너 from '../assets/Icon/컴뱃파트너.jpg'
-import { useRecoilState,} from "recoil";
+import { useRecoilState, } from "recoil";
 import { CurrentAIName, ExplainModalBool, DownloadModalCopyBool } from '../store/atom';
 import { motion } from 'framer-motion';
 //TS2559: Type '{ children: never[]; }' has no properties in common with type 'IntrinsicAttributes'.
@@ -52,7 +52,7 @@ function AICustomModal() {
       FuncList = [];
       Explain = '주인이 전부 해결할테니 소중한 펫은 그냥 자기 옆에서 하품이나 하고 있기를 원하시는 분들을 위한 AI입니다. 모든 상황에서 펫이 정말 "아무것도" 하지 않고 주인의 바짓가랑이만 붙든채 전투가 끝나길 기다립니다.'; break;
     case "폭스 헌터": Image = 컴뱃파트너; Tag = "주변 모든 것을 두들겨 팸";
-      FuncList = ["윈드밀 반응 복귀","자동 신속 발동",];
+      FuncList = ["윈드밀 반응 복귀", "자동 신속 발동",];
       Explain = '선공모드로 언제 서브 스킬을 수련하나요? 신속 1랭은 또 언제 찍습니까? 폭스 헌터와 지금 하십시오! 주변(약 10미터) 모든 적을 무차별 폭행하는 폭스 헌터와 함께라면 귀찮은 수련, 이제 굿 바이!\n(수련 외 목적으로 사용하였을 때 발생하는 모든 트롤 행위에 대해 제작자는 일절 책임지지 않습니다.)'; break;
     case "기르가쉬 헬퍼": Image = 오리지널Lite; Tag = "주인의 명령(스킬 장전)에 따라 행동방식을 바꿈";
       FuncList = ["윈드밀 반응 복귀", "자동 신속 발동",];
@@ -99,7 +99,7 @@ function AICustomModal() {
           <BoxContainer>
             <AIImage image={Image} />
             <h1>{name} AI</h1>
-            <WhiteLine/>
+            <WhiteLine />
             <h2>{Tag}</h2>
             <FuncContainer >
               {FuncList.length > 0 && (<>
