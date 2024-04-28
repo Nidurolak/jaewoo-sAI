@@ -1,22 +1,22 @@
 import React, { useState, ChangeEvent, useEffect } from 'react';
 import { styled } from 'styled-components';
-import Mainbutton800400 from '../assets/MainButton800400.png' 
+import Mainbutton800400 from '../assets/MainButton800400.png'
 import { useRecoilState } from 'recoil';
 import { AIMakerExplainModalBool } from '../store/atom';
 
-function AIMaker (){
-    const [AIMakerexplainModalBool, setAIMakerexplainModalBool] = useRecoilState(AIMakerExplainModalBool);
+function AIMaker() {
+  const [AIMakerexplainModalBool, setAIMakerexplainModalBool] = useRecoilState(AIMakerExplainModalBool);
 
-    return(<>
+  return (<>
     {AIMakerexplainModalBool == true &&
-    <Container onClick={()=> setAIMakerexplainModalBool(false)}>
+      <Container onClick={() => setAIMakerexplainModalBool(false)}>
         <RejectBox>
-            <h1>준비 중!</h1>
-            <WhiteLine></WhiteLine>
-            <h2>재우's AI에 사용되는 패턴을 기반으로 자신 만의 AI를 만들 수 있는 방법을 구상 중입니다. 기대해주세요!</h2>
+          <h1>준비 중!</h1>
+          <WhiteLine></WhiteLine>
+          <h2>재우's AI에 사용되는 패턴을 기반으로 자신 만의 AI를 만들 수 있는 방법을 구상 중입니다. 기대해주세요!</h2>
         </RejectBox>
-    </Container>}
-    </>)
+      </Container>}
+  </>)
 }
 
 export default AIMaker;
@@ -43,8 +43,8 @@ background-size: 100% 100%;
 background-position: center;
 background-repeat: no-repeat;
   color: rgba(255, 255, 255, 1);
-  width: 600px; /* 변경된 부분 */
-  height: 300px; /* 변경된 부분 */
+  width: 80vw; /* 변경된 부분 */
+  height: 80vh; /* 변경된 부분 */
   border: none;
   font-size: 17px;
   font-family: 'Mabinogi_Classic_TTF';
@@ -78,4 +78,23 @@ background-color: rgba(100, 100, 100, 0.6);
   h1 {word-spacing: 1px;word-break:keep-all; font-weight: 100;margin-top: 10px;font-size: 45px;font-family: 'Mabinogi_Classic_TTF';}
   h2 {word-spacing: 1px;word-break:keep-all;  margin-top: 10px; font-size: inherit; font-family: 'Mabinogi_Classic_TTF';}
   h3 {word-spacing: 1px;word-break:keep-all;  text-align: justify; font-weight: 100; font-size: 15px; font-family: 'Mabinogi_Classic_TTF'; white-space: pre-wrap;}
+`
+
+const BoxContainer = styled.div`
+display: flex;
+flex-direction: column; 
+justify-content: center;
+align-items: center;
+text-align: center;
+width: 550px;
+background-color: rgba(81, 165, 196);
+line-height: 1.5;
+border: 3px solid white;
+padding: 25px;
+  border-radius: 7px;
+  span.yellow-text {
+  font-size: 25px;
+    color: rgba(255, 255, 0, 1);
+    text-shadow: 1px 1px 0 black; /* 텍스트 주변에 검은색 테두리 효과 */
+  }
 `

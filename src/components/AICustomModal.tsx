@@ -95,6 +95,7 @@ function AICustomModal() {
   return (
     < >
       {(modalBoolValue) === true && (
+        /*
         <Container onClick={CloseModal}>
           <BoxContainer>
             <AIImage image={Image} />
@@ -120,6 +121,11 @@ function AICustomModal() {
             </TooltipContainer>
 
           )}
+        </Container>*/
+        <Container onClick={CloseModal}>
+          <BoxContainer>
+
+          </BoxContainer>
         </Container>
       )}
     </>);
