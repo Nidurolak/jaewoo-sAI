@@ -11,16 +11,37 @@ function AIMaker() {
     {AIMakerexplainModalBool == true &&
       <Container onClick={() => setAIMakerexplainModalBool(false)}>
         <RejectBox>
-          <h1>준비 중!</h1>
-          <WhiteLine></WhiteLine>
-          <h2>재우's AI에 사용되는 패턴을 기반으로 자신 만의 AI를 만들 수 있는 방법을 구상 중입니다. 기대해주세요!</h2>
+          <LeftBox></LeftBox>
+          <RightBox></RightBox>
         </RejectBox>
       </Container>}
   </>)
 }
-
+/*
+          <h1>준비 중!</h1>
+          <WhiteLine></WhiteLine>
+          <h2>재우's AI에 사용되는 패턴을 기반으로 자신 만의 AI를 만들 수 있는 방법을 구상 중입니다. 기대해주세요!</h2>*/
 export default AIMaker;
 
+const LeftBox = styled.div`
+align-items: center;
+display: flex;
+flex-direction: column;
+justify-content: center;
+width: 400px;
+height: 300px;
+background-color: gray;
+`
+
+const RightBox = styled.div`
+align-items: center;
+display: flex;
+flex-direction: column;
+justify-content: center;
+width: 400px;
+height: 300px;
+background-color: skyblue;
+`
 const WhiteLine = styled.div`
   width: 200px;
   height: 3px;
