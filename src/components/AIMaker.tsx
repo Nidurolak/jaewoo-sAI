@@ -3,16 +3,25 @@ import { styled } from 'styled-components';
 import Mainbutton800400 from '../assets/MainButton800400.png'
 import { useRecoilState } from 'recoil';
 import { AIMakerExplainModalBool } from '../store/atom';
+import EventMaker from './AIMakerTool/EventMaker';
 
 function AIMaker() {
   const [AIMakerexplainModalBool, setAIMakerexplainModalBool] = useRecoilState(AIMakerExplainModalBool);
 
+  const handleCloseModal = () => {
+    setAIMakerexplainModalBool(false);
+  };
+  const handleChildClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+  };
+
+
   return (<>
     {AIMakerexplainModalBool == true &&
-      <Container onClick={() => setAIMakerexplainModalBool(false)}>
-        <RejectBox>
+      <Container onClick={handleCloseModal}>
+        <RejectBox onClick={handleChildClick}>
           <LeftBox>
-            <EventDiv></EventDiv>
+            <EventMaker></EventMaker>
           </LeftBox>
           <MiddleBox></MiddleBox>
           <RightBox></RightBox>
@@ -33,6 +42,7 @@ flex-direction: column;
 justify-content: center;
 width: 90%;
 height: 70px;
+background-color: darkgoldenrod;
 `
 
 const MiddleBox = styled.div`
@@ -40,7 +50,7 @@ align-items: center;
 display: flex;
 flex-direction: column;
 justify-content: center;
-width: 400px;
+width: 500px;
 height: 300px;
 background-color: chartreuse;
 `
@@ -50,7 +60,7 @@ align-items: center;
 display: flex;
 flex-direction: column;
 justify-content: center;
-width: 400px;
+width: 500px;
 height: 300px;
 background-color: gray;
 `
@@ -60,7 +70,7 @@ align-items: center;
 display: flex;
 flex-direction: column;
 justify-content: center;
-width: 400px;
+width: 500px;
 height: 300px;
 background-color: skyblue;
 `
@@ -91,13 +101,13 @@ background-repeat: no-repeat;
   border: none;
   font-size: 17px;
   font-family: 'Mabinogi_Classic_TTF';
-  cursor: pointer;
+  /*cursor: pointer;
   &:hover{
     filter: brightness(110%);
   }
   &:active {
     filter: brightness(130%);
-  }
+  }*/
 `
 const Container = styled.div`
 display: flex;
