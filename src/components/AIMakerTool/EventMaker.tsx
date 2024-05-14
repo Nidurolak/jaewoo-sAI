@@ -4,26 +4,41 @@ import Mainbutton800400 from '../assets/MainButton800400.png'
 import { useRecoilState } from 'recoil';
 import exp from 'constants';
 import SelectButton from './RadioButton';
+import { AIMakingEventArrayAtom } from '../../store/atom';
 
 function EventMaker() {
     const [selectedValue, setSelectedValue] = useState<string | null>(null);
+    const [eventSelectedValue, setEventSelectedValue] = useRecoilState(AIMakingEventArrayAtom);
 
-
-    const handleSelectChange = (value: string) => {
-        setSelectedValue(value);
+    //여기서 구분하는 값을 추가할 것
+    const handleSelectChange = (value: string[]) => {
+        //setSelectedValue(value);
+        setEventSelectedValue(value)
     };
+    const getOptionBool = (value: string): boolean => {
+        //펫인지 마스터인지 체크
+        switch (value) {
+            case 'master': return true;
+            case 'pet': return false;
+            //case : break;
+        }
+        return false;
+    }
+
 
     return (
         <EventDiv>
-            <RowBox>
-                <h2>상황</h2>
-                <h3>여기 아래에 이벤트 적을 거임</h3>
-            </RowBox>
             <ColummBox>
                 <h2>상황</h2>
-                <SelectButton value={selectedValue} onChange={handleSelectChange}></SelectButton>
-            </ColummBox>
+                <RowBox>
+                    <SelectButton sortOrder={0} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
 
+                    {/*중간값 체크 그시기*/}
+                    {getOptionBool(eventSelectedValue[0])
+                        ? <SelectButton sortOrder={1} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
+                        : null}
+                </RowBox>
+            </ColummBox>
         </EventDiv>)
 }
 
@@ -43,6 +58,7 @@ display: flex;
 flex-direction: row;
 justify-content: flex-start;
 width: 100%;
+gap: 10px;
 `
 
 const EventDiv = styled.div`

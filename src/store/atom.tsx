@@ -3,7 +3,7 @@ import uuid from "react-uuid";
 import { ButtonDataForRecoil } from "../utils/types";
 
 export const ButtonData = atom<ButtonDataForRecoil>({
-    key:`state${uuid()}`
+    key: `state${uuid()}`
 })
 
 export const DownloadModalCopyBool = atom({
@@ -38,3 +38,15 @@ export const ExpWheelBool = atom({
     key: "ExpListBool",
     default: 0
 })
+export const AIMakingEventArrayAtom = atom<string[]>({
+    key: "StringArrayAtomState",
+    default: ['master', '', '']
+});
+/*xport const AIMakingEventArrayAtom = atom<string[][]>({
+    key: "StringArrayAtomState",
+    default: [
+        ['',],
+        ['',],
+        ['',]
+    ]
+});*/
