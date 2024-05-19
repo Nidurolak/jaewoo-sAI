@@ -42,7 +42,7 @@ flex-direction: column;
 justify-content: center;
 width: 90%;
 height: 70px;
-background-color: darkgoldenrod;
+//background-color: darkgoldenrod;
 `
 
 const MiddleBox = styled.div`
@@ -52,7 +52,7 @@ flex-direction: column;
 justify-content: center;
 width: 500px;
 height: 300px;
-background-color: chartreuse;
+//background-color: chartreuse;
 `
 
 const LeftBox = styled.div`
@@ -62,7 +62,7 @@ flex-direction: column;
 justify-content: center;
 width: 500px;
 height: 300px;
-background-color: gray;
+//background-color: gray;
 `
 
 const RightBox = styled.div`
@@ -72,7 +72,7 @@ flex-direction: column;
 justify-content: center;
 width: 500px;
 height: 300px;
-background-color: skyblue;
+//background-color: skyblue;
 `
 const WhiteLine = styled.div`
   width: 200px;
