@@ -40,7 +40,7 @@ export const ExpWheelBool = atom({
 })
 export const AIMakingEventArrayAtom = atom<string[]>({
     key: "StringArrayAtomState",
-    default: ['master', '', '']
+    default: ['master', 'master_targeted', 'alert']
 });
 /*xport const AIMakingEventArrayAtom = atom<string[][]>({
     key: "StringArrayAtomState",
