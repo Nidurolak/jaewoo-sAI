@@ -10,65 +10,99 @@ function EventMaker() {
     const [selectedValue, setSelectedValue] = useState<string | null>(null);
     const [eventSelectedValue, setEventSelectedValue] = useRecoilState(AIMakingEventArrayAtom);
 
+
     //여기서 구분하는 값을 추가할 것
     const handleSelectChange = (value: string[]) => {
         //setSelectedValue(value);
-        setEventSelectedValue(prevstate => {
-            const newValue = [...prevstate];
-            newValue[parseInt(value[0])] = value[1];
-            return newValue;
-        })
-        console.log("메인")
-        console.log(eventSelectedValue)
+        console.log(eventSelectedValue + "이 바뀌기 전의 값, " + value + "가 넘어옴 배열값, " + value[1] + "의 값이 라디오값으로 넘어옴, " + value[0] + "이 소트오더로 넘어옴")
+        if (value[1] != "master" && value[1] != "pet") {
+            setEventSelectedValue(prevstate => {
+                const newValue = [...prevstate];
+                //소트오더 0 = 배열 0번값, 소트오더 1, 2 = 배열 1번값 소트오더 3, 4, 5 = 베열 2번값
+                const x = parseInt(value[0])
+                console.log(x)
+                switch (x) {
+                    case 0: newValue[0] = value[1]; break;
+                    case 1: newValue[1] = value[1]; break;
+                    case 2: newValue[1] = value[1]; break;
+                    case 3: newValue[2] = value[1]; break;
+                    case 4: newValue[2] = value[1]; break;
+                    case 5: newValue[2] = value[1]; break;
+                }
+                return newValue;
+            })
+        }
+        else {
+            if (value[1] == "master") {
+                setEventSelectedValue(['master', 'master_targeted', 'alert'])
+            }
+            else if ((value[1] == "pet")) {
+                setEventSelectedValue(['pet', 'targeted', 'alert'])
+            }
+            return null;
+        }
+
     };
-    const getOptionBool = (value: string): boolean => {
+    const getOptionBool = (value: string[]): boolean => {
         //펫인지 마스터인지 체크
         //인식|경계 당함, 디펜스 방어, 공격당함, 스킬준비, 공격함, 동물 상대 피격
         //2개 들어가야하는것 - 공격당함, 공격함, 동물 상대 피격
 
         //펫 마스터 구분때문에 스위치했는데 if로 빼도 될 것 같음
-        switch (value) {
-            case 'master': return true;
-            case 'pet': return false;
-            case 'master_targeted': return true;
-            case 'master_defence': return true;
-            case 'master_attacked': return true;
-            case 'master_skill_prepare': return true;
-            case 'master_attack': return true;
-            case 'targeted': return true;
-            case 'defence': return true;
-            //case : break;
+        console.log(value)
+        if (value[0] == "master") {
+            switch (value[1]) {
+                case 'master': return true;
+                case 'pet': return false;
+                case 'master_targeted': return true;
+                case 'master_defence': return true;
+                case 'master_attacked': return true;
+                case 'master_skill_prepare': return true;
+                case 'master_attack': return true;
+                //case : break;
+            }
+        }
+        else {
+            switch (value[1]) {
+                case 'master': return false;
+                case 'pet': return true;
+                case 'targeted': return true;
+                case 'defence': return true;
+                case 'attacked': return true;
+                case 'skill_prepare': return true;
+                case 'attack': return true;
+                //case : break;
+            }
         }
         return false;
     }
 
+    useEffect(() => {
+        console.log(eventSelectedValue)
+    }, [eventSelectedValue])
 
     return (
         <EventDiv>
             <ColummBox>
                 <h2>상황</h2>
                 <RowBox>
-
+                    {/*소트오더0 = 펫/주인 기본옵션 | 소트오더1 = 펫 옵션1 | 소트오더2 = 주인옵션1  | 소트오더3 = 종합옵션3(모든공격~매그넘) | 소트오더4 = 종합옵션2(디펜스 방어 옵션)*/}
                     {/*주인/펫 체크 버튼, 1순위 버튼*/}
                     <SelectButton optionValue={''} width={100} sortOrder={0} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
 
-                    {/*마지막값 체크 목록, sortOrder 1번 여부에 따라 활성화*/}
-                    {getOptionBool(eventSelectedValue[0])
+                    {/*행동 체크 버튼, 2순위 버튼*/}
+                    {getOptionBool(["master", eventSelectedValue[0]])
                         ? <SelectButton width={0} optionValue={''} sortOrder={2} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
+                        : <SelectButton width={0} optionValue={''} sortOrder={1} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>}
+
+                    {/*주인 인식관련 중간값 체크 목록, sortOrder 1번 여부에 따라 활성화*/}
+                    {getOptionBool(["master", eventSelectedValue[1]])
+                        ? <SelectButton width={0} optionValue={''} sortOrder={5} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
                         : null}
 
-                    {/*패턴 체크 버튼, 2순위 버튼 */}
-                    <SelectButton optionValue={''} width={0} sortOrder={1} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
-                    {getOptionBool(eventSelectedValue[0])
-                        ? <SelectButton width={0} optionValue={'0'} sortOrder={1} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
-                        : null}
-                    {getOptionBool(eventSelectedValue[0])
-                        ? <SelectButton width={0} optionValue={'1'} sortOrder={1} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
-                        : null}
-
-                    {/*마지막값 체크 목록, sortOrder 1번 여부에 따라 활성화*/}
-                    {getOptionBool(eventSelectedValue[0])
-                        ? <SelectButton width={0} optionValue={''} sortOrder={3} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
+                    {/*펫 인식관련 중간값 체크 목록, sortOrder 1번 여부에 따라 활성화*/}
+                    {getOptionBool(["pet", eventSelectedValue[1]])
+                        ? <SelectButton width={0} optionValue={''} sortOrder={5} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
                         : null}
 
                 </RowBox>
