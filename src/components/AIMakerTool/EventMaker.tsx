@@ -54,7 +54,7 @@ function EventMaker() {
         //console.log(value)
         if (value[0] == "master") {
             switch (value[1]) {
-                case 'master_targeted':
+                //case 'master_targeted':
                 case 'master_defence':
                 case 'master_attacked':
                 case 'master_skill_prepare':
@@ -65,16 +65,22 @@ function EventMaker() {
                 //case : break;
             }
         }
-        else {
+        else if (value[0] == "pet") {
             switch (value[1]) {
-                case 'master': return false;
                 case 'pet':
-                case 'targeted':
+                //case 'targeted':
                 case 'defence':
                 case 'attacked':
                 case 'skill_prepare':
                 case 'attack': return true;
+                case 'master': return false;
                 //case : break;
+            }
+        }
+        //인식 관련 truefalse 체크
+        else if (value[0] == "master_targeted" || value[0] == "targeted") {
+            if (value[0] == value[1]) {
+                return true
             }
         }
         return false;
@@ -99,12 +105,12 @@ function EventMaker() {
                         : <SelectButton width={200} optionValue={''} sortOrder={1} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>}
 
                     {/*주인 인식관련 중간값 체크 목록, sortOrder 1번 여부에 따라 활성화*/}
-                    {getOptionBool(["master", eventSelectedValue[1]])
+                    {getOptionBool(["master_targeted", eventSelectedValue[1]])
                         ? <SelectButton width={0} optionValue={''} sortOrder={5} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
                         : null}
 
                     {/*펫 인식관련 중간값 체크 목록, sortOrder 1번 여부에 따라 활성화*/}
-                    {getOptionBool(["pet", eventSelectedValue[1]])
+                    {getOptionBool(["pet_targeted", eventSelectedValue[1]])
                         ? <SelectButton width={0} optionValue={''} sortOrder={5} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
                         : null}
 
