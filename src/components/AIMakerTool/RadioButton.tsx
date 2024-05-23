@@ -22,6 +22,7 @@ function SelectButton({ width, optionValue, value, sortOrder, onChange }: Select
         val[0] = sortOrder.toString();
         val[1] = e.target.value;
 
+        console.log(val + "값이 라디오버튼에서 넘어감")
         onChange(val);
         console.log(e.target.value)
         //console.log(customValue)
@@ -91,8 +92,17 @@ function SelectButton({ width, optionValue, value, sortOrder, onChange }: Select
         case 5: options = totalOption3; break;
         default: options = mainOptions; break;
     }
+    let sortValue = 0;
+    switch (sortOrder) {
+        case 0: sortValue = 0; break;
+        case 1: sortValue = 1; break;
+        case 2: sortValue = 1; break;
+        case 3: sortValue = 2; break;
+        case 4: sortValue = 2; break;
+        case 5: sortValue = 2; break;
+    }
     return (
-        <Select val={width} value={value[sortOrder]} onChange={(e) => handleChange(e)}>
+        <Select val={width} value={value[sortValue]} onChange={(e) => handleChange(e)}>
             {options.map(option => (
                 <option key={option.id} value={option.value}>
                     {option.label}

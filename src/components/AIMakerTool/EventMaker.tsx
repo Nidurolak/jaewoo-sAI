@@ -23,10 +23,10 @@ function EventMaker() {
                 console.log(x)
                 switch (x) {
                     case 0: newValue[0] = value[1]; break;
-                    case 1: newValue[1] = value[1]; break;
+                    case 1:
                     case 2: newValue[1] = value[1]; break;
-                    case 3: newValue[2] = value[1]; break;
-                    case 4: newValue[2] = value[1]; break;
+                    case 3:
+                    case 4:
                     case 5: newValue[2] = value[1]; break;
                 }
                 return newValue;
@@ -35,8 +35,10 @@ function EventMaker() {
         else {
             if (value[1] == "master") {
                 setEventSelectedValue(['master', 'master_targeted', 'alert'])
+                console.log("마스터 거르기 작동")
             }
             else if ((value[1] == "pet")) {
+                console.log("펫 거르기 작동")
                 setEventSelectedValue(['pet', 'targeted', 'alert'])
             }
             return null;
@@ -49,27 +51,28 @@ function EventMaker() {
         //2개 들어가야하는것 - 공격당함, 공격함, 동물 상대 피격
 
         //펫 마스터 구분때문에 스위치했는데 if로 빼도 될 것 같음
-        console.log(value)
+        //console.log(value)
         if (value[0] == "master") {
             switch (value[1]) {
+                case 'master_targeted':
+                case 'master_defence':
+                case 'master_attacked':
+                case 'master_skill_prepare':
+                case 'master_attack':
+                case 'master_aiemd':
                 case 'master': return true;
                 case 'pet': return false;
-                case 'master_targeted': return true;
-                case 'master_defence': return true;
-                case 'master_attacked': return true;
-                case 'master_skill_prepare': return true;
-                case 'master_attack': return true;
                 //case : break;
             }
         }
         else {
             switch (value[1]) {
                 case 'master': return false;
-                case 'pet': return true;
-                case 'targeted': return true;
-                case 'defence': return true;
-                case 'attacked': return true;
-                case 'skill_prepare': return true;
+                case 'pet':
+                case 'targeted':
+                case 'defence':
+                case 'attacked':
+                case 'skill_prepare':
                 case 'attack': return true;
                 //case : break;
             }
@@ -93,7 +96,7 @@ function EventMaker() {
                     {/*행동 체크 버튼, 2순위 버튼*/}
                     {getOptionBool(["master", eventSelectedValue[0]])
                         ? <SelectButton width={0} optionValue={''} sortOrder={2} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
-                        : <SelectButton width={0} optionValue={''} sortOrder={1} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>}
+                        : <SelectButton width={200} optionValue={''} sortOrder={1} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>}
 
                     {/*주인 인식관련 중간값 체크 목록, sortOrder 1번 여부에 따라 활성화*/}
                     {getOptionBool(["master", eventSelectedValue[1]])
