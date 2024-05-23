@@ -78,10 +78,8 @@ function EventMaker() {
             }
         }
         //인식 관련 truefalse 체크
-        else if (value[0] == "master_targeted" || value[0] == "targeted") {
-            if (value[0] == value[1]) {
-                return true
-            }
+        else if (value[0] == value[1]) {
+            return true
         }
         return false;
     }
@@ -99,10 +97,21 @@ function EventMaker() {
                     {/*주인/펫 체크 버튼, 1순위 버튼*/}
                     <SelectButton optionValue={''} width={100} sortOrder={0} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
 
+                    {/*주인 디펜스 값 관련이 와야함, 3순위*/}
+                    {getOptionBool(["master_defence", eventSelectedValue[1]])
+                        ? <SelectButton width={0} optionValue={''} sortOrder={4} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
+                        : null}
+
+                    {/*펫 디펜스 값 관련이 와야함, 3순위*/}
+                    {getOptionBool(["defence", eventSelectedValue[1]])
+                        ? <SelectButton width={0} optionValue={''} sortOrder={4} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
+                        : null}
+
                     {/*행동 체크 버튼, 2순위 버튼*/}
                     {getOptionBool(["master", eventSelectedValue[0]])
                         ? <SelectButton width={0} optionValue={''} sortOrder={2} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
                         : <SelectButton width={200} optionValue={''} sortOrder={1} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>}
+
 
                     {/*주인 인식관련 중간값 체크 목록, sortOrder 1번 여부에 따라 활성화*/}
                     {getOptionBool(["master_targeted", eventSelectedValue[1]])
