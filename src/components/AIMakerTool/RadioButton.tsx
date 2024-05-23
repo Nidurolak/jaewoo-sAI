@@ -70,11 +70,11 @@ function SelectButton({ width, optionValue, value, sortOrder, onChange }: Select
         { id: 12, label: '매그넘샷', value: 'firebolt' },
     ]
     const totalOption2 = [
-        { id: 1, label: '모든 공격', value: 'all' },
-        { id: 3, label: '일반공격', value: 'basic' },
-        { id: 4, label: '디펜스', value: 'defence' },
-        { id: 5, label: '카운터어택', value: 'counter' },
-        { id: 6, label: '윈드밀', value: 'windmill' },
+        { id: 1, label: '모든 공격을', value: 'all' },
+        { id: 3, label: '일반공격을', value: 'basic' },
+        { id: 4, label: '디펜스을', value: 'defence' },
+        { id: 5, label: '카운터어택을', value: 'counter' },
+        { id: 6, label: '윈드밀을', value: 'windmill' },
     ]
     const totalOption3 = [
         { id: 1, label: '인식당함', value: 'alert' },
