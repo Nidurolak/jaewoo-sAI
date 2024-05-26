@@ -107,6 +107,15 @@ function EventMaker() {
                         ? <SelectButton width={0} optionValue={''} sortOrder={4} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
                         : null}
 
+
+                    {/*마스터 스킬 값 관련이 와야함, 3순위*/}
+                    {getOptionBool(["defence", eventSelectedValue[1]])
+                        ? <SelectButton width={0} optionValue={''} sortOrder={4} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
+                        : null}
+                    {getOptionBool(["defence", eventSelectedValue[1]])
+                        ? <SelectButton width={0} optionValue={''} sortOrder={4} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
+                        : null}
+
                     {/*행동 체크 버튼, 2순위 버튼*/}
                     {getOptionBool(["master", eventSelectedValue[0]])
                         ? <SelectButton width={0} optionValue={''} sortOrder={2} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
