@@ -45,7 +45,7 @@ function SelectButton({ width, optionValue, value, sortOrder, onChange }: Select
     ];
     const masterOption1 = [
         { id: 1, label: '적에게', value: 'master_targeted' },
-        { id: 3, label: '공격함', value: 'mater_attack' },
+        { id: 3, label: '공격함', value: 'master_attack' },
         { id: 4, label: '적이 원거리 사용', value: 'master_aimed' },
         { id: 5, label: '적이 근접기 사용', value: 'master_target_skill_prepare' },
         { id: 6, label: '적이 마법 사용', value: 'master_target_magic_prepare' },
@@ -53,6 +53,19 @@ function SelectButton({ width, optionValue, value, sortOrder, onChange }: Select
         { id: 8, label: '적에게 피격당함', value: 'master_attacked' },
         { id: 9, label: '스킬을 준비함', value: 'master_skill_prepare' }
     ];
+    const petOption2 = [
+        { id: 1, label: '모든 공격', value: 'all' },
+        { id: 3, label: '일반공격', value: 'basic' },
+        { id: 4, label: '디펜스', value: 'defence' },
+        { id: 5, label: '카운터어택', value: 'counter' },
+        { id: 6, label: '윈드밀', value: 'windmill' },
+        { id: 7, label: '라이트닝볼트', value: 'lightningbolt' },
+        { id: 8, label: '파이어볼트', value: 'icegbolt' },
+        { id: 9, label: '아이스볼트', value: 'firebolt' },
+        { id: 10, label: '썬더', value: 'thunder' },
+        { id: 11, label: '파이어볼', value: 'fireball' },
+        { id: 12, label: '아이스 스피어', value: 'icespace' },
+    ]
     const totalOption1 = [
         { id: 1, label: '모든 공격', value: 'all' },
         { id: 3, label: '일반공격', value: 'basic' },
@@ -66,6 +79,21 @@ function SelectButton({ width, optionValue, value, sortOrder, onChange }: Select
         { id: 11, label: '파이어볼', value: 'fireball' },
         { id: 12, label: '아이스 스피어', value: 'icespace' },
         { id: 12, label: '힐링', value: 'healing' },
+        { id: 12, label: '레인지 어택', value: 'firebolt' },
+        { id: 12, label: '매그넘샷', value: 'firebolt' },
+    ]
+    const totalOption4 = [
+        { id: 1, label: '모든 공격', value: 'all' },
+        { id: 3, label: '일반공격', value: 'basic' },
+        { id: 4, label: '디펜스', value: 'defence' },
+        { id: 5, label: '카운터어택', value: 'counter' },
+        { id: 6, label: '윈드밀', value: 'windmill' },
+        { id: 7, label: '라이트닝볼트', value: 'lightningbolt' },
+        { id: 8, label: '파이어볼트', value: 'icegbolt' },
+        { id: 9, label: '아이스볼트', value: 'firebolt' },
+        { id: 10, label: '썬더', value: 'thunder' },
+        { id: 11, label: '파이어볼', value: 'fireball' },
+        { id: 12, label: '아이스 스피어', value: 'icespace' },
         { id: 12, label: '레인지 어택', value: 'firebolt' },
         { id: 12, label: '매그넘샷', value: 'firebolt' },
     ]
@@ -90,6 +118,8 @@ function SelectButton({ width, optionValue, value, sortOrder, onChange }: Select
         case 3: options = totalOption1; break;
         case 4: options = totalOption2; break;
         case 5: options = totalOption3; break;
+        case 6: options = totalOption4; break;
+        case 7: options = petOption2; break;
         default: options = mainOptions; break;
     }
     let sortValue = 0;
@@ -100,6 +130,8 @@ function SelectButton({ width, optionValue, value, sortOrder, onChange }: Select
         case 3: sortValue = 2; break;
         case 4: sortValue = 2; break;
         case 5: sortValue = 2; break;
+        case 6: sortValue = 2; break;
+        case 7: sortValue = 2; break;
     }
     return (
         <Select val={width} value={value[sortValue]} onChange={(e) => handleChange(e)}>

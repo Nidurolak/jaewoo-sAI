@@ -106,14 +106,19 @@ function EventMaker() {
                     {getOptionBool(["defence", eventSelectedValue[1]])
                         ? <SelectButton width={0} optionValue={''} sortOrder={4} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
                         : null}
-
-
-                    {/*마스터 스킬 값 관련이 와야함, 3순위*/}
-                    {getOptionBool(["defence", eventSelectedValue[1]])
-                        ? <SelectButton width={0} optionValue={''} sortOrder={4} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
+                    {/*펫 공격 값 관련이 와야함, 3순위*/}
+                    {getOptionBool(["attack", eventSelectedValue[1]])
+                        ? <SelectButton width={0} optionValue={''} sortOrder={7} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
                         : null}
-                    {getOptionBool(["defence", eventSelectedValue[1]])
-                        ? <SelectButton width={0} optionValue={''} sortOrder={4} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
+
+                    {/*주인 공격 값 관련이 와야함, 3순위*/}
+                    {getOptionBool(["master_attack", eventSelectedValue[1]])
+                        ? <SelectButton width={0} optionValue={''} sortOrder={6} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
+                        : null}
+
+                    {/*마스터 스킬 준비 값 관련이 와야함, 3순위*/}
+                    {getOptionBool(["mast_skill_prepare", eventSelectedValue[1]])
+                        ? <SelectButton width={0} optionValue={''} sortOrder={3} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
                         : null}
 
                     {/*행동 체크 버튼, 2순위 버튼*/}
