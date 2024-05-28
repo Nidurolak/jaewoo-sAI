@@ -23,11 +23,14 @@ function EventMaker() {
                 console.log(x)
                 switch (x) {
                     case 0: newValue[0] = value[1]; break;
-                    case 1:
-                    case 2: newValue[1] = value[1]; break;
-                    case 3:
-                    case 4:
+                    case 1: newValue[1] = value[1]; break;
+                    case 2: newValue[1] = value[1]; newValue[2] = ''; break;
+                    case 3: newValue[2] = value[1]; break;
+                    case 4: newValue[2] = value[1]; break;
                     case 5: newValue[2] = value[1]; break;
+                    case 6: newValue[2] = value[1]; break;
+                    case 7: newValue[2] = value[1]; break;
+                    case 8: newValue[2] = value[1]; break;
                 }
                 return newValue;
             })
@@ -55,11 +58,11 @@ function EventMaker() {
         if (value[0] == "master") {
             switch (value[1]) {
                 //case 'master_targeted':
-                case 'master_defence':
-                case 'master_attacked':
-                case 'master_skill_prepare':
-                case 'master_attack':
-                case 'master_aiemd':
+                case 'master_defence': return true;
+                case 'master_attacked': return true;
+                case 'master_skill_prepare': return true;
+                case 'master_attack': return true;
+                case 'master_aiemd': return true;
                 case 'master': return true;
                 case 'pet': return false;
                 //case : break;
@@ -67,11 +70,11 @@ function EventMaker() {
         }
         else if (value[0] == "pet") {
             switch (value[1]) {
-                case 'pet':
+                case 'pet': return true;
                 //case 'targeted':
-                case 'defence':
-                case 'attacked':
-                case 'skill_prepare':
+                case 'defence': return true;
+                case 'attacked': return true;
+                case 'skill_prepare': return true;
                 case 'attack': return true;
                 case 'master': return false;
                 //case : break;
@@ -104,11 +107,11 @@ function EventMaker() {
 
                     {/*펫 디펜스 값 관련이 와야함, 3순위*/}
                     {getOptionBool(["defence", eventSelectedValue[1]])
-                        ? <SelectButton width={0} optionValue={''} sortOrder={4} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
+                        ? <SelectButton width={200} optionValue={''} sortOrder={4} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
                         : null}
                     {/*펫 공격 값 관련이 와야함, 3순위*/}
                     {getOptionBool(["attack", eventSelectedValue[1]])
-                        ? <SelectButton width={0} optionValue={''} sortOrder={7} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
+                        ? <SelectButton width={200} optionValue={''} sortOrder={7} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
                         : null}
 
                     {/*주인 공격 값 관련이 와야함, 3순위*/}
@@ -117,7 +120,7 @@ function EventMaker() {
                         : null}
 
                     {/*마스터 스킬 준비 값 관련이 와야함, 3순위*/}
-                    {getOptionBool(["mast_skill_prepare", eventSelectedValue[1]])
+                    {getOptionBool(["master_skill_prepare", eventSelectedValue[1]])
                         ? <SelectButton width={0} optionValue={''} sortOrder={3} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
                         : null}
 
@@ -126,6 +129,16 @@ function EventMaker() {
                         ? <SelectButton width={0} optionValue={''} sortOrder={2} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
                         : <SelectButton width={200} optionValue={''} sortOrder={1} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>}
 
+                    {/*펫 피격 값 관련이 와야함, 3순위*/}
+                    {getOptionBool(["attacked", eventSelectedValue[1]])
+                        ? <SelectButton width={200} optionValue={''} sortOrder={8} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
+                        : null}
+
+                    {/*주인 피격 값 관련이 와야함, 3순위*/}
+                    {getOptionBool(["master_attacked", eventSelectedValue[1]])
+                        ? <SelectButton width={0} optionValue={''} sortOrder={8} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
+                        : null}
+
 
                     {/*주인 인식관련 중간값 체크 목록, sortOrder 1번 여부에 따라 활성화*/}
                     {getOptionBool(["master_targeted", eventSelectedValue[1]])
@@ -133,8 +146,8 @@ function EventMaker() {
                         : null}
 
                     {/*펫 인식관련 중간값 체크 목록, sortOrder 1번 여부에 따라 활성화*/}
-                    {getOptionBool(["pet_targeted", eventSelectedValue[1]])
-                        ? <SelectButton width={0} optionValue={''} sortOrder={5} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
+                    {getOptionBool(["targeted", eventSelectedValue[1]])
+                        ? <SelectButton width={200} optionValue={''} sortOrder={5} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
                         : null}
 
                 </RowBox>

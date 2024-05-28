@@ -36,7 +36,7 @@ function SelectButton({ width, optionValue, value, sortOrder, onChange }: Select
         { id: 1, label: '적에게', value: 'targeted' },
         { id: 2, label: '타겟을 찾음', value: 'seek_target' },
         { id: 3, label: '적을 타겟팅 중', value: 'now_targeting' },
-        { id: 4, label: '공격함', value: 'attack' },
+        { id: 4, label: '(을)를 사용해 공격함', value: 'attack' },
         { id: 5, label: '적이 원거리 사용', value: 'aimed' },
         { id: 6, label: '적이 근접기 사용', value: 'target_skill_prepare' },
         { id: 7, label: '적이 마법 사용', value: 'target_magic_prepare' },
@@ -45,68 +45,71 @@ function SelectButton({ width, optionValue, value, sortOrder, onChange }: Select
     ];
     const masterOption1 = [
         { id: 1, label: '적에게', value: 'master_targeted' },
-        { id: 3, label: '공격함', value: 'master_attack' },
-        { id: 4, label: '적이 원거리 사용', value: 'master_aimed' },
-        { id: 5, label: '적이 근접기 사용', value: 'master_target_skill_prepare' },
-        { id: 6, label: '적이 마법 사용', value: 'master_target_magic_prepare' },
-        { id: 7, label: '디펜스로 방어함', value: 'master_defence' },
-        { id: 8, label: '적에게 피격당함', value: 'master_attacked' },
-        { id: 9, label: '스킬을 준비함', value: 'master_skill_prepare' }
+        { id: 2, label: '(을)를 사용해 공격함', value: 'master_attack' },
+        { id: 3, label: '적이 원거리 사용', value: 'master_aimed' },
+        { id: 4, label: '적이 근접기 사용', value: 'master_target_skill_prepare' },
+        { id: 5, label: '적이 마법 사용', value: 'master_target_magic_prepare' },
+        { id: 6, label: '디펜스로 방어함', value: 'master_defence' },
+        { id: 7, label: '적에게 피격당함', value: 'master_attacked' },
+        { id: 8, label: '스킬을 준비함', value: 'master_skill_prepare' }
     ];
     const petOption2 = [
         { id: 1, label: '모든 공격', value: 'all' },
-        { id: 3, label: '일반공격', value: 'basic' },
-        { id: 4, label: '디펜스', value: 'defence' },
-        { id: 5, label: '카운터어택', value: 'counter' },
-        { id: 6, label: '윈드밀', value: 'windmill' },
-        { id: 7, label: '라이트닝볼트', value: 'lightningbolt' },
-        { id: 8, label: '파이어볼트', value: 'icegbolt' },
-        { id: 9, label: '아이스볼트', value: 'firebolt' },
-        { id: 10, label: '썬더', value: 'thunder' },
-        { id: 11, label: '파이어볼', value: 'fireball' },
-        { id: 12, label: '아이스 스피어', value: 'icespace' },
+        { id: 2, label: '일반공격', value: 'basic' },
+        { id: 3, label: '디펜스', value: 'defence' },
+        { id: 4, label: '카운터어택', value: 'counter' },
+        { id: 5, label: '윈드밀', value: 'windmill' },
+        { id: 6, label: '라이트닝볼트', value: 'lightningbolt' },
+        { id: 7, label: '파이어볼트', value: 'icegbolt' },
+        { id: 8, label: '아이스볼트', value: 'firebolt' },
+        { id: 9, label: '썬더', value: 'thunder' },
+        { id: 10, label: '파이어볼', value: 'fireball' },
+        { id: 11, label: '아이스 스피어', value: 'icespace' },
     ]
     const totalOption1 = [
         { id: 1, label: '모든 공격', value: 'all' },
-        { id: 3, label: '일반공격', value: 'basic' },
-        { id: 4, label: '디펜스', value: 'defence' },
-        { id: 5, label: '카운터어택', value: 'counter' },
-        { id: 6, label: '윈드밀', value: 'windmill' },
-        { id: 7, label: '라이트닝볼트', value: 'lightningbolt' },
-        { id: 8, label: '파이어볼트', value: 'icegbolt' },
-        { id: 9, label: '아이스볼트', value: 'firebolt' },
-        { id: 10, label: '썬더', value: 'thunder' },
-        { id: 11, label: '파이어볼', value: 'fireball' },
-        { id: 12, label: '아이스 스피어', value: 'icespace' },
+        { id: 2, label: '일반공격', value: 'basic' },
+        { id: 3, label: '디펜스', value: 'defence' },
+        { id: 4, label: '카운터어택', value: 'counter' },
+        { id: 5, label: '윈드밀', value: 'windmill' },
+        { id: 6, label: '라이트닝볼트', value: 'lightningbolt' },
+        { id: 7, label: '파이어볼트', value: 'icegbolt' },
+        { id: 8, label: '아이스볼트', value: 'firebolt' },
+        { id: 9, label: '썬더', value: 'thunder' },
+        { id: 10, label: '파이어볼', value: 'fireball' },
+        { id: 11, label: '아이스 스피어', value: 'icespace' },
         { id: 12, label: '힐링', value: 'healing' },
-        { id: 12, label: '레인지 어택', value: 'firebolt' },
-        { id: 12, label: '매그넘샷', value: 'firebolt' },
+        { id: 13, label: '레인지 어택', value: 'firebolt' },
+        { id: 14, label: '매그넘샷', value: 'firebolt' },
     ]
     const totalOption4 = [
         { id: 1, label: '모든 공격', value: 'all' },
-        { id: 3, label: '일반공격', value: 'basic' },
-        { id: 4, label: '디펜스', value: 'defence' },
-        { id: 5, label: '카운터어택', value: 'counter' },
-        { id: 6, label: '윈드밀', value: 'windmill' },
-        { id: 7, label: '라이트닝볼트', value: 'lightningbolt' },
-        { id: 8, label: '파이어볼트', value: 'icegbolt' },
-        { id: 9, label: '아이스볼트', value: 'firebolt' },
-        { id: 10, label: '썬더', value: 'thunder' },
-        { id: 11, label: '파이어볼', value: 'fireball' },
-        { id: 12, label: '아이스 스피어', value: 'icespace' },
+        { id: 2, label: '일반공격', value: 'basic' },
+        { id: 3, label: '디펜스', value: 'defence' },
+        { id: 4, label: '카운터어택', value: 'counter' },
+        { id: 5, label: '윈드밀', value: 'windmill' },
+        { id: 6, label: '라이트닝볼트', value: 'lightningbolt' },
+        { id: 7, label: '파이어볼트', value: 'icegbolt' },
+        { id: 8, label: '아이스볼트', value: 'firebolt' },
+        { id: 9, label: '썬더', value: 'thunder' },
+        { id: 10, label: '파이어볼', value: 'fireball' },
+        { id: 11, label: '아이스 스피어', value: 'icespace' },
         { id: 12, label: '레인지 어택', value: 'firebolt' },
-        { id: 12, label: '매그넘샷', value: 'firebolt' },
+        { id: 13, label: '매그넘샷', value: 'firebolt' },
     ]
-    const totalOption2 = [
+    const defenseOption = [
         { id: 1, label: '모든 공격을', value: 'all' },
-        { id: 3, label: '일반공격을', value: 'basic' },
-        { id: 4, label: '디펜스을', value: 'defence' },
-        { id: 5, label: '카운터어택을', value: 'counter' },
-        { id: 6, label: '윈드밀을', value: 'windmill' },
+        { id: 2, label: '일반공격을', value: 'basic' },
+        { id: 3, label: '카운터어택을', value: 'counter' },
+        { id: 4, label: '윈드밀을', value: 'windmill' },
     ]
     const totalOption3 = [
         { id: 1, label: '인식당함', value: 'alert' },
-        { id: 3, label: '경계당함', value: 'attack' },
+        { id: 2, label: '경계당함', value: 'attack' },
+    ]
+    const downOption = [
+        { id: 1, label: '다운당함', value: 'true' },
+        { id: 2, label: '다운당하지 않음', value: 'false' },
     ]
 
     let options;
@@ -116,10 +119,11 @@ function SelectButton({ width, optionValue, value, sortOrder, onChange }: Select
         case 1: options = petOption1; break;
         case 2: options = masterOption1; break;
         case 3: options = totalOption1; break;
-        case 4: options = totalOption2; break;
+        case 4: options = defenseOption; break;
         case 5: options = totalOption3; break;
         case 6: options = totalOption4; break;
         case 7: options = petOption2; break;
+        case 8: options = downOption; break;
         default: options = mainOptions; break;
     }
     let sortValue = 0;
@@ -132,6 +136,7 @@ function SelectButton({ width, optionValue, value, sortOrder, onChange }: Select
         case 5: sortValue = 2; break;
         case 6: sortValue = 2; break;
         case 7: sortValue = 2; break;
+        case 8: sortValue = 2; break;
     }
     return (
         <Select val={width} value={value[sortValue]} onChange={(e) => handleChange(e)}>
