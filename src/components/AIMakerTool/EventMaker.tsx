@@ -31,6 +31,7 @@ function EventMaker() {
                     case 6: newValue[2] = value[1]; break;
                     case 7: newValue[2] = value[1]; break;
                     case 8: newValue[2] = value[1]; break;
+                    case 9: newValue[2] = value[1]; break;
                 }
                 return newValue;
             })
@@ -111,7 +112,7 @@ function EventMaker() {
                         : null}
                     {/*펫 공격 값 관련이 와야함, 3순위*/}
                     {getOptionBool(["attack", eventSelectedValue[1]])
-                        ? <SelectButton width={200} optionValue={''} sortOrder={7} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
+                        ? <SelectButton width={200} optionValue={''} sortOrder={9} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
                         : null}
 
                     {/*주인 공격 값 관련이 와야함, 3순위*/}
