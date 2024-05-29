@@ -140,6 +140,16 @@ function EventMaker() {
                         ? <SelectButton width={0} optionValue={''} sortOrder={8} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
                         : null}
 
+                    {/*펫 피격 값 관련이 와야함, 4순위*/}
+                    {getOptionBool(["attacked", eventSelectedValue[1]])
+                        ? <SelectButton width={200} optionValue={''} sortOrder={8} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
+                        : null}
+
+                    {/*주인 피격 값 관련이 와야함, 4순위*/}
+                    {getOptionBool(["master_attacked", eventSelectedValue[1]])
+                        ? <SelectButton width={0} optionValue={''} sortOrder={8} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
+                        : null}
+
 
                     {/*주인 인식관련 중간값 체크 목록, sortOrder 1번 여부에 따라 활성화*/}
                     {getOptionBool(["master_targeted", eventSelectedValue[1]])

@@ -149,6 +149,7 @@ function SelectButton({ width, optionValue, value, sortOrder, onChange }: Select
         case 7: sortValue = 2; break;
         case 8: sortValue = 2; break;
         case 9: sortValue = 2; break;
+        case 10: sortValue = 3; break;
     }
     return (
         <Select val={width} value={value[sortValue]} onChange={(e) => handleChange(e)}>
