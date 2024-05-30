@@ -4,6 +4,7 @@ import Mainbutton800400 from '../assets/MainButton800400.png'
 import { useRecoilState } from 'recoil';
 import { AIMakerExplainModalBool } from '../store/atom';
 import EventMaker from './AIMakerTool/EventMaker';
+import AIMakerTool from './AIMakerTool/AIMakerTool';
 
 function AIMaker() {
   const [AIMakerexplainModalBool, setAIMakerexplainModalBool] = useRecoilState(AIMakerExplainModalBool);
@@ -21,7 +22,7 @@ function AIMaker() {
       <Container onClick={handleCloseModal}>
         <RejectBox onClick={handleChildClick}>
           <LeftBox>
-            <EventMaker></EventMaker>
+            <AIMakerTool />
           </LeftBox>
           <MiddleBox></MiddleBox>
           <RightBox></RightBox>

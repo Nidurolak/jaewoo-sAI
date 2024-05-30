@@ -21,6 +21,7 @@ function SelectButton({ width, optionValue, value, sortOrder, onChange }: Select
         console.log("서브")
         val[0] = sortOrder.toString();
         val[1] = e.target.value;
+        val[2] = optionValue;
 
         console.log(val + "값이 라디오버튼에서 넘어감")
         onChange(val);
