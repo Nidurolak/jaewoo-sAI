@@ -147,7 +147,7 @@ function SelectButton({ width, optionValue, value, sortOrder, onChange }: Select
         case 5: sortValue = 2; break;
         case 6: sortValue = 2; break;
         case 7: sortValue = 2; break;
-        case 8: sortValue = 2; break;
+        case 8: sortValue = 3; break;
         case 9: sortValue = 2; break;
         case 10: sortValue = 3; break;
     }

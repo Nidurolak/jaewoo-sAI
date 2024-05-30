@@ -23,14 +23,14 @@ function EventMaker() {
                 console.log(x)
                 switch (x) {
                     case 0: newValue[0] = value[1]; break;
-                    case 1: newValue[1] = value[1]; break;
-                    case 2: newValue[1] = value[1]; newValue[2] = ''; break;
+                    case 1: newValue[1] = value[1]; newValue[2] = ''; newValue[3] = ''; break;
+                    case 2: newValue[1] = value[1]; newValue[2] = ''; newValue[3] = ''; break;
                     case 3: newValue[2] = value[1]; break;
                     case 4: newValue[2] = value[1]; break;
                     case 5: newValue[2] = value[1]; break;
                     case 6: newValue[2] = value[1]; break;
                     case 7: newValue[2] = value[1]; break;
-                    case 8: newValue[2] = value[1]; break;
+                    case 8: newValue[3] = value[1]; break;
                     case 9: newValue[2] = value[1]; break;
                 }
                 return newValue;
@@ -137,17 +137,22 @@ function EventMaker() {
 
                     {/*주인 피격 값 관련이 와야함, 3순위*/}
                     {getOptionBool(["master_attacked", eventSelectedValue[1]])
-                        ? <SelectButton width={0} optionValue={''} sortOrder={8} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
+                        ? <SelectButton width={0} optionValue={''} sortOrder={6} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
                         : null}
 
                     {/*펫 피격 값 관련이 와야함, 4순위*/}
                     {getOptionBool(["attacked", eventSelectedValue[1]])
-                        ? <SelectButton width={200} optionValue={''} sortOrder={8} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
+                        ? <SelectButton width={200} optionValue={''} sortOrder={6} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
                         : null}
 
                     {/*주인 피격 값 관련이 와야함, 4순위*/}
                     {getOptionBool(["master_attacked", eventSelectedValue[1]])
                         ? <SelectButton width={0} optionValue={''} sortOrder={8} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
+                        : null}
+
+                    {/*펫 공격 값 다운 관련이 와야함, 4순위*/}
+                    {getOptionBool(["attack", eventSelectedValue[1]])
+                        ? <SelectButton width={200} optionValue={''} sortOrder={8} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
                         : null}
 
 
