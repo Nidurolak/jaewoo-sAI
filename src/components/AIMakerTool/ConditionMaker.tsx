@@ -50,41 +50,6 @@ function ConditionMaker() {
 
     };
     const getOptionBool = (value: string[]): boolean => {
-        //펫인지 마스터인지 체크
-        //인식|경계 당함, 디펜스 방어, 공격당함, 스킬준비, 공격함, 동물 상대 피격
-        //2개 들어가야하는것 - 공격당함, 공격함, 동물 상대 피격
-
-        //펫 마스터 구분때문에 스위치했는데 if로 빼도 될 것 같음
-        //console.log(value)
-        if (value[0] == "master") {
-            switch (value[1]) {
-                //case 'master_targeted':
-                case 'master_defence': return true;
-                case 'master_attacked': return true;
-                case 'master_skill_prepare': return true;
-                case 'master_attack': return true;
-                case 'master_aiemd': return true;
-                case 'master': return true;
-                case 'pet': return false;
-                //case : break;
-            }
-        }
-        else if (value[0] == "pet") {
-            switch (value[1]) {
-                case 'pet': return true;
-                //case 'targeted':
-                case 'defence': return true;
-                case 'attacked': return true;
-                case 'skill_prepare': return true;
-                case 'attack': return true;
-                case 'master': return false;
-                //case : break;
-            }
-        }
-        //인식 관련 truefalse 체크
-        else if (value[0] == value[1]) {
-            return true
-        }
         return false;
     }
 
