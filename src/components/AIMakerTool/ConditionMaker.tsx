@@ -49,7 +49,37 @@ function ConditionMaker() {
         }
 
     };
+
+    const conditonOption = [
+        { id: 1, label: '상대의 상태가', value: 'target_state' },
+        { id: 2, label: '상대와의 거리가', value: 'target_distance' },
+        { id: 3, label: '스킬을 현재 사용할 수 있을 때', value: 'skill_preparable' },
+        { id: 4, label: '특기를 현재 사용할 수 있을 때', value: 'ST_prepareable' },
+        { id: 5, label: '핀즈비즈를 사용할 수 있을 때', value: 'EQ_prepareable' },
+        { id: 6, label: '주인의 소모된 생명력이', value: 'master_damaged_life_greater' },
+    ];
+
+    /*const sequenceOption = [
+        { id: 1, label: '까지 기다림', value: 'wait' },
+        { id: 2, label: '도망침', value: 'move_against' },
+        { id: 3, label: '근접 공격', value: 'melee_attack' },
+        { id: 4, label: '이동함', value: 'move_around' },
+        { id: 5, label: '차지 후 마법 공격', value: 'stackmagic_attack' },
+        { id: 6, label: '을(를) 준비함', value: 'prepare_skill' },
+        { id: 7, label: '마법을 차지함', value: 'stack_skill' },
+        { id: 8, label: '스킬을 차지함', value: 'process_skill' },
+        { id: 9, label: '사용 중인 스킬 취소', value: 'cancel_skill' },
+        { id: 10, label: '준비한 스킬을 사용', value: 'skill_relax' },
+        { id: 11, label: '추적함', value: 'chase' },
+        { id: 12, label: '특성을 준비함', value: 'PetEQ_skill' },
+        { id: 13, label: '핀즈비즈 스킬을 준비함', value: 'PetST_skill' },
+    ];*/
+
+
     const getOptionBool = (value: string[]): boolean => {
+        if (value[0] == value[1]) {
+            return true;
+        }
         return false;
     }
 
