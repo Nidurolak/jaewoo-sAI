@@ -6,6 +6,7 @@ import exp from 'constants';
 import SelectButton from './RadioButton';
 import { AIMakingEventArrayAtom } from '../../store/atom';
 import EventMaker from './EventMaker';
+import ConditionMaker from './ConditionMaker';
 
 function AIMakerTool() {
     const [selectedValue, setSelectedValue] = useState<string | null>(null);
@@ -102,7 +103,7 @@ function AIMakerTool() {
 
             <ColummBox>
                 <h2>조건</h2>
-                <EventMaker />
+                <ConditionMaker />
             </ColummBox>
         </EventDiv>)
 }

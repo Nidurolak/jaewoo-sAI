@@ -50,15 +50,6 @@ function ConditionMaker() {
 
     };
 
-    const conditonOption = [
-        { id: 1, label: '상대의 상태가', value: 'target_state' },
-        { id: 2, label: '상대와의 거리가', value: 'target_distance' },
-        { id: 3, label: '스킬을 현재 사용할 수 있을 때', value: 'skill_preparable' },
-        { id: 4, label: '특기를 현재 사용할 수 있을 때', value: 'ST_prepareable' },
-        { id: 5, label: '핀즈비즈를 사용할 수 있을 때', value: 'EQ_prepareable' },
-        { id: 6, label: '주인의 소모된 생명력이', value: 'master_damaged_life_greater' },
-    ];
-
     /*const sequenceOption = [
         { id: 1, label: '까지 기다림', value: 'wait' },
         { id: 2, label: '도망침', value: 'move_against' },
@@ -91,7 +82,7 @@ function ConditionMaker() {
         <RowBox>
             {/*소트오더0 = 펫/주인 기본옵션 | 소트오더1 = 펫 옵션1 | 소트오더2 = 주인옵션1  | 소트오더3 = 종합옵션3(모든공격~매그넘) | 소트오더4 = 종합옵션2(디펜스 방어 옵션)*/}
             {/*주인/펫 체크 버튼, 1순위 버튼*/}
-            <SelectButton optionValue={''} width={100} sortOrder={0} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
+            <SelectButton optionValue={'condition'} width={100} sortOrder={0} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
 
             {/*주인 디펜스 값 관련이 와야함, 3순위*/}
             {getOptionBool(["master_defence", eventSelectedValue[1]])
