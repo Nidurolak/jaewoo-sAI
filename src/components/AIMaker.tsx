@@ -60,9 +60,9 @@ const LeftBox = styled.div`
 align-items: center;
 display: flex;
 flex-direction: column;
-justify-content: center;
+justify-content: flex-start;
 width: 500px;
-height: 300px;
+min-height: 500px;
 //background-color: gray;
 `
 

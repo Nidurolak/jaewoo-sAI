@@ -1,7 +1,7 @@
 import React, { useState, ChangeEvent, useEffect, useRef } from 'react';
 import { styled } from 'styled-components';
 import clipboardCopy from 'clipboard-copy';
-import {  totalWarper } from '../hooks/AiMakerHook';
+import { totalWarper } from '../hooks/AiMakerHook';
 import { AITemplet, BackGUI } from '../utils/types';
 import { AI_TOOL } from './AITool';
 import Mainbutton20070 from '../assets/MainButton20070.png'
@@ -15,7 +15,7 @@ import 전봇대 from '../assets/Icon/전봇대.jpg'
 import 펫디펜더 from '../assets/Icon/펫디펜더.jpg'
 import 주인바라기 from '../assets/Icon/주인바라기.jpg'
 import 컴뱃파트너 from '../assets/Icon/컴뱃파트너.jpg'
-import { useRecoilState} from "recoil";
+import { useRecoilState } from "recoil";
 import gen_button_confirm from '../assets/Sound/gen_button_confirm.wav'
 import gen_hover from '../assets/Sound/gen_hover.wav'
 import { AIListExplainModalBool, CurrentAIName, DownloadModalBool, DownloadModalCopyBool, ExplainModalBool } from '../store/atom';
@@ -33,7 +33,7 @@ function AIButtonModal(value: AITemplet) {
     Confirmsound.current.play();
   }
 
-  const ExplainModalUp = () =>{
+  const ExplainModalUp = () => {
     setexplainModalBool(true)
     setCurrentAIName(value.name as string)
   }
@@ -43,40 +43,40 @@ function AIButtonModal(value: AITemplet) {
   //받아온 이름에 따라 다운받는 AI 변화
   switch (value.name) {
     case "펫 디펜더": content = totalWarper(AI_TOOL().Pet_Defender_AI_Package);
-    Image = 펫디펜더; Name = value.name; break;
+      Image = 펫디펜더; Name = value.name; break;
     case "로드롤러": content = totalWarper(AI_TOOL().Pet_RoadRoller_AI);
-    Image = 로드롤러; Name = value.name; break;
-    case "메디이익": content = totalWarper(AI_TOOL().Pet_Medic_AI); 
-    Image = 메디이익; Name = value.name; break;
-    case "볼트 서포터": content = totalWarper(AI_TOOL().Pet_BoltSupport_AI); 
-    Image = 볼트서포터; Name = value.name; break;
-    case "유도 미사일": content = totalWarper(AI_TOOL().Pet_TargetChaser_AI); 
-    Image = 블레이즈서포터; Name = value.name; break;
-    case "재우 오리지널": content = totalWarper(AI_TOOL().Pet_Original_AI); 
-    Image = 재우오리지널; Name = value.name; break;
-    case "전봇대": content = totalWarper(AI_TOOL().Pet_Battery_AI);  
-    Image = 전봇대; Name = value.name; break;
-    case "주인바라기": content = totalWarper(AI_TOOL().Pet_Chaser_AI_Package); 
-    Image = 주인바라기; Name = value.name; break;
-    case "폭스 헌터": content = totalWarper(AI_TOOL().Pet_FoxHunter_AI); 
-    Image = 컴뱃파트너; Name = value.name; break;
-    case "기르가쉬 헬퍼": content = totalWarper(AI_TOOL().Pet_GirHelper_AI); 
-    Image = 오리지널Lite; Name = value.name; break;
+      Image = 로드롤러; Name = value.name; break;
+    case "메디이익": content = totalWarper(AI_TOOL().Pet_Medic_AI);
+      Image = 메디이익; Name = value.name; break;
+    case "볼트 서포터": content = totalWarper(AI_TOOL().Pet_BoltSupport_AI);
+      Image = 볼트서포터; Name = value.name; break;
+    case "유도 미사일": content = totalWarper(AI_TOOL().Pet_TargetChaser_AI);
+      Image = 블레이즈서포터; Name = value.name; break;
+    case "재우 오리지널": content = totalWarper(AI_TOOL().Pet_Original_AI);
+      Image = 재우오리지널; Name = value.name; break;
+    case "전봇대": content = totalWarper(AI_TOOL().Pet_Battery_AI);
+      Image = 전봇대; Name = value.name; break;
+    case "주인바라기": content = totalWarper(AI_TOOL().Pet_Chaser_AI_Package);
+      Image = 주인바라기; Name = value.name; break;
+    case "폭스 헌터": content = totalWarper(AI_TOOL().Pet_FoxHunter_AI);
+      Image = 컴뱃파트너; Name = value.name; break;
+    case "기르가쉬 헬퍼": content = totalWarper(AI_TOOL().Pet_GirHelper_AI);
+      Image = 오리지널Lite; Name = value.name; break;
     default: break;
-};
+  };
 
   const FileDownload = () => {
     handleSoundPlay();
     setCurrentAIName(value.name as string)
     setmodalBoolValue(true)
-      const element = document.createElement("a");
-      //xml이 마비노기 호환파일인데 이상하게 작성이 제대로 안된다...
-      const file = new Blob([content], {type: 'text/plain' });
-      element.href = URL.createObjectURL(file);
-      element.download = value.name as string;
-      document.body.appendChild(element);
-      element.click();
-}
+    const element = document.createElement("a");
+    //xml이 마비노기 호환파일인데 이상하게 작성이 제대로 안된다...
+    const file = new Blob([content], { type: 'text/plain' });
+    element.href = URL.createObjectURL(file);
+    element.download = value.name as string + ".xml";
+    document.body.appendChild(element);
+    element.click();
+  }
 
   switch (value.name) {
     case "펫 디펜더": Name = value.name; break;
@@ -110,7 +110,7 @@ function AIButtonModal(value: AITemplet) {
       <AIListButton type='normal'>{Name} AI</AIListButton>
     </AIDetailContainer>
     <AIListButton type='AIDown' onClick={handleCopyToClipboard}>클립보드 복사하기</AIListButton>
-    <AIListButton type = 'AIDown' onClick={FileDownload}>AI파일 다운받기</AIListButton>
+    <AIListButton type='AIDown' onClick={FileDownload}>AI파일 다운받기</AIListButton>
   </BoxContainer>)
 }
 
