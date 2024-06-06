@@ -136,6 +136,55 @@ function SelectButton({ width, optionValue, value, sortOrder, onChange }: Select
     let options = mainOptions;
     let sortValue = 0;
     switch (optionValue) {
+        case 'master': options = mainOptions; break;
+        case 'pet': options = petEventOption; break;
+
+        case 'master_targeted': options = totalOption3; break;
+        case 'master_attack': options = totalOption4; break;
+        //case 'master_aimed': options = masterEventOption; break;
+        //case 'master_target_skill_prepare': options = masterEventOption; break;
+        //case 'master_target_magic_prepare': options = masterEventOption; break;
+        case 'master_defence': options = defenseOption; break;
+        case 'master_attacked': options = totalOption4; break;
+        case 'master_skill_prepare': options = masterSkillOption; break;
+
+        case 'targeted': options = totalOption3; break;
+        //case 'seek_target': options = ; break;
+        //case 'now_targeting': options = ; break;
+        case 'attack': options = (sortOrder == 1) ? petAttackOption : downOption; break;
+        //case 'aimed': options = ; break;
+        //case 'target_skill_prepare': options = ; break;
+        //case 'target_magic_prepare': options = ; break;
+        case 'defence': options = defenseOption; break;
+        case 'attacked': options = (sortOrder == 1) ? totalOption4 : downOption; break;
+        /*
+                case 'all': options = ; break;
+                case 'basic': options = ; break;
+                case 'counter': options = ; break;
+                case 'windmill': options = ; break;
+                case 'lightningbolt': options = ; break;
+                case 'icegbolt': options = ; break;
+                case 'firebolt': options = ; break;
+                case 'thunder': options = ; break;
+                case 'fireball': options = ; break;
+                case 'icespace': options = ; break;
+                case 'healing': options = ; break;
+        
+                case 'alert': options = ; break;
+                case 'attack': options = ; break;
+        
+                case 'true': options = ; break;
+                case 'false': options = ; break;*/
+        default: break;
+    }
+
+
+
+
+
+
+
+    switch (optionValue) {
         case "event": switch (sortOrder) {
             case 0: options = mainOptions; break;
             case 1: options = petEventOption; break;
