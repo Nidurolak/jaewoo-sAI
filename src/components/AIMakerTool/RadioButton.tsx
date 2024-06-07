@@ -183,62 +183,62 @@ function SelectButton({ width, optionValue, value, sortOrder, onChange }: Select
 
 
 
-
-    switch (optionValue) {
-        case "event": switch (sortOrder) {
-            case 0: options = mainOptions; break;
-            case 1: options = petEventOption; break;
-            case 2: options = masterEventOption; break;
-            case 3: options = masterSkillOption; break;
-            case 4: options = defenseOption; break;
-            case 5: options = totalOption3; break;
-            case 6: options = totalOption4; break;
-            case 7: options = petOption2; break;
-            case 8: options = downOption; break;
-            case 9: options = petAttackOption; break;
-            default: options = mainOptions; break;
-        }
-            switch (sortOrder) {
-                case 0: sortValue = 0; break;
-                case 1: sortValue = 1; break;
-                case 2: sortValue = 1; break;
-                case 3: sortValue = 2; break;
-                case 4: sortValue = 2; break;
-                case 5: sortValue = 2; break;
-                case 6: sortValue = 2; break;
-                case 7: sortValue = 2; break;
-                case 8: sortValue = 3; break;
-                case 9: sortValue = 2; break;
-                case 10: sortValue = 3; break;
-            }break;
-        case "condition": switch (sortOrder) {
-            case 0: options = conditonOption; break;
-            case 1: options = petEventOption; break;
-            case 2: options = masterEventOption; break;
-            case 3: options = masterSkillOption; break;
-            case 4: options = defenseOption; break;
-            case 5: options = totalOption3; break;
-            case 6: options = totalOption4; break;
-            case 7: options = petOption2; break;
-            case 8: options = downOption; break;
-            case 9: options = petAttackOption; break;
-            default: options = conditonOption; break;
-        }
-            switch (sortOrder) {
-                case 0: sortValue = 0; break;
-                case 1: sortValue = 1; break;
-                case 2: sortValue = 1; break;
-                case 3: sortValue = 2; break;
-                case 4: sortValue = 2; break;
-                case 5: sortValue = 2; break;
-                case 6: sortValue = 2; break;
-                case 7: sortValue = 2; break;
-                case 8: sortValue = 3; break;
-                case 9: sortValue = 2; break;
-                case 10: sortValue = 3; break;
-            }break;
-        case "sequence": break;
-    }
+    /*//위쪽값 테스트 위해 잠깐 삭제
+        switch (optionValue) {
+            case "event": switch (sortOrder) {
+                case 0: options = mainOptions; break;
+                case 1: options = petEventOption; break;
+                case 2: options = masterEventOption; break;
+                case 3: options = masterSkillOption; break;
+                case 4: options = defenseOption; break;
+                case 5: options = totalOption3; break;
+                case 6: options = totalOption4; break;
+                case 7: options = petOption2; break;
+                case 8: options = downOption; break;
+                case 9: options = petAttackOption; break;
+                default: options = mainOptions; break;
+            }
+                switch (sortOrder) {
+                    case 0: sortValue = 0; break;
+                    case 1: sortValue = 1; break;
+                    case 2: sortValue = 1; break;
+                    case 3: sortValue = 2; break;
+                    case 4: sortValue = 2; break;
+                    case 5: sortValue = 2; break;
+                    case 6: sortValue = 2; break;
+                    case 7: sortValue = 2; break;
+                    case 8: sortValue = 3; break;
+                    case 9: sortValue = 2; break;
+                    case 10: sortValue = 3; break;
+                }break;
+            case "condition": switch (sortOrder) {
+                case 0: options = conditonOption; break;
+                case 1: options = petEventOption; break;
+                case 2: options = masterEventOption; break;
+                case 3: options = masterSkillOption; break;
+                case 4: options = defenseOption; break;
+                case 5: options = totalOption3; break;
+                case 6: options = totalOption4; break;
+                case 7: options = petOption2; break;
+                case 8: options = downOption; break;
+                case 9: options = petAttackOption; break;
+                default: options = conditonOption; break;
+            }
+                switch (sortOrder) {
+                    case 0: sortValue = 0; break;
+                    case 1: sortValue = 1; break;
+                    case 2: sortValue = 1; break;
+                    case 3: sortValue = 2; break;
+                    case 4: sortValue = 2; break;
+                    case 5: sortValue = 2; break;
+                    case 6: sortValue = 2; break;
+                    case 7: sortValue = 2; break;
+                    case 8: sortValue = 3; break;
+                    case 9: sortValue = 2; break;
+                    case 10: sortValue = 3; break;
+                }break;
+            case "sequence": break;
+        } */
     //소트오더0 = 펫/주인 기본옵션 | 소트오더1 = 펫 옵션1 | 소트오더2 = 주인옵션1  | 소트오더3 = 종합옵션3(모든공격~매그넘) | 소트오더4 = 종합옵션2(디펜스 방어 옵션) | 소트오더5 = 경계인식
 
     return (
