@@ -103,7 +103,7 @@ function AIMakerTool() {
 
             <ColummBox>
                 <h2>조건</h2>
-                <ConditionMaker />
+                {/*<ConditionMaker />*/}
             </ColummBox>
         </EventDiv>)
 }
