@@ -36,16 +36,6 @@ function AIMaker() {
           <h2>재우's AI에 사용되는 패턴을 기반으로 자신 만의 AI를 만들 수 있는 방법을 구상 중입니다. 기대해주세요!</h2>*/
 export default AIMaker;
 
-const EventDiv = styled.div`
-align-items: center;
-display: flex;
-flex-direction: column;
-justify-content: center;
-width: 90%;
-height: 70px;
-//background-color: darkgoldenrod;
-`
-
 const MiddleBox = styled.div`
 align-items: center;
 display: flex;
@@ -61,7 +51,7 @@ align-items: center;
 display: flex;
 flex-direction: column;
 justify-content: flex-start;
-width: 500px;
+width: 700px;
 min-height: 500px;
 //background-color: gray;
 `

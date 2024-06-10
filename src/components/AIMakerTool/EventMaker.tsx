@@ -105,6 +105,26 @@ function EventMaker() {
             {/*주인/펫 체크 버튼, 1순위 버튼*/}
             <SelectButton optionValue={''} width={100} sortOrder={0} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
 
+            {/*주인 인식관련 중간값 체크 목록, sortOrder 1번 여부에 따라 활성화*/}
+            {getOptionBool(["master_targeted", eventSelectedValue[1]])
+                ? <BoxTextWraper><h3>적에게</h3><SelectButton width={0} optionValue={'master_targeted'} sortOrder={2} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton></BoxTextWraper>
+                : null}
+
+            {/*펫 인식관련 중간값 체크 목록, sortOrder 1번 여부에 따라 활성화*/}
+            {getOptionBool(["targeted", eventSelectedValue[1]])
+                ? <BoxTextWraper><h3>적에게</h3><SelectButton width={0} optionValue={'targeted'} sortOrder={2} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton></BoxTextWraper>
+                : null}
+
+            {/*주인 피격 값 관련이 와야함, 3순위*/}
+            {getOptionBool(["master_attacked", eventSelectedValue[1]])
+                ? <BoxTextWraper><SelectButton width={0} optionValue={'master_attacked'} sortOrder={2} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton><h3>(으)로 적에게</h3></BoxTextWraper>
+                : null}
+
+            {/*펫 피격 값 관련이 와야함, 3순위*/}
+            {getOptionBool(["attacked", eventSelectedValue[1]])
+                ? <BoxTextWraper><h3>적에게</h3><SelectButton width={0} optionValue={'attacked'} sortOrder={2} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton><h3>(으)로</h3></BoxTextWraper>
+                : null}
+
             {/*주인 디펜스 값 관련이 와야함, 3순위*/}
             {getOptionBool(["master_defence", eventSelectedValue[1]])
                 ? <SelectButton width={0} optionValue={'master_defence'} sortOrder={2} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
@@ -112,16 +132,16 @@ function EventMaker() {
 
             {/*펫 디펜스 값 관련이 와야함, 3순위*/}
             {getOptionBool(["defence", eventSelectedValue[1]])
-                ? <SelectButton width={200} optionValue={'defence'} sortOrder={2} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
+                ? <SelectButton width={0} optionValue={'defence'} sortOrder={2} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
                 : null}
             {/*펫 공격 값 관련이 와야함, 3순위*/}
             {getOptionBool(["attack", eventSelectedValue[1]])
-                ? <SelectButton width={200} optionValue={'attack'} sortOrder={2} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
+                ? <BoxTextWraper><SelectButton width={0} optionValue={'attack'} sortOrder={2} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton><h3>(을)를 사용해</h3></BoxTextWraper>
                 : null}
 
             {/*주인 공격 값 관련이 와야함, 3순위*/}
             {getOptionBool(["master_attack", eventSelectedValue[1]])
-                ? <SelectButton width={0} optionValue={'master_attack'} sortOrder={2} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
+                ? <BoxTextWraper><SelectButton width={0} optionValue={'master_attack'} sortOrder={2} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton><h3>을 사용해</h3></BoxTextWraper>
                 : null}
 
             {/*마스터 스킬 준비 값 관련이 와야함, 3순위*/}
@@ -132,42 +152,21 @@ function EventMaker() {
             {/*행동 체크 버튼, 2순위 버튼*/}
             {getOptionBool(["master", eventSelectedValue[0]])
                 ? <SelectButton width={0} optionValue={'master'} sortOrder={1} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
-                : <SelectButton width={400} optionValue={'pet'} sortOrder={1} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>}
-
-            {/*펫 피격 값 관련이 와야함, 3순위*/}
-            {getOptionBool(["attacked", eventSelectedValue[1]])
-                ? <SelectButton width={200} optionValue={'attacked'} sortOrder={2} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
-                : null}
-
-            {/*주인 피격 값 관련이 와야함, 3순위*/}
-            {getOptionBool(["master_attacked", eventSelectedValue[1]])
-                ? <SelectButton width={0} optionValue={'master_attacked'} sortOrder={2} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
-                : null}
+                : <SelectButton width={0} optionValue={'pet'} sortOrder={1} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>}
 
             {/*펫 피격 값 관련이 와야함, 4순위*/}
             {getOptionBool(["attacked", eventSelectedValue[1]])
-                ? <SelectButton width={200} optionValue={'attacked'} sortOrder={3} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
+                ? <BoxTextWraper><h3>그리고</h3><SelectButton width={0} optionValue={'attacked'} sortOrder={3} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton></BoxTextWraper>
                 : null}
 
             {/*주인 피격 값 관련이 와야함, 4순위*/}
             {getOptionBool(["master_attacked", eventSelectedValue[1]])
-                ? <SelectButton width={0} optionValue={'master_attacked'} sortOrder={3} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
+                ? <BoxTextWraper><h3>그리고</h3><SelectButton width={0} optionValue={'master_attacked'} sortOrder={3} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton></BoxTextWraper>
                 : null}
 
             {/*펫 공격 값 다운 관련이 와야함, 4순위*/}
             {getOptionBool(["attack", eventSelectedValue[1]])
-                ? <SelectButton width={200} optionValue={'attack'} sortOrder={3} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
-                : null}
-
-
-            {/*주인 인식관련 중간값 체크 목록, sortOrder 1번 여부에 따라 활성화*/}
-            {getOptionBool(["master_targeted", eventSelectedValue[1]])
-                ? <SelectButton width={0} optionValue={'master_targeted'} sortOrder={2} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
-                : null}
-
-            {/*펫 인식관련 중간값 체크 목록, sortOrder 1번 여부에 따라 활성화*/}
-            {getOptionBool(["targeted", eventSelectedValue[1]])
-                ? <SelectButton width={200} optionValue={'targeted'} sortOrder={2} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
+                ? <BoxTextWraper><h3>그리고</h3><SelectButton width={0} optionValue={'attack'} sortOrder={3} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton></BoxTextWraper>
                 : null}
 
         </RowBox>)
@@ -176,10 +175,22 @@ function EventMaker() {
 export default EventMaker
 
 const RowBox = styled.div`
-align-items: flex-end;
+align-items: flex-start;
 display: flex;
 flex-direction: row;
 justify-content: flex-start;
+gap: 10px; 
 width: 100%;
-gap: 10px;
+flex-wrap: wrap;
+`
+
+const BoxTextWraper = styled.div`
+align-items: center;
+display: flex;
+flex-direction: row;
+justify-content: flex-start;
+gap: 3px;
+h3 {
+    white-space: nowrap;
+} 
 `
