@@ -26,18 +26,6 @@ function EventMaker() {
                 const x = parseInt(value[0])
                 console.log(x)
                 switch (x) {
-                    /*
-                    case 0: newValue[0] = value[1]; break;
-                    case 1: newValue[1] = value[1]; newValue[2] = ''; newValue[3] = ''; break;
-                    case 2: newValue[1] = value[1]; newValue[2] = ''; newValue[3] = ''; break;
-                    case 3: newValue[2] = value[1]; break;
-                    case 4: newValue[2] = value[1]; break;
-                    case 5: newValue[2] = value[1]; break;
-                    case 6: newValue[2] = value[1]; break;
-                    case 7: newValue[2] = value[1]; break;
-                    case 8: newValue[3] = value[1]; break;
-                    case 9: newValue[2] = value[1]; break;
-                    */
                     case 0: newValue[0] = value[1]; break;
                     case 1: newValue[1] = value[1]; break;
                     case 2: newValue[2] = value[1]; break;
