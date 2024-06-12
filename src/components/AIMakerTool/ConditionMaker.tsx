@@ -12,7 +12,7 @@ function ConditionMaker() {
 
 
     //여기서 구분하는 값을 추가할 것
-    const handleSelectChange = (value: string[[]]) => {
+    const handleSelectChange = (value: string[]) => {
         //setSelectedValue(value);
         console.log(conditionSelectedValue + "이 바뀌기 전의 값, " + value + "가 넘어옴 배열값, " + value[1] + "의 값이 라디오값으로 넘어옴, " + value[0] + "이 소트오더로 넘어옴")
         /*switch (x) {
@@ -27,8 +27,8 @@ function ConditionMaker() {
     };
 
     useEffect(() => {
-        console.log(eventSelectedValue)
-    }, [eventSelectedValue])
+        console.log(conditionSelectedValue)
+    }, [setConditionSelectedValue])
 
     return (
         <RowBox>

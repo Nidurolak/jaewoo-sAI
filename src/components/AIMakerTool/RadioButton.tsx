@@ -275,7 +275,7 @@ function SelectButton({ width, optionValue, value, sortOrder, onChange }: Select
 
     return (
         <Select val={width} value={value[sortValue]} onChange={(e) => handleChange(e)}>
-            {options.map(option => (
+            {options.map((option,) => (
                 <option key={option.id} value={option.value}>
                     {option.label}
                 </option>
