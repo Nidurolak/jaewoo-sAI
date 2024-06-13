@@ -10,6 +10,7 @@ interface SelectBoxProps {
     width: number;
     sortOrder: number;
     optionValue: string;
+    indexNum?: number;
     onChange: (value: string[]) => void;
 }
 

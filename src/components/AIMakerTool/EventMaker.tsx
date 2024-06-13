@@ -24,14 +24,8 @@ function EventMaker() {
                 const newValue = [...prevstate];
                 //소트오더 0 = 배열 0번값, 소트오더 1, 2 = 배열 1번값 소트오더 3, 4, 5 = 베열 2번값
                 const x = parseInt(value[0])
+                newValue[parseInt(value[0])] = value[1];
                 console.log(x)
-                switch (x) {
-                    case 0: newValue[0] = value[1]; break;
-                    case 1: newValue[1] = value[1]; break;
-                    case 2: newValue[2] = value[1]; break;
-                    case 3: newValue[3] = value[1]; break;
-
-                }
                 return newValue;
             })
         }

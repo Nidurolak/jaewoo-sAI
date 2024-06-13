@@ -30,15 +30,27 @@ function ConditionMaker() {
         console.log(conditionSelectedValue)
     }, [setConditionSelectedValue])
 
-    return (
-        <RowBox>
-            {/*소트오더0 = 펫/주인 기본옵션 | 소트오더1 = 펫 옵션1 | 소트오더2 = 주인옵션1  | 소트오더3 = 종합옵션3(모든공격~매그넘) | 소트오더4 = 종합옵션2(디펜스 방어 옵션)*/}
-            {/*주인/펫 체크 버튼, 1순위 버튼*/}
-
-        </RowBox>)
+    return (<>
+        {/*소트오더0 = 펫/주인 기본옵션 | 소트오더1 = 펫 옵션1 | 소트오더2 = 주인옵션1  | 소트오더3 = 종합옵션3(모든공격~매그넘) | 소트오더4 = 종합옵션2(디펜스 방어 옵션)*/}
+        {conditionSelectedValue.map((option, index) => (
+            <RowBox><TestBox>{option}{index}</TestBox></RowBox>))}
+        <TestButton>추가</TestButton></>)
 }
 
 export default ConditionMaker
+
+const TestButton = styled.button`
+    width: 150px;
+    height: 30px;
+    background-color: lavender;
+    margin-bottom: 10px;
+`
+const TestBox = styled.div`
+    width: 100px;
+    height: 40px;
+    background-color: gray;
+    margin-bottom: 10px;
+`
 
 const RowBox = styled.div`
 align-items: flex-end;
