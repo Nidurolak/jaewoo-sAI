@@ -11,7 +11,7 @@ function ConditionMaker() {
     const [conditionSelectedValue, setConditionSelectedValue] = useRecoilState(AIMakingConditionArrayAtom);
 
 
-    //여기서 구분하는 값을 추가할 것
+    //구분값은 하단의 wraper 클래스에서 담당할 것. 여기는 단순한 포장 컴포넌트가 될 것임
     const handleSelectChange = (value: string[]) => {
         //setSelectedValue(value);
         console.log(conditionSelectedValue + "이 바뀌기 전의 값, " + value + "가 넘어옴 배열값, " + value[1] + "의 값이 라디오값으로 넘어옴, " + value[0] + "이 소트오더로 넘어옴")
