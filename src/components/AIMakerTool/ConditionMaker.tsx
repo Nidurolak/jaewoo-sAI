@@ -15,13 +15,6 @@ function ConditionMaker() {
     const handleSelectChange = (value: string[]) => {
         //setSelectedValue(value);
         console.log(conditionSelectedValue + "이 바뀌기 전의 값, " + value + "가 넘어옴 배열값, " + value[1] + "의 값이 라디오값으로 넘어옴, " + value[0] + "이 소트오더로 넘어옴")
-        /*switch (x) {
-            case 0: newValue[0] = value[1]; break;
-            case 1: newValue[1] = value[1]; break;
-            case 2: newValue[2] = value[1]; break;
-            case 3: newValue[3] = value[1]; break;
-        }*/
-
 
 
     };

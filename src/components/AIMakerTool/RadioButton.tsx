@@ -15,7 +15,7 @@ interface SelectBoxProps {
 }
 
 
-function SelectButton({ width, optionValue, value, sortOrder, onChange }: SelectBoxProps) {
+function SelectButton({ width, optionValue, value, sortOrder, indexNum, onChange }: SelectBoxProps) {
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         var val: string[] = [];
 
@@ -23,6 +23,9 @@ function SelectButton({ width, optionValue, value, sortOrder, onChange }: Select
         val[0] = sortOrder.toString();
         val[1] = e.target.value;
         val[2] = optionValue;
+        if (indexNum !== undefined) {
+            val[3] = indexNum.toString();
+        }
 
         console.log(val + "값이 라디오버튼에서 넘어감")
         onChange(val);
