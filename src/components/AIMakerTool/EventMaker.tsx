@@ -10,8 +10,27 @@ function EventMaker() {
     const [selectedValue, setSelectedValue] = useState<string | null>(null);
     const [eventSelectedValue, setEventSelectedValue] = useRecoilState(AIMakingEventArrayAtom);
 
+    var firstRadio: string[];
+    var secondRadio: string[];
+    var thirdRadio: string[];
+
     useEffect(() => {
         console.log(eventSelectedValue)
+        switch (eventSelectedValue[1]) {
+            //[width, optionValue, sortOrder, h3 전열 , h3 후열] 순으로 배열 생성
+            case 'master_targeted': firstRadio = ["0", "master_targeted", "2", "적에게"]; secondRadio = []; thirdRadio = []; break;
+            case 'targeted': firstRadio = ["0", "targeted", "2", "적에게"]; secondRadio = []; thirdRadio = []; break;
+            case 'master_attacked': firstRadio = ["0", "master_attacked", "2", "(으)로 적에게"]; secondRadio = ["0", "master_attacked", "3", "그리고"]; thirdRadio = []; break;
+            case 'attacked': firstRadio = ["0", "attacked", "2", "적에게"]; secondRadio = ["0", "attacked", "3", "그리고"]; thirdRadio = []; break;
+            case 'master_defence': firstRadio = ["0", "master_defence", "2"]; secondRadio = []; thirdRadio = []; break;
+            case 'defence': firstRadio = ["0", "defence", "2"]; secondRadio = []; thirdRadio = []; break;
+            case 'attack': firstRadio = ["0", "attack", "2", "", "을 사용해"]; secondRadio = ["0", "", ""]; thirdRadio = []; break;
+            case 'master_attack': firstRadio = ["0", "", ""]; secondRadio = ["0", "", ""]; thirdRadio = ["0", "", ""]; break;
+            case 'master_skill_prepare': firstRadio = ["0", "", ""]; secondRadio = ["0", "", ""]; thirdRadio = ["0", "", ""]; break;
+            case 'master': firstRadio = ["0", "", ""]; secondRadio = ["0", "", ""]; thirdRadio = ["0", "", ""]; break;
+            default: firstRadio = []; secondRadio = []; thirdRadio = []; break;
+        }
+
     }, [eventSelectedValue])
 
 
