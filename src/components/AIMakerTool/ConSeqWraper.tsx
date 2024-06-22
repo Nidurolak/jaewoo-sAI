@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, useEffect } from 'react';
+import React, { useState, ChangeEvent, useEffect, useMemo } from 'react';
 import { styled } from 'styled-components';
 import Mainbutton800400 from '../assets/MainButton800400.png'
 import { useRecoilState } from 'recoil';
@@ -23,34 +23,38 @@ function ConSeqWraper({ width, optionValue, value, sortOrder, indexNum, isCondit
 
     var indexNumThis = indexNum != undefined ? indexNum : 0
 
-    //라디오 버튼에서 핸들 체인지를 지속하게 시킬까? 아님 부모단인 여기서 하는 것이 맞을까?
-    //라이도 버튼 단에서 코드 수정을 해야할탠데 그러면 이벤트메이커가 꼬일 수 있음
-    //일단 여기 것을 바꾸자.
-    //04-06-15 아니야 메이커 단에서 핸들체인지를 진행해야해. 이 코드는 쓰지 않을거야
-    const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        var val: string[] = [];
-        val[0] = sortOrder.toString();
-        val[1] = e.target.value;
-        val[2] = optionValue;
-        val[3] = indexNumThis.toString();
-
-        //컨디션인지 시퀀스인지 따져서 적용시킬 리코일값이 필요해
-
-        console.log(val + "값이 라디오버튼에서 넘어감")
-        onChange(val);
-        console.log(e.target.value)
-        //console.log(customValue)
-    };
-
-    const getOptionBool = (value: string[]): boolean => {
-        if (value[0] == value[1]) {
-            return true
+    //useMemo 추가하고 관련값 끼워넣기
+    useMemo(() => {
+        console.log(eventSelectedValue)
+        console.log(firstRadio)
+        console.log(secondRadio)
+        console.log(thirdRadio)
+        switch (eventSelectedValue[0]) {
+            case 'master': setFirstRadio(["0", "master", "1", "", ""]); break;
+            case 'pet': setFirstRadio(["0", "pet", "1", "", ""]); break;
         }
-        else {
-            return false;
+        switch (eventSelectedValue[1]) {
+            //[width, optionValue, sortOrder, h3 전열 , h3 후열] 순으로 배열 생성
+            case 'master_targeted': setSecondRadio(["0", "master_targeted", "2", "적에게", ""]); setThirdRadio([]); break;
+            case 'targeted': setSecondRadio(["0", "targeted", "2", "적에게", ""]); setThirdRadio([]); break;
+            case 'master_attacked': setSecondRadio(["0", "master_attacked", "2", "", "(으)로 적에게"]); setThirdRadio(["0", "master_attacked", "3", "그리고", ""]); break;
+            case 'attacked': setSecondRadio(["0", "attacked", "2", "적에게"]); setThirdRadio(["0", "attacked", "3", "그리고"]); break;
+            case 'master_defence': setSecondRadio(["0", "master_defence", "2"]); setThirdRadio([]); break;
+            case 'defence': setSecondRadio(["0", "defence", "2"]); setThirdRadio([]); break;
+            case 'attack': setSecondRadio(["0", "attack", "2", "", "을 사용해"]); setThirdRadio(["0", "attack", "3", "그리고", ""]); break;
+            case 'master_attack': setSecondRadio(["0", "master_attack", "2", "", "을 사용해"]); setThirdRadio([]); break;
+            case 'master_skill_prepare': setSecondRadio(["0", "master_skill_prepare", "2", "", ""]); setThirdRadio([]); break;
+            case 'master_target_magic_prepare': setSecondRadio([]); setThirdRadio([]); break;
+            case 'target_magic_prepare': setSecondRadio([]); setThirdRadio([]); break;
+            case 'master_target_skill_prepare': setSecondRadio([]); setThirdRadio([]); break;
+            case 'target_skill_prepare': setSecondRadio([]); setThirdRadio([]); break;
+            case 'aimed': setSecondRadio([]); setThirdRadio([]); break;
+            case 'master_aimed': setSecondRadio([]); setThirdRadio([]); break;
+            case 'seek_target': setSecondRadio([]); setThirdRadio([]); break;
+            case 'now_targeting': setSecondRadio([]); setThirdRadio([]); break;
         }
-    }
 
+    }, [eventSelectedValue])
 
     return (<RowBox>
         {isCondition
