@@ -78,23 +78,12 @@ function ConSeqWraper({ width, optionValue, value, sortOrder, indexNum, isCondit
         switch (currentConditionList[1]) {
             //[width, optionValue, sortOrder, h3 전열 , h3 후열] 순으로 배열 생성
             //여기서 케이스 만들고 아래 리턴에서 조립해야해
-            case 'master_targeted': setSecondRadio(["0", "master_targeted", "2", "적에게", ""]); setThirdRadio([]); break;
-            case 'targeted': setSecondRadio(["0", "targeted", "2", "적에게", ""]); setThirdRadio([]); break;
-            case 'master_attacked': setSecondRadio(["0", "master_attacked", "2", "", "(으)로 적에게"]); setThirdRadio(["0", "master_attacked", "3", "그리고", ""]); break;
-            case 'attacked': setSecondRadio(["0", "attacked", "2", "적에게"]); setThirdRadio(["0", "attacked", "3", "그리고"]); break;
-            case 'master_defence': setSecondRadio(["0", "master_defence", "2"]); setThirdRadio([]); break;
-            case 'defence': setSecondRadio(["0", "defence", "2"]); setThirdRadio([]); break;
-            case 'attack': setSecondRadio(["0", "attack", "2", "", "을 사용해"]); setThirdRadio(["0", "attack", "3", "그리고", ""]); break;
-            case 'master_attack': setSecondRadio(["0", "master_attack", "2", "", "을 사용해"]); setThirdRadio([]); break;
-            case 'master_skill_prepare': setSecondRadio(["0", "master_skill_prepare", "2", "", ""]); setThirdRadio([]); break;
-            case 'master_target_magic_prepare': setSecondRadio([]); setThirdRadio([]); break;
-            case 'target_magic_prepare': setSecondRadio([]); setThirdRadio([]); break;
-            case 'master_target_skill_prepare': setSecondRadio([]); setThirdRadio([]); break;
-            case 'target_skill_prepare': setSecondRadio([]); setThirdRadio([]); break;
-            case 'aimed': setSecondRadio([]); setThirdRadio([]); break;
-            case 'master_aimed': setSecondRadio([]); setThirdRadio([]); break;
-            case 'seek_target': setSecondRadio([]); setThirdRadio([]); break;
-            case 'now_targeting': setSecondRadio([]); setThirdRadio([]); break;
+            case 'target_state': setSecondRadio(["0", "target_state", "2", "적에게", ""]); setThirdRadio([]); break;
+            case 'target_distance': setSecondRadio(["0", "target_distance", "2", "적에게", ""]); setThirdRadio([]); break;
+            case 'skill_preparable': setSecondRadio(["0", "skill_preparable", "2", "", "(으)로 적에게"]); setThirdRadio(["0", "master_attacked", "3", "그리고", ""]); break;
+            case 'ST_preparable': setSecondRadio(["0", "ST_preparable", "2", "적에게"]); setThirdRadio(["0", "attacked", "3", "그리고"]); break;
+            case 'EQ_preparable': setSecondRadio(["0", "EQ_preparable", "2"]); setThirdRadio([]); break;
+            case 'master_damaged_life_greater': setSecondRadio(["0", "master_damaged_life_greater", "2"]); setThirdRadio([]); break;
         }
 
     }, [currentConditionList])
