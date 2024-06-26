@@ -78,12 +78,12 @@ function ConSeqWraper({ width, optionValue, value, sortOrder, indexNum, isCondit
         switch (currentConditionList[1]) {
             //[width, optionValue, sortOrder, h3 전열 , h3 후열] 순으로 배열 생성
             //여기서 케이스 만들고 아래 리턴에서 조립해야해
-            case 'target_state': setSecondRadio(["0", "target_state", "2", "적에게", ""]); setThirdRadio([]); break;
-            case 'target_distance': setSecondRadio(["0", "target_distance", "2", "적에게", ""]); setThirdRadio([]); break;
-            case 'skill_preparable': setSecondRadio(["0", "skill_preparable", "2", "", "(으)로 적에게"]); setThirdRadio(["0", "master_attacked", "3", "그리고", ""]); break;
-            case 'ST_preparable': setSecondRadio(["0", "ST_preparable", "2", "적에게"]); setThirdRadio(["0", "attacked", "3", "그리고"]); break;
-            case 'EQ_preparable': setSecondRadio(["0", "EQ_preparable", "2"]); setThirdRadio([]); break;
-            case 'master_damaged_life_greater': setSecondRadio(["0", "master_damaged_life_greater", "2"]); setThirdRadio([]); break;
+            case 'target_state': setFirstRadio(["0", "target_state", "1", "상태의 상태가", "인 경우"]); setSecondRadio([]); break;
+            case 'target_distance': setFirstRadio(["0", "target_distance", "1", "상대와의 거리가", "이상이고"]); setSecondRadio(["0", "target_distance", "2", "", "이하일 때"]); break;
+            case 'skill_preparable': setFirstRadio(["0", "skill_preparable", "1", "", "(을)를 사용할 수 있는 경우"]); setSecondRadio(["0", "master_attacked", "3", "그리고", ""]); break;
+            case 'ST_preparable': setFirstRadio(["0", "ST_preparable", "1", "(을)를 사용할 수 있는 경우"]); setSecondRadio(["0", "attacked", "3", "그리고"]); break;
+            case 'EQ_preparable': setFirstRadio(["0", "EQ_preparable", "1", "(을)를 사용할 수 있는 경우", ""]); setSecondRadio([]); break;
+            case 'master_damaged_life_greater': setFirstRadio(["0", "master_damaged_life_greater", "1", "주인의 소모된 생명력이", ""]); setSecondRadio(["0", "master_damaged_life_greater", "2", "", "이상인 경우"]); break;
         }
 
     }, [currentConditionList])
@@ -92,7 +92,27 @@ function ConSeqWraper({ width, optionValue, value, sortOrder, indexNum, isCondit
         {isCondition
             ? <SelectButton optionValue={''} width={100} sortOrder={0} value={currentConditionList} onChange={onChange}></SelectButton>
             : null}
-
+        {firstRadio.length > 0
+            ? <BoxTextWraper>
+                {firstRadio[3] != '' ? <h3>{firstRadio[3]}</h3> : null}
+                1{firstRadio[1]}<SelectButton width={parseInt(firstRadio[0])} optionValue={firstRadio[1]} sortOrder={parseInt(firstRadio[2])} value={currentConditionList} onChange={onChange}></SelectButton>
+                {firstRadio[4] != '' ? <h3>{firstRadio[4]}</h3> : null}
+            </BoxTextWraper>
+            : null}
+        {secondRadio.length > 0
+            ? <BoxTextWraper>
+                {secondRadio[3] != '' ? <h3>{secondRadio[3]}</h3> : null}
+                2{secondRadio[1]}<SelectButton width={parseInt(secondRadio[0])} optionValue={secondRadio[1]} sortOrder={parseInt(secondRadio[2])} value={currentConditionList} onChange={onChange}></SelectButton>
+                {secondRadio[4] != '' ? <h3>{secondRadio[4]}</h3> : null}
+            </BoxTextWraper>
+            : null}
+        {thirdRadio.length > 0
+            ? <BoxTextWraper>
+                {thirdRadio[3] != '' ? <h3>{thirdRadio[3]}</h3> : null}
+                3{thirdRadio[1]}<SelectButton width={parseInt(thirdRadio[0])} optionValue={thirdRadio[1]} sortOrder={parseInt(thirdRadio[2])} value={currentConditionList} onChange={onChange}></SelectButton>
+                {thirdRadio[4] != '' ? <h3>{thirdRadio[4]}</h3> : null}
+            </BoxTextWraper>
+            : null}
     </RowBox>)
 }
 

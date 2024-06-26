@@ -27,9 +27,9 @@ function EventMaker() {
             case 'master_targeted': setSecondRadio(["0", "master_targeted", "2", "적에게", ""]); setThirdRadio([]); break;
             case 'targeted': setSecondRadio(["0", "targeted", "2", "적에게", ""]); setThirdRadio([]); break;
             case 'master_attacked': setSecondRadio(["0", "master_attacked", "2", "", "(으)로 적에게"]); setThirdRadio(["0", "master_attacked", "3", "그리고", ""]); break;
-            case 'attacked': setSecondRadio(["0", "attacked", "2", "적에게"]); setThirdRadio(["0", "attacked", "3", "그리고"]); break;
-            case 'master_defence': setSecondRadio(["0", "master_defence", "2"]); setThirdRadio([]); break;
-            case 'defence': setSecondRadio(["0", "defence", "2"]); setThirdRadio([]); break;
+            case 'attacked': setSecondRadio(["0", "attacked", "2", "적에게", ""]); setThirdRadio(["0", "attacked", "3", "그리고", ""]); break;
+            case 'master_defence': setSecondRadio(["0", "master_defence", "2", "", ""]); setThirdRadio([]); break;
+            case 'defence': setSecondRadio(["0", "defence", "2", "", ""]); setThirdRadio([]); break;
             case 'attack': setSecondRadio(["0", "attack", "2", "", "을 사용해"]); setThirdRadio(["0", "attack", "3", "그리고", ""]); break;
             case 'master_attack': setSecondRadio(["0", "master_attack", "2", "", "을 사용해"]); setThirdRadio([]); break;
             case 'master_skill_prepare': setSecondRadio(["0", "master_skill_prepare", "2", "", ""]); setThirdRadio([]); break;
