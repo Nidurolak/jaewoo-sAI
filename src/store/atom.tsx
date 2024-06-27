@@ -42,11 +42,11 @@ export const AIMakingEventArrayAtom = atom<string[]>({
     key: "EventAtomState",
     default: ['master', 'master_targeted', 'alert', '']
 });
-export const AIMakingConditionArrayAtom = atom<[string[]]>({
+export const AIMakingConditionArrayAtom = atom<string[][]>({
     key: "ConditionAtomState",
-    default: [['']]
+    default: [[]]
 });
-export const AIMakingSequenceArrayAtom = atom<[string[]]>({
+export const AIMakingSequenceArrayAtom = atom<string[][]>({
     key: "SequenceAtomState",
     default: [['']]
 });

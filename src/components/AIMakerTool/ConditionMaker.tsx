@@ -5,6 +5,7 @@ import { useRecoilState } from 'recoil';
 import exp from 'constants';
 import SelectButton from './RadioButton';
 import { AIMakingConditionArrayAtom, AIMakingEventArrayAtom } from '../../store/atom';
+import ConSeqWraper from './ConSeqWraper';
 
 function ConditionMaker() {
     const [selectedValue, setSelectedValue] = useState<string | null>(null);
@@ -19,6 +20,11 @@ function ConditionMaker() {
 
     };
 
+    const conListAdd = () => {
+        const AddVal = ["target_state", "walk"]
+        setConditionSelectedValue((prevArray) => [...prevArray, AddVal]);
+    }
+
     useEffect(() => {
         console.log(conditionSelectedValue)
     }, [setConditionSelectedValue])
@@ -26,8 +32,8 @@ function ConditionMaker() {
     return (<>
         {/*소트오더0 = 펫/주인 기본옵션 | 소트오더1 = 펫 옵션1 | 소트오더2 = 주인옵션1  | 소트오더3 = 종합옵션3(모든공격~매그넘) | 소트오더4 = 종합옵션2(디펜스 방어 옵션)*/}
         {conditionSelectedValue.map((option, index) => (
-            <RowBox><TestBox>{option}{index}</TestBox></RowBox>))}
-        <TestButton>추가</TestButton></>)
+            <ConSeqWraper width={0} optionValue={''} value={conditionSelectedValue[index]} sortOrder={0} indexNum={index} isCondition={true} onChange={handleSelectChange} ></ConSeqWraper>))}
+        <TestButton onClick={conListAdd}>추가</TestButton></>)
 }
 
 export default ConditionMaker

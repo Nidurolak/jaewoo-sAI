@@ -69,9 +69,9 @@ function ConSeqWraper({ width, optionValue, value, sortOrder, indexNum, isCondit
     var indexNumThis = indexNum != undefined ? indexNum : 0
 
     const [currentConditionList, setCurrentConditionList] = useState(conditionList[indexNumThis])
-    const [firstRadio, setFirstRadio] = useState<string[]>([""]);
-    const [secondRadio, setSecondRadio] = useState<string[]>([""]);
-    const [thirdRadio, setThirdRadio] = useState<string[]>([""]);
+    const [firstRadio, setFirstRadio] = useState<string[]>(currentConditionList[0] ? [currentConditionList[0]] : [""]);
+    const [secondRadio, setSecondRadio] = useState<string[]>(currentConditionList[1] ? [currentConditionList[1]] : [""]);
+    const [thirdRadio, setThirdRadio] = useState<string[]>(currentConditionList[2] ? [currentConditionList[2]] : [""]);
 
     //useMemo 추가하고 관련값 끼워넣기
     useMemo(() => {
