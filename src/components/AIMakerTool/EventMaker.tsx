@@ -14,10 +14,10 @@ function EventMaker() {
     const [thirdRadio, setThirdRadio] = useState<string[]>([]);
 
     useEffect(() => {
-        console.log(eventSelectedValue)
-        console.log(firstRadio)
-        console.log(secondRadio)
-        console.log(thirdRadio)
+        //console.log(eventSelectedValue)
+        //console.log(firstRadio)
+        //console.log(secondRadio)
+        //console.log(thirdRadio)
         switch (eventSelectedValue[0]) {
             case 'master': setFirstRadio(["0", "master", "1", "", ""]); break;
             case 'pet': setFirstRadio(["0", "pet", "1", "", ""]); break;
@@ -120,21 +120,21 @@ function EventMaker() {
             {secondRadio.length > 0
                 ? <BoxTextWraper>
                     {secondRadio[3] != '' ? <h3>{secondRadio[3]}</h3> : null}
-                    2{secondRadio[1]}<SelectButton width={parseInt(secondRadio[0])} optionValue={secondRadio[1]} sortOrder={parseInt(secondRadio[2])} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
+                    <SelectButton width={parseInt(secondRadio[0])} optionValue={secondRadio[1]} sortOrder={parseInt(secondRadio[2])} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
                     {secondRadio[4] != '' ? <h3>{secondRadio[4]}</h3> : null}
                 </BoxTextWraper>
                 : null}
             {firstRadio.length > 0
                 ? <BoxTextWraper>
                     {firstRadio[3] != '' ? <h3>{firstRadio[3]}</h3> : null}
-                    1{firstRadio[1]}<SelectButton width={parseInt(firstRadio[0])} optionValue={firstRadio[1]} sortOrder={parseInt(firstRadio[2])} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
+                    <SelectButton width={parseInt(firstRadio[0])} optionValue={firstRadio[1]} sortOrder={parseInt(firstRadio[2])} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
                     {firstRadio[4] != '' ? <h3>{firstRadio[4]}</h3> : null}
                 </BoxTextWraper>
                 : null}
             {thirdRadio.length > 0
                 ? <BoxTextWraper>
                     {thirdRadio[3] != '' ? <h3>{thirdRadio[3]}</h3> : null}
-                    3{thirdRadio[1]}<SelectButton width={parseInt(thirdRadio[0])} optionValue={thirdRadio[1]} sortOrder={parseInt(thirdRadio[2])} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
+                    <SelectButton width={parseInt(thirdRadio[0])} optionValue={thirdRadio[1]} sortOrder={parseInt(thirdRadio[2])} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
                     {thirdRadio[4] != '' ? <h3>{thirdRadio[4]}</h3> : null}
                 </BoxTextWraper>
                 : null}

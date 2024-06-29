@@ -20,6 +20,7 @@ function SelectButton({ width, optionValue, value, sortOrder, indexNum, onChange
         var val: string[] = [];
 
         console.log("서브")
+        console.log(indexNum)
         val[0] = sortOrder.toString();
         val[1] = e.target.value;
         val[2] = optionValue;
@@ -183,8 +184,8 @@ function SelectButton({ width, optionValue, value, sortOrder, indexNum, onChange
         { id: 1, label: '상대의 상태가', value: 'target_state' },
         { id: 2, label: '상대와의 거리가', value: 'target_distance' },
         { id: 3, label: '스킬을 현재 사용할 수 있을 때', value: 'skill_preparable' },
-        { id: 4, label: '특기를 현재 사용할 수 있을 때', value: 'ST_prepareable' },
-        { id: 5, label: '핀즈비즈를 사용할 수 있을 때', value: 'EQ_prepareable' },
+        { id: 4, label: '특기를 현재 사용할 수 있을 때', value: 'ST_preparable' },
+        { id: 5, label: '핀즈비즈를 사용할 수 있을 때', value: 'EQ_preparable' },
         { id: 6, label: '주인의 소모된 생명력이', value: 'master_damaged_life_greater' },
     ];
     const STOption = [
@@ -203,10 +204,40 @@ function SelectButton({ width, optionValue, value, sortOrder, indexNum, onChange
         { id: 5, label: '풀링 필드', value: 'PullingField' },
         { id: 6, label: '푸싱 필드', value: 'PushingField' },
     ];
+    const targetState = [
+        { id: 1, label: '걷는 중', value: 'walk' },
+        { id: 2, label: '걷거나 뛰는 중', value: 'walk, run' },
+        { id: 3, label: '멈춰있는', value: 'stop' },
+        { id: 4, label: '걷거나 멈춰있는', value: 'stop, walk' },
+        { id: 5, label: '뛰는 중', value: 'run' },
+        { id: 6, label: '맞아서 날아가는 중', value: 'blowaway' },
+        { id: 7, label: '맞아서 밀려나는 중', value: 'shoved' },
+        { id: 8, label: '맞아서 경직 중', value: 'hit' },
+    ]
+    const targetdistance = [
+        { id: 1, label: '1미터', value: '100' },
+        { id: 2, label: '2미터', value: '200' },
+        { id: 3, label: '3미터', value: '300' },
+        { id: 4, label: '4미터', value: '400' },
+        { id: 5, label: '5미터', value: '500' },
+        { id: 6, label: '6미터', value: '600' },
+        { id: 7, label: '7미터', value: '700' },
+        { id: 8, label: '8미터', value: '800' },
+        { id: 9, label: '9미터', value: '900' },
+        { id: 10, label: '10미터', value: '1000' },
+        { id: 11, label: '11미터', value: '1100' },
+        { id: 12, label: '12미터', value: '1200' },
+        { id: 13, label: '13미터', value: '1300' },
+        { id: 14, label: '14미터', value: '1400' },
+        { id: 15, label: '15미터', value: '1500' },
+    ]
 
 
     let options;
     let sortValue = sortOrder;
+
+    //console.log(optionValue)
+
     switch (optionValue) {
         case 'master': options = masterEventOption; break;
         case 'pet': options = petEventOption; break;
@@ -230,10 +261,13 @@ function SelectButton({ width, optionValue, value, sortOrder, indexNum, onChange
         case 'defence': options = defenseOption; break;
         case 'attacked': options = (sortOrder == 2) ? attackedAttackOption : downOption; break;
 
-        case 'conditon': options = conditonOption; break;
+        case 'condition': options = conditonOption; break;
+        case 'target_state': options = targetState; break;
         case 'skill_preparable': options = conditonPreparableSkillOption; break;
         case 'ST_preparable': options = STOption; break;
         case 'EQ_preparable': options = EQOption; break;
+        case 'EQ_preparable': options = EQOption; break;
+        case 'target_distance': options = targetdistance; break;
 
 
         /*
@@ -262,7 +296,7 @@ function SelectButton({ width, optionValue, value, sortOrder, indexNum, onChange
     return (
         <Select val={width} value={value[sortValue]} onChange={(e) => handleChange(e)}>
             {options.map((option,) => (
-                <option key={option.id} value={option.value}>
+                <option key={option.id + option.value} value={option.value}>
                     {option.label}
                 </option>
             ))}
