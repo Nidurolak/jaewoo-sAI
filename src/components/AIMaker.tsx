@@ -51,7 +51,7 @@ align-items: center;
 display: flex;
 flex-direction: column;
 justify-content: flex-start;
-width: 700px;
+width: 1000px;
 min-height: 500px;
 //background-color: gray;
 `
@@ -87,8 +87,8 @@ background-size: 100% 100%;
 background-position: center;
 background-repeat: no-repeat;
   color: rgba(255, 255, 255, 1);
-  width: 80vw; /* 변경된 부분 */
-  height: 80vh; /* 변경된 부분 */
+  width: 90vw; /* 변경된 부분 */
+  height: 85vh; /* 변경된 부분 */
   border: none;
   font-size: 17px;
   font-family: 'Mabinogi_Classic_TTF';

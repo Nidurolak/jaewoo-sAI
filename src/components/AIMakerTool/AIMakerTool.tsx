@@ -117,7 +117,7 @@ flex-direction: column;
 justify-content: flex-start;
 gap: 10px; 
 width: 100%;
-max-width: 600px;
+max-width: 800px;
 `
 
 const EventDiv = styled.div`
