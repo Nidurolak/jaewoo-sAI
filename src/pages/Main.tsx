@@ -165,7 +165,7 @@ const TotalContainer = styled(motion.div)`
   height: auto;
   min-height: 100vh;
   min-width: 100vw;
-  background-color: rgba(111, 195, 226);
+  background-color: rgb(111, 195, 226);
   padding-top: 20px;
   padding-bottom: 20px;
 `

@@ -181,12 +181,12 @@ function SelectButton({ width, optionValue, value, sortOrder, indexNum, onChange
     ]
 
     const conditonOption = [
-        { id: 1, label: '상대의 상태가', value: 'target_state' },
-        { id: 2, label: '상대와의 거리가', value: 'target_distance' },
-        { id: 3, label: '스킬을 현재 사용할 수 있을 때', value: 'skill_preparable' },
-        { id: 4, label: '특기를 현재 사용할 수 있을 때', value: 'ST_preparable' },
-        { id: 5, label: '핀즈비즈를 사용할 수 있을 때', value: 'EQ_preparable' },
-        { id: 6, label: '주인의 소모된 생명력이', value: 'master_damaged_life_greater' },
+        { id: 1, label: '상대의 상태', value: 'target_state' },
+        { id: 2, label: '상대와의 거리', value: 'target_distance' },
+        { id: 3, label: '스킬 사용 가능', value: 'skill_preparable' },
+        { id: 4, label: '특기 사용 가능', value: 'ST_preparable' },
+        { id: 5, label: '핀즈비즈 사용 가능', value: 'EQ_preparable' },
+        { id: 6, label: '주인의 소모된 생명력', value: 'master_damaged_life_greater' },
     ];
     const STOption = [
         { id: 1, label: '폭주의 시간', value: 'PetSTDamageUp' },
@@ -232,6 +232,33 @@ function SelectButton({ width, optionValue, value, sortOrder, indexNum, onChange
         { id: 15, label: '15미터', value: '1500' },
     ]
 
+    const targetHP = [
+        { id: 1, label: '20', value: '20' },
+        { id: 2, label: '40', value: '40' },
+        { id: 3, label: '60', value: '60' },
+        { id: 4, label: '80', value: '80' },
+        { id: 5, label: '100', value: '100' },
+        { id: 6, label: '120', value: '120' },
+        { id: 7, label: '140', value: '140' },
+        { id: 8, label: '160', value: '160' },
+        { id: 9, label: '180', value: '180' },
+        { id: 10, label: '200', value: '200' },
+    ]
+    const seqList = [
+        { id: 1, label: '기다림', value: 'wait' },
+        { id: 2, label: '도망침', value: 'move_against' },
+        { id: 3, label: '대상을 추적', value: 'chase' },
+        { id: 4, label: '상대 주변을 회전', value: 'move_around' },
+        { id: 5, label: '상대를 근접 공격', value: 'melee_attack' },
+        { id: 6, label: '마법 차징 후 공격', value: 'stackmagic_attack' },
+        { id: 7, label: '스킬을 준비함', value: 'prepare_skill' },
+        { id: 8, label: '마법 차징', value: 'stack_skill' },
+        { id: 9, label: '스킬을 사용함', value: 'precess_skill' },
+        { id: 10, label: '사용 중 스킬 취소', value: 'cancel_skill' },
+        { id: 11, label: '휴식 시작', value: 'skill_relax' },
+        { id: 12, label: '특성 준비', value: 'PetST_skill' },
+        { id: 13, label: '핀즈비즈 준비', value: 'PetEQ_skill' },
+    ]
 
     let options;
     let sortValue = sortOrder;
@@ -268,6 +295,9 @@ function SelectButton({ width, optionValue, value, sortOrder, indexNum, onChange
         case 'EQ_preparable': options = EQOption; break;
         case 'EQ_preparable': options = EQOption; break;
         case 'target_distance': options = targetdistance; break;
+        case 'master_damaged_life_greater': options = targetHP; break;
+
+        case 'sequence': options = seqList; break;
 
 
         /*
@@ -314,5 +344,6 @@ const Select = styled.select<{ val: number }>`
   background-color: rgba(111, 195, 226);
   border: 2px solid rgb(25, 76, 138);
   border-radius: 10px;
-  color: rgba(255,255,255,1)
+  color: rgba(255,255,255,1);
+  outline:none;
 `;

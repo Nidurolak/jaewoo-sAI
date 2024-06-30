@@ -73,11 +73,12 @@ const WhiteLine = styled.div`
 `
 
 const RejectBox = styled.div`
-align-items: center;
+align-items: flex-start;
 display: flex;
 flex-direction: row;
 justify-content: center;
 gap: 15px;
+padding-top: 50px;
 padding-left: 50px;
 padding-right: 50px;
 background-color: rgba(255, 255, 255, 0);

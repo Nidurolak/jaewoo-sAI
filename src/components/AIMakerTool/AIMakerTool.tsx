@@ -7,6 +7,7 @@ import SelectButton from './RadioButton';
 import { AIMakingEventArrayAtom } from '../../store/atom';
 import EventMaker from './EventMaker';
 import ConditionMaker from './ConditionMaker';
+import SequenceMaker from './SequenceMaker';
 
 function AIMakerTool() {
     const [selectedValue, setSelectedValue] = useState<string | null>(null);
@@ -105,6 +106,11 @@ function AIMakerTool() {
                 <h2>조건</h2>
                 <ConditionMaker />
             </ColummBox>
+
+            <ColummBox>
+                <h2>행동</h2>
+                <SequenceMaker />
+            </ColummBox>
         </EventDiv>)
 }
 
@@ -126,8 +132,9 @@ display: flex;
 flex-direction: column;
 justify-content: flex-start;
 width: 100%;
-height: 200px;
-background-color: darkgoldenrod;
+height: 100%;
+max-height: 600px;
+//background-color: darkgoldenrod;
 padding: 10px;
 
   h1 {word-spacing: 1px;word-break:keep-all; font-weight: 100;margin-top: 10px;font-size: 45px;font-family: 'Mabinogi_Classic_TTF';}

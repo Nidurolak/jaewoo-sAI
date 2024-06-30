@@ -5,7 +5,6 @@ import { useRecoilState } from 'recoil';
 import exp from 'constants';
 import SelectButton from './RadioButton';
 import { AIMakingEventArrayAtom } from '../../store/atom';
-
 function EventMaker() {
     const [selectedValue, setSelectedValue] = useState<string | null>(null);
     const [eventSelectedValue, setEventSelectedValue] = useRecoilState(AIMakingEventArrayAtom);
