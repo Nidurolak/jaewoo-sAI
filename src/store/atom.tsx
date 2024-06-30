@@ -48,7 +48,7 @@ export const AIMakingConditionArrayAtom = atom<string[][]>({
 });
 export const AIMakingSequenceArrayAtom = atom<string[][]>({
     key: "SequenceAtomState",
-    default: [['']]
+    default: []
 });
 /*xport const AIMakingEventArrayAtom = atom<string[][]>({
     key: "StringArrayAtomState",
