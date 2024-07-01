@@ -63,14 +63,14 @@ interface WraperBoxProps {
 //이벤트 메이커랑 아주 비슷하게 만들어야 할거야.
 function ConSeqWraper({ width, optionValue, value, sortOrder, indexNum, isCondition, onChange }: WraperBoxProps) {
 
-    const [conditionList, setConditionList] = useRecoilState(AIMakingConditionArrayAtom)
-    const [sequenceLsit, setSequenceList] = useRecoilState(AIMakingSequenceArrayAtom)
+    const [listValue, setListValue] = useRecoilState(isCondition ? AIMakingConditionArrayAtom : AIMakingSequenceArrayAtom)
 
     var indexNumThis = indexNum != undefined ? indexNum : 0
+    console.log(indexNumThis)
 
-    const [conFirstRadio, setConfirstRadio] = useState<string[]>(conditionList[indexNumThis][0] ? [conditionList[indexNumThis][0]] : []);
-    const [conSecondRadio, setConSecondRadio] = useState<string[]>(conditionList[indexNumThis][1] ? [conditionList[indexNumThis][1]] : []);
-    const [conThirdRadio, setConThirdRadio] = useState<string[]>(conditionList[indexNumThis][2] ? [conditionList[indexNumThis][2]] : []);
+    const [conFirstRadio, setConfirstRadio] = useState<string[]>(isCondition ? listValue[indexNumThis][0] ? [listValue[indexNumThis][0]] : [] : listValue[indexNumThis][0] ? [listValue[indexNumThis][0]] : []);
+    const [conSecondRadio, setConSecondRadio] = useState<string[]>(isCondition ? listValue[indexNumThis][1] ? [listValue[indexNumThis][1]] : [] : listValue[indexNumThis][1] ? [listValue[indexNumThis][1]] : []);
+    const [conThirdRadio, setConThirdRadio] = useState<string[]>(isCondition ? listValue[indexNumThis][2] ? [listValue[indexNumThis][2]] : [] : listValue[indexNumThis][2] ? [listValue[indexNumThis][2]] : []);
 
 
     //console.log(conFirstRadio)
@@ -81,8 +81,8 @@ function ConSeqWraper({ width, optionValue, value, sortOrder, indexNum, isCondit
     //이젠 라디오 문제가 발생 중이야. 벨류값이 바뀌긴 하는데 쟤들이 눈치껏 나오고 들어가질 않아
     useEffect(() => {
         console.log("수정발동")
-        console.log(conditionList[indexNumThis])
-        switch (conditionList[indexNumThis][0]) {
+        console.log(listValue[indexNumThis])
+        switch (listValue[indexNumThis][0]) {
             //[width, optionValue, sortOrder, h3 전열 , h3 후열] 순으로 배열 생성
             //여기서 케이스 만들고 아래 리턴에서 조립해야해
             case 'target_state': setConfirstRadio(["0", "target_state", "1", "=", "인 경우"]); setConSecondRadio([]); break;//
@@ -93,19 +93,19 @@ function ConSeqWraper({ width, optionValue, value, sortOrder, indexNum, isCondit
             case 'master_damaged_life_greater': setConfirstRadio(["0", "master_damaged_life_greater", "1", "=", "이상"]); setConSecondRadio([]); break;
         }
 
-    }, [conditionList])
+    }, [listValue])
 
     //널 자리에 채워야해 시퀸스
     return (<RowBox>
         {isCondition
-            ? <SelectButton optionValue={'condition'} width={0} sortOrder={0} value={conditionList[indexNumThis]} onChange={onChange} indexNum={indexNum}></SelectButton>
-            : <SelectButton optionValue={'sequence'} width={0} sortOrder={0} value={sequenceLsit[indexNumThis]} onChange={onChange} indexNum={indexNum}></SelectButton>}
+            ? <SelectButton optionValue={'condition'} width={0} sortOrder={0} value={listValue[indexNumThis]} onChange={onChange} indexNum={indexNum}></SelectButton>
+            : <SelectButton optionValue={'sequence'} width={0} sortOrder={0} value={listValue[indexNumThis]} onChange={onChange} indexNum={indexNum}></SelectButton>}
 
         {isCondition
             ? conFirstRadio.length > 0
                 ? <BoxTextWraper>
                     {conFirstRadio[3] != '' ? <h3>{conFirstRadio[3]}</h3> : null}
-                    <SelectButton width={parseInt(conFirstRadio[0])} optionValue={conFirstRadio[1]} sortOrder={parseInt(conFirstRadio[2])} value={conditionList[indexNumThis]} onChange={onChange} indexNum={indexNum}></SelectButton>
+                    <SelectButton width={parseInt(conFirstRadio[0])} optionValue={conFirstRadio[1]} sortOrder={parseInt(conFirstRadio[2])} value={listValue[indexNumThis]} onChange={onChange} indexNum={indexNum}></SelectButton>
                     {conFirstRadio[4] != '' ? <h3>{conFirstRadio[4]}</h3> : null}
                 </BoxTextWraper>
                 : null
@@ -115,7 +115,7 @@ function ConSeqWraper({ width, optionValue, value, sortOrder, indexNum, isCondit
             ? conSecondRadio.length > 0
                 ? <BoxTextWraper>
                     {conSecondRadio[3] != '' ? <h3>{conSecondRadio[3]}</h3> : null}
-                    <SelectButton width={parseInt(conSecondRadio[0])} optionValue={conSecondRadio[1]} sortOrder={parseInt(conSecondRadio[2])} value={conditionList[indexNumThis]} onChange={onChange} indexNum={indexNum}></SelectButton>
+                    <SelectButton width={parseInt(conSecondRadio[0])} optionValue={conSecondRadio[1]} sortOrder={parseInt(conSecondRadio[2])} value={listValue[indexNumThis]} onChange={onChange} indexNum={indexNum}></SelectButton>
                     {conSecondRadio[4] != '' ? <h3>{conSecondRadio[4]}</h3> : null}
                 </BoxTextWraper>
                 : null
@@ -125,13 +125,13 @@ function ConSeqWraper({ width, optionValue, value, sortOrder, indexNum, isCondit
             ? conThirdRadio.length > 0
                 ? <BoxTextWraper>
                     {conThirdRadio[3] != '' ? <h3>{conThirdRadio[3]}</h3> : null}
-                    3{conThirdRadio[1]}<SelectButton width={parseInt(conThirdRadio[0])} optionValue={conThirdRadio[1]} sortOrder={parseInt(conThirdRadio[2])} value={conditionList[indexNumThis]} onChange={onChange} indexNum={indexNum}></SelectButton>
+                    3{conThirdRadio[1]}<SelectButton width={parseInt(conThirdRadio[0])} optionValue={conThirdRadio[1]} sortOrder={parseInt(conThirdRadio[2])} value={listValue[indexNumThis]} onChange={onChange} indexNum={indexNum}></SelectButton>
                     {conThirdRadio[4] != '' ? <h3>{conThirdRadio[4]}</h3> : null}
                 </BoxTextWraper>
                 : null
             : null}
 
-        {indexNumThis < conditionList.length - 1
+        {indexNumThis < listValue.length - 1
             ? <h4>그리고</h4>
             : null}
     </RowBox>)

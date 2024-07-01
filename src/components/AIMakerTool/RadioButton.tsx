@@ -260,6 +260,74 @@ function SelectButton({ width, optionValue, value, sortOrder, indexNum, onChange
         { id: 13, label: '핀즈비즈 준비', value: 'PetEQ_skill' },
     ]
 
+    const seqTime = [
+        { id: 1, label: '1초', value: "1000" },
+        { id: 2, label: '2초', value: "2000" },
+        { id: 3, label: '3초', value: "3000" },
+        { id: 4, label: '4초', value: "4000" },
+        { id: 5, label: '5초', value: "5000" },
+        { id: 6, label: '6초', value: "6000" },
+        { id: 7, label: '7초', value: "7000" },
+        { id: 8, label: '8초', value: "8000" },
+        { id: 9, label: '9초', value: "9000" },
+        { id: 10, label: '10초', value: "10000" },
+    ]
+    const seqLimitTime = [
+        { id: 1, label: '5초', value: "5000" },
+        { id: 2, label: '없음', value: "0" },
+        { id: 3, label: '0.5초', value: "500" },
+        { id: 4, label: '4초', value: "4000" },
+        { id: 5, label: '5초', value: "5000" },
+        { id: 6, label: '6초', value: "6000" },
+        { id: 7, label: '7초', value: "7000" },
+        { id: 8, label: '8초', value: "8000" },
+        { id: 9, label: '9초', value: "9000" },
+        { id: 10, label: '10초', value: "10000" },
+    ]
+
+
+    const seqDistance = [
+        { id: 1, label: '1미터', value: "100" },
+        { id: 2, label: '2미터', value: "200" },
+        { id: 3, label: '3미터', value: "300" },
+        { id: 4, label: '4미터', value: "400" },
+        { id: 5, label: '5미터', value: "500" },
+        { id: 6, label: '6미터', value: "600" },
+        { id: 7, label: '7미터', value: "700" },
+        { id: 8, label: '8미터', value: "800" },
+        { id: 9, label: '9미터', value: "900" },
+        { id: 10, label: '10미터', value: "1000" },
+        { id: 11, label: '11미터', value: "1100" },
+        { id: 12, label: '12미터', value: "1200" },
+        { id: 13, label: '13미터', value: "1300" },
+        { id: 14, label: '14미터', value: "1400" },
+        { id: 15, label: '15미터', value: "1500" },
+    ]
+    /*
+    const seqWait = [
+        {id: 1, label: '', value:""},
+        {id: 2, label: '', value:""},
+        {id: 3, label: '', value:""},
+        {id: 4, label: '', value:""},
+        {id: 5, label: '', value:""},
+        {id: 6, label: '', value:""},
+        {id: 7, label: '', value:""},
+        {id: 8, label: '', value:""},
+        {id: 9, label: '', value:""},
+    ] */
+    /*
+    const seqWait = [
+        {id: 1, label: '', value:""},
+        {id: 2, label: '', value:""},
+        {id: 3, label: '', value:""},
+        {id: 4, label: '', value:""},
+        {id: 5, label: '', value:""},
+        {id: 6, label: '', value:""},
+        {id: 7, label: '', value:""},
+        {id: 8, label: '', value:""},
+        {id: 9, label: '', value:""},
+    ] */
+
     let options;
     let sortValue = sortOrder;
 
@@ -298,7 +366,19 @@ function SelectButton({ width, optionValue, value, sortOrder, indexNum, onChange
         case 'master_damaged_life_greater': options = targetHP; break;
 
         case 'sequence': options = seqList; break;
-
+        case 'wait': options = seqTime; break;
+        case 'move_against': options = seqList; break;
+        case 'chase': options = seqList; break;
+        case 'move_around': options = seqList; break;
+        case 'melee_attack': options = seqList; break;
+        case 'stackmagic_attack': options = seqList; break;
+        case 'prepare_skill': options = seqList; break;
+        case 'stack_skill': options = seqList; break;
+        case 'precess_skill': options = seqList; break;
+        case 'cancel_skill': options = seqList; break;
+        case 'skill_relax': options = seqList; break;
+        case 'PetST_skill': options = seqList; break;
+        case 'PetEQ_skill': options = seqList; break;
 
         /*
                 case 'all': options = ; break;
