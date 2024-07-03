@@ -28,21 +28,6 @@ function SequenceMaker() {
       val[parseInt(value[3])] = [...val[parseInt(value[3])]];
       val[parseInt(value[3])][parseInt(value[0])] = value[1]
       //컨디션 값이 바뀌었다면 초기화된 후열 값을 바꿔야한다.
-      /*
-    const seqList = [
-        { id: 1, label: '기다림', value: 'wait' },
-        { id: 2, label: '도망침', value: 'move_against' },
-        { id: 3, label: '대상을 추적', value: 'chase' },
-        { id: 4, label: '상대 주변을 회전', value: 'move_around' },
-        { id: 5, label: '상대를 근접 공격', value: 'melee_attack' },
-        { id: 6, label: '마법 차징 후 공격', value: 'stackmagic_attack' },
-        { id: 7, label: '스킬을 준비함', value: 'prepare_skill' },
-        { id: 8, label: '마법 차징', value: 'stack_skill' },
-        { id: 9, label: '스킬을 사용함', value: 'precess_skill' },
-        { id: 10, label: '사용 중 스킬 취소', value: 'cancel_skill' },
-        { id: 11, label: '휴식 시작', value: 'skill_relax' },
-        { id: 12, label: '특성 준비', value: 'PetST_skill' },
-        { id: 13, label: '핀즈비즈 준비', value: 'PetEQ_skill' }, */
       if (value[2] == 'sequence') {
         console.log(val[parseInt(value[3])])
         console.log(value)

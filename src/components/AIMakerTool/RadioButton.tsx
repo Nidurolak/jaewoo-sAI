@@ -276,13 +276,15 @@ function SelectButton({ width, optionValue, value, sortOrder, indexNum, onChange
         { id: 1, label: '5초', value: "5000" },
         { id: 2, label: '없음', value: "0" },
         { id: 3, label: '0.5초', value: "500" },
-        { id: 4, label: '4초', value: "4000" },
-        { id: 5, label: '5초', value: "5000" },
-        { id: 6, label: '6초', value: "6000" },
-        { id: 7, label: '7초', value: "7000" },
-        { id: 8, label: '8초', value: "8000" },
-        { id: 9, label: '9초', value: "9000" },
-        { id: 10, label: '10초', value: "10000" },
+        { id: 4, label: '1초', value: "1000" },
+        { id: 5, label: '2초', value: "2000" },
+        { id: 6, label: '3초', value: "3000" },
+        { id: 7, label: '4초', value: "4000" },
+        { id: 8, label: '6초', value: "6000" },
+        { id: 9, label: '7초', value: "7000" },
+        { id: 10, label: '8초', value: "8000" },
+        { id: 11, label: '9초', value: "9000" },
+        { id: 12, label: '10초', value: "10000" },
     ]
 
 
@@ -367,7 +369,7 @@ function SelectButton({ width, optionValue, value, sortOrder, indexNum, onChange
 
         case 'sequence': options = seqList; break;
         case 'wait': options = seqTime; break;
-        case 'move_against': options = seqList; break;
+        case 'move_against': options = (sortOrder == 1) ? seqList : seqList; break;
         case 'chase': options = seqList; break;
         case 'move_around': options = seqList; break;
         case 'melee_attack': options = seqList; break;
