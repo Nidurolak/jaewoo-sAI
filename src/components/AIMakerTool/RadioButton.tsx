@@ -287,6 +287,14 @@ function SelectButton({ width, optionValue, value, sortOrder, indexNum, onChange
         { id: 12, label: '10초', value: "10000" },
     ]
 
+    const seqTarget = [
+        { id: 1, label: '공격상대', value: "enemy" },
+        { id: 2, label: '주인', value: "master" },
+    ]
+    const seqRunWalk = [
+        { id: 1, label: '뛰기', value: "run" },
+        { id: 2, label: '걷기', value: "walk" },
+    ]
 
     const seqDistance = [
         { id: 1, label: '1미터', value: "100" },
@@ -369,8 +377,8 @@ function SelectButton({ width, optionValue, value, sortOrder, indexNum, onChange
 
         case 'sequence': options = seqList; break;
         case 'wait': options = seqTime; break;
-        case 'move_against': options = (sortOrder == 1) ? seqList : seqList; break;
-        case 'chase': options = seqList; break;
+        case 'move_against': options = (sortOrder == 1) ? seqDistance : (sortOrder == 2) ? seqRunWalk : seqLimitTime; break;
+        case 'chase': options = (sortOrder == 1) ? seqTarget : (sortOrder == 2) ? seqRunWalk : seqLimitTime; break;
         case 'move_around': options = seqList; break;
         case 'melee_attack': options = seqList; break;
         case 'stackmagic_attack': options = seqList; break;
