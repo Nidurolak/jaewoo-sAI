@@ -1,9 +1,5 @@
-import React, { useState, ChangeEvent, useEffect } from 'react';
+import React, { } from 'react';
 import { styled } from 'styled-components';
-import Mainbutton800400 from '../assets/MainButton800400.png'
-import { useRecoilState } from 'recoil';
-import { AIMakingEventArrayAtom } from '../../store/atom';
-import { stringify } from 'querystring';
 
 interface SelectBoxProps {
     value: string[];
@@ -295,6 +291,25 @@ function SelectButton({ width, optionValue, value, sortOrder, indexNum, onChange
         { id: 1, label: '뛰기', value: "run" },
         { id: 2, label: '걷기', value: "walk" },
     ]
+    const seqRunclockwise = [
+        { id: 1, label: '시계', value: "true" },
+        { id: 2, label: '반시계', value: "false" },
+    ]
+    const seqCharge = [
+        { id: 1, label: '1회', value: "1" },
+        { id: 2, label: '2회', value: "2" },
+        { id: 3, label: '3회', value: "3" },
+        { id: 4, label: '4회', value: "4" },
+        { id: 5, label: '5회', value: "5" },
+    ]
+    const seqTargetPosition = [
+        { id: 1, label: '공격상대', value: "enemy" },
+        { id: 2, label: '자신', value: "me" },
+        { id: 3, label: '주인', value: "master" },
+        { id: 4, label: '공격상대 근처', value: "pos_toward_target" },
+        { id: 5, label: '공격상대 위치', value: "target_pos" },
+        { id: 6, label: '내 위치', value: "my_pos" },
+    ]
 
     const seqDistance = [
         { id: 1, label: '1미터', value: "100" },
@@ -325,18 +340,6 @@ function SelectButton({ width, optionValue, value, sortOrder, indexNum, onChange
         {id: 8, label: '', value:""},
         {id: 9, label: '', value:""},
     ] */
-    /*
-    const seqWait = [
-        {id: 1, label: '', value:""},
-        {id: 2, label: '', value:""},
-        {id: 3, label: '', value:""},
-        {id: 4, label: '', value:""},
-        {id: 5, label: '', value:""},
-        {id: 6, label: '', value:""},
-        {id: 7, label: '', value:""},
-        {id: 8, label: '', value:""},
-        {id: 9, label: '', value:""},
-    ] */
 
     let options;
     let sortValue = sortOrder;
@@ -349,20 +352,12 @@ function SelectButton({ width, optionValue, value, sortOrder, indexNum, onChange
 
         case 'master_targeted': options = totalOption3; break;
         case 'master_attack': options = attackedAttackOption; break;
-        //case 'master_aimed': options = masterEventOption; break;
-        //case 'master_target_skill_prepare': options = masterEventOption; break;
-        //case 'master_target_magic_prepare': options = masterEventOption; break;
         case 'master_defence': options = defenseOption; break;
         case 'master_attacked': options = (sortOrder == 2) ? attackedAttackOption : downOption; break;
         case 'master_skill_prepare': options = masterSkillOption; break;
 
         case 'targeted': options = totalOption3; break;
-        //case 'seek_target': options = ; break;
-        //case 'now_targeting': options = ; break;
         case 'attack': options = (sortOrder == 2) ? petAttackOption : downOption; break;
-        //case 'aimed': options = ; break;
-        //case 'target_skill_prepare': options = ; break;
-        //case 'target_magic_prepare': options = ; break;
         case 'defence': options = defenseOption; break;
         case 'attacked': options = (sortOrder == 2) ? attackedAttackOption : downOption; break;
 
@@ -379,12 +374,12 @@ function SelectButton({ width, optionValue, value, sortOrder, indexNum, onChange
         case 'wait': options = seqTime; break;
         case 'move_against': options = (sortOrder == 1) ? seqDistance : (sortOrder == 2) ? seqRunWalk : seqLimitTime; break;
         case 'chase': options = (sortOrder == 1) ? seqTarget : (sortOrder == 2) ? seqRunWalk : seqLimitTime; break;
-        case 'move_around': options = seqList; break;
-        case 'melee_attack': options = seqList; break;
-        case 'stackmagic_attack': options = seqList; break;
-        case 'prepare_skill': options = seqList; break;
-        case 'stack_skill': options = seqList; break;
-        case 'precess_skill': options = seqList; break;
+        case 'move_around': options = (sortOrder == 1) ? seqRunclockwise : (sortOrder == 2) ? seqDistance : (sortOrder == 3) ? seqRunWalk : seqLimitTime; break;
+        case 'melee_attack': options = seqLimitTime; break;
+        case 'stackmagic_attack': options = (sortOrder == 1) ? petMagicChargeOption : (sortOrder == 2) ? seqCharge : seqLimitTime; break;
+        case 'prepare_skill': options = (sortOrder == 1) ? conditonPreparableSkillOption : (sortOrder == 2) ? seqCharge : seqLimitTime; break;
+        case 'stack_skill': options = (sortOrder == 1) ? petMagicChargeOption : seqCharge; break;
+        case 'precess_skill': options = (sortOrder == 1) ? seqTargetPosition : seqLimitTime; break;
         case 'cancel_skill': options = seqList; break;
         case 'skill_relax': options = seqList; break;
         case 'PetST_skill': options = seqList; break;

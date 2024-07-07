@@ -1,10 +1,7 @@
-import React, { useState, ChangeEvent, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { styled } from 'styled-components';
-import Mainbutton800400 from '../assets/MainButton800400.png'
 import { useRecoilState } from 'recoil';
-import exp from 'constants';
-import SelectButton from './RadioButton';
-import { AIMakingConditionArrayAtom, AIMakingEventArrayAtom, AIMakingSequenceArrayAtom } from '../../store/atom';
+import { AIMakingSequenceArrayAtom } from '../../store/atom';
 import ConSeqWraper from './ConSeqWraper';
 import { BackGUI } from '../../utils/types';
 import Mainbutton3 from '../../assets/MainButton3.png'

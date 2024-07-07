@@ -1,12 +1,9 @@
 import React, { useState, ChangeEvent, useEffect } from 'react';
 import { styled } from 'styled-components';
-import Mainbutton800400 from '../assets/MainButton800400.png'
 import { useRecoilState } from 'recoil';
-import exp from 'constants';
 import SelectButton from './RadioButton';
 import { AIMakingEventArrayAtom } from '../../store/atom';
 function EventMaker() {
-    const [selectedValue, setSelectedValue] = useState<string | null>(null);
     const [eventSelectedValue, setEventSelectedValue] = useRecoilState(AIMakingEventArrayAtom);
     const [firstRadio, setFirstRadio] = useState<string[]>(["0", "master", "1", "", ""]);
     const [secondRadio, setSecondRadio] = useState<string[]>(["0", "master_targeted", "2", "적에게", ""]);

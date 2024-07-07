@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, useEffect } from 'react';
+import React from 'react';
 import { styled } from 'styled-components';
 import Mainbutton800400 from '../assets/MainButton800400.png'
 import { useRecoilState } from 'recoil';
