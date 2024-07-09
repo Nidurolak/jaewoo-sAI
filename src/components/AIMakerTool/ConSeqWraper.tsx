@@ -22,6 +22,13 @@ function ConSeqWraper({ width, optionValue, value, sortOrder, indexNum, isCondit
     var indexNumThis = indexNum != undefined ? indexNum : 0
     console.log(indexNumThis)
 
+    const [radio, setRadio] = useState({
+        first: isCondition ? listValue[indexNumThis][0] ? [listValue[indexNumThis][0]] : [] : listValue[indexNumThis][0] ? [listValue[indexNumThis][0]] : [],
+        second: isCondition ? listValue[indexNumThis][1] ? [listValue[indexNumThis][1]] : [] : listValue[indexNumThis][1] ? [listValue[indexNumThis][1]] : [],
+        third: isCondition ? listValue[indexNumThis][2] ? [listValue[indexNumThis][2]] : [] : listValue[indexNumThis][2] ? [listValue[indexNumThis][2]] : [],
+        fourth: isCondition ? listValue[indexNumThis][2] ? [listValue[indexNumThis][3]] : [] : listValue[indexNumThis][3] ? [listValue[indexNumThis][3]] : []
+    })
+
     const [conFirstRadio, setConfirstRadio] = useState<string[]>(isCondition ? listValue[indexNumThis][0] ? [listValue[indexNumThis][0]] : [] : listValue[indexNumThis][0] ? [listValue[indexNumThis][0]] : []);
     const [conSecondRadio, setConSecondRadio] = useState<string[]>(isCondition ? listValue[indexNumThis][1] ? [listValue[indexNumThis][1]] : [] : listValue[indexNumThis][1] ? [listValue[indexNumThis][1]] : []);
     const [conThirdRadio, setConThirdRadio] = useState<string[]>(isCondition ? listValue[indexNumThis][2] ? [listValue[indexNumThis][2]] : [] : listValue[indexNumThis][2] ? [listValue[indexNumThis][2]] : []);
@@ -32,26 +39,26 @@ function ConSeqWraper({ width, optionValue, value, sortOrder, indexNum, isCondit
         console.log(listValue[indexNumThis])
         switch (listValue[indexNumThis][0]) {
             //[width, optionValue, sortOrder, h3 전열 , h3 후열] 순으로 배열 생성
-            case 'target_state': setConfirstRadio(["0", "target_state", "1", "= ", "인 경우"]); setConSecondRadio([]); setConThirdRadio([]); setConFourthRadio([]); break;//
-            case 'target_distance': setConfirstRadio(["0", "target_distance", "1", "= ", "이상"]); setConSecondRadio(["0", "target_distance", "2", "", "이하"]); setConThirdRadio([]); setConFourthRadio([]); break;
-            case 'skill_preparable': setConfirstRadio(["0", "skill_preparable", "1", "= ", ""]); setConSecondRadio([]); setConThirdRadio([]); setConFourthRadio([]); break;
-            case 'ST_preparable': setConfirstRadio(["0", "ST_preparable", "1", "= ", ""]); setConSecondRadio([]); setConThirdRadio([]); setConFourthRadio([]); break;
-            case 'EQ_preparable': setConfirstRadio(["0", "EQ_preparable", "1", "= ", ""]); setConSecondRadio([]); setConThirdRadio([]); setConFourthRadio([]); break;
-            case 'master_damaged_life_greater': setConfirstRadio(["0", "master_damaged_life_greater", "1", "=", "이상"]); setConSecondRadio([]); setConThirdRadio([]); setConFourthRadio([]); break;
+            case 'target_state': setRadio({ first: ["0", "target_state", "1", "= ", "인 경우"], second: [], third: [], fourth: [] }); break;//
+            case 'target_distance': setRadio({ first: ["0", "target_distance", "1", "= ", "이상"], second: ["0", "target_distance", "2", "", "이하"], third: [], fourth: [] }); break;
+            case 'skill_preparable': setRadio({ first: ["0", "skill_preparable", "1", "= ", ""], second: [], third: [], fourth: [] }); break;
+            case 'ST_preparable': setRadio({ first: ["0", "ST_preparable", "1", "= ", ""], second: [], third: [], fourth: [] }); break;
+            case 'EQ_preparable': setRadio({ first: ["0", "EQ_preparable", "1", "= ", ""], second: [], third: [], fourth: [] }); break;
+            case 'master_damaged_life_greater': setRadio({ first: ["0", "master_damaged_life_greater", "1", "=", "이상"], second: [], third: [], fourth: [] }); break;
 
-            case 'wait': setConfirstRadio(["0", "wait", "1", "=", "이상"]); setConSecondRadio(["0", "wait", "2", "", "미만"]); setConThirdRadio([]); setConFourthRadio([]); break;
-            case 'move_against': setConfirstRadio(["0", "move_against", "1", "=", "가 될 때 까지"]); setConSecondRadio(["0", "move_against", "2", "", "로 도망"]); setConThirdRadio(["0", "move_against", "3", "제한 시간 :", ""]); setConFourthRadio([]); break;
-            case 'chase': setConfirstRadio(["0", "chase", "1", "=", "을"]); setConSecondRadio(["0", "chase", "2", "", "추적함,"]); setConThirdRadio(["0", "chase", "3", "제한 시간 :", ""]); setConFourthRadio([]); break;
-            case 'move_around': setConfirstRadio(["0", "move_around", "1", "=", "이상"]); setConSecondRadio(["0", "move_around", "2", "", "방향으로"]); setConThirdRadio(["0", "move_around", "3", "", ""]); setConFourthRadio(["0", "move_around", "4", "제한 시간 :", ""]); break;
-            case 'melee_attack': setConfirstRadio(["0", "melee_attack", "1", "=", "이상"]); setConSecondRadio([]); setConThirdRadio([]); setConFourthRadio([]); break;
-            case 'stackmagic_attack': setConfirstRadio(["0", "stackmagic_attack", "1", "=", "를"]); setConSecondRadio(["0", "stackmagic_attack", "3", "", "차지 후 공격"]); setConThirdRadio(["0", "stackmagic_attack", "2", "제한 시간 :", ""]); setConFourthRadio([]); break;
-            case 'prepare_skill': setConfirstRadio(["0", "prepare_skill", "1", "=", "을(를)"]); setConSecondRadio(["0", "prepare_skill", "2", "", "까지 재시도"]); setConThirdRadio(["0", "prepare_skill", "3", "제한 시간 :", ""]); setConFourthRadio([]); break;
-            case 'stack_skill': setConfirstRadio(["0", "stack_skill", "1", "=", "을(를)"]); setConSecondRadio(["0", "stack_skill", "2", "", "차지"]); setConThirdRadio([]); setConFourthRadio([]); break;
-            case 'process_skill': setConfirstRadio(["0", "process_skill", "1", "=", "이상"]); setConSecondRadio([]); setConThirdRadio([]); setConFourthRadio([]); break;
-            case 'cancel_skill': setConfirstRadio([]); setConSecondRadio([]); setConThirdRadio([]); setConFourthRadio([]); break;
-            case 'skill_relax': setConfirstRadio(["0", "skill_relax", "1", "=", "을(를)"]); setConSecondRadio([]); setConThirdRadio([]); setConFourthRadio([]); break;
-            case 'PetST_skill': setConfirstRadio(["0", "PetST_skill", "1", "=", "이상"]); setConSecondRadio([]); setConThirdRadio([]); setConFourthRadio([]); break;
-            case 'PetEQ_skill': setConfirstRadio(["0", "PetEQ_skill", "1", "=", "이상"]); setConSecondRadio([]); setConThirdRadio([]); setConFourthRadio([]); break;
+            case 'wait': setRadio({ first: ["0", "wait", "1", "=", "이상"], second: ["0", "wait", "2", "", "미만"], third: [], fourth: [] }); break;
+            case 'move_against': setRadio({ first: ["0", "move_against", "1", "=", "가 될 때 까지"], second: ["0", "move_against", "2", "", "로 도망"], third: ["0", "move_against", "3", "제한시간 :", ""], fourth: [] }); break;
+            case 'chase': setRadio({ first: ["0", "chase", "1", "=", "을"], second: ["0", "chase", "2", "", "로 추적함,"], third: ["0", "chase", "3", "제한시간 :", ""], fourth: [] }); break;
+            case 'move_around': setRadio({ first: ["0", "move_around", "1", "=", "방향으로"], second: ["0", "move_around", "2", "", ""], third: ["0", "move_around", "3", "", ""], fourth: ["0", "move_around", "4", "제한시간 :", ""] }); break;
+            case 'melee_attack': setRadio({ first: ["0", "melee_attack", "1", "=", "이상"], second: [], third: [], fourth: [] }); break;
+            case 'stackmagic_attack': setRadio({ first: ["0", "stackmagic_attack", "1", "=", "를"], second: ["0", "stackmagic_attack", "3", "", "차지 후 공격"], third: ["0", "stackmagic_attack", "2", "제한시간 :", ""], fourth: [] }); break;
+            case 'prepare_skill': setRadio({ first: ["0", "prepare_skill", "1", "=", "을(를)"], second: ["0", "prepare_skill", "2", "", "까지 재시도"], third: ["0", "prepare_skill", "3", "제한시간 :", ""], fourth: [] }); break;
+            case 'stack_skill': setRadio({ first: ["0", "stack_skill", "1", "=", "을(를)"], second: ["0", "stack_skill", "2", "", "차지"], third: [], fourth: [] });; break;
+            case 'process_skill': setRadio({ first: ["0", "process_skill", "1", "=", ""], second: ["0", "process_skill", "2", "제한시간 :", ""], third: [], fourth: [] }); break;
+            case 'cancel_skill': setRadio({ first: [], second: [], third: [], fourth: [] }); break;
+            case 'skill_relax': setRadio({ first: ["0", "skill_relax", "1", "=", "한다"], second: [], third: [], fourth: [] }); break;
+            case 'PetST_skill': setRadio({ first: ["0", "PetST_skill", "1", "=", "을(를) 준비"], second: ["0", "PetEQ_skill", "2", "제한시간 :", ""], third: [], fourth: [] }); break;
+            case 'PetEQ_skill': setRadio({ first: ["0", "PetEQ_skill", "1", "=", "을(를) 준비"], second: ["0", "PetEQ_skill", "2", "제한시간 :", ""], third: [], fourth: [] }); break;
         }
 
     }, [listValue])
@@ -62,37 +69,38 @@ function ConSeqWraper({ width, optionValue, value, sortOrder, indexNum, isCondit
             ? <SelectButton optionValue={'condition'} width={0} sortOrder={0} value={listValue[indexNumThis]} onChange={onChange} indexNum={indexNum}></SelectButton>
             : <SelectButton optionValue={'sequence'} width={0} sortOrder={0} value={listValue[indexNumThis]} onChange={onChange} indexNum={indexNum}></SelectButton>}
 
-        {/*State 통합으로 컨디션인지 체크는 여기서 무의미*/conFirstRadio.length > 1
+        {/*State 통합으로 컨디션인지 체크는 여기서 무의미*/
+            radio.first.length > 1
+                ? <BoxTextWraper>
+                    {radio.first[3] != '' ? <h3>{radio.first[3]}</h3> : null}
+                    <SelectButton width={parseInt(radio.first[0])} optionValue={radio.first[1]} sortOrder={parseInt(radio.first[2])} value={listValue[indexNumThis]} onChange={onChange} indexNum={indexNum}></SelectButton>
+                    {radio.first[4] != '' ? <h3>{radio.first[4]}</h3> : null}
+                </BoxTextWraper>
+                : null}
+
+
+        {radio.second.length > 1
             ? <BoxTextWraper>
-                {conFirstRadio[3] != '' ? <h3>{conFirstRadio[3]}</h3> : null}
-                <SelectButton width={parseInt(conFirstRadio[0])} optionValue={conFirstRadio[1]} sortOrder={parseInt(conFirstRadio[2])} value={listValue[indexNumThis]} onChange={onChange} indexNum={indexNum}></SelectButton>
-                {conFirstRadio[4] != '' ? <h3>{conFirstRadio[4]}</h3> : null}
+                {radio.second[3] != '' ? <h3>{radio.second[3]}</h3> : null}
+                <SelectButton width={parseInt(radio.second[0])} optionValue={radio.second[1]} sortOrder={parseInt(radio.second[2])} value={listValue[indexNumThis]} onChange={onChange} indexNum={indexNum}></SelectButton>
+                {radio.second[4] != '' ? <h3>{radio.second[4]}</h3> : null}
+            </BoxTextWraper>
+            : null}
+
+        {radio.third.length > 1
+            ? <BoxTextWraper>
+                {radio.third[3] != '' ? <h3>{radio.third[3]}</h3> : null}
+                <SelectButton width={parseInt(radio.third[0])} optionValue={radio.third[1]} sortOrder={parseInt(radio.third[2])} value={listValue[indexNumThis]} onChange={onChange} indexNum={indexNum}></SelectButton>
+                {radio.third[4] != '' ? <h3>{radio.third[4]}</h3> : null}
             </BoxTextWraper>
             : null}
 
 
-        {conSecondRadio.length > 1
+        {radio.fourth.length > 1
             ? <BoxTextWraper>
-                {conSecondRadio[3] != '' ? <h3>{conSecondRadio[3]}</h3> : null}
-                <SelectButton width={parseInt(conSecondRadio[0])} optionValue={conSecondRadio[1]} sortOrder={parseInt(conSecondRadio[2])} value={listValue[indexNumThis]} onChange={onChange} indexNum={indexNum}></SelectButton>
-                {conSecondRadio[4] != '' ? <h3>{conSecondRadio[4]}</h3> : null}
-            </BoxTextWraper>
-            : null}
-
-        {conThirdRadio.length > 1
-            ? <BoxTextWraper>
-                {conThirdRadio[3] != '' ? <h3>{conThirdRadio[3]}</h3> : null}
-                <SelectButton width={parseInt(conThirdRadio[0])} optionValue={conThirdRadio[1]} sortOrder={parseInt(conThirdRadio[2])} value={listValue[indexNumThis]} onChange={onChange} indexNum={indexNum}></SelectButton>
-                {conThirdRadio[4] != '' ? <h3>{conThirdRadio[4]}</h3> : null}
-            </BoxTextWraper>
-            : null}
-
-
-        {conFourthRadio.length > 1
-            ? <BoxTextWraper>
-                {conFourthRadio[3] != '' ? <h3>{conFourthRadio[3]}</h3> : null}
-                <SelectButton width={parseInt(conFourthRadio[0])} optionValue={conFourthRadio[1]} sortOrder={parseInt(conFourthRadio[2])} value={listValue[indexNumThis]} onChange={onChange} indexNum={indexNum}></SelectButton>
-                {conFourthRadio[4] != '' ? <h3>{conFourthRadio[4]}</h3> : null}
+                {radio.fourth[3] != '' ? <h3>{radio.fourth[3]}</h3> : null}
+                <SelectButton width={parseInt(radio.fourth[0])} optionValue={radio.fourth[1]} sortOrder={parseInt(radio.fourth[2])} value={listValue[indexNumThis]} onChange={onChange} indexNum={indexNum}></SelectButton>
+                {radio.fourth[4] != '' ? <h3>{radio.fourth[4]}</h3> : null}
             </BoxTextWraper>
             : null}
         {indexNumThis < listValue.length - 1
@@ -112,7 +120,8 @@ gap: 10px;
 width: 100%;
 flex-wrap: wrap;
 text-align: center;
-h4 {color: white; font-weight: 250; font-size: 17px; font-family: 'Mabinogi_Classic_TTF';}
+h4 {color: white; font-weight: 100; font-size: 11px; font-family: 'Mabinogi_Classic_TTF';}
+h3 {color: white; font-weight: 250; font-size: 13px; font-family: 'Mabinogi_Classic_TTF';}
 
 `
 

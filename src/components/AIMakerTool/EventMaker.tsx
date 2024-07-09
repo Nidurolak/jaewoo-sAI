@@ -109,35 +109,37 @@ function EventMaker() {
     }
 
     return (
-        <RowBox>
-            {/*소트오더0 = 펫/주인 기본옵션 | 소트오더1 = 펫 옵션1 | 소트오더2 = 주인옵션1  | 소트오더3 = 종합옵션3(모든공격~매그넘) | 소트오더4 = 종합옵션2(디펜스 방어 옵션)*/}
-            {/*주인/펫 체크 버튼, 1순위 버튼*/}
-            <SelectButton optionValue={''} width={100} sortOrder={0} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
-            {secondRadio.length > 0
-                ? <BoxTextWraper>
-                    {secondRadio[3] != '' ? <h3>{secondRadio[3]}</h3> : null}
-                    <SelectButton width={parseInt(secondRadio[0])} optionValue={secondRadio[1]} sortOrder={parseInt(secondRadio[2])} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
-                    {secondRadio[4] != '' ? <h3>{secondRadio[4]}</h3> : null}
-                </BoxTextWraper>
-                : null}
-            {firstRadio.length > 0
-                ? <BoxTextWraper>
-                    {firstRadio[3] != '' ? <h3>{firstRadio[3]}</h3> : null}
-                    <SelectButton width={parseInt(firstRadio[0])} optionValue={firstRadio[1]} sortOrder={parseInt(firstRadio[2])} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
-                    {firstRadio[4] != '' ? <h3>{firstRadio[4]}</h3> : null}
-                </BoxTextWraper>
-                : null}
-            {thirdRadio.length > 0
-                ? <BoxTextWraper>
-                    {thirdRadio[3] != '' ? <h3>{thirdRadio[3]}</h3> : null}
-                    <SelectButton width={parseInt(thirdRadio[0])} optionValue={thirdRadio[1]} sortOrder={parseInt(thirdRadio[2])} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
-                    {thirdRadio[4] != '' ? <h3>{thirdRadio[4]}</h3> : null}
-                </BoxTextWraper>
-                : null}
+        <EventBox>
+            <RowBox>
+                {/*소트오더0 = 펫/주인 기본옵션 | 소트오더1 = 펫 옵션1 | 소트오더2 = 주인옵션1  | 소트오더3 = 종합옵션3(모든공격~매그넘) | 소트오더4 = 종합옵션2(디펜스 방어 옵션)*/}
+                {/*주인/펫 체크 버튼, 1순위 버튼*/}
+                <SelectButton optionValue={''} width={100} sortOrder={0} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
+                {secondRadio.length > 0
+                    ? <BoxTextWraper>
+                        {secondRadio[3] != '' ? <h3>{secondRadio[3]}</h3> : null}
+                        <SelectButton width={parseInt(secondRadio[0])} optionValue={secondRadio[1]} sortOrder={parseInt(secondRadio[2])} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
+                        {secondRadio[4] != '' ? <h3>{secondRadio[4]}</h3> : null}
+                    </BoxTextWraper>
+                    : null}
+                {firstRadio.length > 0
+                    ? <BoxTextWraper>
+                        {firstRadio[3] != '' ? <h3>{firstRadio[3]}</h3> : null}
+                        <SelectButton width={parseInt(firstRadio[0])} optionValue={firstRadio[1]} sortOrder={parseInt(firstRadio[2])} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
+                        {firstRadio[4] != '' ? <h3>{firstRadio[4]}</h3> : null}
+                    </BoxTextWraper>
+                    : null}
+                {thirdRadio.length > 0
+                    ? <BoxTextWraper>
+                        {thirdRadio[3] != '' ? <h3>{thirdRadio[3]}</h3> : null}
+                        <SelectButton width={parseInt(thirdRadio[0])} optionValue={thirdRadio[1]} sortOrder={parseInt(thirdRadio[2])} value={eventSelectedValue} onChange={handleSelectChange}></SelectButton>
+                        {thirdRadio[4] != '' ? <h3>{thirdRadio[4]}</h3> : null}
+                    </BoxTextWraper>
+                    : null}
 
-            {/*
+                {/*
             */}
-        </RowBox>)
+            </RowBox>
+        </EventBox>)
 }
 /** */
 
@@ -149,7 +151,8 @@ display: flex;
 flex-direction: row;
 justify-content: flex-start;
 gap: 10px; 
-width: 100%;
+width: 700px;
+max-width: 100%;
 flex-wrap: wrap;
 `
 
@@ -162,4 +165,10 @@ gap: 3px;
 h3 {
     white-space: nowrap;
 } 
+`
+const EventBox = styled.div`
+    background-color: rgb(81, 165, 196);
+    padding: 10px;
+    border-radius: 7px;
+    border: 2px solid rgb(25, 76, 138);
 `

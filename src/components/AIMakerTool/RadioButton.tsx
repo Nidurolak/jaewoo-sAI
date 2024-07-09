@@ -247,11 +247,11 @@ function SelectButton({ width, optionValue, value, sortOrder, indexNum, onChange
         { id: 4, label: '상대 주변을 회전', value: 'move_around' },
         { id: 5, label: '상대를 근접 공격', value: 'melee_attack' },
         { id: 6, label: '마법 차징 후 공격', value: 'stackmagic_attack' },
-        { id: 7, label: '스킬을 준비함', value: 'prepare_skill' },
+        { id: 7, label: '스킬을 준비', value: 'prepare_skill' },
         { id: 8, label: '마법 차징', value: 'stack_skill' },
-        { id: 9, label: '스킬을 사용함', value: 'precess_skill' },
+        { id: 9, label: '준비한 스킬을 사용', value: 'process_skill' },
         { id: 10, label: '사용 중 스킬 취소', value: 'cancel_skill' },
-        { id: 11, label: '휴식 시작', value: 'skill_relax' },
+        { id: 11, label: '휴식', value: 'skill_relax' },
         { id: 12, label: '특성 준비', value: 'PetST_skill' },
         { id: 13, label: '핀즈비즈 준비', value: 'PetEQ_skill' },
     ]
@@ -294,6 +294,10 @@ function SelectButton({ width, optionValue, value, sortOrder, indexNum, onChange
     const seqRunclockwise = [
         { id: 1, label: '시계', value: "true" },
         { id: 2, label: '반시계', value: "false" },
+    ]
+    const seqRelax = [
+        { id: 1, label: '시작', value: "true" },
+        { id: 2, label: '중단', value: "false" },
     ]
     const seqCharge = [
         { id: 1, label: '1회', value: "1" },
@@ -366,7 +370,6 @@ function SelectButton({ width, optionValue, value, sortOrder, indexNum, onChange
         case 'skill_preparable': options = conditonPreparableSkillOption; break;
         case 'ST_preparable': options = STOption; break;
         case 'EQ_preparable': options = EQOption; break;
-        case 'EQ_preparable': options = EQOption; break;
         case 'target_distance': options = targetdistance; break;
         case 'master_damaged_life_greater': options = targetHP; break;
 
@@ -379,11 +382,11 @@ function SelectButton({ width, optionValue, value, sortOrder, indexNum, onChange
         case 'stackmagic_attack': options = (sortOrder == 1) ? petMagicChargeOption : (sortOrder == 2) ? seqCharge : seqLimitTime; break;
         case 'prepare_skill': options = (sortOrder == 1) ? conditonPreparableSkillOption : (sortOrder == 2) ? seqCharge : seqLimitTime; break;
         case 'stack_skill': options = (sortOrder == 1) ? petMagicChargeOption : seqCharge; break;
-        case 'precess_skill': options = (sortOrder == 1) ? seqTargetPosition : seqLimitTime; break;
+        case 'process_skill': options = (sortOrder == 1) ? seqTargetPosition : seqLimitTime; break;
         case 'cancel_skill': options = seqList; break;
-        case 'skill_relax': options = seqList; break;
-        case 'PetST_skill': options = seqList; break;
-        case 'PetEQ_skill': options = seqList; break;
+        case 'skill_relax': options = seqRelax; break;
+        case 'PetST_skill': options = (sortOrder == 1) ? STOption : seqLimitTime; break;
+        case 'PetEQ_skill': options = (sortOrder == 1) ? EQOption : seqLimitTime; break;
 
         /*
                 case 'all': options = ; break;

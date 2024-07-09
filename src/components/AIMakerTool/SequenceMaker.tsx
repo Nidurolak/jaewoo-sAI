@@ -75,8 +75,8 @@ function SequenceMaker() {
       <ConSeqWraper key={index + "seq"} width={0} optionValue={''} value={sequenceSelectedValue[index]} sortOrder={0} indexNum={index} isCondition={false} onChange={handleSelectChange} ></ConSeqWraper>))}
   </ScrollBox>
     <RowBox>
-      <ConditionButton type='small' onClick={conListAdd}>추가</ConditionButton>
-      <ConditionButton type='normal' onClick={() => conListDelete(sequenceSelectedValue.length - 1)} disabled={sequenceSelectedValue.length < 1}>초기화</ConditionButton>
+      <SequenceButton type='small' onClick={conListAdd}>추가</SequenceButton>
+      <SequenceButton type='normal' onClick={() => conListDelete(sequenceSelectedValue.length - 1)} disabled={sequenceSelectedValue.length < 1}>초기화</SequenceButton>
     </RowBox>
   </ConditionBox>)
 }
@@ -107,7 +107,7 @@ gap: 10px;
 
 `
 
-const ConditionButton = styled.button<BackGUI>`
+const SequenceButton = styled.button<BackGUI>`
 background-color: rgba(255, 255, 255, 0);
 background-image: url(${Mainbutton3});
 background: url(${Mainbutton3});
