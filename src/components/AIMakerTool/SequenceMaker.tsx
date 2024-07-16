@@ -75,8 +75,8 @@ function SequenceMaker() {
       <ConSeqWraper key={index + "seq"} width={0} optionValue={''} value={sequenceSelectedValue[index]} sortOrder={0} indexNum={index} isCondition={false} onChange={handleSelectChange} ></ConSeqWraper>))}
   </ScrollBox>
     <RowBox>
-      <SequenceButton type='small' onClick={conListAdd}>추가</SequenceButton>
-      <SequenceButton type='normal' onClick={() => conListDelete(sequenceSelectedValue.length - 1)} disabled={sequenceSelectedValue.length < 1}>초기화</SequenceButton>
+      <SequenceButton onClick={conListAdd}>추가</SequenceButton>
+      <SequenceButton onClick={() => conListDelete(sequenceSelectedValue.length - 1)} disabled={sequenceSelectedValue.length < 1}>초기화</SequenceButton>
     </RowBox>
   </ConditionBox>)
 }
@@ -89,12 +89,7 @@ const ConditionBox = styled.div`
     border-radius: 7px;
     border: 2px solid rgb(25, 76, 138);
 `
-const TestBox = styled.div`
-    width: 100px;
-    height: 40px;
-    background-color: gray;
-    margin-bottom: 10px;
-`
+
 
 const RowBox = styled.div`
 align-items: center;
@@ -107,7 +102,7 @@ gap: 10px;
 
 `
 
-const SequenceButton = styled.button<BackGUI>`
+const SequenceButton = styled.button`
 background-color: rgba(255, 255, 255, 0);
 background-image: url(${Mainbutton3});
 background: url(${Mainbutton3});
@@ -131,7 +126,7 @@ background-repeat: no-repeat;
 const ScrollBox = styled.div`
 display: flex;
 flex-direction: column;
-  width: 700px;
+  width: 800px;
   max-width: 100%;
   height: 200px;
   max-height: 100%;

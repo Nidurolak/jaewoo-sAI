@@ -434,4 +434,6 @@ const Select = styled.select<{ val: number }>`
   border-radius: 10px;
   color: rgba(255,255,255,1);
   outline:none;
+  cursor: pointer;
+  &:hover{filter: brightness(105%);}
 `;

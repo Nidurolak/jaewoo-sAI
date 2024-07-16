@@ -151,7 +151,7 @@ display: flex;
 flex-direction: row;
 justify-content: flex-start;
 gap: 10px; 
-width: 700px;
+width: 800px;
 max-width: 100%;
 flex-wrap: wrap;
 `

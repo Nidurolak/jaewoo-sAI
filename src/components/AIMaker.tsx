@@ -20,13 +20,13 @@ function AIMaker() {
   return (<>
     {AIMakerexplainModalBool == true &&
       <Container onClick={handleCloseModal}>
-        <RejectBox onClick={handleChildClick}>
+        <TotalBox onClick={handleChildClick}>
           <LeftBox>
             <AIMakerTool />
           </LeftBox>
           <MiddleBox></MiddleBox>
           <RightBox></RightBox>
-        </RejectBox>
+        </TotalBox>
       </Container>}
   </>)
 }
@@ -72,15 +72,15 @@ const WhiteLine = styled.div`
   margin-bottom: 10px;
 `
 
-const RejectBox = styled.div`
+const TotalBox = styled.div`
 align-items: flex-start;
 display: flex;
 flex-direction: row;
 justify-content: center;
 gap: 15px;
 padding-top: 50px;
-padding-left: 50px;
-padding-right: 50px;
+padding-left: 20px;
+padding-right: 20px;
 background-color: rgba(255, 255, 255, 0);
 background-image: url(${Mainbutton800400});
 background: url(${Mainbutton800400});
@@ -88,8 +88,8 @@ background-size: 100% 100%;
 background-position: center;
 background-repeat: no-repeat;
   color: rgba(255, 255, 255, 1);
-  width: 90vw; /* 변경된 부분 */
-  height: 85vh; /* 변경된 부분 */
+  width: 95vw; /* 변경된 부분 */
+  height: 90vh; /* 변경된 부분 */
   border: none;
   font-size: 17px;
   font-family: 'Mabinogi_Classic_TTF';
