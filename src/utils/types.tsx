@@ -59,3 +59,28 @@ export interface BackGUI {
     type?: string;
     //onClick: ButtonHTMLAttributes<HTMLButtonElement>["onClick"];
 }
+
+export interface BoxProps {
+    value: string[];
+    width: number;
+    sortOrder: number;
+    optionValue: string;
+    indexNum?: number;
+    isCondition?: boolean;
+    onChange: (value: string[]) => void;
+}
+
+export interface PatternType {
+    key: string;
+    list: AIPattern;
+}
+
+export interface AIPattern {
+    name: string,
+    event: string[][],
+    condition: string[][],
+    sequence: string[][]
+}
+export interface TotalAIPatternList {
+    value: AIPattern[]
+}

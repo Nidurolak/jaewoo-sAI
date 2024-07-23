@@ -1,6 +1,6 @@
 import { atom } from "recoil";
 import uuid from "react-uuid";
-import { ButtonDataForRecoil } from "../utils/types";
+import { AIPattern, ButtonDataForRecoil, PatternType } from "../utils/types";
 
 export const ButtonData = atom<ButtonDataForRecoil>({
     key: `state${uuid()}`
@@ -50,6 +50,17 @@ export const AIMakingSequenceArrayAtom = atom<string[][]>({
     key: "SequenceAtomState",
     default: []
 });
+export const AIPatternArrayAtom = atom<PatternType[]>({
+    key: "PatternAtomState",
+    default: [{ key: "12sdjdhjdjdjdjdjdjdjdjdjdjdjdjdjdjj3", list: { name: "asds", event: [], condition: [], sequence: [] } }, { key: "123", list: { name: "asds", event: [], condition: [], sequence: [] } }, { key: "123", list: { name: "asds", event: [], condition: [], sequence: [] } }, { key: "123", list: { name: "asds", event: [], condition: [], sequence: [] } },]
+});
+
+//아톰값에 들어가야할 것. 1. 패턴 인덱스 2.패턴 밸류 3. 패턴 하나 누르면 그 값으로 이벤트컨디션시퀸스 재조립
+export const CurrentAIPattern = atom<AIPattern>({
+    key: "CurrentAI",
+    default: { name: "", event: [], condition: [], sequence: [] }
+})
+
 /*xport const AIMakingEventArrayAtom = atom<string[][]>({
     key: "StringArrayAtomState",
     default: [
