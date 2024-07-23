@@ -5,6 +5,7 @@ import { useRecoilState } from 'recoil';
 import { AIMakerExplainModalBool } from '../store/atom';
 import EventMaker from './AIMakerTool/EventMaker';
 import AIMakerTool from './AIMakerTool/AIMakerTool';
+import PatternListMaker from './AIMakerTool/PatternListMaker';
 
 function AIMaker() {
   const [AIMakerexplainModalBool, setAIMakerexplainModalBool] = useRecoilState(AIMakerExplainModalBool);
@@ -24,7 +25,9 @@ function AIMaker() {
           <LeftBox>
             <AIMakerTool />
           </LeftBox>
-          <MiddleBox></MiddleBox>
+          <MiddleBox>
+            <PatternListMaker />
+          </MiddleBox>
           <RightBox></RightBox>
         </TotalBox>
       </Container>}
@@ -37,23 +40,24 @@ function AIMaker() {
 export default AIMaker;
 
 const MiddleBox = styled.div`
-align-items: center;
-display: flex;
-flex-direction: column;
-justify-content: center;
-width: 500px;
-height: 300px;
-//background-color: chartreuse;
-`
-
-const LeftBox = styled.div`
-align-items: center;
 display: flex;
 flex-direction: column;
 justify-content: flex-start;
-width: 1000px;
-min-height: 500px;
-//background-color: gray;
+width: 100%;
+max-width: 400px;
+height: 300px;
+max-height: 95%;
+background-color: gray;
+`
+
+const LeftBox = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+max-width: 1000px;
+height: 900px;
+max-height: 95%;
+background-color: green;
 `
 
 const RightBox = styled.div`
@@ -78,9 +82,9 @@ display: flex;
 flex-direction: row;
 justify-content: center;
 gap: 15px;
-padding-top: 50px;
-padding-left: 20px;
-padding-right: 20px;
+padding-top: 10px;
+padding-left: 10px;
+padding-right: 10px;
 background-color: rgba(255, 255, 255, 0);
 background-image: url(${Mainbutton800400});
 background: url(${Mainbutton800400});
