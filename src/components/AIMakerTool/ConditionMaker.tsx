@@ -64,11 +64,12 @@ function ConditionMaker() {
     console.log(conditionSelectedValue)
   }, [conditionSelectedValue])
 
-  return (<ConditionBox><ScrollBox>
-    {/*소트오더0 = 펫/주인 기본옵션 | 소트오더1 = 펫 옵션1 | 소트오더2 = 주인옵션1  | 소트오더3 = 종합옵션3(모든공격~매그넘) | 소트오더4 = 종합옵션2(디펜스 방어 옵션)*/}
-    {conditionSelectedValue.map((option, index) => (
-      <ConSeqWraper key={index + "con"} width={0} optionValue={''} value={conditionSelectedValue[index]} sortOrder={0} indexNum={index} isCondition={true} onChange={handleSelectChange} ></ConSeqWraper>))}
-  </ScrollBox>
+  return (<ConditionBox>
+    <ScrollBox>
+      {/*소트오더0 = 펫/주인 기본옵션 | 소트오더1 = 펫 옵션1 | 소트오더2 = 주인옵션1  | 소트오더3 = 종합옵션3(모든공격~매그넘) | 소트오더4 = 종합옵션2(디펜스 방어 옵션)*/}
+      {conditionSelectedValue.map((option, index) => (
+        <ConSeqWraper key={index + "con"} width={0} optionValue={''} value={conditionSelectedValue[index]} sortOrder={0} indexNum={index} isCondition={true} onChange={handleSelectChange} ></ConSeqWraper>))}
+    </ScrollBox>
     <RowBox>
       <ConditionButton type='small' onClick={conListAdd}>추가</ConditionButton>
       <ConditionButton type='normal' onClick={() => conListDelete(true)} disabled={conditionSelectedValue.length < 1}>초기화</ConditionButton>
@@ -79,6 +80,7 @@ function ConditionMaker() {
 export default ConditionMaker
 
 const ConditionBox = styled.div`
+width: 800px;
     background-color: rgb(81, 165, 196);
     padding: 10px;
     border-radius: 7px;
@@ -126,11 +128,11 @@ background-repeat: no-repeat;
 const ScrollBox = styled.div`
 display: flex;
 flex-direction: column;
-  width: 700px;
+  width: 800px;
   max-width: 100%;
   height: 200px;
   max-height: 100%;
-  overflow: auto;
+  overflow-y: scroll;
   gap: 10px;
 
   &::-webkit-scrollbar {
@@ -138,7 +140,7 @@ flex-direction: column;
   }
 
   &::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: none;
   }
 
   &::-webkit-scrollbar-thumb {
