@@ -167,6 +167,7 @@ h3 {
 } 
 `
 const EventBox = styled.div`
+width: 800px;
     background-color: rgb(81, 165, 196);
     padding: 10px;
     border-radius: 7px;

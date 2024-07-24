@@ -69,11 +69,12 @@ function SequenceMaker() {
     console.log(sequenceSelectedValue)
   }, [sequenceSelectedValue])
 
-  return (<ConditionBox><ScrollBox>
-    {/*소트오더0 = 펫/주인 기본옵션 | 소트오더1 = 펫 옵션1 | 소트오더2 = 주인옵션1  | 소트오더3 = 종합옵션3(모든공격~매그넘) | 소트오더4 = 종합옵션2(디펜스 방어 옵션)*/}
-    {sequenceSelectedValue.map((option, index) => (
-      <ConSeqWraper key={index + "seq"} width={0} optionValue={''} value={sequenceSelectedValue[index]} sortOrder={0} indexNum={index} isCondition={false} onChange={handleSelectChange} ></ConSeqWraper>))}
-  </ScrollBox>
+  return (<ConditionBox>
+    <ScrollBox>
+      {/*소트오더0 = 펫/주인 기본옵션 | 소트오더1 = 펫 옵션1 | 소트오더2 = 주인옵션1  | 소트오더3 = 종합옵션3(모든공격~매그넘) | 소트오더4 = 종합옵션2(디펜스 방어 옵션)*/}
+      {sequenceSelectedValue.map((option, index) => (
+        <ConSeqWraper key={index + "seq"} width={0} optionValue={''} value={sequenceSelectedValue[index]} sortOrder={0} indexNum={index} isCondition={false} onChange={handleSelectChange} ></ConSeqWraper>))}
+    </ScrollBox>
     <RowBox>
       <SequenceButton onClick={conListAdd}>추가</SequenceButton>
       <SequenceButton onClick={() => conListDelete(sequenceSelectedValue.length - 1)} disabled={sequenceSelectedValue.length < 1}>초기화</SequenceButton>
@@ -88,18 +89,21 @@ const ConditionBox = styled.div`
     padding: 10px;
     border-radius: 7px;
     border: 2px solid rgb(25, 76, 138);
+width: 800px;
+display: flex;
+flex-direction: column;
 `
 
 
 const RowBox = styled.div`
-align-items: center;
+align-items: flex-start;
 display: flex;
 flex-direction: row;
 justify-content: center;
-width: 100%;
-padding-top: 15px;
-gap: 10px;
-
+gap: 10px; 
+width: 800px;
+max-width: 100%;
+flex-wrap: wrap;
 `
 
 const SequenceButton = styled.button`
@@ -130,7 +134,7 @@ flex-direction: column;
   max-width: 100%;
   height: 200px;
   max-height: 100%;
-  overflow: auto;
+  overflow-y: scroll;
   gap: 10px;
 
   &::-webkit-scrollbar {
@@ -138,7 +142,7 @@ flex-direction: column;
   }
 
   &::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: none;
   }
 
   &::-webkit-scrollbar-thumb {

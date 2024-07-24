@@ -1,17 +1,10 @@
 import React, { } from 'react';
 import { styled } from 'styled-components';
-
-interface SelectBoxProps {
-    value: string[];
-    width: number;
-    sortOrder: number;
-    optionValue: string;
-    indexNum?: number;
-    onChange: (value: string[]) => void;
-}
+import { BoxProps } from '../../utils/types';
 
 
-function SelectButton({ width, optionValue, value, sortOrder, indexNum, onChange }: SelectBoxProps) {
+
+function SelectButton({ width, optionValue, value, sortOrder, indexNum, onChange }: BoxProps) {
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         var val: string[] = [];
 
