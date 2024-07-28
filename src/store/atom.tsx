@@ -52,13 +52,13 @@ export const AIMakingSequenceArrayAtom = atom<string[][]>({
 });
 export const AIPatternArrayAtom = atom<PatternType[]>({
     key: "PatternAtomState",
-    default: [{ key: "12sdjdhjdjdjdjdjdjdjdjdjdjdjdjdjdjj3", list: { name: "asds", event: [], condition: [], sequence: [] } }, { key: "123", list: { name: "asds", event: [], condition: [], sequence: [] } }, { key: "123", list: { name: "asds", event: [], condition: [], sequence: [] } }, { key: "123", list: { name: "asds", event: [], condition: [], sequence: [] } },]
+    default: [{ key: "12sdjdhjdjdjdjdjdjdjdjdjdjdjdjdjdjj3", list: { name: "asds", event: [], condition: [], sequence: [] } }, { key: "", list: { name: "asds", event: [], condition: [], sequence: [] } }, { key: "123", list: { name: "asds", event: [], condition: [], sequence: [] } }, { key: "123", list: { name: "asds", event: [], condition: [], sequence: [] } },]
 });
 
 //아톰값에 들어가야할 것. 1. 패턴 인덱스 2.패턴 밸류 3. 패턴 하나 누르면 그 값으로 이벤트컨디션시퀸스 재조립
-export const CurrentAIPattern = atom<AIPattern>({
+export const CurrentAIPattern = atom<AIPattern & { currentIndex: number }>({
     key: "CurrentAI",
-    default: { name: "", event: [], condition: [], sequence: [] }
+    default: { currentIndex: -1, name: "", event: [], condition: [], sequence: [] }
 })
 
 /*xport const AIMakingEventArrayAtom = atom<string[][]>({

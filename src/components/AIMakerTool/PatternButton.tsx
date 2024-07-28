@@ -2,7 +2,7 @@ import React, { useState, ChangeEvent, useEffect, useMemo } from 'react';
 import { styled } from 'styled-components';
 import { useRecoilState } from 'recoil';
 import SelectButton from './RadioButton';
-import { AIMakingConditionArrayAtom, AIMakingSequenceArrayAtom, AIPatternArrayAtom } from '../../store/atom';
+import { AIMakingConditionArrayAtom, AIMakingSequenceArrayAtom, AIPatternArrayAtom, CurrentAIPattern } from '../../store/atom';
 import XIconBlue from '../../assets/XIconBlue.png'
 import UpIconBlue from '../../assets/UpIconBlue.png'
 import PlusIconBlue from '../../assets/PlusIconBlue.png'
@@ -12,9 +12,11 @@ import { BoxProps } from '../../utils/types';
 
 function PatternButton({ indexNum, optionValue }: Partial<BoxProps>) {
     const [partternValue, setPatternValue] = useRecoilState(AIPatternArrayAtom);
+    const [currentPartternValue, setCurrentPatternValue] = useRecoilState(CurrentAIPattern);
     const [inputValue, setInputValue] = useState('');
-    var indexNumThis = indexNum != undefined ? indexNum : 0
+    let indexNumThis = indexNum != undefined ? indexNum : 0
 
+    console.log(currentPartternValue.currentIndex)
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.target.value);
@@ -24,12 +26,12 @@ function PatternButton({ indexNum, optionValue }: Partial<BoxProps>) {
     /**/const changeQueue = (index: number, isUp: boolean) => {
         console.log(index);
         console.log(partternValue.length);
-        var indexVal = partternValue[index]
+        let indexVal = partternValue[index]
         //위로 올릴 때
         if (isUp == true && index > 0) {
             console.log("sss");
-            setPatternValue((prevArray) => {
-                var val = [...prevArray];
+            setPatternValue((preletray) => {
+                let val = [...preletray];
                 val[index] = val[index - 1];
                 val[index - 1] = indexVal;
                 return val;
@@ -38,8 +40,8 @@ function PatternButton({ indexNum, optionValue }: Partial<BoxProps>) {
         //아래로 내릴 때
         else if (isUp == false && index + 1 < partternValue.length) {
             console.log("ddd");
-            setPatternValue((prevArray) => {
-                var val = [...prevArray];
+            setPatternValue((preletray) => {
+                let val = [...preletray];
                 val[index] = val[index + 1];
                 val[index + 1] = indexVal;
                 return val;
@@ -48,7 +50,7 @@ function PatternButton({ indexNum, optionValue }: Partial<BoxProps>) {
     }
 
     const deleteDupleQueue = (index: number, isDel: boolean) => {
-        var DelVal = [...partternValue]
+        let DelVal = [...partternValue]
 
         isDel == true ? DelVal.splice(index, 1) : DelVal.splice(index, 0, DelVal[index]);
         setPatternValue(DelVal)
@@ -56,13 +58,21 @@ function PatternButton({ indexNum, optionValue }: Partial<BoxProps>) {
 
     const valueFocus = () => {
         console.log(partternValue[indexNumThis].key)
+        setCurrentPatternValue({
+            ...currentPartternValue,
+            currentIndex: indexNumThis,
+            name: optionValue!,
+            event: [["updatedEvent"]],
+            condition: [["updatedCondition"]],
+            sequence: [["updatedSequence"]]
+        });
     }
 
     return (
         <Container >
             <BoxTextWraper>
+                {currentPartternValue.currentIndex == indexNumThis ? <Input></Input> : <h2 onClick={valueFocus}>{optionValue}</h2>}
 
-                <Input></Input>
             </BoxTextWraper>
             <ButtonBox>
                 <ButtonDiv image={UpIconBlue} onClick={() => changeQueue(indexNumThis, true)}></ButtonDiv>
@@ -129,5 +139,9 @@ h2 {
     overflow: hidden;
     text-overflow: ellipsis;
     cursor: pointer;
+    user-select: none;
+  &:hover {
+    color: rgb(200, 200, 200);
+  }
 } 
 `

@@ -19,7 +19,7 @@ function PatternListMaker() {
       <h2>패턴 목록</h2>
       <ListContainer>
         <ScrollBox>
-          {partternValue.map((Option, index) => (<PatternButton key={Option.key + index} indexNum={index} optionValue={Option.key}></PatternButton>))}
+          {partternValue.map((Option, index) => (<PatternButton key={Option.key + index} indexNum={index} optionValue={Option.key != "" ? Option.key : "-이름없는 패턴"}></PatternButton>))}
         </ScrollBox>
       </ListContainer>
     </ColummBox>)
