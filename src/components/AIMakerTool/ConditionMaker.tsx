@@ -72,7 +72,7 @@ function ConditionMaker() {
     </ScrollBox>
     <RowBox>
       <ConditionButton type='small' onClick={conListAdd}>추가</ConditionButton>
-      <ConditionButton type='normal' onClick={() => conListDelete(true)} disabled={conditionSelectedValue.length < 1}>초기화</ConditionButton>
+      <ConditionButton type='small' onClick={() => conListDelete(true)} disabled={conditionSelectedValue.length < 1}>초기화</ConditionButton>
     </RowBox>
   </ConditionBox>)
 }
