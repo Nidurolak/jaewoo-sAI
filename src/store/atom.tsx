@@ -56,9 +56,10 @@ export const AIPatternArrayAtom = atom<PatternType[]>({
 });
 
 //아톰값에 들어가야할 것. 1. 패턴 인덱스 2.패턴 밸류 3. 패턴 하나 누르면 그 값으로 이벤트컨디션시퀸스 재조립
-export const CurrentAIPattern = atom<AIPattern & { currentIndex: number }>({
+export const CurrentAIPattern = atom<{ currentIndex: number, name: string }>({
     key: "CurrentAI",
-    default: { currentIndex: -1, name: "", event: [], condition: [], sequence: [] }
+    default: { currentIndex: -1, name: "" }
+    //default: { currentIndex: -1, name: "", event: [], condition: [], sequence: [] }
 })
 
 /*xport const AIMakingEventArrayAtom = atom<string[][]>({
