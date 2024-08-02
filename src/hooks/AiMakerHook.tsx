@@ -1,5 +1,8 @@
 import React, { useState, ChangeEvent, useEffect, useRef } from 'react';
 import { ConditionType, EventTypes, SequenceType, StringTest } from "../utils/types";
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { AIMakingConditionArrayAtom, AIMakingEventArrayAtom, AIMakingSequenceArrayAtom, AIPatternArrayAtom, CurrentAIPattern } from '../store/atom';
+import { isEqual } from 'lodash';
 
 //AI 행동 시퀸스를 조립하는 부분, 여기서 필요한 건
 //cmd name
@@ -130,4 +133,30 @@ export function totalWarper(value: string[]) {
     }
     resString.push("\n</rules>")
     return resString.join("")
+}
+
+//아톰에 개별 리스트들이 있어. 이걸 체크해야겠는데? 로대쉬를 사용해
+export function CheckCurrentChange() {
+    const [partternValue, setPatternValue] = useRecoilState(AIPatternArrayAtom);
+    const [currentPartternValue, setCurrentPatternValue] = useRecoilState(CurrentAIPattern);
+    const eventArray = useRecoilValue(AIMakingEventArrayAtom);
+    const conditionArray = useRecoilValue(AIMakingConditionArrayAtom);
+    const sequenceArray = useRecoilValue(AIMakingSequenceArrayAtom);
+    console.log(partternValue)
+    console.log(eventArray)
+    console.log(conditionArray)
+    console.log(sequenceArray)
+    //토탈값을 어디서 체크하더라?,,,,,,,,,
+    if (currentPartternValue.currentIndex >= 0) {
+        //이름 변경 체크
+        if (partternValue[currentPartternValue.currentIndex].key == currentPartternValue.name
+            || isEqual(partternValue[currentPartternValue.currentIndex].list.event, eventArray)
+            || isEqual(partternValue[currentPartternValue.currentIndex].list.condition, conditionArray)
+            || isEqual(partternValue[currentPartternValue.currentIndex].list.sequence, sequenceArray)) {// == currentPartternValue.) {
+            console.log("adda")
+            return (true)
+        }
+    }
+    console.log("addasddssds")
+    return (false)
 }
