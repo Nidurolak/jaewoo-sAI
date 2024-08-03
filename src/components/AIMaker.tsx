@@ -1,17 +1,21 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import Mainbutton800400 from '../assets/MainButton800400.png'
-import { useRecoilState } from 'recoil';
-import { AIMakerExplainModalBool } from '../store/atom';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { AIMakerExplainModalBool, CurrentAIPattern } from '../store/atom';
 import EventMaker from './AIMakerTool/EventMaker';
 import AIMakerTool from './AIMakerTool/AIMakerTool';
 import PatternListMaker from './AIMakerTool/PatternListMaker';
 
 function AIMaker() {
   const [AIMakerexplainModalBool, setAIMakerexplainModalBool] = useRecoilState(AIMakerExplainModalBool);
+  const patternIndex = useRecoilValue(CurrentAIPattern)
 
   const handleCloseModal = () => {
-    setAIMakerexplainModalBool(false);
+    if (patternIndex.currentIndex < 0) {
+      setAIMakerexplainModalBool(false);
+
+    }
   };
   const handleChildClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
@@ -45,7 +49,7 @@ flex-direction: column;
 justify-content: flex-start;
 width: 100%;
 max-width: 400px;
-height: 300px;
+height: 350px;
 max-height: 95%;
 background-color: gray;
 `
