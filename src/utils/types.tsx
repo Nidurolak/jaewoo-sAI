@@ -77,7 +77,7 @@ export interface PatternType {
 
 export interface AIPattern {
     name: string,
-    event: string[][],
+    event: string[],
     condition: string[][],
     sequence: string[][]
 }
