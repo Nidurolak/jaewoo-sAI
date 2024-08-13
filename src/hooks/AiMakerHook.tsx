@@ -1,8 +1,10 @@
 import React, { useState, ChangeEvent, useEffect, useRef } from 'react';
-import { ConditionType, EventTypes, SequenceType, StringTest } from "../utils/types";
+import { BackGUI, ConditionType, EventTypes, SequenceType, StringTest } from "../utils/types";
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { AIMakingConditionArrayAtom, AIMakingEventArrayAtom, AIMakingSequenceArrayAtom, AIPatternArrayAtom, CurrentAIPattern } from '../store/atom';
+import { AIMakingConditionArrayAtom, AIMakingEventArrayAtom, AIMakingSequenceArrayAtom, AIPatternArrayAtom, CurrentAIPattern, DownloadModalCopyBool } from '../store/atom';
 import { isEqual } from 'lodash';
+import clipboardCopy from 'clipboard-copy';
+import gen_button_confirm from '../assets/Sound/gen_button_confirm.wav'
 
 //AI 행동 시퀸스를 조립하는 부분, 여기서 필요한 건
 //cmd name
@@ -68,7 +70,7 @@ export function conPt(value: ConditionType) {
         case "ST_preparable": resString.push(`"${value.main}" pet_st="${value.value0}"/>`); break;
         case "EQ_preparable": resString.push(`"${value.main}" pet_eq="${value.value0}"/>`); break;
         case "master_damaged_life_greater": resString.push(`"${value.main}" life="${value.value0}"/>`); break;
-        default: break;
+        default: console.log(value); break;
     }
 
     return resString.join("")
@@ -142,21 +144,143 @@ export function CheckCurrentChange() {
     const eventArray = useRecoilValue(AIMakingEventArrayAtom);
     const conditionArray = useRecoilValue(AIMakingConditionArrayAtom);
     const sequenceArray = useRecoilValue(AIMakingSequenceArrayAtom);
-    console.log(partternValue)
-    console.log(eventArray)
-    console.log(conditionArray)
-    console.log(sequenceArray)
     //토탈값을 어디서 체크하더라?,,,,,,,,,
     if (currentPartternValue.currentIndex >= 0) {
         //이름 변경 체크
-        if (partternValue[currentPartternValue.currentIndex].key == currentPartternValue.name
-            || isEqual(partternValue[currentPartternValue.currentIndex].list.event, eventArray)
-            || isEqual(partternValue[currentPartternValue.currentIndex].list.condition, conditionArray)
-            || isEqual(partternValue[currentPartternValue.currentIndex].list.sequence, sequenceArray)) {// == currentPartternValue.) {
-            console.log("adda")
+        //아예 없는 배열을 변경사항이 있다고 착각하고 있어
+        if (partternValue[currentPartternValue.currentIndex].key != currentPartternValue.name
+            || !isEqual(partternValue[currentPartternValue.currentIndex].list.event, eventArray)
+            || !isEqual(partternValue[currentPartternValue.currentIndex].list.condition, conditionArray)
+            || !isEqual(partternValue[currentPartternValue.currentIndex].list.sequence, sequenceArray)) {// == currentPartternValue.) {
+
+            //console.log("isChanged는 true")
             return (true)
         }
-    }
-    console.log("addasddssds")
+    }// console.log("isChanged는 false")
     return (false)
+}
+
+export function CheckWhatChanged(type: string) {
+    const partternValue = useRecoilValue(AIPatternArrayAtom);
+    const currentPartternValue = useRecoilValue(CurrentAIPattern);
+    const eventArray = useRecoilValue(AIMakingEventArrayAtom);
+    const conditionArray = useRecoilValue(AIMakingConditionArrayAtom);
+    const sequenceArray = useRecoilValue(AIMakingSequenceArrayAtom);
+
+    if (currentPartternValue.currentIndex > -1) {
+        switch (type) {
+            case "key": if (isEqual(partternValue[currentPartternValue.currentIndex].key, currentPartternValue.name) == false) return (true); break;
+            case "event": if (isEqual(partternValue[currentPartternValue.currentIndex].list.event, eventArray) == false) return (true); break;
+            case "condition": if (isEqual(partternValue[currentPartternValue.currentIndex].list.condition, conditionArray) == false) return (true); break;
+            case "sequence": if (isEqual(partternValue[currentPartternValue.currentIndex].list.sequence, sequenceArray) == false) return (true); break;
+        }
+
+    }
+    return (false)
+}
+export function GetWidthAndHeight(type: BackGUI) {
+    switch (type.type) {
+        case 'small':
+            return { width: '120px', height: '30px' };
+        case 'AIDown':
+            return { width: '140px', height: '70px' };
+        case 'normal':
+            return { width: '200px', height: '70px' };
+        case 'xlarge':
+            return { width: '250px', height: '60px' };
+        default:
+            return { width: '120px', height: '30px' };
+    }
+};
+export function HandleSoundPlay() {
+    const confirmsound = new Audio(gen_button_confirm);
+
+
+    const playSound = () => {
+        confirmsound.currentTime = 0;
+        confirmsound.play();
+    };
+
+    return playSound;
+}
+
+export function HandleCopyToClipboardForCustom(isFirst: boolean) {
+    const [copied, setCopied] = useState(false);
+
+    //const [modalBoolValue, setmodalBoolValue] = useRecoilState(DownloadModalCopyBool)
+
+    const partternValue = useRecoilValue(AIPatternArrayAtom);
+    const eventArray = useRecoilValue(AIMakingEventArrayAtom);
+    const conditionArray = useRecoilValue(AIMakingConditionArrayAtom);
+    const sequenceArray = useRecoilValue(AIMakingSequenceArrayAtom);
+
+    let content: string[] = [];
+    console.log(partternValue)
+    if (partternValue.length > 0) {
+
+    }
+    //setmodalBoolValue(true)
+
+    partternValue.forEach((pattern, i) => {
+        const event = pattern.list.event || [];
+        const condition = pattern.list.condition || [];
+        const sequence = pattern.list.sequence || [];
+
+        //케이스가 어디갔어?!
+
+        let con = condition.map((con) => conPt({ tabNum: 4, case: "condition", main: con[0], value0: con[1], value1: con[2] }));
+        let seq = sequence.map((seq) => seqPt({ tabNum: 4, case: "sequence", main: seq[0], value0: seq[1], value1: seq[2], value2: seq[3], value3: seq[4] }));
+        console.log(event)
+        console.log(pattern)
+        console.log(con)
+        console.log(condition)
+        console.log(event[0])
+        content.push(eventWarper({//전체포장
+            name: pattern.key,
+            main: event[0],
+            //pt를 반복해야해
+            condition: con,
+            sequence: seq,
+            value0: event[1],
+            value1: event[2],
+            value2: event[3],
+        })
+        )
+        /**
+                content.push(
+                    eventWarper({
+                        name: pattern.key, main: event[0] || "", // 기본값 또는 빈 값으로 설정
+                        value0: event[1] || "", value1: event[2] || "", value2: event[3] || "",
+                        condition: condition.length > 0
+                            ? [conPt({
+                                tabNum: 4,
+                                case: condition[i][0] || "",
+                                main: "",
+                                value0: "",
+                                value1: ""
+                            })]
+                            : [], // 비어 있을 경우 빈 배열로
+                        sequence: sequence.length > 0
+                            ? sequence.map((x, idx) => seqPt({
+                                tabNum: 4,
+                                case: "", // 필요에 따라 적절히 기본값 설정
+                                main: "",
+                                value0: "",
+                                value1: "",
+                                value2: "",
+                                value3: ""
+                            }))
+                            : [] // 비어 있을 경우 빈 배열로
+                    })
+                );
+            });
+        
+            console.log(content)
+         
+         */
+        clipboardCopy(totalWarper(content))
+            .then(() => setCopied(true))
+            .catch((error) => console.error('클립보드 복사 오류:', error));
+
+    })
 }
