@@ -1,7 +1,7 @@
 import React, { useState, ChangeEvent, useEffect } from 'react';
 import { styled } from 'styled-components';
 import { useRecoilState } from 'recoil';
-import { AIMakingEventArrayAtom } from '../../store/atom';
+import { AIMakingEventArrayAtom, CurrentAIPattern } from '../../store/atom';
 import EventMaker from './EventMaker';
 import ConditionMaker from './ConditionMaker';
 import SequenceMaker from './SequenceMaker';
@@ -9,7 +9,7 @@ import SequenceMaker from './SequenceMaker';
 function AIMakerTool() {
     const [selectedValue, setSelectedValue] = useState<string | null>(null);
     const [eventSelectedValue, setEventSelectedValue] = useRecoilState(AIMakingEventArrayAtom);
-
+    const [currentPartternValue, setCurrentPatternValue] = useRecoilState(CurrentAIPattern);
 
     //여기서 구분하는 값을 추가할 것
     const handleSelectChange = (value: string[]) => {
@@ -113,6 +113,22 @@ function AIMakerTool() {
 
 export default AIMakerTool;
 
+
+const Cover = styled.div`
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+display: flex;
+flex-direction: column; 
+justify-content: center;
+align-items: center;
+cursor: default;
+background-color: rgba(0, 0, 0, 0.8);
+`;
+
+
 const ColummBox = styled.div`
 align-items: flex-start; 
 display: flex;
@@ -124,15 +140,32 @@ max-width: 800px;
 `
 
 const EventDiv = styled.div`
+overflow-y: scroll;
 align-items: center;
 display: flex;
 flex-direction: column;
 justify-content: flex-start;
 width: 100%;
-height: 100%;
-max-height: 600px;
-//background-color: darkgoldenrod;
+height: 95%;
 padding: 10px;
+position: relative;
+
+&::-webkit-scrollbar {
+  width: 11px;
+}
+
+&::-webkit-scrollbar-track {
+  background: none;
+}
+
+&::-webkit-scrollbar-thumb {
+  background: rgb(25, 76, 138);
+  border-radius: 3px;
+}
+
+&::-webkit-scrollbar-thumb:hover {
+  background: rgb(111, 195, 226);
+}
 
   h1 {word-spacing: 1px;word-break:keep-all; font-weight: 100;margin-top: 10px;font-size: 45px;font-family: 'Mabinogi_Classic_TTF';}
   h2 {word-spacing: 1px;word-break:keep-all;  margin-top: 10px; font-size: inherit; font-family: 'Mabinogi_Classic_TTF'; font-weight:500;}
