@@ -57,6 +57,7 @@ export interface ButtonDataForRecoil {
 //도무지 해결이 안되네......타협을 한다.
 export interface BackGUI {
     type?: string;
+    backgroundImage?: any
     //onClick: ButtonHTMLAttributes<HTMLButtonElement>["onClick"];
 }
 
@@ -83,4 +84,9 @@ export interface AIPattern {
 }
 export interface TotalAIPatternList {
     value: AIPattern[]
+}
+
+export interface ChangeFunc {
+    apply: () => void
+    cancle: () => void
 }

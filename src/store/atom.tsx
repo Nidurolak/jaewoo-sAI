@@ -40,7 +40,7 @@ export const ExpWheelBool = atom({
 })
 export const AIMakingEventArrayAtom = atom<string[]>({
     key: "EventAtomState",
-    default: ['master', 'master_targeted', 'alert', '']
+    default: ['master_targeted', 'alert']
 });
 export const AIMakingConditionArrayAtom = atom<string[][]>({
     key: "ConditionAtomState",
@@ -52,7 +52,7 @@ export const AIMakingSequenceArrayAtom = atom<string[][]>({
 });
 export const AIPatternArrayAtom = atom<PatternType[]>({
     key: "PatternAtomState",
-    default: [{ key: "12sdjdhjdjdjdjdjdjdjdjdjdjdjdjdjdjj3", list: { name: "asds", event: [], condition: [], sequence: [] } }, { key: "", list: { name: "asds", event: [], condition: [], sequence: [] } }, { key: "123", list: { name: "asds", event: [], condition: [], sequence: [] } }, { key: "123", list: { name: "asds", event: [], condition: [], sequence: [] } },]
+    default: []
 });
 
 //아톰값에 들어가야할 것. 1. 패턴 인덱스 2.패턴 밸류 3. 패턴 하나 누르면 그 값으로 이벤트컨디션시퀸스 재조립
