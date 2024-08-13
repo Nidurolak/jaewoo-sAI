@@ -8,8 +8,7 @@ function SelectButton({ width, optionValue, value, sortOrder, indexNum, onChange
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         var val: string[] = [];
 
-        console.log("서브")
-        console.log(indexNum)
+        //console.log("서브")
         val[0] = sortOrder.toString();
         val[1] = e.target.value;
         val[2] = optionValue;
@@ -17,9 +16,8 @@ function SelectButton({ width, optionValue, value, sortOrder, indexNum, onChange
             val[3] = indexNum.toString();
         }
 
-        console.log(val + "값이 라디오버튼에서 넘어감")
+        //console.log(val + "값이 라디오버튼에서 넘어감")
         onChange(val);
-        console.log(e.target.value)
         //console.log(customValue)
     };
 

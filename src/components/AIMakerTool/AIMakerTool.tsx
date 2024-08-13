@@ -14,13 +14,12 @@ function AIMakerTool() {
     //여기서 구분하는 값을 추가할 것
     const handleSelectChange = (value: string[]) => {
         //setSelectedValue(value);
-        console.log(eventSelectedValue + "이 바뀌기 전의 값, " + value + "가 넘어옴 배열값, " + value[1] + "의 값이 라디오값으로 넘어옴, " + value[0] + "이 소트오더로 넘어옴")
+        //console.log(eventSelectedValue + "이 바뀌기 전의 값, " + value + "가 넘어옴 배열값, " + value[1] + "의 값이 라디오값으로 넘어옴, " + value[0] + "이 소트오더로 넘어옴")
         if (value[1] != "master" && value[1] != "pet") {
             setEventSelectedValue(prevstate => {
                 const newValue = [...prevstate];
                 //소트오더 0 = 배열 0번값, 소트오더 1, 2 = 배열 1번값 소트오더 3, 4, 5 = 베열 2번값
                 const x = parseInt(value[0])
-                console.log(x)
                 switch (x) {
                     case 0: newValue[0] = value[1]; break;
                     case 1: newValue[1] = value[1]; newValue[2] = ''; newValue[3] = ''; break;
@@ -39,10 +38,8 @@ function AIMakerTool() {
         else {
             if (value[1] == "master") {
                 setEventSelectedValue(['master', 'master_targeted', 'alert'])
-                console.log("마스터 거르기 작동")
             }
             else if ((value[1] == "pet")) {
-                console.log("펫 거르기 작동")
                 setEventSelectedValue(['pet', 'targeted', 'alert'])
             }
             return null;
@@ -55,7 +52,6 @@ function AIMakerTool() {
         //2개 들어가야하는것 - 공격당함, 공격함, 동물 상대 피격
 
         //펫 마스터 구분때문에 스위치했는데 if로 빼도 될 것 같음
-        //console.log(value)
         if (value[0] == "master") {
             switch (value[1]) {
                 //case 'master_targeted':
@@ -89,7 +85,6 @@ function AIMakerTool() {
     }
 
     useEffect(() => {
-        console.log(eventSelectedValue)
     }, [eventSelectedValue])
 
     return (

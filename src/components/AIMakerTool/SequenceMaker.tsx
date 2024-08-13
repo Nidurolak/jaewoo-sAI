@@ -18,7 +18,7 @@ function SequenceMaker() {
     //setSelectedValue(value);
     var val = [...sequenceSelectedValue]
 
-    console.log(sequenceSelectedValue[parseInt(value[3])] + "이 바뀌기 전의 값, " + value + "가 넘어옴 배열값, " + value[1] + "의 값이 라디오값으로 넘어옴, " + value[0] + "이 소트오더로 넘어옴")
+    //console.log(sequenceSelectedValue[parseInt(value[3])] + "이 바뀌기 전의 값, " + value + "가 넘어옴 배열값, " + value[1] + "의 값이 라디오값으로 넘어옴, " + value[0] + "이 소트오더로 넘어옴")
 
     setSequenceSelectedValue((prevArray) => {
       var val = [...prevArray];
@@ -26,8 +26,6 @@ function SequenceMaker() {
       val[parseInt(value[3])][parseInt(value[0])] = value[1]
       //컨디션 값이 바뀌었다면 초기화된 후열 값을 바꿔야한다.
       if (value[2] == 'sequence') {
-        console.log(val[parseInt(value[3])])
-        console.log(value)
         //val[parseInt(value[3])]이 배열값이야, 여기서 1, 2번 인덱스를 고쳐야해
         switch (value[1]) {
           case 'wait': val[parseInt(value[3])][1] = 'walk'; val[parseInt(value[3])].splice(2, 1); break;//
@@ -47,7 +45,6 @@ function SequenceMaker() {
       }
       //val[parseInt(value[3])] = [...val[parseInt(value[0])]];
       //val[parseInt(value[3])][parseInt(value[0])] = value[1];
-      console.log(val[parseInt(value[3])][parseInt(value[0])])
       return val
     })
     //인덱스넘 넘어옴, 이걸로 조립해야함
@@ -56,17 +53,15 @@ function SequenceMaker() {
   const conListAdd = () => {
     const AddVal = ["wait", "1000", "1000"]
     setSequenceSelectedValue((prevArray) => [...prevArray, AddVal]);
-    console.log(sequenceSelectedValue)
   }
   const conListDelete = (indexToRemove: number) => {
     var DelVal = [...sequenceSelectedValue]
     DelVal.splice(sequenceSelectedValue.length - 1, 1)
     setSequenceSelectedValue([]);
-    console.log(DelVal)
   }
 
   useEffect(() => {
-    console.log(sequenceSelectedValue)
+    //console.log(sequenceSelectedValue)
   }, [sequenceSelectedValue])
 
   return (<ConditionBox>

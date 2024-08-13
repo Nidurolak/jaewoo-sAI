@@ -25,12 +25,9 @@ function ConSeqWraper({ width, optionValue, value, sortOrder, indexNum, isCondit
     })
 
     const changeQueue = (index: number, isUp: boolean) => {
-        console.log(index);
-        console.log(listValue.length);
         var indexVal = listValue[index]
         //위로 올릴 때
         if (isUp == true && index > 0) {
-            console.log("sss");
             setListValue((prevArray) => {
                 var val = [...prevArray];
                 val[index] = val[index - 1];
@@ -40,7 +37,6 @@ function ConSeqWraper({ width, optionValue, value, sortOrder, indexNum, isCondit
         }
         //아래로 내릴 때
         else if (isUp == false && index + 1 < listValue.length) {
-            console.log("ddd");
             setListValue((prevArray) => {
                 var val = [...prevArray];
                 val[index] = val[index + 1];
@@ -58,8 +54,6 @@ function ConSeqWraper({ width, optionValue, value, sortOrder, indexNum, isCondit
 
 
     useEffect(() => {
-        console.log("수정발동")
-        console.log(listValue[indexNumThis])
         switch (listValue[indexNumThis][0]) {
             //[width, optionValue, sortOrder, h3 전열 , h3 후열] 순으로 배열 생성
             case 'target_state': setRadio({ first: ["0", "target_state", "1", "= ", "인 경우"], second: [], third: [], fourth: [] }); break;//

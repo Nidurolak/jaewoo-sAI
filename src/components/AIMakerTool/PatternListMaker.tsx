@@ -42,7 +42,6 @@ function PatternListMaker() {
     //패턴의 기본 구조는{ key: "패턴명", list: { name: "이벤트명", event: [], condition: [], sequence: [] } }
     const AddVal = { key: `${partternValue.length + 1}번 패턴`, list: { name: `0번 이벤트`, event: ['master_targeted', 'alert'], condition: [], sequence: [] } }
     setPatternValue((prevArray) => [...prevArray, AddVal]);
-    console.log(partternValue)
   }
   const patternListDelete = () => {
     handleSoundPlay();
@@ -53,37 +52,26 @@ function PatternListMaker() {
       var DelVal = [...partternValue]
       DelVal.splice(partternValue.length - 1, 1)
       setPatternValue([]);
-      console.log(DelVal)
     }
   }
 
   const cancelPattern = () => {
     handleSoundPlay();
-    console.log("취소")
     var DelVal = _.cloneDeep(partternValue)
     setCurrentPatternValue({ currentIndex: -1, name: "" })
     setEventArray(partternValue[currentPartternValue.currentIndex].list.event);
     setConditionArray(partternValue[currentPartternValue.currentIndex].list.condition);
     setSequenceArray(partternValue[currentPartternValue.currentIndex].list.sequence);
-    console.log(partternValue[currentPartternValue.currentIndex])
   }
 
   const applyPattern = () => {
     handleSoundPlay();
     var DelVal = _.cloneDeep(partternValue)
-    console.log("적용")
-    console.log(DelVal)
-    console.log(currentPartternValue.name)
-    console.log(DelVal[currentPartternValue.currentIndex].list)
-    console.log(DelVal[currentPartternValue.currentIndex].list.name)
-    console.log(conditionArray)
 
     DelVal[currentPartternValue.currentIndex].key = currentPartternValue.name;
     DelVal[currentPartternValue.currentIndex].list.event = eventArray;
     DelVal[currentPartternValue.currentIndex].list.condition = conditionArray;
     DelVal[currentPartternValue.currentIndex].list.sequence = sequenceArray;
-    console.log(DelVal[currentPartternValue.currentIndex].list.name)
-    console.log(DelVal)
 
 
     setCurrentPatternValue({ currentIndex: -1, name: "" })

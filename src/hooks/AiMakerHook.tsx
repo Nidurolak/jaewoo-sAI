@@ -215,7 +215,7 @@ export function HandleCopyToClipboardForCustom(isFirst: boolean) {
     const sequenceArray = useRecoilValue(AIMakingSequenceArrayAtom);
 
     let content: string[] = [];
-    console.log(partternValue)
+    //console.log(partternValue)
     if (partternValue.length > 0) {
 
     }
@@ -230,11 +230,6 @@ export function HandleCopyToClipboardForCustom(isFirst: boolean) {
 
         let con = condition.map((con) => conPt({ tabNum: 4, case: "condition", main: con[0], value0: con[1], value1: con[2] }));
         let seq = sequence.map((seq) => seqPt({ tabNum: 4, case: "sequence", main: seq[0], value0: seq[1], value1: seq[2], value2: seq[3], value3: seq[4] }));
-        console.log(event)
-        console.log(pattern)
-        console.log(con)
-        console.log(condition)
-        console.log(event[0])
         content.push(eventWarper({//전체포장
             name: pattern.key,
             main: event[0],

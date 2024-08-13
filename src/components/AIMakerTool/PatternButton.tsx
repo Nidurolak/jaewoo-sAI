@@ -44,7 +44,7 @@ function PatternButton({ indexNum, optionValue }: Partial<BoxProps>) {
 
     const valueFocus = () => {
         let patternVal = [...partternValue];
-        console.log("밸류포커스 발동")
+        //console.log("밸류포커스 발동")
         patternVal[indexNumThis] = { ...patternVal[indexNumThis], key: inputValue };
 
         setPatternValue(patternVal);

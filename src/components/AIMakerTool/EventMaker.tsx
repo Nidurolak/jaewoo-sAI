@@ -45,24 +45,23 @@ function EventMaker() {
     //여기서 구분하는 값을 추가할 것
     const handleSelectChange = (value: string[]) => {
         //setSelectedValue(value);
-        console.log(eventSelectedValue + "이 바뀌기 전의 값, " + value + "가 넘어옴 배열값, " + value[1] + "의 값이 라디오값으로 넘어옴, " + value[0] + "이 소트오더로 넘어옴")
+        //console.log(eventSelectedValue + "이 바뀌기 전의 값, " + value + "가 넘어옴 배열값, " + value[1] + "의 값이 라디오값으로 넘어옴, " + value[0] + "이 소트오더로 넘어옴")
         if (value[1] != "master" && value[1] != "pet") {
             setEventSelectedValue(prevstate => {
                 const newValue = [...prevstate];
                 //소트오더 0 = 배열 0번값, 소트오더 1, 2 = 배열 1번값 소트오더 3, 4, 5 = 베열 2번값
                 const x = parseInt(value[0])
                 newValue[parseInt(value[0])] = value[1];
-                console.log(x)
                 return newValue;
             })
         }
         else {
             if (value[1] == "master") {
                 setEventSelectedValue(['master', 'master_targeted', 'alert'])
-                console.log("마스터 거르기 작동")
+                //console.log("마스터 거르기 작동")
             }
             else if ((value[1] == "pet")) {
-                console.log("펫 거르기 작동")
+                //console.log("펫 거르기 작동")
                 setEventSelectedValue(['pet', 'targeted', 'alert'])
             }
             return null;

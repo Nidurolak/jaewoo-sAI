@@ -18,7 +18,7 @@ function ConditionMaker() {
     //setSelectedValue(value);
     var val = [...conditionSelectedValue]
 
-    console.log(conditionSelectedValue[parseInt(value[3])] + "이 바뀌기 전의 값, " + value + "가 넘어옴 배열값, " + value[1] + "의 값이 라디오값으로 넘어옴, " + value[0] + "이 소트오더로 넘어옴")
+    //console.log(conditionSelectedValue[parseInt(value[3])] + "이 바뀌기 전의 값, " + value + "가 넘어옴 배열값, " + value[1] + "의 값이 라디오값으로 넘어옴, " + value[0] + "이 소트오더로 넘어옴")
 
     setConditionSelectedValue((prevArray) => {
       var val = [...prevArray];
@@ -26,8 +26,6 @@ function ConditionMaker() {
       val[parseInt(value[3])][parseInt(value[0])] = value[1]
       //컨디션 값이 바뀌었다면 초기화된 후열 값을 바꿔야한다.
       if (value[2] == 'condition') {
-        console.log(val[parseInt(value[3])])
-        console.log(value)
         //val[parseInt(value[3])]이 배열값이야, 여기서 1, 2번 인덱스를 고쳐야해
         switch (value[1]) {
           case 'target_state': val[parseInt(value[3])][1] = 'walk'; val[parseInt(value[3])].splice(2, 1); break;//
@@ -40,7 +38,6 @@ function ConditionMaker() {
       }
       //val[parseInt(value[3])] = [...val[parseInt(value[0])]];
       //val[parseInt(value[3])][parseInt(value[0])] = value[1];
-      console.log(val[parseInt(value[3])][parseInt(value[0])])
       return val
     })
     //인덱스넘 넘어옴, 이걸로 조립해야함
@@ -49,19 +46,17 @@ function ConditionMaker() {
   const conListAdd = () => {
     const AddVal = ["target_state", "walk"]
     setConditionSelectedValue((prevArray) => [...prevArray, AddVal]);
-    console.log(conditionSelectedValue)
   }
   const conListDelete = (isCondition: boolean) => {
     if (isCondition == true) {
       var DelVal = [...conditionSelectedValue]
       DelVal.splice(conditionSelectedValue.length - 1, 1)
       setConditionSelectedValue([]);
-      console.log(DelVal)
     }
   }
 
   useEffect(() => {
-    console.log(conditionSelectedValue)
+    //console.log(conditionSelectedValue)
   }, [conditionSelectedValue])
 
   return (<ConditionBox>
