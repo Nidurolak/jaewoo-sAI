@@ -89,7 +89,6 @@ width: 800px;
 const TestBox = styled.div`
     width: 100px;
     height: 40px;
-    background-color: gray;
     margin-bottom: 10px;
 `
 
