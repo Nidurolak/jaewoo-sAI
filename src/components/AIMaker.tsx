@@ -6,6 +6,8 @@ import { AIMakerExplainModalBool, CurrentAIPattern } from '../store/atom';
 import EventMaker from './AIMakerTool/EventMaker';
 import AIMakerTool from './AIMakerTool/AIMakerTool';
 import PatternListMaker from './AIMakerTool/PatternListMaker';
+import AIListExplainModal from './AIListExplainModal';
+import SuccessModal from './SuccessModal';
 
 function AIMaker() {
   const [AIMakerexplainModalBool, setAIMakerexplainModalBool] = useRecoilState(AIMakerExplainModalBool);
@@ -26,14 +28,16 @@ function AIMaker() {
     {AIMakerexplainModalBool == true &&
       <Container onClick={handleCloseModal}>
         <TotalBox onClick={handleChildClick}>
-          <LeftBox>
-            <AIMakerTool />
-          </LeftBox>
           <MiddleBox>
             <PatternListMaker />
           </MiddleBox>
-          <RightBox></RightBox>
+          <LeftBox>
+            <AIMakerTool />
+            {patternIndex.currentIndex == -1 ? <Cover><h1>패턴을 선택해야 합니다.</h1></Cover> : null}
+          </LeftBox>
         </TotalBox>
+        <AIListExplainModal />
+        <SuccessModal />
       </Container>}
   </>)
 }
@@ -43,25 +47,39 @@ function AIMaker() {
           <h2>재우's AI에 사용되는 패턴을 기반으로 자신 만의 AI를 만들 수 있는 방법을 구상 중입니다. 기대해주세요!</h2>*/
 export default AIMaker;
 
+const Cover = styled.div`
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+display: flex;
+border-radius: 10px;
+flex-direction: column; 
+justify-content: center;
+align-items: center;
+cursor: default;
+background-color: rgba(0, 0, 0, 0.7);
+`;
+
 const MiddleBox = styled.div`
 display: flex;
 flex-direction: column;
 justify-content: flex-start;
 width: 100%;
 max-width: 400px;
-height: 350px;
+height: 900px;
 max-height: 95%;
-background-color: gray;
 `
 
 const LeftBox = styled.div`
+position: relative;
 display: flex;
 flex-direction: column;
 justify-content: flex-start;
 max-width: 1000px;
 height: 900px;
 max-height: 95%;
-background-color: green;
 `
 
 const RightBox = styled.div`
@@ -96,8 +114,10 @@ background-size: 100% 100%;
 background-position: center;
 background-repeat: no-repeat;
   color: rgba(255, 255, 255, 1);
-  width: 95vw; /* 변경된 부분 */
-  height: 90vh; /* 변경된 부분 */
+  width: fit-content;
+  height: 90vh; 
+  min-width: 1200px;
+  min-height: 800px;
   border: none;
   font-size: 17px;
   font-family: 'Mabinogi_Classic_TTF';
