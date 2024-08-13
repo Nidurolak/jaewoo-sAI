@@ -1,7 +1,7 @@
 import React, { useState, ChangeEvent, useEffect, useRef } from 'react';
 import { styled } from 'styled-components';
 import clipboardCopy from 'clipboard-copy';
-import { totalWarper } from '../hooks/AiMakerHook';
+import { GetWidthAndHeight, HandleSoundPlay, totalWarper } from '../hooks/AiMakerHook';
 import { AITemplet, BackGUI } from '../utils/types';
 import { AI_TOOL } from './AITool';
 import Mainbutton20070 from '../assets/MainButton20070.png'
@@ -26,6 +26,7 @@ function AIButtonModal(value: AITemplet) {
   const [downloadModalCopyBool, setdownloadModalCopyBool] = useRecoilState(DownloadModalCopyBool)
   const [explainModalBool, setexplainModalBool] = useRecoilState(ExplainModalBool)
   const [modalBoolValue, setmodalBoolValue] = useRecoilState(DownloadModalBool)
+
 
   const Confirmsound = useRef(new Audio(gen_button_confirm));
   const handleSoundPlay = () => {
@@ -90,6 +91,7 @@ function AIButtonModal(value: AITemplet) {
     default: break;
   };
   const [copied, setCopied] = useState(false);
+
 
   const handleCopyToClipboard = () => {
     handleSoundPlay();
@@ -159,21 +161,6 @@ background-image: ${({ image }) => `url(${image})`};
   }
 `
 
-const getWidthAndHeight = (type: BackGUI['type']) => {
-  switch (type) {
-    case 'small':
-      return { width: '120px', height: '70px' };
-    case 'AIDown':
-      return { width: '140px', height: '70px' };
-    case 'normal':
-      return { width: '200px', height: '70px' };
-    case 'xlarge':
-      return { width: '400px', height: '150px' };
-    default:
-      return { width: 'auto', height: 'auto' };
-  }
-};
-
 
 const AIListButton = styled.button<BackGUI>`
 background-color: rgba(255, 255, 255, 0);
@@ -183,8 +170,8 @@ background-size: 100% 100%;
 background-position: center;
 background-repeat: no-repeat;
   color: rgba(255, 255, 255, 1);
-  width: ${(props) => getWidthAndHeight(props.type).width};
-  height: ${(props) => getWidthAndHeight(props.type).height};
+  width: ${(props) => GetWidthAndHeight(props).width};
+  height: ${(props) => GetWidthAndHeight(props).height};
   border: none;
   font-size: 17px;
   font-family: 'Mabinogi_Classic_TTF';
