@@ -15,6 +15,7 @@ import { BackGUI } from '../../utils/types';
 import { CheckCurrentChange, GetWidthAndHeight, HandleCopyToClipboardForCustom } from '../../hooks/AiMakerHook';
 import _ from 'lodash';
 import gen_button_confirm from '../../assets/Sound/gen_button_confirm.wav'
+import uuid from 'react-uuid';
 
 
 function PatternListMaker() {
@@ -24,7 +25,7 @@ function PatternListMaker() {
   const [eventArray, setEventArray] = useRecoilState(AIMakingEventArrayAtom);
   const [conditionArray, setConditionArray] = useRecoilState(AIMakingConditionArrayAtom);
   const [sequenceArray, setSequenceArray] = useRecoilState(AIMakingSequenceArrayAtom);
-
+  const arraylength = useRef(0)
 
   const Confirmsound = useRef(new Audio(gen_button_confirm));
   const handleSoundPlay = () => {
@@ -39,8 +40,9 @@ function PatternListMaker() {
 
   const patternListAdd = () => {
     handleSoundPlay();
+    arraylength.current = arraylength.current + 1
     //패턴의 기본 구조는{ key: "패턴명", list: { name: "이벤트명", event: [], condition: [], sequence: [] } }
-    const AddVal = { key: `${partternValue.length + 1}번 패턴`, list: { name: `0번 이벤트`, event: ['master_targeted', 'alert'], condition: [], sequence: [] } }
+    const AddVal = { key: `${arraylength.current}번 패턴`, list: { name: `0번 이벤트`, event: ['master_targeted', 'alert'], condition: [], sequence: [] } }
     setPatternValue((prevArray) => [...prevArray, AddVal]);
   }
   const patternListDelete = () => {
@@ -67,12 +69,15 @@ function PatternListMaker() {
   const applyPattern = () => {
     handleSoundPlay();
     var DelVal = _.cloneDeep(partternValue)
+    //var DelVal = [...partternValue]
+    console.log(DelVal)
 
     DelVal[currentPartternValue.currentIndex].key = currentPartternValue.name;
     DelVal[currentPartternValue.currentIndex].list.event = eventArray;
     DelVal[currentPartternValue.currentIndex].list.condition = conditionArray;
     DelVal[currentPartternValue.currentIndex].list.sequence = sequenceArray;
 
+    console.log(DelVal)
 
     setCurrentPatternValue({ currentIndex: -1, name: "" })
     setPatternValue(DelVal)
@@ -82,12 +87,16 @@ function PatternListMaker() {
 
   }
 
+
+  useEffect(() => {
+    arraylength.current = partternValue.length;
+  }, [])
   return (
     <ColummBox>
       <h2>패턴 목록</h2>
       <ListContainer>
         <ScrollBox>
-          {partternValue.map((Option, index) => (<PatternButton key={Option.key + index} indexNum={index} optionValue={Option.key != "" ? Option.key : "-이름없는 패턴"}></PatternButton>))}
+          {partternValue.map((Option, index) => (<PatternButton key={uuid()} indexNum={index} optionValue={Option.key != "" ? Option.key : "-이름없는 패턴"}></PatternButton>))}
         </ScrollBox>
         {currentPartternValue.currentIndex > -1 ?
           <RowBox>
