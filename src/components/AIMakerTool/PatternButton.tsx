@@ -6,8 +6,9 @@ import XIconBlue from '../../assets/XIconBlue.png'
 import UpIconBlue from '../../assets/UpIconBlue.png'
 import PlusIconBlue from '../../assets/PlusIconBlue.png'
 import DownIconBlue from '../../assets/DownIconBlue.png'
-import { BoxProps } from '../../utils/types';
+import { BoxProps, PatternType } from '../../utils/types';
 import { CheckCurrentChange } from '../../hooks/AiMakerHook';
+import _ from 'lodash';
 
 function PatternButton({ indexNum, optionValue }: Partial<BoxProps>) {
     const [partternValue, setPatternValue] = useRecoilState(AIPatternArrayAtom);
@@ -74,8 +75,11 @@ function PatternButton({ indexNum, optionValue }: Partial<BoxProps>) {
     };
 
     const deleteDupleQueue = (index: number, isDel: boolean) => {
-        let DelVal = [...partternValue];
-        isDel ? DelVal.splice(index, 1) : DelVal.splice(index, 0, DelVal[index]);
+        let DelVal = _.cloneDeep(partternValue);
+        let target: PatternType = { key: DelVal[index].key + "_복사", list: { ...(DelVal[index].list) } }
+        //수정 요망
+
+        isDel ? DelVal.splice(index, 1) : DelVal.splice(index, 0, target);
         setPatternValue(DelVal);
     };
 
