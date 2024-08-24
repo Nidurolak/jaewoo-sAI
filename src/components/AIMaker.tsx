@@ -28,13 +28,17 @@ function AIMaker() {
     {AIMakerexplainModalBool == true &&
       <Container onClick={handleCloseModal}>
         <TotalBox onClick={handleChildClick}>
-          <MiddleBox>
-            <PatternListMaker />
-          </MiddleBox>
           <LeftBox>
+            <PatternListMaker />
+          </LeftBox>
+          <MiddleBox>
             <AIMakerTool />
             {patternIndex.currentIndex == -1 ? <Cover><h1>패턴을 선택해야 합니다.</h1></Cover> : null}
-          </LeftBox>
+          </MiddleBox>
+          <MiddleBox>
+            <AIMakerTool />
+            {patternIndex.currentIndex == -1 ? <Cover><h1>패턴을 선택해야 합니다.</h1></Cover> : null}
+          </MiddleBox>
         </TotalBox>
         <AIListExplainModal />
         <SuccessModal />
@@ -62,7 +66,7 @@ cursor: default;
 background-color: rgba(0, 0, 0, 0.7);
 `;
 
-const MiddleBox = styled.div`
+const LeftBox = styled.div`
 display: flex;
 flex-direction: column;
 justify-content: flex-start;
@@ -72,7 +76,7 @@ height: 900px;
 max-height: 95%;
 `
 
-const LeftBox = styled.div`
+const MiddleBox = styled.div`
 position: relative;
 display: flex;
 flex-direction: column;
@@ -82,7 +86,7 @@ height: 900px;
 max-height: 95%;
 `
 
-const RightBox = styled.div`
+const MiddleBox = styled.div`
 align-items: center;
 display: flex;
 flex-direction: column;
