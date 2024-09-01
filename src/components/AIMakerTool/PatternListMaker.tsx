@@ -12,7 +12,7 @@ import Mainbutton20070 from '../../assets/MainButton20070.png'
 import PatternButton from './PatternButton';
 import PartternChangeModal from './PatternChangeModal';
 import { BackGUI } from '../../utils/types';
-import { CheckCurrentChange, GetWidthAndHeight, HandleCopyToClipboardForCustom } from '../../hooks/AiMakerHook';
+import { ApplyPattern, CheckCurrentChange, GetWidthAndHeight, HandleCopyToClipboardForCustom } from '../../hooks/AiMakerHook';
 import _ from 'lodash';
 import gen_button_confirm from '../../assets/Sound/gen_button_confirm.wav'
 import uuid from 'react-uuid';
@@ -96,7 +96,7 @@ function PatternListMaker() {
       <h2>패턴 목록</h2>
       <ListContainer>
         <ScrollBox>
-          {partternValue.map((Option, index) => (<PatternButton key={uuid()} indexNum={index} optionValue={Option.key != "" ? Option.key : "-이름없는 패턴"}></PatternButton>))}
+          {partternValue.map((Option, index) => (<PatternButton key={Option.key + ((index + 1) * (index + 1))} indexNum={index} optionValue={Option.key != "" ? Option.key : "-이름없는 패턴"}></PatternButton>))}
         </ScrollBox>
         {currentPartternValue.currentIndex > -1 ?
           <RowBox>

@@ -2,7 +2,7 @@ import React, { useState, ChangeEvent, useEffect, useMemo } from 'react';
 import { styled } from 'styled-components';
 import { useRecoilState } from 'recoil';
 import SelectButton from './RadioButton';
-import { ExplainModalBool, AIMakingConditionArrayAtom, AIMakingSequenceArrayAtom, AIPatternArrayAtom, CurrentAIPattern } from '../../store/atom';
+import { ExplainModalBool, AIMakingConditionArrayAtom, AIMakingSequenceArrayAtom, AIPatternArrayAtom, CurrentAIPattern, PatternCopyModalBool } from '../../store/atom';
 import XIconBlue from '../../assets/XIconBlue.png'
 import UpIconBlue from '../../assets/UpIconBlue.png'
 import PlusIconBlue from '../../assets/PlusIconBlue.png'
@@ -10,20 +10,29 @@ import DownIconBlue from '../../assets/DownIconBlue.png'
 import Mainbutton3 from '../../assets/MainButton3.png'
 
 import { BoxProps, ChangeFunc } from '../../utils/types';
-import { CheckCurrentChange, CheckWhatChanged } from '../../hooks/AiMakerHook';
+import { ApplyPattern, CheckCurrentChange, CheckWhatChanged } from '../../hooks/AiMakerHook';
 import Mainbutton800400 from '../../assets/MainButton800400.png'
 import { isEqual } from 'lodash';
 
 
 function PartternChangeModal(props: ChangeFunc) {
   //이중체크를 해야해. 부모 컴포넌트에서 이스체인지를, 여기서 모달 스테이트를 
-  const [modalBoolValue, setmodalBoolValue] = useRecoilState(ExplainModalBool)
+  const [modalBoolValue, setModalBoolValue] = useRecoilState(ExplainModalBool)
+  const [CopyModalBool, setPatternCopyModalBool] = useRecoilState(PatternCopyModalBool)
+
+  const Aplly = ApplyPattern()
+
+  const handleButton = () => {
+    Aplly("")
+  }
 
   //console.log(modalBoolValue)
 
   const CloseModal = () => {
-    setmodalBoolValue(false)
+    setModalBoolValue(false)
   }
+
+
 
   const keyChanged = CheckWhatChanged("key")
   const eventChanged = CheckWhatChanged("event")
@@ -39,12 +48,13 @@ function PartternChangeModal(props: ChangeFunc) {
           <QNABox2MiddleBox onClick={CloseModal}>
             <h1>변경사항이 감지되었습니다.</h1>
             <h2>정말 바꾸시겠습니까?</h2>
-            {keyChanged ? <h2>-제목 변경됨</h2> : null}
-            {eventChanged ? <h2>-상황 변경됨</h2> : null}
-            {conditonChanged ? <h2>-조건 변경됨</h2> : null}
-            {sequenceChanged ? <h2>-행동 변경됨</h2> : null}
+            {CopyModalBool == true ? <h2>-재우스 패턴 복사하기</h2> : null}
+            {CopyModalBool == false ? keyChanged ? <h2>-제목 변경됨</h2> : null : null}
+            {CopyModalBool == false ? eventChanged ? <h2>-상황 변경됨</h2> : null : null}
+            {CopyModalBool == false ? conditonChanged ? <h2>-조건 변경됨</h2> : null : null}
+            {CopyModalBool == false ? sequenceChanged ? <h2>-행동 변경됨</h2> : null : null}
             <RowBox>
-              <ChangeButton onClick={props.apply}>변경하기</ChangeButton>
+              {CopyModalBool == false ? <ChangeButton onClick={handleButton}>변경하기</ChangeButton> : <ChangeButton onClick={props.apply}>복사하기</ChangeButton>}
               <ChangeButton onClick={props.cancle}>취소하기</ChangeButton>
 
             </RowBox>
