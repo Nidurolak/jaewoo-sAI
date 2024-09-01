@@ -8,6 +8,7 @@ import AIMakerTool from './AIMakerTool/AIMakerTool';
 import PatternListMaker from './AIMakerTool/PatternListMaker';
 import AIListExplainModal from './AIListExplainModal';
 import SuccessModal from './SuccessModal';
+import AICopyList from './AIMakerTool/AICopyList';
 
 function AIMaker() {
   const [AIMakerexplainModalBool, setAIMakerexplainModalBool] = useRecoilState(AIMakerExplainModalBool);
@@ -35,10 +36,9 @@ function AIMaker() {
             <AIMakerTool />
             {patternIndex.currentIndex == -1 ? <Cover><h1>패턴을 선택해야 합니다.</h1></Cover> : null}
           </MiddleBox>
-          <MiddleBox>
-            <AIMakerTool />
-            {patternIndex.currentIndex == -1 ? <Cover><h1>패턴을 선택해야 합니다.</h1></Cover> : null}
-          </MiddleBox>
+          <RightBox>
+            <AICopyList></AICopyList>
+          </RightBox>
         </TotalBox>
         <AIListExplainModal />
         <SuccessModal />
@@ -86,13 +86,14 @@ height: 900px;
 max-height: 95%;
 `
 
-const MiddleBox = styled.div`
-align-items: center;
+const RightBox = styled.div`
 display: flex;
 flex-direction: column;
-justify-content: center;
-width: 500px;
-height: 300px;
+justify-content: flex-start;
+width: 100%;
+max-width: 400px;
+height: 900px;
+max-height: 95%;
 //background-color: skyblue;
 `
 const WhiteLine = styled.div`
