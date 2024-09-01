@@ -14,12 +14,20 @@ export const DownloadModalBool = atom({
     key: "DownloadMoadlState",
     default: false,
 })
+export const CopyAIName = atom<string>({
+    key: "CopyAINameState",
+    default: '',
+})
 export const CurrentAIName = atom<string>({
     key: "CurrentAINameState",
     default: '',
 })
 export const ExplainModalBool = atom({
     key: "ExplainMoadlState",
+    default: false,
+})
+export const PatternCopyModalBool = atom({
+    key: "PatternCopyModalState",
     default: false,
 })
 export const AIListExplainModalBool = atom({
