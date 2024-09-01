@@ -1,10 +1,13 @@
 import React, { useState, ChangeEvent, useEffect, useRef } from 'react';
-import { BackGUI, ConditionType, EventTypes, SequenceType, StringTest } from "../utils/types";
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { AIMakingConditionArrayAtom, AIMakingEventArrayAtom, AIMakingSequenceArrayAtom, AIPatternArrayAtom, CurrentAIPattern, DownloadModalCopyBool } from '../store/atom';
+import { AIPattern, BackGUI, ConditionType, EventTypes, PatternType, SequenceType, StringTest } from "../utils/types";
+import { SetterOrUpdater, useRecoilState, useRecoilValue } from 'recoil';
+import { AIMakingConditionArrayAtom, AIMakingEventArrayAtom, AIMakingSequenceArrayAtom, AIPatternArrayAtom, CopyAIName, CurrentAIPattern, DownloadModalCopyBool, PatternCopyModalBool } from '../store/atom';
 import { isEqual } from 'lodash';
 import clipboardCopy from 'clipboard-copy';
 import gen_button_confirm from '../assets/Sound/gen_button_confirm.wav'
+import _ from 'lodash';
+import { AI_TOOL } from '../components/AITool';
+
 
 //AI 행동 시퀸스를 조립하는 부분, 여기서 필요한 건
 //cmd name
@@ -278,4 +281,120 @@ export function HandleCopyToClipboardForCustom(isFirst: boolean) {
             .catch((error) => console.error('클립보드 복사 오류:', error));
 
     })
+}
+
+
+export function ApplyPattern() {
+    const [partternValue, setPatternValue] = useRecoilState(AIPatternArrayAtom);
+    const [currentPartternValue, setCurrentPatternValue] = useRecoilState(CurrentAIPattern);
+    const [eventArray, setEventArray] = useRecoilState(AIMakingEventArrayAtom);
+    const [conditionArray, setConditionArray] = useRecoilState(AIMakingConditionArrayAtom);
+    const [sequenceArray, setSequenceArray] = useRecoilState(AIMakingSequenceArrayAtom);
+    const [patternCopyModalBool, setPatternCopyModalBool] = useRecoilState(PatternCopyModalBool);
+
+    const [copyname, setCopyname] = useRecoilState(CopyAIName)
+
+
+    console.log(copyname)
+    const useApplyPattern = (name?: string) => {
+        //패턴 복사일 경우 실행
+        if (name && name !== "") {
+            console.log("유스어플라이 폴스 발동")
+            console.log(name)
+            //여기서 AI 케이스별로 진행
+            switch (name) {
+                case "펫 디펜더": AICopyTotal("펫 디펜더", setPatternValue); break;
+                case "로드롤러": AICopyTotal("로드롤러", setPatternValue); break;
+                case "메디이익": break;
+                case "볼트 서포터": break;
+                case "유도 미사일": break;
+                case "재우 오리지널": break;
+                case "전봇대": break;
+                case "주인바라기": break;
+                case "폭스 헌터": break;
+                case "기르가쉬 헬퍼": break;
+                default: break;
+            }
+            setCurrentPatternValue({ currentIndex: -1, name: "" });
+            setCopyname("")
+            return;
+        }
+        console.log("유스어플라이 발동")
+        var DelVal = _.cloneDeep(partternValue);
+        DelVal[currentPartternValue.currentIndex].key = currentPartternValue.name;
+        DelVal[currentPartternValue.currentIndex].list.event = eventArray;
+        DelVal[currentPartternValue.currentIndex].list.condition = conditionArray;
+        DelVal[currentPartternValue.currentIndex].list.sequence = sequenceArray;
+        setPatternValue(DelVal);
+
+        setCurrentPatternValue({ currentIndex: -1, name: "" });
+        setEventArray(['master_targeted', 'alert', '']);
+        setConditionArray([]);
+        setSequenceArray([]);
+
+        HandleSoundPlay();
+    };
+    return useApplyPattern;
+}
+
+export function AICopyTotal(value: string, setPatternValue: SetterOrUpdater<PatternType[]>) {
+
+    const str: string = value ? value : "";
+
+    let val: PatternType[] = []
+
+    //PatternType[]을 만들어서 넣은 다음 AIPatternArrayAtom아톰에 꽂아야해
+    switch (str) {
+        case "펫 디펜더": break;
+        case "로드롤러":
+            for (let i = 0; i < AI_TOOL().Pet_RoadRoller_AI_Copy.length; i++) {
+                let indexval = AICopyPattern(AI_TOOL().Pet_RoadRoller_AI_Copy[i], i)
+                val.push({ key: indexval.name, list: indexval })
+            }
+            console.log(val)
+            setPatternValue(val)
+            break;
+        case "메디이익": break;
+        case "볼트 서포터": break;
+        case "유도 미사일": break;
+        case "재우 오리지널": break;
+        case "전봇대": break;
+        case "주인바라기": break;
+        case "폭스 헌터": break;
+        case "기르가쉬 헬퍼": break;
+        default: break;
+    }
+
+    return;
+}
+
+export function AICopyPattern(value: EventTypes, num: number) {
+
+    const eventstr: string = value.main ? value.main.toString() : "";
+    const eventval0: string = value.value0 ? value.value0.toString() : "";
+    const eventval1: string = value.value1 ? value.value1.toString() : "";
+    const eventval2: string = value.value2 ? value.value2.toString() : "";
+    const eventmatches = eventstr.match(/"\"([^"]*)"\"/g);
+    const constr: string = value.condition ? value.condition.toString() : "";
+    const seqstr: string = value.sequence ? value.sequence.toString() : "";
+
+    const conSplit = new Set(["target_state", "skill_preparable", "ST_preparable", "EQ_preparable", "target_distance", "master_damaged_life_greater",])
+    const seqSplit = new Set(['wait', "move_against", "chase", "move_around", "melee_attack", "stackmagic_attack", "prepare_skill", "stack_skill", "process_skill", "cancel_skill", "skill_relax", "PetST_skill", "PetEQ_skill"])
+
+    const seqmatches: string[][] = seqstr.match(/"(.*?)"/g)?.map(item => item.replace(/"/g, '')).reduce((acc: string[][], curr: string) => { if (seqSplit.has(curr)) { acc.push([]); } acc[acc.length - 1].push(curr); return acc; }, []) || [];
+    const conmatches: string[][] = constr.match(/"(.*?)"/g)?.map(item => item.replace(/"/g, '')).reduce((acc: string[][], curr: string) => { if (conSplit.has(curr)) { acc.push([]); } acc[acc.length - 1].push(curr); return acc; }, []) || [];
+
+    //넘버에 맞춰서 타입을 하나하나 정성스레 끼워넣어야해
+
+    const valname = value.name ? value.name : ""
+    //이벤트 계열이 문제야. 0번 인덱스에 마스터인지 펫인지 체크시켜야해
+    let result: AIPattern = { name: valname, event: ["master", eventstr, eventval0, eventval1, eventval2], condition: conmatches, sequence: seqmatches }
+
+    console.log(value)
+    console.log(eventstr)
+    console.log(conmatches)
+    console.log(seqmatches)
+    console.log(result)
+
+    return result;
 }

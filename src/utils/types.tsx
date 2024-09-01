@@ -82,10 +82,11 @@ export interface AIPattern {
     condition: string[][],
     sequence: string[][]
 }
+/* 
 export interface TotalAIPatternList {
     value: AIPattern[]
 }
-
+*/
 export interface ChangeFunc {
     apply: () => void
     cancle: () => void
