@@ -378,6 +378,7 @@ export function AICopyPattern(value: EventTypes, num: number) {
     const constr: string = value.condition ? value.condition.toString() : "";
     const seqstr: string = value.sequence ? value.sequence.toString() : "";
 
+    const eveSplit = new Set(["master_targeted", "master_attack", "master_aimed", "master_target_skill_prepare", "master_target_magic_prepare", "master_defence", "master_attacked", "master_skill_prepare",])
     const conSplit = new Set(["target_state", "skill_preparable", "ST_preparable", "EQ_preparable", "target_distance", "master_damaged_life_greater",])
     const seqSplit = new Set(['wait', "move_against", "chase", "move_around", "melee_attack", "stackmagic_attack", "prepare_skill", "stack_skill", "process_skill", "cancel_skill", "skill_relax", "PetST_skill", "PetEQ_skill"])
 
@@ -388,7 +389,7 @@ export function AICopyPattern(value: EventTypes, num: number) {
 
     const valname = value.name ? value.name : ""
     //이벤트 계열이 문제야. 0번 인덱스에 마스터인지 펫인지 체크시켜야해
-    let result: AIPattern = { name: valname, event: ["master", eventstr, eventval0, eventval1, eventval2], condition: conmatches, sequence: seqmatches }
+    let result: AIPattern = { name: valname, event: [eveSplit.has(eventstr) ? "master" : "pet", eventstr, eventval0, eventval1, eventval2], condition: conmatches, sequence: seqmatches }
 
     console.log(value)
     console.log(eventstr)
