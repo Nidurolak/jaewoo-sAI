@@ -126,13 +126,11 @@ background-repeat: no-repeat;
   border: none;
   font-size: 17px;
   font-family: 'Mabinogi_Classic_TTF';
-  /*cursor: pointer;
-  &:hover{
-    filter: brightness(110%);
+  @media (max-width: 1200px) {
+    flex-direction: column;
+    align-items: center;
+    max-width: 1000px;
   }
-  &:active {
-    filter: brightness(130%);
-  }*/
 `
 const Container = styled.div`
 display: flex;
