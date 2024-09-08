@@ -10,6 +10,10 @@ export const DownloadModalCopyBool = atom({
     key: "DownloadMoadlCopyState",
     default: false,
 })
+export const PatternCopyModalBool = atom({
+    key: "PatternCopyModalState",
+    default: false,
+})
 export const DownloadModalBool = atom({
     key: "DownloadMoadlState",
     default: false,
@@ -22,12 +26,12 @@ export const CurrentAIName = atom<string>({
     key: "CurrentAINameState",
     default: '',
 })
-export const ExplainModalBool = atom({
-    key: "ExplainMoadlState",
+export const SuccessModalSet = atom<boolean>({
+    key: "SuccessModalSet",
     default: false,
 })
-export const PatternCopyModalBool = atom({
-    key: "PatternCopyModalState",
+export const ExplainModalBool = atom({
+    key: "ExplainMoadlState",
     default: false,
 })
 export const AIListExplainModalBool = atom({
