@@ -9,6 +9,7 @@ import PatternListMaker from './AIMakerTool/PatternListMaker';
 import AIListExplainModal from './AIListExplainModal';
 import SuccessModal from './SuccessModal';
 import AICopyList from './AIMakerTool/AICopyList';
+import CopySuccessModal from './AIMakerTool/CopySuccessModal';
 
 function AIMaker() {
   const [AIMakerexplainModalBool, setAIMakerexplainModalBool] = useRecoilState(AIMakerExplainModalBool);
@@ -17,7 +18,6 @@ function AIMaker() {
   const handleCloseModal = () => {
     if (patternIndex.currentIndex < 0) {
       setAIMakerexplainModalBool(false);
-
     }
   };
   const handleChildClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -41,7 +41,7 @@ function AIMaker() {
           </RightBox>
         </TotalBox>
         <AIListExplainModal />
-        <SuccessModal />
+        <CopySuccessModal />
       </Container>}
   </>)
 }
@@ -52,72 +52,65 @@ function AIMaker() {
 export default AIMaker;
 
 const Cover = styled.div`
-position: absolute;
-top: 0;
-left: 0;
-right: 0;
-bottom: 0;
-display: flex;
-border-radius: 10px;
-flex-direction: column; 
-justify-content: center;
-align-items: center;
-cursor: default;
-background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  border-radius: 7px;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;
+  cursor: default;
+  background-color: rgba(0, 0, 0, 0.7);
 `;
 
 const LeftBox = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: flex-start;
-width: 100%;
-max-width: 400px;
-height: 900px;
-max-height: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 400px;
+  height: 900px;
+  max-height: 95%;
 `
 
 const MiddleBox = styled.div`
-position: relative;
-display: flex;
-flex-direction: column;
-justify-content: flex-start;
-max-width: 1000px;
-height: 900px;
-max-height: 95%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-width: 800px;
+  height: 900px;
+  max-height: 95%;
 `
 
 const RightBox = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: flex-start;
-width: 100%;
-max-width: 400px;
-height: 900px;
-max-height: 95%;
-//background-color: skyblue;
-`
-const WhiteLine = styled.div`
-  width: 200px;
-  height: 3px;
-  background-color: white;
-  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 400px;
+  height: 900px;
+  max-height: 95%;
 `
 
 const TotalBox = styled.div`
-align-items: flex-start;
-display: flex;
-flex-direction: row;
-justify-content: center;
-gap: 15px;
-padding-top: 10px;
-padding-left: 10px;
-padding-right: 10px;
-background-color: rgba(255, 255, 255, 0);
-background-image: url(${Mainbutton800400});
-background: url(${Mainbutton800400});
-background-size: 100% 100%;
-background-position: center;
-background-repeat: no-repeat;
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 15px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: rgba(255, 255, 255, 0);
+  background-image: url(${Mainbutton800400});
+  background: url(${Mainbutton800400});
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
   color: rgba(255, 255, 255, 1);
   width: fit-content;
   height: 90vh; 
@@ -126,26 +119,35 @@ background-repeat: no-repeat;
   border: none;
   font-size: 17px;
   font-family: 'Mabinogi_Classic_TTF';
-  @media (max-width: 1200px) {
+  @media (max-width: 1400px) {
     flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
-    max-width: 1000px;
+    padding: 20px;
+    min-width: 900px;
+    min-height: 400px;
+    height: 90%;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {width: 11px;}
+    &::-webkit-scrollbar-track {background: none;}
+    &::-webkit-scrollbar-thumb {background: rgb(25, 76, 138);border-radius: 3px;}
+    &::-webkit-scrollbar-thumb:hover {background: rgb(111, 195, 226);}
   }
 `
 const Container = styled.div`
-display: flex;
-flex-direction: column; 
-justify-content: center;
-align-items: center;
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-margin: 0 auto;
-gap: 10px;
+  margin: 0 auto;
+  gap: 10px;
   cursor: default;
-background-color: rgba(100, 100, 100, 0.6);
+  background-color: rgba(100, 100, 100, 0.6);
 & > * {
   color: rgba(255, 255, 255, 1);
   font-size: 23px;
@@ -154,23 +156,4 @@ background-color: rgba(100, 100, 100, 0.6);
   h1 {word-spacing: 1px;word-break:keep-all; font-weight: 100;margin-top: 10px;font-size: 45px;font-family: 'Mabinogi_Classic_TTF';}
   h2 {word-spacing: 1px;word-break:keep-all;  margin-top: 10px; font-size: inherit; font-family: 'Mabinogi_Classic_TTF';}
   h3 {word-spacing: 1px;word-break:keep-all;  text-align: justify; font-weight: 100; font-size: 15px; font-family: 'Mabinogi_Classic_TTF'; white-space: pre-wrap;}
-`
-
-const BoxContainer = styled.div`
-display: flex;
-flex-direction: column; 
-justify-content: center;
-align-items: center;
-text-align: center;
-width: 550px;
-background-color: rgba(81, 165, 196);
-line-height: 1.5;
-border: 3px solid white;
-padding: 25px;
-  border-radius: 7px;
-  span.yellow-text {
-  font-size: 25px;
-    color: rgba(255, 255, 0, 1);
-    text-shadow: 1px 1px 0 black; /* 텍스트 주변에 검은색 테두리 효과 */
-  }
 `
