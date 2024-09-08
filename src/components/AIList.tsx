@@ -5,6 +5,7 @@ import ExplainModal from './ExplainModal';
 import SuccessModal from './SuccessModal';
 import AIListExplainModal from './AIListExplainModal';
 import { motion } from 'framer-motion';
+import CopySuccessModal from './AIMakerTool/CopySuccessModal';
 
 
 function AIList(value: any) {
@@ -31,7 +32,7 @@ function AIList(value: any) {
         </ListBox>
       </ListContainer>
       <ExplainModal />
-      <SuccessModal />
+      <CopySuccessModal />
       {/*<EXPButton onClick={()=> setAIListexplainModalBool(true)}>처음이신가요?</EXPButton> */}
       <AIListExplainModal />
     </AIContainer>)
