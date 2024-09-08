@@ -314,13 +314,13 @@ export function AI_TOOL() {
     }
     let Pet_DonotTroll_MasterAttack: EventTypes = {
         name: "주인 공격시 방해 안하기", main: "master_attack", value0: "all",
-        condition: [seqPt(seq_cancel), seqPt(seq_chase_Enemy_Run_Long), seqPt(seq_chase_Enemy_Circle)],
-        sequence: []
+        condition: [],
+        sequence: [seqPt(seq_cancel), seqPt(seq_chase_Enemy_Run_Long), seqPt(seq_chase_Enemy_Circle)]
     }
     let Pet_DonotTroll_Attack: EventTypes = {
         name: "펫 공격시 방해 안하기", main: "attack", value0: "all", value1: "true",
-        condition: [seqPt(seq_cancel), seqPt(seq_chase_Enemy_Run_Long), seqPt(seq_chase_Enemy_Circle)],
-        sequence: []
+        condition: [],
+        sequence: [seqPt(seq_cancel), seqPt(seq_chase_Enemy_Run_Long), seqPt(seq_chase_Enemy_Circle)]
     }
 
     let Pet_Original_AI: string[] = [
