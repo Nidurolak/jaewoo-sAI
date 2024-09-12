@@ -73,6 +73,20 @@ width: 100%;
 max-width: 1650px;
 
 @media (max-width: 1200px) {
+    overscroll-behavior: none;
     grid-template-columns: 1fr;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    height: 70vh;
+    border-radius: 7px;
+    border: 3px solid rgb(25, 76, 138);
+    overflow-y: scroll;
+    &::-webkit-scrollbar {width: 11px;}
+    &::-webkit-scrollbar-track {background: none;}
+    &::-webkit-scrollbar-thumb {background: rgb(25, 76, 138);border-radius: 3px;}
+    &::-webkit-scrollbar-thumb:hover {background: rgb(111, 195, 226);}
+  
   }
 `
