@@ -23,6 +23,12 @@ function Main() {
 
   //드래그 시 상하 감지 후 로직 발동, 하드 코딩한 수준이라 다른 프로젝트에서 구조를 참고할 순 있어도 쌩으로 쓰긴 힘들어보인다.
   const handleWheel = (e: React.WheelEvent) => {
+
+
+    if (e.currentTarget !== e.target) {
+      e.stopPropagation();
+      return;
+    }
     if (window.scrollY == 0) {
       if (wheelBoolstate == "AI" && currentAIName == '') {
         if (e.deltaY < 0) { setwheelBoolstate("Main") }
@@ -97,6 +103,7 @@ const WheelDiv = styled(motion.div) <{ image: any }>`
   height: 30px;
   border: none;
   position: absolute;
+
   cursor: pointer;
   ${({ image }) => (image == UpIconBlue ? 'top: 40px;' : 'bottom: 40px;')}
   &:hover{filter: brightness(120%);}
