@@ -19,7 +19,6 @@ function AICopyButton(value: AITemplet) {
     let apply = ApplyPattern()
 
     const handleButton = () => {
-        console.log(value.name);
         setCopyname(value.name as string)
         apply(value.name)
     }
