@@ -34,7 +34,6 @@ function AICopyList() {
     Confirmsound.current.play();
   }
 
-  const patternCopy = HandleCopyToClipboardForCustom(false)
 
   let isChanged = CheckCurrentChange()
 
@@ -71,14 +70,12 @@ function AICopyList() {
     handleSoundPlay();
     var DelVal = _.cloneDeep(partternValue)
     //var DelVal = [...partternValue]
-    console.log(DelVal)
 
     DelVal[currentPartternValue.currentIndex].key = currentPartternValue.name;
     DelVal[currentPartternValue.currentIndex].list.event = eventArray;
     DelVal[currentPartternValue.currentIndex].list.condition = conditionArray;
     DelVal[currentPartternValue.currentIndex].list.sequence = sequenceArray;
 
-    console.log(DelVal)
 
     setCurrentPatternValue({ currentIndex: -1, name: "" })
     setPatternValue(DelVal)
@@ -97,7 +94,16 @@ function AICopyList() {
       <h2>재우's AI 패턴 복사하기</h2>
       <ListContainer>
         <ScrollBox>
+          <AICopyButton name={"펫 디펜더"} />
+          <AICopyButton name={"주인바라기"} />
+          <AICopyButton name={"재우 오리지널"} />
           <AICopyButton name={"로드롤러"} />
+          <AICopyButton name={"볼트 서포터"} />
+          <AICopyButton name={"전봇대"} />
+          <AICopyButton name={"메디이익"} />
+          <AICopyButton name={"유도 미사일"} />
+          <AICopyButton name={"폭스 헌터"} />
+          <AICopyButton name={"기르가쉬 헬퍼"} />
         </ScrollBox>
       </ListContainer>
       <PartternChangeModal apply={applyPattern} cancle={cancelPattern} />
@@ -106,52 +112,6 @@ function AICopyList() {
 
 export default AICopyList;
 
-const BottomButtonBox = styled.div`
-align-items: center;
-display: flex;
-justify-content: center;
-width: 100%;
-padding-top: 10px;
-`
-
-const RowBox = styled.div`
-align-items: center;
-display: flex;
-flex-direction: row;
-justify-content: center;
-width: 100%;
-padding-top: 15px;
-gap: 10px;
-`
-
-const ConditionButton = styled.button<BackGUI>`
-background-color: rgba(255, 255, 255, 0);
-background-image: ${({ backgroundImage }) => `url(${backgroundImage})`};
-background-size: 100% 100%;
-background-position: center;
-background-repeat: no-repeat;
-  color: rgba(255, 255, 255, 1);
-  width: ${(props) => GetWidthAndHeight(props).width};
-  height: ${(props) => GetWidthAndHeight(props).height};
-  border: none;
-  font-size: 17px;
-  font-family: 'Mabinogi_Classic_TTF';
-  cursor: pointer;
-  &:hover{
-    filter: brightness(110%);
-  }
-  &:active {
-    filter: brightness(120%); /* 클릭 시 밝기 감소 효과 */
-  }
-  ${({ disabled }) =>
-    disabled &&
-    `
-      filter: grayscale(100%);
-      cursor: not-allowed;
-      opacity: 0.6;
-      pointer-events: none;
-  `}
-`
 const ColummBox = styled.div`
 display: flex;
 flex-direction: column;
