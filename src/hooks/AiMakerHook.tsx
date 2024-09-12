@@ -207,80 +207,47 @@ export function HandleSoundPlay() {
     return playSound;
 }
 
-export function HandleCopyToClipboardForCustom(isFirst: boolean) {
-    const [copied, setCopied] = useState(false);
+export function HandleCopyToClipboardForCustom(setPatternValue?: PatternType[], setModalBool?: SetterOrUpdater<boolean>) {
 
     //const [modalBoolValue, setmodalBoolValue] = useRecoilState(DownloadModalCopyBool)
 
-    const partternValue = useRecoilValue(AIPatternArrayAtom);
-    const eventArray = useRecoilValue(AIMakingEventArrayAtom);
-    const conditionArray = useRecoilValue(AIMakingConditionArrayAtom);
-    const sequenceArray = useRecoilValue(AIMakingSequenceArrayAtom);
+    //console.log(setPatternValue)
+    //console.log(setModalBool)
+    const partternValue = setPatternValue ? setPatternValue : [];
 
     let content: string[] = [];
     //console.log(partternValue)
     if (partternValue.length > 0) {
+        partternValue.forEach((pattern, i) => {
+            const event = pattern.list.event || [];
+            const condition = pattern.list.condition || [];
+            const sequence = pattern.list.sequence || [];
+
+            //케이스가 어디갔어?!
+
+            let con = condition.map((con) => conPt({ tabNum: 4, case: "condition", main: con[0], value0: con[1], value1: con[2] }));
+            let seq = sequence.map((seq) => seqPt({ tabNum: 4, case: "sequence", main: seq[0], value0: seq[1], value1: seq[2], value2: seq[3], value3: seq[4] }));
+            content.push(eventWarper({//전체포장
+                name: pattern.key,
+                main: event[0],
+                //pt를 반복해야해
+                condition: con,
+                sequence: seq,
+                value0: event[1],
+                value1: event[2],
+                value2: event[3],
+            })
+            )
+        })
+        clipboardCopy(totalWarper(content))
+            .then(() => {
+                setModalBool!(true);
+            })
+            .catch((error) => console.error('클립보드 복사 오류:', error));
 
     }
     //setmodalBoolValue(true)
 
-    partternValue.forEach((pattern, i) => {
-        const event = pattern.list.event || [];
-        const condition = pattern.list.condition || [];
-        const sequence = pattern.list.sequence || [];
-
-        //케이스가 어디갔어?!
-
-        let con = condition.map((con) => conPt({ tabNum: 4, case: "condition", main: con[0], value0: con[1], value1: con[2] }));
-        let seq = sequence.map((seq) => seqPt({ tabNum: 4, case: "sequence", main: seq[0], value0: seq[1], value1: seq[2], value2: seq[3], value3: seq[4] }));
-        content.push(eventWarper({//전체포장
-            name: pattern.key,
-            main: event[0],
-            //pt를 반복해야해
-            condition: con,
-            sequence: seq,
-            value0: event[1],
-            value1: event[2],
-            value2: event[3],
-        })
-        )
-        /**
-                content.push(
-                    eventWarper({
-                        name: pattern.key, main: event[0] || "", // 기본값 또는 빈 값으로 설정
-                        value0: event[1] || "", value1: event[2] || "", value2: event[3] || "",
-                        condition: condition.length > 0
-                            ? [conPt({
-                                tabNum: 4,
-                                case: condition[i][0] || "",
-                                main: "",
-                                value0: "",
-                                value1: ""
-                            })]
-                            : [], // 비어 있을 경우 빈 배열로
-                        sequence: sequence.length > 0
-                            ? sequence.map((x, idx) => seqPt({
-                                tabNum: 4,
-                                case: "", // 필요에 따라 적절히 기본값 설정
-                                main: "",
-                                value0: "",
-                                value1: "",
-                                value2: "",
-                                value3: ""
-                            }))
-                            : [] // 비어 있을 경우 빈 배열로
-                    })
-                );
-            });
-        
-            console.log(content)
-         
-         */
-        clipboardCopy(totalWarper(content))
-            .then(() => setCopied(true))
-            .catch((error) => console.error('클립보드 복사 오류:', error));
-
-    })
 }
 
 
@@ -295,13 +262,12 @@ export function ApplyPattern() {
     const [copyname, setCopyname] = useRecoilState(CopyAIName)
 
 
-    console.log(copyname)
     const useApplyPattern = (name?: string) => {
         //패턴 복사일 경우 실행
         if (name && name !== "") {
-            console.log("유스어플라이 폴스 발동")
-            console.log(name)
             //여기서 AI 케이스별로 진행
+            AICopyTotal(name, setPatternValue);
+            /*
             switch (name) {
                 case "펫 디펜더": AICopyTotal("펫 디펜더", setPatternValue); break;
                 case "로드롤러": AICopyTotal("로드롤러", setPatternValue); break;
@@ -314,12 +280,11 @@ export function ApplyPattern() {
                 case "폭스 헌터": break;
                 case "기르가쉬 헬퍼": break;
                 default: break;
-            }
+            }*/
             setCurrentPatternValue({ currentIndex: -1, name: "" });
             setCopyname("")
             return;
         }
-        console.log("유스어플라이 발동")
         var DelVal = _.cloneDeep(partternValue);
         DelVal[currentPartternValue.currentIndex].key = currentPartternValue.name;
         DelVal[currentPartternValue.currentIndex].list.event = eventArray;
@@ -345,23 +310,76 @@ export function AICopyTotal(value: string, setPatternValue: SetterOrUpdater<Patt
 
     //PatternType[]을 만들어서 넣은 다음 AIPatternArrayAtom아톰에 꽂아야해
     switch (str) {
-        case "펫 디펜더": break;
+        case "펫 디펜더":
+            for (let i = 0; i < AI_TOOL().Pet_Defender_AI_Package_Copy.length; i++) {
+                let indexval = AICopyPattern(AI_TOOL().Pet_Defender_AI_Package_Copy[i], i)
+                val.push({ key: indexval.name, list: indexval })
+            }
+            setPatternValue(val)
+            break;
         case "로드롤러":
             for (let i = 0; i < AI_TOOL().Pet_RoadRoller_AI_Copy.length; i++) {
                 let indexval = AICopyPattern(AI_TOOL().Pet_RoadRoller_AI_Copy[i], i)
                 val.push({ key: indexval.name, list: indexval })
             }
-            console.log(val)
             setPatternValue(val)
             break;
-        case "메디이익": break;
-        case "볼트 서포터": break;
-        case "유도 미사일": break;
-        case "재우 오리지널": break;
-        case "전봇대": break;
-        case "주인바라기": break;
-        case "폭스 헌터": break;
-        case "기르가쉬 헬퍼": break;
+        case "메디이익":
+            for (let i = 0; i < AI_TOOL().Pet_Medic_AI_Copy.length; i++) {
+                let indexval = AICopyPattern(AI_TOOL().Pet_Medic_AI_Copy[i], i)
+                val.push({ key: indexval.name, list: indexval })
+            }
+            setPatternValue(val)
+            break;
+        case "볼트 서포터":
+            for (let i = 0; i < AI_TOOL().Pet_BoltSupport_AI_Copy.length; i++) {
+                let indexval = AICopyPattern(AI_TOOL().Pet_BoltSupport_AI_Copy[i], i)
+                val.push({ key: indexval.name, list: indexval })
+            }
+            setPatternValue(val)
+            break;
+        case "유도 미사일":
+            for (let i = 0; i < AI_TOOL().Pet_Blaze_AI_Copy.length; i++) {
+                let indexval = AICopyPattern(AI_TOOL().Pet_Blaze_AI_Copy[i], i)
+                val.push({ key: indexval.name, list: indexval })
+            }
+            setPatternValue(val)
+            break;
+        case "재우 오리지널":
+            for (let i = 0; i < AI_TOOL().Pet_Original_AI_Copy.length; i++) {
+                let indexval = AICopyPattern(AI_TOOL().Pet_Original_AI_Copy[i], i)
+                val.push({ key: indexval.name, list: indexval })
+            }
+            setPatternValue(val)
+            break;
+        case "전봇대":
+            for (let i = 0; i < AI_TOOL().Pet_Battery_AI_Copy.length; i++) {
+                let indexval = AICopyPattern(AI_TOOL().Pet_Battery_AI_Copy[i], i)
+                val.push({ key: indexval.name, list: indexval })
+            }
+            setPatternValue(val)
+            break;
+        case "주인바라기":
+            for (let i = 0; i < AI_TOOL().Pet_TargetChaser_AI_Copy.length; i++) {
+                let indexval = AICopyPattern(AI_TOOL().Pet_TargetChaser_AI_Copy[i], i)
+                val.push({ key: indexval.name, list: indexval })
+            }
+            setPatternValue(val)
+            break;
+        case "폭스 헌터":
+            for (let i = 0; i < AI_TOOL().Pet_FoxHunter_AI_Copy.length; i++) {
+                let indexval = AICopyPattern(AI_TOOL().Pet_FoxHunter_AI_Copy[i], i)
+                val.push({ key: indexval.name, list: indexval })
+            }
+            setPatternValue(val)
+            break;
+        case "기르가쉬 헬퍼":
+            for (let i = 0; i < AI_TOOL().Pet_GirHelper_AI_Copy.length; i++) {
+                let indexval = AICopyPattern(AI_TOOL().Pet_GirHelper_AI_Copy[i], i)
+                val.push({ key: indexval.name, list: indexval })
+            }
+            setPatternValue(val)
+            break;
         default: break;
     }
 
@@ -390,12 +408,13 @@ export function AICopyPattern(value: EventTypes, num: number) {
     const valname = value.name ? value.name : ""
     //이벤트 계열이 문제야. 0번 인덱스에 마스터인지 펫인지 체크시켜야해
     let result: AIPattern = { name: valname, event: [eveSplit.has(eventstr) ? "master" : "pet", eventstr, eventval0, eventval1, eventval2], condition: conmatches, sequence: seqmatches }
-
+    /* 
     console.log(value)
     console.log(eventstr)
     console.log(conmatches)
     console.log(seqmatches)
-    console.log(result)
+    console.log(result)*/
 
     return result;
 }
+
