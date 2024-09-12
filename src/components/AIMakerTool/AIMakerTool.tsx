@@ -135,7 +135,6 @@ max-width: 800px;
 `
 
 const EventDiv = styled.div`
-overflow-y: scroll;
 align-items: center;
 display: flex;
 flex-direction: column;
