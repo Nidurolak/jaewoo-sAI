@@ -6,7 +6,7 @@ import EventMaker from './EventMaker';
 import ConditionMaker from './ConditionMaker';
 import SequenceMaker from './SequenceMaker';
 
-function AIMakerTool() {
+function PatternEditer() {
     const [selectedValue, setSelectedValue] = useState<string | null>(null);
     const [eventSelectedValue, setEventSelectedValue] = useRecoilState(AIMakingEventArrayAtom);
     const [currentPartternValue, setCurrentPatternValue] = useRecoilState(CurrentAIPattern);
@@ -106,7 +106,7 @@ function AIMakerTool() {
         </EventDiv>)
 }
 
-export default AIMakerTool;
+export default PatternEditer;
 
 
 const Cover = styled.div`
