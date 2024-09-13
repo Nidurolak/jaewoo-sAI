@@ -45,7 +45,6 @@ const AIContainer = styled(motion.div)`
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    height: 90vh;
   background-color: rgba(111, 195, 226);
 `
 
