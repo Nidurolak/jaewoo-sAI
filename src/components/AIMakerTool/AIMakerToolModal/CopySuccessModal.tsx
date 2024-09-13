@@ -11,10 +11,12 @@ import { CurrentAIName, DownloadModalBool, DownloadModalCopyBool, SuccessModalSe
 function CopySuccessModal() {
 
   const [downloadModalCopyBool, setdownloadModalCopyBool] = useRecoilState(DownloadModalCopyBool)
+  const [currentAIName, setCurrentAIName] = useRecoilState(CurrentAIName)
 
 
   const CloseModal = (e: React.MouseEvent<HTMLDivElement>) => {
     setdownloadModalCopyBool(false)
+    setCurrentAIName("")
     e.stopPropagation();
   }
   return (<>{downloadModalCopyBool === true && (
