@@ -218,7 +218,7 @@ export function HandleCopyToClipboardForCustom(setPatternValue?: PatternType[], 
             const event = pattern.list.event || [];
             const condition = pattern.list.condition || [];
             const sequence = pattern.list.sequence || [];
-            console.log(event)
+            //console.log(event)
             //케이스가 어디갔어?!
             let con = condition.map((con) => conPt({ tabNum: 4, case: "condition", main: con[0], value0: con[1], value1: con[2] }));
             let seq = sequence.map((seq) => seqPt({ tabNum: 4, case: "sequence", main: seq[0], value0: seq[1], value1: seq[2], value2: seq[3], value3: seq[4] }));
