@@ -103,7 +103,7 @@ export function eventWarper(value: EventTypes) {
     resString.push(conWarper(value.condition!))
     resString.push(seqWarper(value.sequence!))
     resString.push("\t\t<event name=")
-
+    //   console.log(value)
     switch (value.main) {
         case "master_targeted": resString.push(`"${value.main}" targeting_type="${value.value0}"/>`); break;
         case "master_aimed": resString.push(`"${value.main}"/>`); break;
@@ -156,10 +156,9 @@ export function CheckCurrentChange() {
             || !isEqual(partternValue[currentPartternValue.currentIndex].list.condition, conditionArray)
             || !isEqual(partternValue[currentPartternValue.currentIndex].list.sequence, sequenceArray)) {// == currentPartternValue.) {
 
-            //console.log("isChanged는 true")
             return (true)
         }
-    }// console.log("isChanged는 false")
+    }
     return (false)
 }
 
@@ -211,31 +210,27 @@ export function HandleCopyToClipboardForCustom(setPatternValue?: PatternType[], 
 
     //const [modalBoolValue, setmodalBoolValue] = useRecoilState(DownloadModalCopyBool)
 
-    //console.log(setPatternValue)
-    //console.log(setModalBool)
     const partternValue = setPatternValue ? setPatternValue : [];
 
     let content: string[] = [];
-    //console.log(partternValue)
     if (partternValue.length > 0) {
         partternValue.forEach((pattern, i) => {
             const event = pattern.list.event || [];
             const condition = pattern.list.condition || [];
             const sequence = pattern.list.sequence || [];
-
+            console.log(event)
             //케이스가 어디갔어?!
-
             let con = condition.map((con) => conPt({ tabNum: 4, case: "condition", main: con[0], value0: con[1], value1: con[2] }));
             let seq = sequence.map((seq) => seqPt({ tabNum: 4, case: "sequence", main: seq[0], value0: seq[1], value1: seq[2], value2: seq[3], value3: seq[4] }));
             content.push(eventWarper({//전체포장
                 name: pattern.key,
-                main: event[0],
+                main: event[1],
                 //pt를 반복해야해
                 condition: con,
                 sequence: seq,
-                value0: event[1],
-                value1: event[2],
-                value2: event[3],
+                value0: event[2],
+                value1: event[3],
+                value2: event[4],
             })
             )
         })
@@ -267,20 +262,6 @@ export function ApplyPattern() {
         if (name && name !== "") {
             //여기서 AI 케이스별로 진행
             AICopyTotal(name, setPatternValue);
-            /*
-            switch (name) {
-                case "펫 디펜더": AICopyTotal("펫 디펜더", setPatternValue); break;
-                case "로드롤러": AICopyTotal("로드롤러", setPatternValue); break;
-                case "메디이익": break;
-                case "볼트 서포터": break;
-                case "유도 미사일": break;
-                case "재우 오리지널": break;
-                case "전봇대": break;
-                case "주인바라기": break;
-                case "폭스 헌터": break;
-                case "기르가쉬 헬퍼": break;
-                default: break;
-            }*/
             setCurrentPatternValue({ currentIndex: -1, name: "" });
             setCopyname("")
             return;
