@@ -3,13 +3,11 @@ import { styled } from 'styled-components';
 import Mainbutton800400 from '../assets/MainButton800400.png'
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { AIMakerExplainModalBool, CurrentAIPattern } from '../store/atom';
-import EventMaker from './AIMakerTool/EventMaker';
-import AIMakerTool from './AIMakerTool/AIMakerTool';
+import PatternEditer from './AIMakerTool/PatternEditer';
 import PatternListMaker from './AIMakerTool/PatternListMaker';
 import AIListExplainModal from './AIListExplainModal';
-import SuccessModal from './SuccessModal';
 import AICopyList from './AIMakerTool/AICopyList';
-import CopySuccessModal from './AIMakerTool/CopySuccessModal';
+import CopySuccessModal from './AIMakerTool/AIMakerToolModal/CopySuccessModal';
 
 function AIMaker() {
   const [AIMakerexplainModalBool, setAIMakerexplainModalBool] = useRecoilState(AIMakerExplainModalBool);
@@ -31,9 +29,10 @@ function AIMaker() {
         <TotalBox onClick={handleChildClick}>
           <LeftBox>
             <PatternListMaker />
+
           </LeftBox>
           <MiddleBox>
-            <AIMakerTool />
+            <PatternEditer />
             {patternIndex.currentIndex == -1 ? <Cover><h1>패턴을 선택해야 합니다.</h1></Cover> : null}
           </MiddleBox>
           <RightBox>

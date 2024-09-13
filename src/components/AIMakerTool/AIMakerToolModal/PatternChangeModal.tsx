@@ -1,17 +1,17 @@
 import React, { useState, ChangeEvent, useEffect, useMemo } from 'react';
 import { styled } from 'styled-components';
 import { useRecoilState } from 'recoil';
-import SelectButton from './RadioButton';
-import { ExplainModalBool, AIMakingConditionArrayAtom, AIMakingSequenceArrayAtom, AIPatternArrayAtom, CurrentAIPattern, PatternCopyModalBool, DownloadModalCopyBool } from '../../store/atom';
-import XIconBlue from '../../assets/XIconBlue.png'
-import UpIconBlue from '../../assets/UpIconBlue.png'
-import PlusIconBlue from '../../assets/PlusIconBlue.png'
-import DownIconBlue from '../../assets/DownIconBlue.png'
-import Mainbutton3 from '../../assets/MainButton3.png'
+import SelectButton from '../AIMakerButton/RadioButton';
+import { ExplainModalBool, AIMakingConditionArrayAtom, AIMakingSequenceArrayAtom, AIPatternArrayAtom, CurrentAIPattern, PatternCopyModalBool, DownloadModalCopyBool } from '../../../store/atom';
+import XIconBlue from '../../../assets/XIconBlue.png'
+import UpIconBlue from '../../../assets/UpIconBlue.png'
+import PlusIconBlue from '../../../assets/PlusIconBlue.png'
+import DownIconBlue from '../../../assets/DownIconBlue.png'
+import Mainbutton3 from '../../../assets/MainButton3.png'
 
-import { BoxProps, ChangeFunc } from '../../utils/types';
-import { ApplyPattern, CheckCurrentChange, CheckWhatChanged } from '../../hooks/AiMakerHook';
-import Mainbutton800400 from '../../assets/MainButton800400.png'
+import { BoxProps, ChangeFunc } from '../../../utils/types';
+import { ApplyPattern, CheckCurrentChange, CheckWhatChanged } from '../../../hooks/AiMakerHook';
+import Mainbutton800400 from '../../../assets/MainButton800400.png'
 import { isEqual } from 'lodash';
 
 

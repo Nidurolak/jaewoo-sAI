@@ -2,9 +2,9 @@ import React, { useState, ChangeEvent, useEffect } from 'react';
 import { styled } from 'styled-components';
 import { useRecoilState } from 'recoil';
 import { AIMakingEventArrayAtom, CurrentAIPattern } from '../../store/atom';
-import EventMaker from './EventMaker';
-import ConditionMaker from './ConditionMaker';
-import SequenceMaker from './SequenceMaker';
+import EventMaker from './PatternEditerComps/EventMaker';
+import ConditionMaker from './PatternEditerComps/ConditionMaker';
+import SequenceMaker from './PatternEditerComps/SequenceMaker';
 
 function PatternEditer() {
     const [selectedValue, setSelectedValue] = useState<string | null>(null);
@@ -141,7 +141,6 @@ flex-direction: column;
 justify-content: flex-start;
 width: 100%;
 height: 95%;
-padding: 10px;
 position: relative;
 
 &::-webkit-scrollbar {

@@ -1,8 +1,8 @@
 import React, { useState, ChangeEvent, useEffect } from 'react';
 import { styled } from 'styled-components';
 import { useRecoilState } from 'recoil';
-import SelectButton from './RadioButton';
-import { AIMakingEventArrayAtom } from '../../store/atom';
+import SelectButton from '../AIMakerButton/RadioButton';
+import { AIMakingEventArrayAtom } from '../../../store/atom';
 function EventMaker() {
     const [eventSelectedValue, setEventSelectedValue] = useRecoilState(AIMakingEventArrayAtom);
     const [firstRadio, setFirstRadio] = useState<string[]>(["0", "master", "1", "", ""]);

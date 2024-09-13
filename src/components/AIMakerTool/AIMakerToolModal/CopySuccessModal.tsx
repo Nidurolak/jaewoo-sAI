@@ -1,7 +1,7 @@
 import React, { useState, ChangeEvent, useEffect, useRef } from 'react';
 import { styled } from 'styled-components';
 import { useRecoilState } from "recoil";
-import { CurrentAIName, DownloadModalBool, DownloadModalCopyBool, SuccessModalSet } from '../../store/atom';
+import { CurrentAIName, DownloadModalBool, DownloadModalCopyBool, SuccessModalSet } from '../../../store/atom';
 
 //TS2559: Type '{ children: never[]; }' has no properties in common with type 'IntrinsicAttributes'.
 //위 에러 발생, 컴포넌트 전달에 있어 에러 발생으로 추측. GPT 등은 프롭스를 넘기라고 하지만 나는 고정위치에 모달창 생성을 고정시킴으로 해결볼 생각

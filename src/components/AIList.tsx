@@ -5,7 +5,7 @@ import ExplainModal from './ExplainModal';
 import SuccessModal from './SuccessModal';
 import AIListExplainModal from './AIListExplainModal';
 import { motion } from 'framer-motion';
-import CopySuccessModal from './AIMakerTool/CopySuccessModal';
+import CopySuccessModal from './AIMakerTool/AIMakerToolModal/CopySuccessModal';
 
 
 function AIList(value: any) {

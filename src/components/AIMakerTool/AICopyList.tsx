@@ -1,7 +1,7 @@
 import React, { useState, ChangeEvent, useEffect, useMemo, useRef } from 'react';
 import { styled } from 'styled-components';
 import { useRecoilState } from 'recoil';
-import SelectButton from './RadioButton';
+import SelectButton from './AIMakerButton/RadioButton';
 import { AIMakingConditionArrayAtom, AIMakingEventArrayAtom, AIMakingSequenceArrayAtom, AIPatternArrayAtom, CurrentAIPattern, ExplainModalBool } from '../../store/atom';
 import XIconBlue from '../../assets/XIconBlue.png'
 import UpIconBlue from '../../assets/UpIconBlue.png'
@@ -9,14 +9,14 @@ import PlusIconBlue from '../../assets/PlusIconBlue.png'
 import DownIconBlue from '../../assets/DownIconBlue.png'
 import Mainbutton3 from '../../assets/MainButton3.png'
 import Mainbutton20070 from '../../assets/MainButton20070.png'
-import PatternButton from './PatternButton';
-import PartternChangeModal from './PatternChangeModal';
+import PatternButton from './AIMakerButton/PatternButton';
+import PartternChangeModal from './AIMakerToolModal/PatternChangeModal';
 import { BackGUI } from '../../utils/types';
 import { CheckCurrentChange, GetWidthAndHeight, HandleCopyToClipboardForCustom } from '../../hooks/AiMakerHook';
 import _ from 'lodash';
 import gen_button_confirm from '../../assets/Sound/gen_button_confirm.wav'
 import uuid from 'react-uuid';
-import AICopyButton from './AICopyButton';
+import AICopyButton from './AIMakerButton/AICopyButton';
 
 
 function AICopyList() {

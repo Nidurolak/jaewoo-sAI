@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { styled } from 'styled-components';
 import { useRecoilState } from 'recoil';
-import { AIMakingSequenceArrayAtom } from '../../store/atom';
+import { AIMakingSequenceArrayAtom } from '../../../store/atom';
 import ConSeqWraper from './ConSeqWraper';
-import { BackGUI } from '../../utils/types';
-import Mainbutton3 from '../../assets/MainButton3.png'
+import { BackGUI } from '../../../utils/types';
+import Mainbutton3 from '../../../assets/MainButton3.png'
 
 
 function SequenceMaker() {

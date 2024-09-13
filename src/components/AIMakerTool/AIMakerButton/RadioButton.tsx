@@ -1,6 +1,6 @@
 import React, { } from 'react';
 import { styled } from 'styled-components';
-import { BoxProps } from '../../utils/types';
+import { BoxProps } from '../../../utils/types';
 
 
 

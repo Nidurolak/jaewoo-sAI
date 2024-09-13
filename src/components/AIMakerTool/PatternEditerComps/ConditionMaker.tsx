@@ -1,10 +1,10 @@
 import React, { useState, ChangeEvent, useEffect } from 'react';
 import { styled } from 'styled-components';
 import { useRecoilState } from 'recoil';
-import { AIMakingConditionArrayAtom, AIMakingEventArrayAtom } from '../../store/atom';
+import { AIMakingConditionArrayAtom, AIMakingEventArrayAtom } from '../../../store/atom';
 import ConSeqWraper from './ConSeqWraper';
-import { BackGUI } from '../../utils/types';
-import Mainbutton3 from '../../assets/MainButton3.png'
+import { BackGUI } from '../../../utils/types';
+import Mainbutton3 from '../../../assets/MainButton3.png'
 
 
 function ConditionMaker() {
