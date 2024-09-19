@@ -198,7 +198,7 @@ const Container = styled.div`
   font-family: 'Mabinogi_Classic_TTF';}
 
   h1 {word-spacing: 1px;word-break:keep-all; text-align: center; font-weight: 100;font-size: 37px;font-family: inherit;}
-  h2 {word-spacing: 1px;word-break:keep-all; text-align: left; font-weight: 100; font-size: 17px; font-family: inherit;}
+  h2 {word-spacing: 1px;word-break:keep-all; text-align: left; font-weight: 100; font-size: 17px; font-family: inherit; padding: 7px;}
   h3 {word-spacing: 1px;word-break:keep-all; text-align: justify; font-weight: 100; font-size: 15px; font-family: inherit; white-space: pre-wrap;}
 
 
