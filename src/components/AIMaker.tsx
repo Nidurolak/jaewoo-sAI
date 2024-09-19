@@ -8,12 +8,16 @@ import PatternListMaker from './AIMakerTool/PatternListMaker';
 import AIListExplainModal from './AIListExplainModal';
 import AICopyList from './AIMakerTool/AICopyList';
 import CopySuccessModal from './AIMakerTool/AIMakerToolModal/CopySuccessModal';
+import FirstPopupModal from './AIMakerTool/AIMakerToolModal/FirstPopupModal';
 
 function AIMaker() {
   const [AIMakerexplainModalBool, setAIMakerexplainModalBool] = useRecoilState(AIMakerExplainModalBool);
   const patternIndex = useRecoilValue(CurrentAIPattern)
-
-  const handleCloseModal = () => {
+  const handleCloseModal = (e: React.MouseEvent) => {
+    if (e.currentTarget !== e.target) {
+      e.stopPropagation();
+      return;
+    }
     if (patternIndex.currentIndex < 0) {
       setAIMakerexplainModalBool(false);
     }
@@ -41,6 +45,7 @@ function AIMaker() {
         </TotalBox>
         <AIListExplainModal />
         <CopySuccessModal />
+        <FirstPopupModal />
       </Container>}
   </>)
 }
