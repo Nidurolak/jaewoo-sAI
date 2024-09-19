@@ -10,6 +10,7 @@ import 재우님 from '../assets/Icon/재우님.jpg'
 import QNAComp from '../components/QNAComp';
 import AIList from '../components/AIList';
 import AIMaker from '../components/AIMaker';
+import { getLocalStorage, setLocalStorage } from '../utils/localStorage';
 
 
 function Main() {
@@ -21,10 +22,17 @@ function Main() {
 
   //마비노기 공식 홈페이지의 그것과 비슷하게 해보고 싶었는데 뭔가 잘 안되네....
 
+
+
+  useEffect(() => {
+    if (getLocalStorage("Ver.2.0.0.IsFirst") == null) {
+      setLocalStorage("Ver.2.0.0.IsFirst", "0")
+    }
+  }, []);
+
+
   //드래그 시 상하 감지 후 로직 발동, 하드 코딩한 수준이라 다른 프로젝트에서 구조를 참고할 순 있어도 쌩으로 쓰긴 힘들어보인다.
   const handleWheel = (e: React.WheelEvent) => {
-
-
     if (e.currentTarget !== e.target) {
       e.stopPropagation();
       return;
