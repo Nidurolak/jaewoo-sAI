@@ -139,6 +139,9 @@ const ListContainer = styled.div`
   max-height: 95%;
 display: flex;
 flex-direction: column;
+  @media (max-width: 1400px) {
+    margin-top: 15px;
+  }
 
 `
 
@@ -147,10 +150,15 @@ display: flex;
 flex-direction: column;
   width: 100%;
   max-width: 400px;
-  height: 540px;
+  height: 640px;
   max-height: 100%;
   overflow-y: scroll;
   gap: 10px;
+  @media (max-width: 1400px) {
+  height: 440px;
+  }
+
+
 
   &::-webkit-scrollbar {
     width: 11px;
