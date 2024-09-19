@@ -29,7 +29,7 @@ export function seqPt(value: SequenceType) {
         case "wait": resString.push(`"${value.main}" min="${value.value0}" max="${value.value1}"/>`); break;
         case "move_against": resString.push(`"${value.main}" distance="${value.value0}" run="${value.value1}" timeout="${value.value2}"/>`); break;
         case "chase": resString.push(`"${value.main}" chase_target="${value.value0}" timeout="${value.value1}" run="${value.value2}"/>`); break;
-        case "move_around": resString.push(`"${value.main}" clockwise="${value.value0}" timeout="${value.value1}" run="${value.value2}"/>`); break;
+        case "move_around": resString.push(`"${value.main}" clockwise="${value.value0}" radius="${value.value1}" timeout="${value.value3}" run="${value.value2}"/>`); break;
         case "melee_attack": resString.push(`"${value.main}" timeout="${value.value0}"/>`); break;
         case "stackmagic_attack": resString.push(`"${value.main}" stack_magic="${value.value0}" charge="${value.value1}" timeout="${value.value2}"/>`); break;
         case "prepare_skill": resString.push(`"${value.main}" pet_skill="${value.value0}" try_cnt="${value.value1}" timeout="${value.value2}"/>`); break;
