@@ -18,6 +18,10 @@ export const DownloadModalBool = atom({
     key: "DownloadMoadlState",
     default: false,
 })
+export const FirstModalBool = atom({
+    key: "FirstModalBoolState",
+    default: true,
+})
 export const CopyAIName = atom<string>({
     key: "CopyAINameState",
     default: '',
