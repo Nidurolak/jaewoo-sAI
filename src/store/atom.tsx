@@ -7,8 +7,8 @@ export const ButtonData = atom<ButtonDataForRecoil>({
 })
 
 export const LocalData = atom({
-    key: `Ver.2.0.0.IsFirst`,
-    default: "0"
+    key: `Ver`,
+    default: "Ver.2.0.0.IsFirst"
 })
 
 export const DownloadModalCopyBool = atom({
