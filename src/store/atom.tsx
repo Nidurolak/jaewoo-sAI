@@ -6,6 +6,11 @@ export const ButtonData = atom<ButtonDataForRecoil>({
     key: `state${uuid()}`
 })
 
+export const LocalData = atom({
+    key: `Ver.2.0.0.IsFirst`,
+    default: "0"
+})
+
 export const DownloadModalCopyBool = atom({
     key: "DownloadMoadlCopyState",
     default: false,
