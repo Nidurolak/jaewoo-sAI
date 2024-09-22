@@ -1,12 +1,12 @@
 import React, { useState, ChangeEvent, useEffect } from 'react';
 import { styled } from 'styled-components';
-import Mainbutton20070 from '../assets/MainButton20070.png'
-import UpIconBlue from '../assets/UpIconBlue.png'
-import DownIconBlue from '../assets/DownIconBlue.png'
+import Mainbutton20070 from '../assets/MainButton20070.webp'
+import UpIconBlue from '../assets/UpIconBlue.webp'
+import DownIconBlue from '../assets/DownIconBlue.webp'
 import { AnimatePresence, motion, useAnimation } from 'framer-motion';
 import { useRecoilState } from 'recoil';
 import { WheelBool, ExpWheelBool, CurrentAIName, AIMakerExplainModalBool } from '../store/atom';
-import 재우님 from '../assets/Icon/재우님.jpg'
+import 재우님 from '../assets/Icon/재우님.webp'
 import QNAComp from '../components/QNAComp';
 import AIList from '../components/AIList';
 import AIMaker from '../components/AIMaker';
