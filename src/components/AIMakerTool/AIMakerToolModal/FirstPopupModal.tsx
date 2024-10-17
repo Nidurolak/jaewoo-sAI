@@ -9,13 +9,14 @@ import Explain1 from '../../../assets/Explain1.png'
 import Explain2 from '../../../assets/Explain2.png'
 import DownIconBlue from '../../../assets/DownIconBlue.png'
 import Mainbutton20070 from '../../../assets/MainButton20070.png'
-import { useRecoilState } from 'recoil';
-import { FirstModalBool } from '../../../store/atom';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { FirstModalBool, LocalData } from '../../../store/atom';
 function FirstPopupModal() {
   const [firstModal, setFirstModal] = useRecoilState(FirstModalBool)
   const containerRef = useRef<HTMLDivElement>(null);
   const boxRef = useRef<HTMLDivElement>(null);
   const boxEnter = useRef(false);
+  const localData = useRecoilValue(LocalData)
 
   const handleWheel = (e: React.WheelEvent) => {
 
@@ -34,11 +35,11 @@ function FirstPopupModal() {
     }
     else {
       setFirstModal(false)
-      setLocalStorage("Ver.2.0.0.IsFirst", "1")
+      setLocalStorage(localData, "1")
     }
   }
 
-  const storedData = getLocalStorage("Ver.2.0.0.IsFirst")
+  const storedData = getLocalStorage(localData)
 
   return (<>{storedData === "0" && firstModal &&
     <Container>
@@ -198,7 +199,7 @@ const Container = styled.div`
   font-family: 'Mabinogi_Classic_TTF';}
 
   h1 {word-spacing: 1px;word-break:keep-all; text-align: center; font-weight: 100;font-size: 37px;font-family: inherit;}
-  h2 {word-spacing: 1px;word-break:keep-all; text-align: left; font-weight: 100; font-size: 17px; font-family: inherit;}
+  h2 {word-spacing: 1px;word-break:keep-all; text-align: left; font-weight: 100; font-size: 17px; font-family: inherit; padding: 7px;}
   h3 {word-spacing: 1px;word-break:keep-all; text-align: justify; font-weight: 100; font-size: 15px; font-family: inherit; white-space: pre-wrap;}
 
 

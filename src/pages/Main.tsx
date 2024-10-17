@@ -4,9 +4,9 @@ import Mainbutton20070 from '../assets/MainButton20070.webp'
 import UpIconBlue from '../assets/UpIconBlue.webp'
 import DownIconBlue from '../assets/DownIconBlue.webp'
 import { AnimatePresence, motion, useAnimation } from 'framer-motion';
-import { useRecoilState } from 'recoil';
-import { WheelBool, ExpWheelBool, CurrentAIName, AIMakerExplainModalBool } from '../store/atom';
-import 재우님 from '../assets/Icon/재우님.webp'
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { WheelBool, ExpWheelBool, CurrentAIName, AIMakerExplainModalBool, LocalData } from '../store/atom';
+import 재우님 from '../assets/Icon/재우님.jpg'
 import QNAComp from '../components/QNAComp';
 import AIList from '../components/AIList';
 import AIMaker from '../components/AIMaker';
@@ -18,6 +18,7 @@ function Main() {
   const [currentAIName, setCurrentAIName] = useRecoilState(CurrentAIName)
   const [expWheelBoolstate, setexpWheelBoolState] = useRecoilState(ExpWheelBool)
   const [AIMakerexplainModalBool, setAIMakerexplainModalBool] = useRecoilState(AIMakerExplainModalBool);
+  const localData = useRecoilValue(LocalData)
 
 
   //마비노기 공식 홈페이지의 그것과 비슷하게 해보고 싶었는데 뭔가 잘 안되네....
@@ -25,8 +26,8 @@ function Main() {
 
 
   useEffect(() => {
-    if (getLocalStorage("Ver.2.0.0.IsFirst") == null) {
-      setLocalStorage("Ver.2.0.0.IsFirst", "0")
+    if (getLocalStorage(localData) == null) {
+      setLocalStorage(localData, "0")
     }
   }, []);
 
