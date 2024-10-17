@@ -3,10 +3,10 @@ import { styled } from 'styled-components';
 import { useRecoilState } from 'recoil';
 import SelectButton from '../AIMakerButton/RadioButton';
 import { AIMakingConditionArrayAtom, AIMakingSequenceArrayAtom } from '../../../store/atom';
-import XIconBlue from '../../../assets/XIconBlue.png'
-import UpIconBlue from '../../../assets/UpIconBlue.png'
-import PlusIconBlue from '../../../assets/PlusIconBlue.png'
-import DownIconBlue from '../../../assets/DownIconBlue.png'
+import XIconBlue from '../../../assets/XIconBlue.webp'
+import UpIconBlue from '../../../assets/UpIconBlue.webp'
+import PlusIconBlue from '../../../assets/PlusIconBlue.webp'
+import DownIconBlue from '../../../assets/DownIconBlue.webp'
 import { BoxProps } from '../../../utils/types';
 
 //이벤트 메이커랑 아주 비슷하게 만들어야 할거야.

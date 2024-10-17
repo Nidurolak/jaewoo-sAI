@@ -6,7 +6,7 @@ import DownIconBlue from '../assets/DownIconBlue.webp'
 import { AnimatePresence, motion, useAnimation } from 'framer-motion';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { WheelBool, ExpWheelBool, CurrentAIName, AIMakerExplainModalBool, LocalData } from '../store/atom';
-import 재우님 from '../assets/Icon/재우님.jpg'
+import 재우님 from '../assets/Icon/재우님.webp'
 import QNAComp from '../components/QNAComp';
 import AIList from '../components/AIList';
 import AIMaker from '../components/AIMaker';

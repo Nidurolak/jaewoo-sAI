@@ -1,14 +1,14 @@
 import { styled } from 'styled-components';
 import React, { useEffect, useRef } from 'react';
 import { getLocalStorage, setLocalStorage } from '../../../utils/localStorage';
-import XIconBlue from '../../../assets/XIconBlue.png'
-import UpIconBlue from '../../../assets/UpIconBlue.png'
-import PlusIconBlue from '../../../assets/PlusIconBlue.png'
-import Explain0 from '../../../assets/Explain0.png'
-import Explain1 from '../../../assets/Explain1.png'
-import Explain2 from '../../../assets/Explain2.png'
-import DownIconBlue from '../../../assets/DownIconBlue.png'
-import Mainbutton20070 from '../../../assets/MainButton20070.png'
+import XIconBlue from '../../../assets/XIconBlue.webp'
+import UpIconBlue from '../../../assets/UpIconBlue.webp'
+import PlusIconBlue from '../../../assets/PlusIconBlue.webp'
+import Explain0 from '../../../assets/Explain0.webp'
+import Explain1 from '../../../assets/Explain1.webp'
+import Explain2 from '../../../assets/Explain2.webp'
+import DownIconBlue from '../../../assets/DownIconBlue.webp'
+import Mainbutton20070 from '../../../assets/MainButton20070.webp'
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { FirstModalBool, LocalData } from '../../../store/atom';
 function FirstPopupModal() {

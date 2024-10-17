@@ -4,7 +4,7 @@ import clipboardCopy from 'clipboard-copy';
 import { GetWidthAndHeight, HandleSoundPlay, totalWarper } from '../hooks/AiMakerHook';
 import { AITemplet, BackGUI } from '../utils/types';
 import { AI_TOOL } from './AITool';
-import Mainbutton20070 from '../assets/MainButton20070.png'
+import Mainbutton20070 from '../assets/MainButton20070.webp'
 import 로드롤러 from '../assets/Icon/로드롤러.webp'
 import 메디이익 from '../assets/Icon/메디이익.webp'
 import 볼트서포터 from '../assets/Icon/볼트서포터.webp'

@@ -4,7 +4,7 @@ import { useRecoilState } from 'recoil';
 import { AIMakingSequenceArrayAtom } from '../../../store/atom';
 import ConSeqWraper from './ConSeqWraper';
 import { BackGUI } from '../../../utils/types';
-import Mainbutton3 from '../../../assets/MainButton3.png'
+import Mainbutton3 from '../../../assets/MainButton3.webp'
 
 
 function SequenceMaker() {

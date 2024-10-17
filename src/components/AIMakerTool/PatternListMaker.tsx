@@ -3,12 +3,12 @@ import { styled } from 'styled-components';
 import { useRecoilState } from 'recoil';
 import SelectButton from './AIMakerButton/RadioButton';
 import { AIMakingConditionArrayAtom, AIMakingEventArrayAtom, AIMakingSequenceArrayAtom, AIPatternArrayAtom, CurrentAIPattern, DownloadModalCopyBool, ExplainModalBool } from '../../store/atom';
-import XIconBlue from '../../assets/XIconBlue.png'
-import UpIconBlue from '../../assets/UpIconBlue.png'
-import PlusIconBlue from '../../assets/PlusIconBlue.png'
-import DownIconBlue from '../../assets/DownIconBlue.png'
-import Mainbutton3 from '../../assets/MainButton3.png'
-import Mainbutton20070 from '../../assets/MainButton20070.png'
+import XIconBlue from '../../assets/XIconBlue.webp'
+import UpIconBlue from '../../assets/UpIconBlue.webp'
+import PlusIconBlue from '../../assets/PlusIconBlue.webp'
+import DownIconBlue from '../../assets/DownIconBlue.webp'
+import Mainbutton3 from '../../assets/MainButton3.webp'
+import Mainbutton20070 from '../../assets/MainButton20070.webp'
 import PatternButton from './AIMakerButton/PatternButton';
 import PartternChangeModal from './AIMakerToolModal/PatternChangeModal';
 import { BackGUI } from '../../utils/types';

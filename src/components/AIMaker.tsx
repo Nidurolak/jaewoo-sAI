@@ -1,6 +1,6 @@
 import React from 'react';
 import { styled } from 'styled-components';
-import Mainbutton800400 from '../assets/MainButton800400.png'
+import Mainbutton800400 from '../assets/MainButton800400.webp'
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { AIMakerExplainModalBool, CurrentAIPattern } from '../store/atom';
 import PatternEditer from './AIMakerTool/PatternEditer';

@@ -1,16 +1,16 @@
 import React, { useState, ChangeEvent, useEffect, useRef } from 'react';
 import styled, { css, keyframes } from 'styled-components';
-import Mainbutton3 from '../assets/MainButton3.png'
-import 로드롤러 from '../assets/Icon/로드롤러.jpg'
-import 메디이익 from '../assets/Icon/메디이익.jpg'
-import 볼트서포터 from '../assets/Icon/볼트서포터.jpg'
-import 블레이즈서포터 from '../assets/Icon/블레이즈서포터.jpg'
-import 오리지널Lite from '../assets/Icon/오리지널Lite.jpg'
-import 재우오리지널 from '../assets/Icon/재우오리지널.jpg'
-import 전봇대 from '../assets/Icon/전봇대.jpg'
-import 펫디펜더 from '../assets/Icon/펫디펜더.jpg'
-import 주인바라기 from '../assets/Icon/주인바라기.jpg'
-import 컴뱃파트너 from '../assets/Icon/컴뱃파트너.jpg'
+import Mainbutton3 from '../assets/MainButton3.webp'
+import 로드롤러 from '../assets/Icon/로드롤러.webp'
+import 메디이익 from '../assets/Icon/메디이익.webp'
+import 볼트서포터 from '../assets/Icon/볼트서포터.webp'
+import 블레이즈서포터 from '../assets/Icon/블레이즈서포터.webp'
+import 오리지널Lite from '../assets/Icon/오리지널Lite.webp'
+import 재우오리지널 from '../assets/Icon/재우오리지널.webp'
+import 전봇대 from '../assets/Icon/전봇대.webp'
+import 펫디펜더 from '../assets/Icon/펫디펜더.webp'
+import 주인바라기 from '../assets/Icon/주인바라기.webp'
+import 컴뱃파트너 from '../assets/Icon/컴뱃파트너.webp'
 import { useRecoilState, } from "recoil";
 import { CurrentAIName, ExplainModalBool, DownloadModalCopyBool } from '../store/atom';
 import { motion } from 'framer-motion';

@@ -2,10 +2,10 @@ import React, { useState, ChangeEvent, useEffect, useMemo } from 'react';
 import { styled } from 'styled-components';
 import { useRecoilState } from 'recoil';
 import { AIMakingConditionArrayAtom, AIMakingEventArrayAtom, AIMakingSequenceArrayAtom, AIPatternArrayAtom, CurrentAIPattern } from '../../../store/atom';
-import XIconBlue from '../../../assets/XIconBlue.png'
-import UpIconBlue from '../../../assets/UpIconBlue.png'
-import PlusIconBlue from '../../../assets/PlusIconBlue.png'
-import DownIconBlue from '../../../assets/DownIconBlue.png'
+import XIconBlue from '../../../assets/XIconBlue.webp'
+import UpIconBlue from '../../../assets/UpIconBlue.webp'
+import PlusIconBlue from '../../../assets/PlusIconBlue.webp'
+import DownIconBlue from '../../../assets/DownIconBlue.webp'
 import { BoxProps, PatternType } from '../../../utils/types';
 import { CheckCurrentChange } from '../../../hooks/AiMakerHook';
 import _ from 'lodash';

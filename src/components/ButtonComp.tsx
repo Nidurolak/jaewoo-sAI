@@ -1,7 +1,7 @@
 import React, { useState, ChangeEvent, useEffect, useRef } from 'react';
 import { styled } from 'styled-components';
 import { BackGUI } from '../utils/types';
-import Mainbutton20070 from '../assets/MainButton20070.png'
+import Mainbutton20070 from '../assets/MainButton20070.webp'
 import { motion } from 'framer-motion';
 import { GetWidthAndHeight } from '../hooks/AiMakerHook';
 
