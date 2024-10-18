@@ -128,4 +128,9 @@ src
 
 ---
 
-React, TypeScript, Styled-Component, Framer-Motion, React-Recoil
+<img src="https://img.shields.io/badge/react-61DAFB">
+<img src="https://img.shields.io/badge/typescript-3178C6">
+<img src="https://img.shields.io/badge/StyledComponent-DB7093">
+<img src="https://img.shields.io/badge/FramerMotion-0055FF">
+<img src="https://img.shields.io/badge/ReactRecoil-3578E5">
+
