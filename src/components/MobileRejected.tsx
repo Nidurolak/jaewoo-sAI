@@ -4,6 +4,7 @@ import 재우님 from '../assets/Icon/재우님.webp'
 
 function MobileRejected() {
   return (<Container>
+
     <MainImage image={재우님}></MainImage>
     <h2>모바일에선 접속하실 수 없습니다!</h2>
   </Container>)
