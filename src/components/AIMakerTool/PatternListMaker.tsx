@@ -187,7 +187,7 @@ const ListContainer = styled.div`
   max-height: 95%;
   display: flex;
   flex-direction: column;
-  @media (max-width: 1400px) {
+  @media (max-width: 1400px),(max-height: 700px) {
     min-height: 440px;
   }
 `

@@ -76,8 +76,6 @@ const LeftBox = styled.div`
   justify-content: flex-start;
   width: 100%;
   max-width: 400px;
-  height: 900px;
-  max-height: 95%;
 `
 
 const MiddleBox = styled.div`
@@ -86,8 +84,6 @@ const MiddleBox = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   max-width: 800px;
-  height: 900px;
-  max-height: 95%;
 `
 
 const RightBox = styled.div`
@@ -96,8 +92,6 @@ const RightBox = styled.div`
   justify-content: flex-start;
   width: 100%;
   max-width: 400px;
-  height: 900px;
-  max-height: 95%;
 `
 
 const TotalBox = styled.div`
@@ -117,20 +111,22 @@ const TotalBox = styled.div`
   background-repeat: no-repeat;
   color: rgba(255, 255, 255, 1);
   width: fit-content;
-  height: 90vh; 
+  height: 75vh; 
   min-width: 1200px;
   min-height: 800px;
   border: none;
   font-size: 17px;
   font-family: 'Mabinogi_Classic_TTF';
-  @media (max-width: 1400px) {
-    flex-direction: column;
-    justify-content: flex-start;
+  @media (max-width: 1400px), (max-height: 700px) {
+    justify-content: center;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
     align-items: center;
+    place-items: center;
     padding: 20px;
     min-width: 900px;
     min-height: 400px;
-    height: 90%;
+    height: 95vh; 
     overflow-y: scroll;
     &::-webkit-scrollbar {width: 11px;}
     &::-webkit-scrollbar-track {background: none;}
